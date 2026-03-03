@@ -10,6 +10,7 @@ import LoadingState from "@/components/LoadingState";
 import ReportSection from "@/components/ReportSection";
 import OptInForm from "@/components/OptInForm";
 import SecondaryCTA from "@/components/SecondaryCTA";
+import IndustryInfoSection from "@/components/IndustryInfoSection";
 import Footer from "@/components/Footer";
 
 const MIN_LOADING_MS = 16000;
@@ -69,6 +70,7 @@ export default function Home() {
           <OptInForm analysisData={analysisResult} />
         </>
       )}
+      <IndustryInfoSection />
       <SecondaryCTA />
       <Footer />
     </main>

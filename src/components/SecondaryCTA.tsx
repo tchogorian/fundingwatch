@@ -34,7 +34,7 @@ export default function SecondaryCTA() {
           Don&apos;t Pay More Than You Have To
         </h2>
         <p className="mt-6 text-body text-slate-400">
-          Most MCA borrowers are paying over 100% APR without knowing it. Find out in 30 seconds.
+          Courts are ruling that fixed daily payments without reconciliation may make your advance a loan subject to usury limits. See if your contract has red flags.
         </p>
         <button
           type="button"
