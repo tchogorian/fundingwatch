@@ -80,27 +80,27 @@ export default function UploadSection({
   return (
     <section id="upload" className="bg-white px-4 py-20 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-2xl">
-        <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <h2 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
           Check Your Contract Now
         </h2>
-        <p className="mt-4 text-center text-lg font-normal text-gray-600">
+        <p className="mt-5 text-center text-lg font-normal text-gray-600">
           PDF, JPG, or PNG. Max {MAX_SIZE_MB}MB. Analysis is free and private.
         </p>
         <div
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
-          className={`mt-10 rounded-2xl border-[3px] border-dashed transition-all duration-200 ${
+          className={`mt-10 rounded-2xl border-2 border-dashed transition-all duration-200 ${
             dragActive
-              ? "border-accent bg-accent/5 shadow-inner"
+              ? "border-accent bg-accent/5 shadow-glow-strong shadow-inner"
               : error
                 ? "border-critical bg-critical/5 shadow-inner"
-                : "border-gray-300 bg-gray-50/50 shadow-inner hover:border-accent/60 hover:bg-accent/[0.03]"
+                : "animate-pulse-soft border-gray-300 bg-surface shadow-glow hover:border-accent/50 hover:shadow-glow-strong"
           }`}
         >
           {selectedFile ? (
             <div className="flex flex-col items-center justify-center p-10">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 shadow-card">
                 <FileText className="h-8 w-8 text-accent" />
               </div>
               <p className="mt-4 text-lg font-semibold text-gray-900">
@@ -111,7 +111,7 @@ export default function UploadSection({
               </p>
               <button
                 onClick={onStartAnalysis}
-                className="mt-8 rounded-xl bg-accent px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-accent/20 transition hover:bg-accent/90 hover:shadow-accent/30"
+                className="mt-8 rounded-xl bg-accent px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-accent/20 transition hover:scale-[1.02] hover:bg-accent/90 hover:shadow-accent/30"
               >
                 Start Analysis
               </button>
@@ -124,7 +124,7 @@ export default function UploadSection({
               <span className="mt-6 text-center text-base font-semibold text-gray-800">
                 Drag and drop your contract here, or
               </span>
-              <span className="mt-4 inline-flex rounded-xl border-2 border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition group-hover:border-accent group-hover:bg-accent/5 group-hover:text-accent">
+              <span className="mt-4 inline-flex rounded-xl border-2 border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-card transition group-hover:scale-[1.02] group-hover:border-accent group-hover:bg-accent/5 group-hover:text-accent">
                 Browse files
               </span>
               <input

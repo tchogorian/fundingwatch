@@ -1,8 +1,8 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js",
-  "/privacy/page": "app/privacy/page.js",
+  "/api/analyze/route": "app/api/analyze/route.js",
   "/terms/page": "app/terms/page.js",
   "/api/opt-in/route": "app/api/opt-in/route.js",
-  "/api/analyze/route": "app/api/analyze/route.js"
+  "/page": "app/page.js",
+  "/privacy/page": "app/privacy/page.js"
 }

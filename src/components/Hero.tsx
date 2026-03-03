@@ -20,13 +20,22 @@ export default function Hero() {
           `,
         }}
       />
-      {/* Subtle grid overlay */}
+      {/* Subtle grid + dot pattern overlay */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)`,
-          backgroundSize: "64px 64px",
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px)
+          `,
+          backgroundSize: "48px 48px",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-[0.12]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,.2) 1px, transparent 0)`,
+          backgroundSize: "24px 24px",
         }}
       />
 
@@ -41,7 +50,7 @@ export default function Hero() {
           </p>
           <button
             onClick={scrollToUpload}
-            className="mt-12 inline-flex items-center rounded-xl bg-accent px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-accent/25 transition hover:bg-accent/90 hover:shadow-xl hover:shadow-accent/30 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-navy"
+            className="mt-12 inline-flex items-center rounded-xl bg-accent px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-accent/25 transition hover:scale-[1.02] hover:bg-accent/90 hover:shadow-xl hover:shadow-accent/30 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-navy"
           >
             Analyze My Contract Free
           </button>

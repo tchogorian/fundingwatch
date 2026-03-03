@@ -19,13 +19,13 @@ function computeRiskScore(data: AnalysisResult): number {
 
 function scoreColor(score: number) {
   if (score >= 60) return "text-critical";
-  if (score >= 30) return "text-warning";
+  if (score >= 30) return "text-amber-600";
   return "text-positive";
 }
 
 function strokeColor(score: number) {
   if (score >= 60) return "#C62828";
-  if (score >= 30) return "#E65100";
+  if (score >= 30) return "#D97706";
   return "#2E7D32";
 }
 
@@ -35,19 +35,19 @@ export default function RiskScoreRing({ data }: { data: AnalysisResult }) {
   const offset = circumference - (score / 100) * circumference;
 
   return (
-    <div className="flex flex-col items-center rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+    <div className="flex flex-col items-center rounded-2xl border border-gray-200/80 bg-white p-8 shadow-card">
       <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">
         Overall risk score
       </p>
       <div className="relative mt-4 flex items-center justify-center">
-        <svg className="h-32 w-32 -rotate-90" viewBox="0 0 120 120">
+        <svg className="h-36 w-36 -rotate-90" viewBox="0 0 120 120">
           <circle
             cx="60"
             cy="60"
             r="54"
             fill="none"
             stroke="#E5E7EB"
-            strokeWidth="10"
+            strokeWidth="12"
           />
           <circle
             cx="60"
@@ -55,7 +55,7 @@ export default function RiskScoreRing({ data }: { data: AnalysisResult }) {
             r="54"
             fill="none"
             stroke={strokeColor(score)}
-            strokeWidth="10"
+            strokeWidth="12"
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={offset}
@@ -63,12 +63,12 @@ export default function RiskScoreRing({ data }: { data: AnalysisResult }) {
           />
         </svg>
         <span
-          className={`absolute text-3xl font-bold ${scoreColor(score)}`}
+          className={`absolute text-4xl font-bold ${scoreColor(score)}`}
         >
           {score}
         </span>
       </div>
-      <p className="mt-2 text-base font-normal text-gray-600">
+      <p className="mt-3 text-base font-normal text-gray-600">
         {score >= 60
           ? "High risk — review carefully"
           : score >= 30

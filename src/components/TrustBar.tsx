@@ -9,7 +9,7 @@ const signals = [
 
 export default function TrustBar() {
   return (
-    <section className="border-t border-gray-200 bg-gray-50 px-4 py-8 sm:px-6">
+    <section className="border-y border-gray-200/80 bg-white px-4 py-8 sm:px-6">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-12 gap-y-5 text-sm font-medium text-gray-600">
         {signals.map(({ text, Icon }) => (
           <div key={text} className="flex items-center gap-2.5">

@@ -22,14 +22,14 @@ export default function LoadingState() {
   }, [activeStep]);
 
   return (
-    <section id="upload" className="bg-white px-4 py-16 sm:px-6 sm:py-20">
+    <section id="upload" className="bg-surface px-4 py-16 sm:px-6 sm:py-20">
       <div className="mx-auto max-w-xl">
         <div className="flex flex-col items-center">
           <div className="relative flex items-center justify-center">
             <div className="h-24 w-24 animate-pulse rounded-full bg-accent/20" />
             <CheckCircle className="absolute h-10 w-10 text-accent" />
           </div>
-          <p className="mt-6 text-lg font-medium text-gray-900">
+          <p className="mt-6 text-lg font-semibold text-gray-900">
             Analyzing your contract...
           </p>
           <div className="mt-10 w-full space-y-4">
@@ -40,12 +40,12 @@ export default function LoadingState() {
               return (
                 <div
                   key={step.id}
-                  className={`flex items-center gap-4 rounded-lg border px-4 py-3 transition-colors ${
+                  className={`flex items-center gap-4 rounded-2xl border border-gray-200/80 px-4 py-3.5 shadow-card transition-colors ${
                     isActive
                       ? "border-accent bg-accent/5"
                       : isDone
-                        ? "border-green-200 bg-green-50/50"
-                        : "border-gray-200 bg-gray-50"
+                        ? "border-green-200 bg-green-50"
+                        : "bg-white"
                   }`}
                 >
                   <div
@@ -66,10 +66,10 @@ export default function LoadingState() {
                   <span
                     className={
                       isActive
-                        ? "font-medium text-gray-900"
+                        ? "font-semibold text-gray-900"
                         : isDone
-                          ? "text-gray-600"
-                          : "text-gray-400"
+                          ? "font-medium text-gray-600"
+                          : "font-normal text-gray-400"
                     }
                   >
                     {step.label}

@@ -11,10 +11,10 @@ const severityConfig = {
     iconClass: "text-critical",
   },
   warning: {
-    border: "border-l-4 border-warning",
-    bg: "bg-orange-50",
+    border: "border-l-4 border-amber-500",
+    bg: "bg-amber-50",
     icon: AlertTriangle,
-    iconClass: "text-warning",
+    iconClass: "text-amber-700",
   },
   info: {
     border: "border-l-4 border-accent",
@@ -32,7 +32,7 @@ export default function RedFlagsSection({ flags }: { flags: RedFlag[] }) {
 
   if (sorted.length === 0) {
     return (
-      <div className="rounded-2xl border border-green-200 bg-green-50 p-6">
+      <div className="rounded-2xl border border-green-200 bg-green-50 p-6 shadow-card">
         <p className="font-semibold text-positive">
           No critical issues detected in the terms we reviewed.
         </p>
@@ -42,14 +42,14 @@ export default function RedFlagsSection({ flags }: { flags: RedFlag[] }) {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold text-gray-900">Red Flags</h3>
+      <h3 className="text-2xl font-bold text-gray-900">Red Flags</h3>
       {sorted.map((flag, i) => {
         const config = severityConfig[flag.severity];
         const Icon = config.icon;
         return (
           <div
             key={i}
-            className={`rounded-xl ${config.border} ${config.bg} p-5`}
+            className={`rounded-2xl ${config.border} ${config.bg} p-5 shadow-card`}
           >
             <div className="flex gap-4">
               <Icon className={`h-6 w-6 shrink-0 ${config.iconClass}`} />

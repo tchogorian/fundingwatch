@@ -74,7 +74,7 @@ export default function ContractDetailsTable({ data }: { data: AnalysisResult })
   ]);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-gray-200/80 shadow-card">
       <table className="min-w-full">
         <thead className="bg-gray-100">
           <tr>
@@ -93,7 +93,7 @@ export default function ContractDetailsTable({ data }: { data: AnalysisResult })
             return (
               <tr
                 key={key}
-                className={isEven ? "bg-white" : "bg-gray-50/80"}
+                className={isEven ? "bg-white" : "bg-surface"}
               >
                 <td className="px-5 py-4 text-sm font-medium text-gray-700">
                   {label}

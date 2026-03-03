@@ -80,8 +80,8 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
 
   if (status === "success") {
     return (
-      <section className="border-t border-gray-200 bg-slate-50 px-4 py-16 sm:px-6">
-        <div className="mx-auto max-w-xl text-center">
+      <section className="border-t border-gray-200/80 bg-sky-50/70 px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-xl rounded-2xl bg-white p-8 text-center shadow-card">
           <p className="text-xl font-semibold text-gray-900">
             Thank you. A professional will review your situation and reach out within 24–48 hours.
           </p>
@@ -91,12 +91,12 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
   }
 
   return (
-    <section className="border-t border-gray-200 bg-slate-50/90 px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto max-w-xl">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+    <section className="border-t border-gray-200/80 bg-sky-50/60 px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-xl rounded-2xl border border-gray-200/80 bg-white p-8 shadow-card sm:p-10">
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Would you like a licensed professional to review your situation?
         </h2>
-        <p className="mt-3 text-base font-normal text-gray-600">
+        <p className="mt-4 text-base font-normal text-gray-600">
           Get a free, no-obligation review of your contract by a qualified expert.
         </p>
         <form onSubmit={handleSubmit} className="mt-10 space-y-5">
