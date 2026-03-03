@@ -14,17 +14,18 @@ export default function ReportSection({ data }: { data: AnalysisResult }) {
     data.confidence === "medium" || data.confidence === "low";
 
   return (
-    <section className="bg-surface px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto max-w-3xl">
+    <section className="animate-fade-in bg-secondary-bg py-section-y-mobile sm:py-section-y">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <FadeIn>
-          <h2 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+          <h2 className="text-section-mobile font-semibold text-dark-text sm:text-section-desktop">
             Your Analysis Report
           </h2>
-          <p className="mb-10 text-lg font-normal text-gray-600">
+          <p className="mt-2 text-body text-muted">
             Key terms and red flags from your contract.
           </p>
         </FadeIn>
-        <div className="space-y-10">
+
+        <div className="mt-12 space-y-10">
           <FadeIn delay={50}>
             <RiskScoreRing data={data} />
           </FadeIn>
@@ -36,8 +37,8 @@ export default function ReportSection({ data }: { data: AnalysisResult }) {
           </FadeIn>
           <FadeIn delay={200}>
             <div>
-              <h3 className="mb-4 text-2xl font-bold text-gray-900">
-                Contract Details
+              <h3 className="mb-4 text-subhead-desktop font-semibold text-dark-text">
+                Contract Terms
               </h3>
               <ContractDetailsTable data={data} />
             </div>

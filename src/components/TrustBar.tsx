@@ -1,22 +1,33 @@
-import { Shield, Lock, UserX, Scale } from "lucide-react";
+"use client";
 
-const signals = [
-  { text: "Free. Always.", Icon: Shield },
-  { text: "Private. We don't store your contract.", Icon: Lock },
-  { text: "No account needed.", Icon: UserX },
-  { text: "Facts only. No legal advice.", Icon: Scale },
+import { ShieldCheck, Lock, EyeOff, Scale } from "lucide-react";
+
+const items = [
+  { icon: ShieldCheck, text: "Bank-Grade Privacy" },
+  { icon: Lock, text: "Contracts Never Stored" },
+  { icon: EyeOff, text: "No Account Required" },
+  { icon: Scale, text: "Facts Only, Never Legal Advice" },
 ];
 
 export default function TrustBar() {
   return (
-    <section className="border-y border-gray-200/80 bg-white px-4 py-8 sm:px-6">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-12 gap-y-5 text-sm font-medium text-gray-600">
-        {signals.map(({ text, Icon }) => (
-          <div key={text} className="flex items-center gap-2.5">
-            <Icon className="h-4 w-4 shrink-0 text-gray-500" />
-            <span>{text}</span>
-          </div>
-        ))}
+    <section className="border-y border-border bg-primary py-section-trust">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+          {items.map(({ icon: Icon, text }) => (
+            <div
+              key={text}
+              className="flex cursor-default items-center gap-4"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-card bg-trust-bg text-accent">
+                <Icon className="h-5 w-5" />
+              </div>
+              <span className="text-[16px] font-medium text-dark-text">
+                {text}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

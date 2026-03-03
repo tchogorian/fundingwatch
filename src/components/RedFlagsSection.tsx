@@ -2,23 +2,27 @@
 
 import type { RedFlag } from "@/types/analysis";
 import { AlertCircle, AlertTriangle, Info } from "lucide-react";
+import FadeIn from "./FadeIn";
 
 const severityConfig = {
   critical: {
-    border: "border-l-4 border-critical",
-    bg: "bg-red-50",
+    border: "border-l-danger",
+    bg: "bg-[#FEF2F2]",
+    badge: "bg-danger/10 text-danger",
     icon: AlertCircle,
-    iconClass: "text-critical",
+    iconClass: "text-danger",
   },
   warning: {
-    border: "border-l-4 border-amber-500",
-    bg: "bg-amber-50",
+    border: "border-l-warning",
+    bg: "bg-[#FFFBEB]",
+    badge: "bg-warning/10 text-warning",
     icon: AlertTriangle,
-    iconClass: "text-amber-700",
+    iconClass: "text-warning",
   },
   info: {
-    border: "border-l-4 border-accent",
-    bg: "bg-blue-50",
+    border: "border-l-accent",
+    bg: "bg-focus-ring",
+    badge: "bg-accent/10 text-accent",
     icon: Info,
     iconClass: "text-accent",
   },
@@ -32,35 +36,48 @@ export default function RedFlagsSection({ flags }: { flags: RedFlag[] }) {
 
   if (sorted.length === 0) {
     return (
-      <div className="rounded-2xl border border-green-200 bg-green-50 p-6 shadow-card">
-        <p className="font-semibold text-positive">
+      <div className="rounded-card border border-success/30 bg-success/5 p-6">
+        <p className="font-semibold text-success">
           No critical issues detected in the terms we reviewed.
         </p>
       </div>
     );
   }
 
+  const badgeLabel = (s: RedFlag["severity"]) =>
+    s === "critical" ? "Critical" : s === "warning" ? "Warning" : "Info";
+
   return (
     <div className="space-y-4">
-      <h3 className="text-2xl font-bold text-gray-900">Red Flags</h3>
+      <h3 className="flex items-center gap-3 text-subhead-desktop font-semibold text-dark-text">
+        Red Flags Detected
+        <span className="rounded-button bg-danger/10 px-2.5 py-1 text-small font-medium text-danger">
+          {sorted.length} {sorted.length === 1 ? "issue" : "issues"} found
+        </span>
+      </h3>
       {sorted.map((flag, i) => {
         const config = severityConfig[flag.severity];
         const Icon = config.icon;
         return (
-          <div
-            key={i}
-            className={`rounded-2xl ${config.border} ${config.bg} p-5 shadow-card`}
-          >
-            <div className="flex gap-4">
-              <Icon className={`h-6 w-6 shrink-0 ${config.iconClass}`} />
-              <div>
-                <p className="font-semibold text-gray-900">{flag.title}</p>
-                <p className="mt-2 font-normal text-gray-600 leading-relaxed">
-                  {flag.description}
-                </p>
+          <FadeIn key={i} delay={i * 100}>
+            <div
+              className={`rounded-card border-l-4 ${config.border} ${config.bg} p-5 shadow-card sm:px-6`}
+            >
+              <div className="flex items-start gap-3">
+                <span
+                  className={`inline-flex items-center gap-1.5 rounded-button px-2 py-0.5 text-small font-medium ${config.badge}`}
+                >
+                  {badgeLabel(flag.severity)}
+                </span>
+                <span className="text-body font-semibold text-dark-text">
+                  {flag.title}
+                </span>
               </div>
+              <p className="mt-3 text-[16px] leading-[1.6] text-muted">
+                {flag.description}
+              </p>
             </div>
-          </div>
+          </FadeIn>
         );
       })}
     </div>

@@ -1,83 +1,85 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FileSearch, Calculator, AlertTriangle, CheckCircle } from "lucide-react";
+import { FileText, Search, Calculator, AlertTriangle, CheckCircle, Loader2 } from "lucide-react";
 
 const steps = [
-  { id: "extract", label: "Extracting text...", Icon: FileSearch },
-  { id: "analyze", label: "Analyzing terms...", Icon: FileSearch },
-  { id: "apr", label: "Calculating APR...", Icon: Calculator },
+  { id: "extract", label: "Extracting text from document...", Icon: FileText },
+  { id: "terms", label: "Identifying contract terms...", Icon: Search },
+  { id: "apr", label: "Calculating effective APR...", Icon: Calculator },
   { id: "flags", label: "Checking for red flags...", Icon: AlertTriangle },
 ];
 
 const STEP_DURATION_MS = 4000;
 
 export default function LoadingState() {
+  const [completedSteps, setCompletedSteps] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
+  const [elapsedMs, setElapsedMs] = useState(0);
+  const totalMs = steps.length * STEP_DURATION_MS;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setElapsedMs((prev) => Math.min(prev + 100, totalMs));
+    }, 100);
+    return () => clearInterval(interval);
+  }, [totalMs]);
 
   useEffect(() => {
     if (activeStep >= steps.length) return;
-    const t = setTimeout(() => setActiveStep((s) => s + 1), STEP_DURATION_MS);
+    const t = setTimeout(() => {
+      setCompletedSteps(activeStep + 1);
+      setActiveStep((s) => s + 1);
+    }, STEP_DURATION_MS);
     return () => clearTimeout(t);
   }, [activeStep]);
 
+  const progress = (elapsedMs / totalMs) * 100;
+
   return (
-    <section id="upload" className="bg-surface px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto max-w-xl">
-        <div className="flex flex-col items-center">
-          <div className="relative flex items-center justify-center">
-            <div className="h-24 w-24 animate-pulse rounded-full bg-accent/20" />
-            <CheckCircle className="absolute h-10 w-10 text-accent" />
-          </div>
-          <p className="mt-6 text-lg font-semibold text-gray-900">
-            Analyzing your contract...
-          </p>
-          <div className="mt-10 w-full space-y-4">
-            {steps.map((step, i) => {
-              const isActive = i <= activeStep;
-              const isDone = i < activeStep;
-              const Icon = step.Icon;
-              return (
+    <section id="upload" className="bg-primary py-section-y-mobile sm:py-section-y">
+      <div className="mx-auto max-w-[480px] px-4 sm:px-6">
+        <div className="space-y-4">
+          {steps.map((step, i) => {
+            const isComplete = i < completedSteps;
+            const isActive = i === activeStep && !isComplete;
+            const Icon = step.Icon;
+            return (
+              <div
+                key={step.id}
+                className={`flex items-center gap-4 rounded-card border border-border bg-primary px-5 py-4 shadow-card transition-all duration-200 ${
+                  isComplete ? "border-success/30 bg-success/5" : isActive ? "border-accent/50 bg-focus-ring" : "opacity-60"
+                }`}
+              >
                 <div
-                  key={step.id}
-                  className={`flex items-center gap-4 rounded-2xl border border-gray-200/80 px-4 py-3.5 shadow-card transition-colors ${
-                    isActive
-                      ? "border-accent bg-accent/5"
-                      : isDone
-                        ? "border-green-200 bg-green-50"
-                        : "bg-white"
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
+                    isComplete ? "bg-success text-white" : isActive ? "bg-accent text-white" : "bg-border text-muted"
                   }`}
                 >
-                  <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
-                      isDone
-                        ? "bg-positive text-white"
-                        : isActive
-                          ? "bg-accent text-white"
-                          : "bg-gray-200 text-gray-400"
-                    }`}
-                  >
-                    {isDone ? (
-                      <CheckCircle className="h-5 w-5" />
-                    ) : (
-                      <Icon className="h-5 w-5" />
-                    )}
-                  </div>
-                  <span
-                    className={
-                      isActive
-                        ? "font-semibold text-gray-900"
-                        : isDone
-                          ? "font-medium text-gray-600"
-                          : "font-normal text-gray-400"
-                    }
-                  >
-                    {step.label}
-                  </span>
+                  {isComplete ? (
+                    <CheckCircle className="h-5 w-5" />
+                  ) : isActive ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <Icon className="h-5 w-5" />
+                  )}
                 </div>
-              );
-            })}
-          </div>
+                <span
+                  className={`text-[16px] ${
+                    isComplete ? "font-medium text-dark-text" : isActive ? "font-semibold text-dark-text" : "font-normal text-muted"
+                  }`}
+                >
+                  {step.label}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+        <div className="mt-8 h-1.5 overflow-hidden rounded-full bg-border">
+          <div
+            className="h-full rounded-full bg-accent transition-all duration-500 ease-out"
+            style={{ width: `${Math.min(progress, 100)}%` }}
+          />
         </div>
       </div>
     </section>

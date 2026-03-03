@@ -22,7 +22,7 @@ export default function FadeIn({ children, className = "", delay = 0 }: FadeInPr
           return () => clearTimeout(t);
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px -24px 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -31,8 +31,12 @@ export default function FadeIn({ children, className = "", delay = 0 }: FadeInPr
   return (
     <div
       ref={ref}
-      className={`${visible ? "animate-fade-in" : "opacity-0 translate-y-4"} ${className}`}
-      style={visible && delay ? { animationDelay: `${delay}ms` } : undefined}
+      className={`${visible ? "animate-fade-in" : "opacity-0 translate-y-5"} ${className}`}
+      style={
+        visible && delay
+          ? { animationDelay: `${delay}ms`, animationFillMode: "forwards" }
+          : undefined
+      }
     >
       {children}
     </div>

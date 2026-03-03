@@ -1,26 +1,51 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
+
 export default function SecondaryCTA() {
   const scrollToUpload = () => {
     document.getElementById("upload")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="bg-navy px-4 py-20 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-          Most MCA borrowers don&apos;t know their real APR.
+    <section className="relative overflow-hidden bg-hero-from py-section-y-mobile sm:py-section-y">
+      {/* Same gradient + grid as hero */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 80% at 50% 50%, rgba(37,99,235,0.05) 0%, transparent 60%),
+            linear-gradient(180deg, #0F172A 0%, #1E293B 100%)
+          `,
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+          `,
+          backgroundSize: "48px 48px",
+        }}
+      />
+      <div className="relative mx-auto max-w-2xl px-4 text-center sm:px-6">
+        <h2 className="text-section-mobile font-bold text-white sm:text-section-desktop">
+          Don&apos;t Pay More Than You Have To
         </h2>
-        <p className="mt-6 text-lg font-normal text-gray-400 leading-relaxed">
-          The factor rate in your contract hides the true annual cost. A 1.35 factor rate
-          on a 6-month advance is over 100% APR. Our tool does the math so you don&apos;t
-          have to.
+        <p className="mt-6 text-body text-slate-400">
+          Most MCA borrowers are paying over 100% APR without knowing it. Find out in 30 seconds.
         </p>
         <button
+          type="button"
           onClick={scrollToUpload}
-          className="mt-10 inline-flex rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-accent/20 transition hover:scale-[1.02] hover:bg-accent/90 hover:shadow-accent/30"
+          className="group mt-10 flex cursor-pointer items-center justify-center gap-2 rounded-button bg-accent px-8 py-4 text-body font-semibold text-white shadow-button-accent transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-button-accent-hover"
+          style={{
+            background: "linear-gradient(180deg, #2563EB 0%, #1D4ED8 100%)",
+          }}
         >
-          Check Your Contract
+          Analyze My Contract Free
+          <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
         </button>
       </div>
     </section>

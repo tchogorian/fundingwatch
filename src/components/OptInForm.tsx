@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Lock } from "lucide-react";
+import { Lock, ArrowRight, Shield, CheckCircle } from "lucide-react";
 import type { AnalysisResult } from "@/types/analysis";
 
 const US_STATES = [
@@ -80,10 +80,23 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
 
   if (status === "success") {
     return (
-      <section className="border-t border-gray-200/80 bg-sky-50/70 px-4 py-16 sm:px-6">
-        <div className="mx-auto max-w-xl rounded-2xl bg-white p-8 text-center shadow-card">
-          <p className="text-xl font-semibold text-gray-900">
-            Thank you. A professional will review your situation and reach out within 24–48 hours.
+      <section
+        className="py-section-y-mobile sm:py-section-y"
+        style={{
+          background: "linear-gradient(180deg, #F0F4F8 0%, #F8FAFB 100%)",
+        }}
+      >
+        <div className="mx-auto max-w-[560px] px-4 text-center sm:px-6">
+          <div className="flex justify-center">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-success/10">
+              <CheckCircle className="h-12 w-12 text-success" />
+            </div>
+          </div>
+          <h2 className="mt-6 text-[32px] font-semibold text-dark-text">
+            You&apos;re All Set
+          </h2>
+          <p className="mt-4 text-body text-muted">
+            A licensed professional will review your contract and reach out within 24–48 hours.
           </p>
         </div>
       </section>
@@ -91,117 +104,178 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
   }
 
   return (
-    <section className="border-t border-gray-200/80 bg-sky-50/60 px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto max-w-xl rounded-2xl border border-gray-200/80 bg-white p-8 shadow-card sm:p-10">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          Would you like a licensed professional to review your situation?
+    <section
+      className="py-section-y-mobile sm:py-16"
+      style={{
+        background: "linear-gradient(180deg, #F0F4F8 0%, #F8FAFB 100%)",
+      }}
+    >
+      <div className="mx-auto max-w-[560px] px-4 sm:px-6">
+        <h2 className="text-center text-[32px] font-semibold text-dark-text">
+          Want an Expert to Review Your Contract?
         </h2>
-        <p className="mt-4 text-base font-normal text-gray-600">
-          Get a free, no-obligation review of your contract by a qualified expert.
+        <p className="mt-4 text-center text-body text-muted">
+          A licensed professional will review your analysis at no cost or obligation.
         </p>
-        <form onSubmit={handleSubmit} className="mt-10 space-y-5">
-          <div>
-            <label htmlFor="name" className="block text-sm font-semibold text-gray-700">
-              Full Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              value={form.name}
-              onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-              className="mt-1.5 w-full rounded-xl border border-gray-300 px-4 py-3 font-normal focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-            />
-            {errors.name && <p className="mt-1.5 text-sm font-medium text-critical">{errors.name}</p>}
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={form.email}
-              onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-              className="mt-1.5 w-full rounded-xl border border-gray-300 px-4 py-3 font-normal focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-            />
-            {errors.email && <p className="mt-1.5 text-sm font-medium text-critical">{errors.email}</p>}
-          </div>
-          <div>
-            <label htmlFor="phone" className="block text-sm font-semibold text-gray-700">
-              Phone
-            </label>
-            <input
-              id="phone"
-              type="tel"
-              value={form.phone}
-              onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-              className="mt-1.5 w-full rounded-xl border border-gray-300 px-4 py-3 font-normal focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-            />
-            {errors.phone && <p className="mt-1.5 text-sm font-medium text-critical">{errors.phone}</p>}
-          </div>
-          <div>
-            <label htmlFor="businessName" className="block text-sm font-semibold text-gray-700">
-              Business Name
-            </label>
-            <input
-              id="businessName"
-              type="text"
-              value={form.businessName}
-              onChange={(e) => setForm((f) => ({ ...f, businessName: e.target.value }))}
-              className="mt-1.5 w-full rounded-xl border border-gray-300 px-4 py-3 font-normal focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-            />
-            {errors.businessName && (
-              <p className="mt-1.5 text-sm font-medium text-critical">{errors.businessName}</p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="state" className="block text-sm font-semibold text-gray-700">
-              State
-            </label>
-            <select
-              id="state"
-              value={form.state}
-              onChange={(e) => setForm((f) => ({ ...f, state: e.target.value }))}
-              className="mt-1.5 w-full rounded-xl border border-gray-300 px-4 py-3 font-normal focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-            >
-              <option value="">Select state</option>
-              {US_STATES.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
-            {errors.state && <p className="mt-1.5 text-sm font-medium text-critical">{errors.state}</p>}
-          </div>
-          <div>
-            <label className="flex items-start gap-3">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-10 rounded-card border border-border bg-primary p-8 shadow-card"
+        >
+          <div className="space-y-5">
+            <div>
+              <label htmlFor="name" className="text-small font-medium text-dark-text">
+                Full Name
+              </label>
               <input
-                type="checkbox"
-                checked={form.consent}
-                onChange={(e) => setForm((f) => ({ ...f, consent: e.target.checked }))}
-                className="mt-1 h-4 w-4 rounded border-gray-300 text-accent focus:ring-accent"
+                id="name"
+                type="text"
+                value={form.name}
+                onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                className="mt-1.5 h-12 w-full rounded-input border border-border bg-primary px-4 py-3 text-[16px] transition-all duration-200 focus:border-accent focus:outline-none focus:ring-2 focus:ring-blue-100"
               />
-              <span className="flex items-start gap-2 text-sm font-normal text-gray-700">
-                <Lock className="h-4 w-4 shrink-0 text-gray-500" />
-                I consent to being contacted by a licensed professional regarding my MCA contract.
-              </span>
-            </label>
-            {errors.consent && (
-              <p className="mt-1.5 text-sm font-medium text-critical">{errors.consent}</p>
-            )}
+              {errors.name && (
+                <p className="mt-1.5 text-small font-medium text-danger">{errors.name}</p>
+              )}
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label htmlFor="email" className="text-small font-medium text-dark-text">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                  className="mt-1.5 h-12 w-full rounded-input border border-border bg-primary px-4 py-3 text-[16px] transition-all duration-200 focus:border-accent focus:outline-none focus:ring-2 focus:ring-blue-100"
+                />
+                {errors.email && (
+                  <p className="mt-1.5 text-small font-medium text-danger">{errors.email}</p>
+                )}
+              </div>
+              <div>
+                <label htmlFor="phone" className="text-small font-medium text-dark-text">
+                  Phone
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  value={form.phone}
+                  onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+                  className="mt-1.5 h-12 w-full rounded-input border border-border bg-primary px-4 py-3 text-[16px] transition-all duration-200 focus:border-accent focus:outline-none focus:ring-2 focus:ring-blue-100"
+                />
+                {errors.phone && (
+                  <p className="mt-1.5 text-small font-medium text-danger">{errors.phone}</p>
+                )}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="businessName" className="text-small font-medium text-dark-text">
+                Business Name
+              </label>
+              <input
+                id="businessName"
+                type="text"
+                value={form.businessName}
+                onChange={(e) => setForm((f) => ({ ...f, businessName: e.target.value }))}
+                className="mt-1.5 h-12 w-full rounded-input border border-border bg-primary px-4 py-3 text-[16px] transition-all duration-200 focus:border-accent focus:outline-none focus:ring-2 focus:ring-blue-100"
+              />
+              {errors.businessName && (
+                <p className="mt-1.5 text-small font-medium text-danger">
+                  {errors.businessName}
+                </p>
+              )}
+            </div>
+            <div>
+              <label htmlFor="state" className="text-small font-medium text-dark-text">
+                State
+              </label>
+              <select
+                id="state"
+                value={form.state}
+                onChange={(e) => setForm((f) => ({ ...f, state: e.target.value }))}
+                className="mt-1.5 h-12 w-full rounded-input border border-border bg-primary px-4 py-3 text-[16px] transition-all duration-200 focus:border-accent focus:outline-none focus:ring-2 focus:ring-blue-100"
+              >
+                <option value="">Select state</option>
+                {US_STATES.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+              {errors.state && (
+                <p className="mt-1.5 text-small font-medium text-danger">{errors.state}</p>
+              )}
+            </div>
+            <div>
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  checked={form.consent}
+                  onChange={(e) => setForm((f) => ({ ...f, consent: e.target.checked }))}
+                  className="mt-1 h-4 w-4 rounded border-border text-accent focus:ring-accent"
+                />
+                <span className="flex items-start gap-2 text-small text-dark-text">
+                  <Lock className="h-3.5 w-3.5 shrink-0 text-muted" />
+                  I consent to being contacted by a licensed professional regarding my MCA contract.
+                </span>
+              </label>
+              {errors.consent && (
+                <p className="mt-1.5 text-small font-medium text-danger">{errors.consent}</p>
+              )}
+            </div>
           </div>
           {status === "error" && (
-            <p className="text-sm font-medium text-critical">Something went wrong. Please try again.</p>
+            <p className="mt-4 text-small font-medium text-danger">
+              Something went wrong. Please try again.
+            </p>
           )}
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="mt-6 w-full rounded-xl bg-accent py-4 text-lg font-semibold text-white shadow-lg shadow-accent/20 transition hover:scale-[1.02] hover:bg-accent/90 hover:shadow-xl hover:shadow-accent/30 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:opacity-70 disabled:hover:scale-100"
+            className="group mt-8 flex h-[52px] w-full cursor-pointer items-center justify-center gap-2 rounded-button bg-accent py-3 text-body font-semibold text-white shadow-button-accent transition-all duration-200 hover:scale-[1.02] hover:shadow-button-accent-hover disabled:opacity-70"
+            style={{
+              background:
+                status === "submitting"
+                  ? "#94A3B8"
+                  : "linear-gradient(180deg, #2563EB 0%, #1D4ED8 100%)",
+            }}
           >
-            {status === "submitting"
-              ? "Sending..."
-              : "Yes, Have a Professional Review My Contract"}
+            {status === "submitting" ? (
+              <>
+                <svg
+                  className="h-5 w-5 animate-spin text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+                Sending...
+              </>
+            ) : (
+              <>
+                Get Free Expert Review
+                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+              </>
+            )}
           </button>
+          <p className="mt-6 flex items-center justify-center gap-2 text-center text-small text-muted">
+            <Shield className="h-4 w-4" />
+            256-bit encryption · Your data is private and secure
+          </p>
         </form>
       </div>
     </section>

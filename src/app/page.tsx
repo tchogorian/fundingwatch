@@ -5,7 +5,6 @@ import type { AnalysisResult } from "@/types/analysis";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import TrustBar from "@/components/TrustBar";
-import SocialProof from "@/components/SocialProof";
 import UploadSection from "@/components/UploadSection";
 import LoadingState from "@/components/LoadingState";
 import ReportSection from "@/components/ReportSection";
@@ -13,7 +12,7 @@ import OptInForm from "@/components/OptInForm";
 import SecondaryCTA from "@/components/SecondaryCTA";
 import Footer from "@/components/Footer";
 
-const MIN_LOADING_MS = 16000; // ~16s for step animation
+const MIN_LOADING_MS = 16000;
 
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -50,31 +49,28 @@ export default function Home() {
   }, [selectedFile]);
 
   return (
-    <>
-      <main>
-        <Hero />
-        <HowItWorks />
-        <TrustBar />
-        <SocialProof />
-        {isAnalyzing ? (
-          <LoadingState />
-        ) : (
-          <UploadSection
-            selectedFile={selectedFile}
-            onFileSelect={setSelectedFile}
-            onStartAnalysis={handleStartAnalysis}
-            isAnalyzing={isAnalyzing}
-          />
-        )}
-        {analysisResult && (
-          <>
-            <ReportSection data={analysisResult} />
-            <OptInForm analysisData={analysisResult} />
-          </>
-        )}
-        <SecondaryCTA />
-        <Footer />
-      </main>
-    </>
+    <main>
+      <Hero />
+      <TrustBar />
+      <HowItWorks />
+      {isAnalyzing ? (
+        <LoadingState />
+      ) : (
+        <UploadSection
+          selectedFile={selectedFile}
+          onFileSelect={setSelectedFile}
+          onStartAnalysis={handleStartAnalysis}
+          isAnalyzing={isAnalyzing}
+        />
+      )}
+      {analysisResult && (
+        <>
+          <ReportSection data={analysisResult} />
+          <OptInForm analysisData={analysisResult} />
+        </>
+      )}
+      <SecondaryCTA />
+      <Footer />
+    </main>
   );
 }

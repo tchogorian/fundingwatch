@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Upload as UploadIcon, FileText } from "lucide-react";
+import { UploadCloud, FileText, Check } from "lucide-react";
 
 const ACCEPTED_TYPES = ["application/pdf", "image/jpeg", "image/png"];
 const MAX_SIZE_MB = 20;
@@ -78,54 +78,71 @@ export default function UploadSection({
   if (isAnalyzing) return null;
 
   return (
-    <section id="upload" className="bg-white px-4 py-20 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-2xl">
-        <h2 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-          Check Your Contract Now
-        </h2>
-        <p className="mt-5 text-center text-lg font-normal text-gray-600">
-          PDF, JPG, or PNG. Max {MAX_SIZE_MB}MB. Analysis is free and private.
+    <section id="upload" className="bg-primary py-section-y-mobile sm:py-section-y">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <p className="text-center text-eyebrow font-semibold uppercase tracking-widest text-accent">
+          ANALYZE YOUR CONTRACT
         </p>
+        <h2 className="mt-3 text-center text-section-mobile font-semibold text-dark-text sm:text-section-desktop">
+          See What&apos;s Really in Your Agreement
+        </h2>
+        <p className="mx-auto mt-4 max-w-[600px] text-center text-body text-muted">
+          Upload your MCA contract and get an instant AI-powered analysis. PDF, images, even phone photos.
+        </p>
+
         <div
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
-          className={`mt-10 rounded-2xl border-2 border-dashed transition-all duration-200 ${
-            dragActive
-              ? "border-accent bg-accent/5 shadow-glow-strong shadow-inner"
-              : error
-                ? "border-critical bg-critical/5 shadow-inner"
-                : "animate-pulse-soft border-gray-300 bg-surface shadow-glow hover:border-accent/50 hover:shadow-glow-strong"
+          className={`mx-auto mt-12 min-h-[240px] max-w-[640px] rounded-dropzone border-2 transition-all duration-200 ${
+            selectedFile
+              ? "border-border bg-primary"
+              : dragActive
+                ? "border-accent bg-focus-ring"
+                : error
+                  ? "border-danger/50 bg-danger/5"
+                  : "border-dashed border-border-light bg-input-bg hover:border-accent hover:bg-[#F0F7FF]"
           }`}
         >
           {selectedFile ? (
-            <div className="flex flex-col items-center justify-center p-10">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 shadow-card">
-                <FileText className="h-8 w-8 text-accent" />
+            <div className="flex flex-col items-center justify-center p-12">
+              <div className="flex h-14 w-14 items-center justify-center rounded-card bg-success/10 text-success">
+                <FileText className="h-7 w-7" />
               </div>
-              <p className="mt-4 text-lg font-semibold text-gray-900">
-                {selectedFile.name}
-              </p>
-              <p className="mt-1 text-sm font-normal text-gray-500">
+              <div className="mt-4 flex items-center gap-2">
+                <Check className="h-5 w-5 text-success" />
+                <span className="text-body font-medium text-dark-text">
+                  {selectedFile.name}
+                </span>
+              </div>
+              <p className="mt-1 text-small text-muted">
                 {(selectedFile.size / 1024).toFixed(1)} KB
               </p>
               <button
+                type="button"
                 onClick={onStartAnalysis}
-                className="mt-8 rounded-xl bg-accent px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-accent/20 transition hover:scale-[1.02] hover:bg-accent/90 hover:shadow-accent/30"
+                className="animate-pulse-glow mt-8 w-full max-w-[400px] cursor-pointer rounded-button bg-accent py-4 text-body font-semibold text-white transition-all duration-200 hover:scale-[1.02]"
+                style={{
+                  background: "linear-gradient(180deg, #2563EB 0%, #1D4ED8 100%)",
+                  boxShadow: "0 4px 14px rgba(37,99,235,0.4)",
+                }}
               >
-                Start Analysis
+                Analyze My Contract
               </button>
             </div>
           ) : (
-            <label className="group flex cursor-pointer flex-col items-center justify-center p-12">
-              <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-accent/10 text-accent transition duration-200 group-hover:scale-110 group-hover:bg-accent/20">
-                <UploadIcon className="h-10 w-10" strokeWidth={1.75} />
-              </div>
-              <span className="mt-6 text-center text-base font-semibold text-gray-800">
-                Drag and drop your contract here, or
+            <label className="flex cursor-pointer flex-col items-center justify-center p-12">
+              <UploadCloud
+                className={`h-14 w-14 transition-colors duration-200 ${
+                  dragActive ? "text-accent" : "text-slate-400"
+                }`}
+              />
+              <span className="mt-5 text-body font-medium text-dark-text">
+                Drag and drop your contract here
               </span>
-              <span className="mt-4 inline-flex rounded-xl border-2 border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-card transition group-hover:scale-[1.02] group-hover:border-accent group-hover:bg-accent/5 group-hover:text-accent">
-                Browse files
+              <span className="mt-2 text-small text-muted">or</span>
+              <span className="mt-3 inline-flex cursor-pointer items-center rounded-button border border-border-light bg-primary px-6 py-2.5 text-[16px] font-medium text-dark-text transition-all duration-200 hover:border-accent hover:bg-focus-ring">
+                Browse Files
               </span>
               <input
                 type="file"
@@ -137,11 +154,11 @@ export default function UploadSection({
           )}
         </div>
         {error && (
-          <p className="mt-4 text-center text-sm font-medium text-critical">
+          <p className="mt-4 text-center text-small font-medium text-danger">
             {error}
           </p>
         )}
-        <p className="mt-5 text-center text-sm font-normal text-gray-500">
+        <p className="mt-5 text-center text-small text-muted">
           Accepted: PDF, JPG, PNG. Max {MAX_SIZE_MB}MB.
         </p>
       </div>

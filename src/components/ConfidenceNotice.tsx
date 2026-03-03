@@ -2,8 +2,8 @@
 
 export default function ConfidenceNotice() {
   return (
-    <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3.5 shadow-card">
-      <p className="text-sm font-semibold text-amber-900">
+    <div className="rounded-card border border-warning/30 bg-[#FFFBEB] px-5 py-4">
+      <p className="text-small font-semibold text-warning">
         Some terms could not be clearly extracted. Results may be incomplete.
       </p>
     </div>

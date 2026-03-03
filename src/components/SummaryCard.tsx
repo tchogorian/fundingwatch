@@ -1,6 +1,7 @@
 "use client";
 
 import type { AnalysisResult } from "@/types/analysis";
+import { ArrowRight } from "lucide-react";
 
 function formatCurrency(n: number) {
   return new Intl.NumberFormat("en-US", {
@@ -12,45 +13,37 @@ function formatCurrency(n: number) {
 }
 
 function aprPillStyle(apr: number) {
-  if (apr < 30)
-    return "bg-positive/20 text-positive ring-2 ring-positive/40";
-  if (apr <= 100)
-    return "bg-amber-100 text-amber-800 ring-2 ring-amber-300";
-  return "bg-red-100 text-critical ring-2 ring-critical/50";
+  if (apr > 100) return "bg-danger text-white";
+  if (apr >= 50) return "bg-warning text-white";
+  return "bg-success text-white";
 }
 
 export default function SummaryCard({ data }: { data: AnalysisResult }) {
   return (
-    <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-card sm:p-8">
-      <h3 className="text-xl font-semibold text-gray-900">{data.lender_name}</h3>
-      <div className="mt-6 flex flex-wrap items-end gap-6">
+    <div className="rounded-card border border-border bg-primary p-8 shadow-card">
+      <div className="grid gap-8 sm:grid-cols-2">
         <div>
-          <p className="text-sm font-semibold text-gray-500">Effective APR</p>
+          <h3 className="text-subhead-desktop font-semibold text-dark-text">
+            {data.lender_name}
+          </h3>
+          <p className="mt-4 text-small text-muted">Effective APR</p>
           <span
-            className={`mt-3 inline-flex items-baseline rounded-2xl px-6 py-3 text-5xl font-bold sm:text-6xl md:text-7xl ${aprPillStyle(data.effective_apr)}`}
+            className={`mt-2 inline-flex rounded-button px-4 py-2 text-[48px] font-bold ${aprPillStyle(data.effective_apr)}`}
           >
             {data.effective_apr.toFixed(1)}%
           </span>
         </div>
-        <div className="border-l border-gray-200 pl-6">
-          <p className="text-sm font-semibold text-gray-500">
-            Advance → Repayment
-          </p>
-          <p className="mt-1 text-2xl font-bold text-gray-900">
-            {formatCurrency(data.advance_amount)} →{" "}
+        <div>
+          <p className="text-small text-muted">Advance → Repayment</p>
+          <p className="mt-1 flex items-center gap-1 text-subhead-desktop font-semibold text-dark-text">
+            {formatCurrency(data.advance_amount)}
+            <ArrowRight className="h-6 w-6 text-muted" />
             {formatCurrency(data.repayment_amount)}
           </p>
+          <p className="mt-4 text-body text-dark-text">
+            {formatCurrency(data.payment_amount)}/{data.payment_frequency} · ~{data.estimated_term_days} days
+          </p>
         </div>
-      </div>
-      <div className="mt-6 flex flex-wrap gap-6 text-base">
-        <span className="font-normal text-gray-600">
-          <span className="font-semibold text-gray-900">Payment:</span>{" "}
-          {formatCurrency(data.payment_amount)} / {data.payment_frequency}
-        </span>
-        <span className="font-normal text-gray-600">
-          <span className="font-semibold text-gray-900">Est. term:</span> ~
-          {data.estimated_term_days} days
-        </span>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import type { AnalysisResult } from "@/types/analysis";
 
 function computeRiskScore(data: AnalysisResult): number {
@@ -18,43 +19,50 @@ function computeRiskScore(data: AnalysisResult): number {
 }
 
 function scoreColor(score: number) {
-  if (score >= 60) return "text-critical";
-  if (score >= 30) return "text-amber-600";
-  return "text-positive";
-}
-
-function strokeColor(score: number) {
-  if (score >= 60) return "#C62828";
-  if (score >= 30) return "#D97706";
-  return "#2E7D32";
+  if (score >= 75) return "#DC2626";
+  if (score >= 50) return "#D97706";
+  if (score >= 30) return "#EAB308";
+  return "#059669";
 }
 
 export default function RiskScoreRing({ data }: { data: AnalysisResult }) {
   const score = computeRiskScore(data);
-  const circumference = 2 * Math.PI * 54;
-  const offset = circumference - (score / 100) * circumference;
+  const [animatedScore, setAnimatedScore] = useState(0);
+  const r = 72;
+  const circumference = 2 * Math.PI * r;
+  const offset = circumference - (animatedScore / 100) * circumference;
+
+  useEffect(() => {
+    const duration = 1000;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const elapsed = now - start;
+      const p = Math.min(elapsed / duration, 1);
+      setAnimatedScore(Math.round(p * score));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    const id = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(id);
+  }, [score]);
 
   return (
-    <div className="flex flex-col items-center rounded-2xl border border-gray-200/80 bg-white p-8 shadow-card">
-      <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">
-        Overall risk score
-      </p>
-      <div className="relative mt-4 flex items-center justify-center">
-        <svg className="h-36 w-36 -rotate-90" viewBox="0 0 120 120">
+    <div className="flex flex-col items-center">
+      <div className="relative flex h-40 w-40 items-center justify-center">
+        <svg className="h-full w-full -rotate-90" viewBox="0 0 160 160">
           <circle
-            cx="60"
-            cy="60"
-            r="54"
+            cx="80"
+            cy="80"
+            r={r}
             fill="none"
-            stroke="#E5E7EB"
+            stroke="#E2E8F0"
             strokeWidth="12"
           />
           <circle
-            cx="60"
-            cy="60"
-            r="54"
+            cx="80"
+            cy="80"
+            r={r}
             fill="none"
-            stroke={strokeColor(score)}
+            stroke={scoreColor(score)}
             strokeWidth="12"
             strokeLinecap="round"
             strokeDasharray={circumference}
@@ -62,19 +70,11 @@ export default function RiskScoreRing({ data }: { data: AnalysisResult }) {
             className="transition-all duration-1000 ease-out"
           />
         </svg>
-        <span
-          className={`absolute text-4xl font-bold ${scoreColor(score)}`}
-        >
-          {score}
-        </span>
+        <div className="absolute flex flex-col items-center">
+          <span className="text-[48px] font-bold text-dark-text">{animatedScore}</span>
+          <span className="text-small text-muted">Risk Score</span>
+        </div>
       </div>
-      <p className="mt-3 text-base font-normal text-gray-600">
-        {score >= 60
-          ? "High risk — review carefully"
-          : score >= 30
-            ? "Moderate risk — understand your terms"
-            : "Lower risk — standard terms"}
-      </p>
     </div>
   );
 }
