@@ -68,7 +68,7 @@ export default function IndustryInfoSection() {
         <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 md:grid-cols-2">
           {statCards.map((card, i) => (
             <FadeIn key={card.title} delay={i * 80}>
-              <div className="rounded-[12px] bg-white p-8 shadow-card">
+              <div className="rounded-card bg-white p-8 shadow-card transition-all duration-200 hover:shadow-card-hover">
                 <p className="text-3xl font-bold text-accent">{card.stat}</p>
                 <h3 className="mt-3 text-xl font-semibold text-dark-text">
                   {card.title}
@@ -102,7 +102,7 @@ export default function IndustryInfoSection() {
                       className="absolute left-0 top-6 h-3 w-3 shrink-0 rounded-full bg-accent"
                       aria-hidden
                     />
-                    <div className="min-w-0 flex-1 rounded-lg border-l-[3px] border-accent bg-white py-6 pl-6 pr-6 shadow-card">
+                    <div className="min-w-0 flex-1 rounded-card border-l-[3px] border-accent bg-white py-6 pl-6 pr-6 shadow-card">
                       <h4 className="text-[18px] font-semibold text-dark-text">
                         {item.title}
                       </h4>
@@ -121,7 +121,7 @@ export default function IndustryInfoSection() {
           <button
             type="button"
             onClick={scrollToUpload}
-            className="group mx-auto mt-12 flex flex-col items-center gap-2 rounded-lg px-4 py-2 text-muted transition-colors hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-secondary-bg"
+            className="group mx-auto mt-12 flex cursor-pointer flex-col items-center gap-2 rounded-lg px-4 py-2 text-muted transition-colors hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-secondary-bg"
           >
             <ChevronUp className="h-8 w-8 transition-transform duration-200 group-hover:-translate-y-0.5" />
             <span className="text-center text-[16px] leading-relaxed">
