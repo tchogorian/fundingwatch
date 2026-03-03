@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #1a1a2e;
+  --accent: #2e75b6;
+  --critical: #c62828;
+  --warning: #e65100;
+  --positive: #2e7d32;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply antialiased text-gray-900;
+}
