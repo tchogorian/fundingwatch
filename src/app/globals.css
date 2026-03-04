@@ -587,10 +587,10 @@ h3 {
     bottom: 8px;
   }
 }
-/* Mobile: crop the background image — fixed height so figure is cut off at elbow */
+/* Mobile: crop the background image — fixed height + crop right edge (no dark strip) */
 @media (max-width: 1024px) {
   .hero {
-    background-position: right top;
+    background-position: 78% top;
     background-size: cover;
     height: 68vh;
     max-height: 68vh;
