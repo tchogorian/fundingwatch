@@ -37,8 +37,8 @@ export default function Navbar() {
   return (
     <>
       <div
-        className="sticky top-4 z-[100] px-4 sm:px-6"
-        style={{ padding: "0 24px" }}
+        className="sticky top-0 z-[100] w-full px-4 py-3 sm:px-6"
+        style={{ background: "#2E75B6" }}
       >
         <nav
           className="mx-auto flex h-[60px] max-w-[1180px] items-center justify-between rounded-full px-7"
@@ -129,8 +129,8 @@ export default function Navbar() {
         style={{
           background: "#FFFFFF",
           transform: mobileOpen ? "translateX(0)" : "translateX(100%)",
-          top: "76px",
-          height: "calc(100vh - 76px)",
+          top: "84px",
+          height: "calc(100vh - 84px)",
           boxShadow: "-4px 0 24px rgba(0,0,0,0.08)",
         }}
         aria-hidden={!mobileOpen}
@@ -180,7 +180,7 @@ export default function Navbar() {
       <div
         className="fixed inset-0 z-[80] bg-black/10 transition-opacity duration-300 md:hidden"
         style={{
-          top: "76px",
+          top: "84px",
           opacity: mobileOpen ? 1 : 0,
           pointerEvents: mobileOpen ? "auto" : "none",
         }}

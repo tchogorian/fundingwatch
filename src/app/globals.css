@@ -567,6 +567,13 @@ h3 {
   min-height: 100vh;
   position: relative;
 }
+/* Mobile: position background so Robin Hood figure (right side of composite) is visible */
+@media (max-width: 1024px) {
+  .hero {
+    background-position: 60% top;
+    background-size: 220%;
+  }
+}
 /* Solid blue overlay so hero reads as one color; figure in composite still shows through */
 .hero::before {
   content: "";
@@ -575,6 +582,11 @@ h3 {
   background: #2E75B6;
   opacity: 0.55;
   pointer-events: none;
+}
+@media (max-width: 1024px) {
+  .hero::before {
+    opacity: 0.35;
+  }
 }
 .hero-inner {
   position: relative;
