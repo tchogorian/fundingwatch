@@ -36,7 +36,7 @@ export default function WhatYourReportIncludes() {
       <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
         <FadeIn>
           <p className="eyebrow text-center">YOUR ANALYSIS</p>
-          <h2 className="mt-3 text-center" style={{ color: "var(--color-text-primary)" }}>
+          <h2 className="section-heading text-center" style={{ color: "var(--color-text-primary)" }}>
             Everything You Need to Understand Your Contract
           </h2>
           <p className="mx-auto mt-4 max-w-[640px] text-center text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
@@ -47,7 +47,7 @@ export default function WhatYourReportIncludes() {
         <div className="mt-12 flex flex-col-reverse gap-12 lg:mt-16 lg:flex-row lg:items-start lg:gap-10">
           {/* Report mockup — left 55% */}
           <FadeIn delay={100} className="lg:order-2 lg:w-[55%]">
-            <div className="rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-6 shadow-[var(--shadow-sm)]" style={{ background: "#FFFFFF" }}>
+            <div className="report-mockup-card rounded-2xl border border-[var(--color-border-default)] p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)]" style={{ background: "#FFFFFF" }}>
               <div className="flex flex-col gap-6">
                 <div className="flex justify-center">
                   <div className="relative h-20 w-20">
@@ -94,7 +94,7 @@ export default function WhatYourReportIncludes() {
           <div className="flex flex-col gap-4 lg:order-1 lg:w-[45%]">
             {features.map((f, i) => (
               <FadeIn key={f.title} delay={150 + i * 60}>
-                <div className="rounded-[var(--radius-lg)] border-l-4 py-5 pl-5 pr-5 transition-shadow hover:shadow-[var(--shadow-md)]" style={{ borderLeftColor: "var(--color-accent-primary)", background: "#FFFFFF", borderColor: "var(--color-border-default)" }}>
+                <div className="rounded-[var(--radius-lg)] border-l-4 border-[var(--color-border-default)] py-5 pl-5 pr-5 transition-shadow hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)]" style={{ borderLeftColor: "var(--color-accent-primary)", background: "#FFFFFF", borderColor: "var(--color-border-default)" }}>
                   <div className="flex gap-4">
                     <div className="flex h-6 w-6 shrink-0 items-center justify-center" style={{ color: "var(--color-accent-primary)" }}>
                       <f.icon className="h-6 w-6" aria-hidden />

@@ -29,8 +29,8 @@ export default function MCAIndustrySpotlight() {
     <section className="section-dark" aria-label="Industry news">
       <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
         <FadeIn>
-          <p className="eyebrow text-center" style={{ color: "var(--accent-cyan)" }}>INDUSTRY NEWS</p>
-          <h2 className="section-title text-center" style={{ color: "var(--on-dark-1)" }}>
+          <p className="eyebrow text-center text-[var(--accent-cyan)] font-semibold tracking-widest">INDUSTRY NEWS</p>
+          <h2 className="section-title text-center mt-2" style={{ color: "var(--on-dark-1)" }}>
             What&apos;s Happening in the MCA Industry
           </h2>
           <p className="mt-4 text-center text-[var(--text-base)]" style={{ color: "var(--on-dark-2)" }}>

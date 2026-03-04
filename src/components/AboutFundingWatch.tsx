@@ -15,11 +15,12 @@ export default function AboutFundingWatch() {
       <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           <FadeIn className="lg:order-1">
-            <p className="eyebrow">OUR MISSION</p>
-            <h2 className="mt-3 text-3xl font-semibold leading-tight" style={{ color: "var(--color-text-primary)" }}>
-              Transparency for Every Business Owner
-            </h2>
-            <div className="mt-6 max-w-[520px] space-y-6 text-[var(--text-base)] leading-[1.8]" style={{ color: "var(--color-text-primary)" }}>
+            <div className="mission-block rounded-2xl border border-[var(--border-light)] bg-[var(--bg-light)] p-8 shadow-[0_2px_16px_rgba(0,0,0,0.06)] md:p-10">
+              <p className="eyebrow">OUR MISSION</p>
+              <h2 className="mt-3 text-3xl font-semibold leading-tight" style={{ color: "var(--color-text-primary)" }}>
+                Transparency for Every Business Owner
+              </h2>
+              <div className="mt-6 max-w-[520px] space-y-6 text-[var(--text-base)] leading-[1.8]" style={{ color: "var(--color-text-primary)" }}>
               <p>
                 The merchant cash advance industry processes over $12 billion every year. For many small businesses, an MCA is the fastest — sometimes the only — way to access working capital. But speed comes at a cost that most borrowers never fully understand.
               </p>
@@ -37,6 +38,7 @@ export default function AboutFundingWatch() {
                   <p className="mt-1 text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>{s.label}</p>
                 </div>
               ))}
+            </div>
             </div>
           </FadeIn>
           <FadeIn delay={100} className="relative hidden lg:order-2 lg:block">

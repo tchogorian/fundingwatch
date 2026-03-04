@@ -51,19 +51,19 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="section-white" aria-label="FAQ">
+    <section id="faq" className="section-light" aria-label="FAQ">
       <div className="section-inner mx-auto max-w-[800px] px-4 sm:px-6">
         <FadeIn>
           <p className="eyebrow text-center">FAQ</p>
-          <h2 className="mt-3 text-center" style={{ color: "var(--color-text-primary)" }}>
+          <h2 className="section-heading text-center" style={{ color: "var(--color-text-primary)" }}>
             Frequently Asked Questions
           </h2>
         </FadeIn>
 
-        <div className="mt-12 space-y-3">
+        <div className="mt-12 space-y-4">
           {items.map((item, i) => (
             <FadeIn key={item.question} delay={i * 40}>
-              <div className="overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border-default)]" style={{ background: "var(--color-bg-surface)" }}>
+              <div className="accordion-card">
                 <button
                   type="button"
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -73,7 +73,7 @@ export default function FAQ() {
                       setOpenIndex(openIndex === i ? null : i);
                     }
                   }}
-                  className="flex w-full cursor-pointer items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[var(--color-bg-elevated)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--color-bg-base)]"
+                  className="flex w-full cursor-pointer items-center justify-between focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg-light)] rounded-t-[15px]"
                   style={{ color: "var(--color-text-primary)" }}
                   aria-expanded={openIndex === i}
                   aria-controls={`faq-content-${i}`}
@@ -92,13 +92,12 @@ export default function FAQ() {
                   id={`faq-content-${i}`}
                   role="region"
                   aria-labelledby={`faq-header-${i}`}
+                  className="accordion-body"
                   style={{ maxHeight: openIndex === i ? "1000px" : "0", overflow: "hidden", transition: "max-height 0.3s ease-in-out" }}
                 >
-                  <div className="border-t border-[var(--color-border-default)] px-6 pb-6 pt-2">
-                    <p className="text-[16px] leading-[1.6]" style={{ color: "var(--color-text-secondary)" }}>
-                      {item.answer}
-                    </p>
-                  </div>
+                  <p style={{ color: "var(--color-text-secondary)" }}>
+                    {item.answer}
+                  </p>
                 </div>
               </div>
             </FadeIn>

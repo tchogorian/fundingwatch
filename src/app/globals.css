@@ -7,9 +7,9 @@
 :root {
   /* Backgrounds */
   --bg-hero:        #1060C8;
-  --bg-dark:        #0A0E1A;
-  --bg-dark-2:      #0D1425;
-  --bg-dark-card:   #141B2E;
+  --bg-dark:        #1E2A3A;
+  --bg-dark-2:      #243044;
+  --bg-dark-card:   #2A3648;
   --bg-light:       #F7F9FC;
   --bg-white:       #FFFFFF;
 
@@ -26,7 +26,7 @@
   --grad-blue-teal: linear-gradient(135deg, #1060C8 0%, #0AABB8 100%);
   --grad-purple-blue: linear-gradient(135deg, #7B3FE4 0%, #1060C8 100%);
   --grad-teal-green: linear-gradient(135deg, #0AABB8 0%, #4AE880 100%);
-  --grad-dark: linear-gradient(180deg, #0A0E1A 0%, #0D1425 100%);
+  --grad-dark: linear-gradient(180deg, #1E2A3A 0%, #243044 100%);
 
   /* Text on dark */
   --on-dark-1:  #FFFFFF;
@@ -88,7 +88,7 @@
 }
 
 .section-dark-grad {
-  background: linear-gradient(160deg, #0F0A2A 0%, #0A1E5C 50%, #081830 100%);
+  background: linear-gradient(160deg, #2A3654 0%, #1E3A6E 50%, #1E3A5C 100%);
   color: var(--on-dark-1);
 }
 
@@ -121,13 +121,13 @@
 
 /* CTA gradient (blue → teal) */
 .cta-section {
-  background: linear-gradient(135deg, #0A1E5C 0%, #1060C8 50%, #0AABB8 100%);
+  background: linear-gradient(135deg, #1E3A6E 0%, #1060C8 50%, #0AABB8 100%);
   color: var(--on-dark-1);
 }
 
 /* ========== STATS BAR (Plaid: gradient bar + white boxes) ========== */
 .stats-bar {
-  background: linear-gradient(160deg, #0F0A2A 0%, #0A1E5C 50%, #081830 100%);
+  background: linear-gradient(160deg, #2A3654 0%, #1E3A6E 50%, #1E3A5C 100%);
   border-top: none;
   border-bottom: none;
   padding: 48px 0;
@@ -856,27 +856,31 @@ h3 {
   justify-content: center;
   min-height: 200px;
   padding: 48px 32px;
-  background: var(--bg-light);
-  border: 2px dashed var(--border-light);
-  border-radius: 14px;
+  background: var(--bg-white);
+  border: 2px dashed #94A3B8;
+  border-radius: 20px;
   cursor: pointer;
   transition: all 200ms;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 .upload-zone:hover {
   border-color: var(--accent-teal);
-  background: rgba(10, 171, 184, 0.06);
-  box-shadow: var(--shadow-card);
+  background: rgba(10, 171, 184, 0.04);
+  box-shadow: 0 8px 32px rgba(10, 171, 184, 0.12), 0 0 0 2px rgba(10, 171, 184, 0.2);
 }
 .upload-zone.drag-over {
   border-color: var(--accent-teal);
   border-style: solid;
+  border-width: 2px;
   background: rgba(10, 171, 184, 0.08);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 12px 40px rgba(10, 171, 184, 0.15), 0 0 0 2px var(--accent-teal);
   transform: scale(1.01);
 }
 .upload-zone.has-error {
   border-color: var(--danger);
+  border-style: solid;
   background: var(--danger-bg);
+  box-shadow: 0 4px 24px rgba(229, 72, 77, 0.1);
 }
 .upload-icon {
   color: var(--accent-teal);
@@ -886,13 +890,13 @@ h3 {
 .upload-label {
   font-family: var(--font-body);
   font-size: 1.125rem;
-  font-weight: 500;
-  color: var(--text-dark-1);
+  font-weight: 600;
+  color: var(--on-light-1);
   margin-top: 16px;
 }
 .upload-sublabel {
-  font-size: 0.8rem;
-  color: var(--text-dark-3);
+  font-size: 0.875rem;
+  color: var(--on-light-3);
   margin-top: 6px;
 }
 .upload-browse {
@@ -900,6 +904,57 @@ h3 {
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
+  margin-top: 12px;
+}
+/* ========== ACCORDION / FAQ / MCA EDUCATION CARDS ========== */
+.accordion-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: box-shadow 200ms, border-color 200ms;
+}
+.accordion-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-color: #CBD5E1;
+}
+.accordion-card button {
+  width: 100%;
+  text-align: left;
+  padding: 18px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--on-light-1);
+  background: var(--bg-white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: background 150ms;
+}
+.accordion-card button:hover {
+  background: var(--bg-light);
+}
+.accordion-card .accordion-body {
+  border-top: 1px solid var(--border-light);
+  padding: 16px 20px 20px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--on-light-2);
+}
+/* Section eyebrow + title visibility (light sections) */
+.section-light .eyebrow,
+.section-white .eyebrow {
+  color: var(--accent-blue);
+}
+.section-light .section-heading,
+.section-white .section-heading {
+  color: var(--on-light-1);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 700;
   margin-top: 12px;
 }
 .upload-file-preview {

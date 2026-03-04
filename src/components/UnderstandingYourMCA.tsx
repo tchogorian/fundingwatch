@@ -41,11 +41,11 @@ export default function UnderstandingYourMCA() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="resources" className="section-white" aria-label="MCA Education">
+    <section id="resources" className="section-light" aria-label="MCA Education">
       <div className="section-inner mx-auto max-w-[800px] px-4 sm:px-6">
         <FadeIn>
           <p className="eyebrow text-center">MCA EDUCATION</p>
-          <h2 className="mt-3 text-center" style={{ color: "var(--color-text-primary)" }}>
+          <h2 className="section-heading text-center" style={{ color: "var(--color-text-primary)" }}>
             Understanding Your Merchant Cash Advance
           </h2>
           <p className="mx-auto mt-4 max-w-[600px] text-center text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
@@ -53,10 +53,10 @@ export default function UnderstandingYourMCA() {
           </p>
         </FadeIn>
 
-        <div className="mt-12 space-y-3">
+        <div className="mt-12 space-y-4">
           {items.map((item, i) => (
             <FadeIn key={item.question} delay={i * 50}>
-              <div className="overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border-default)]" style={{ background: "var(--color-bg-surface)" }}>
+              <div className="accordion-card">
                 <button
                   type="button"
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -66,7 +66,7 @@ export default function UnderstandingYourMCA() {
                       setOpenIndex(openIndex === i ? null : i);
                     }
                   }}
-                  className="flex w-full cursor-pointer items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[var(--color-bg-elevated)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--color-bg-base)]"
+                  className="focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg-light)] rounded-t-[15px]"
                   style={{ color: "var(--color-text-primary)" }}
                   aria-expanded={openIndex === i}
                   aria-controls={`accordion-content-${i}`}
@@ -85,14 +85,12 @@ export default function UnderstandingYourMCA() {
                   id={`accordion-content-${i}`}
                   role="region"
                   aria-labelledby={`accordion-header-${i}`}
-                  className="transition-[max-height] duration-300 ease-in-out"
+                  className="accordion-body transition-[max-height] duration-300 ease-in-out"
                   style={{ maxHeight: openIndex === i ? "2000px" : "0", overflow: "hidden" }}
                 >
-                  <div className="border-t border-[var(--color-border-default)] px-6 pb-6 pt-2">
-                    <p className="text-[16px] leading-[1.6]" style={{ color: "var(--color-text-secondary)" }}>
-                      {item.content}
-                    </p>
-                  </div>
+                  <p style={{ color: "var(--color-text-secondary)" }}>
+                    {item.content}
+                  </p>
                 </div>
               </div>
             </FadeIn>
