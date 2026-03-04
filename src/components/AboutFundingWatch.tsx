@@ -11,7 +11,7 @@ const stats = [
 
 export default function AboutFundingWatch() {
   return (
-    <section id="about" className="py-16 md:py-24" style={{ background: "var(--color-bg-base)" }}>
+    <section id="about" className="py-16 md:py-24" style={{ background: "#FFFFFF" }}>
       <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           <FadeIn className="lg:order-1">

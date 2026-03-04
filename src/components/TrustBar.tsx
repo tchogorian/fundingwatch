@@ -11,7 +11,7 @@ export default function TrustBar() {
   return (
     <section
       className="border-y border-[var(--color-border-default)] py-5"
-      style={{ background: "var(--color-bg-surface)" }}
+      style={{ background: "#FFFFFF" }}
       aria-label="Trust metrics"
     >
       <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">

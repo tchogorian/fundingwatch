@@ -26,7 +26,7 @@
   --color-success: #0D9488;
 
   --color-text-primary: #0F172A;
-  --color-text-secondary: #475569;
+  --color-text-secondary: #64748B;
   --color-text-tertiary: #94A3B8;
   --color-text-inverse: #FFFFFF;
   --color-text-link: #0D9488;
@@ -346,7 +346,7 @@ h3 {
 .article-prose {
   font-size: 17px;
   line-height: 1.75;
-  color: var(--color-text-primary);
+  color: #334155;
 }
 .article-prose p {
   margin-bottom: 1em;

@@ -26,7 +26,7 @@ const cards = [
 
 export default function MCAIndustrySpotlight() {
   return (
-    <section className="py-16 md:py-24" style={{ background: "var(--color-bg-base)" }}>
+    <section className="py-16 md:py-24" style={{ background: "#FFFFFF" }}>
       <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
         <FadeIn>
           <p className="eyebrow text-center">INDUSTRY NEWS</p>

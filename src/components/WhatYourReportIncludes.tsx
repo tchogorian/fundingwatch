@@ -32,7 +32,7 @@ const features = [
 
 export default function WhatYourReportIncludes() {
   return (
-    <section className="py-16 md:py-24" style={{ background: "var(--color-bg-base)" }}>
+    <section className="py-16 md:py-24" style={{ background: "#F8FAFC" }}>
       <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
         <FadeIn>
           <p className="eyebrow text-center">YOUR ANALYSIS</p>
@@ -47,7 +47,7 @@ export default function WhatYourReportIncludes() {
         <div className="mt-12 flex flex-col-reverse gap-12 lg:mt-16 lg:flex-row lg:items-start lg:gap-10">
           {/* Report mockup — left 55% */}
           <FadeIn delay={100} className="lg:order-2 lg:w-[55%]">
-            <div className="rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-6" style={{ background: "var(--color-bg-surface)" }}>
+            <div className="rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-6 shadow-[var(--shadow-sm)]" style={{ background: "#FFFFFF" }}>
               <div className="flex flex-col gap-6">
                 <div className="flex justify-center">
                   <div className="relative h-20 w-20">
@@ -72,7 +72,7 @@ export default function WhatYourReportIncludes() {
                     No reconciliation clause
                   </div>
                 </div>
-                <div className="rounded-[var(--radius-md)] border border-[var(--color-border-default)]" style={{ background: "var(--color-bg-base)" }}>
+                <div className="rounded-[var(--radius-md)] border border-[var(--color-border-default)]" style={{ background: "#F8FAFC" }}>
                   <div className="flex justify-between border-b border-[var(--color-border-default)] px-4 py-2 text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>
                     <span>Factor rate</span>
                     <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>1.45</span>
@@ -94,7 +94,7 @@ export default function WhatYourReportIncludes() {
           <div className="flex flex-col gap-4 lg:order-1 lg:w-[45%]">
             {features.map((f, i) => (
               <FadeIn key={f.title} delay={150 + i * 60}>
-                <div className="rounded-[var(--radius-lg)] border-l-4 py-5 pl-5 pr-5 transition-shadow hover:shadow-[var(--shadow-md)]" style={{ borderLeftColor: "var(--color-accent-primary)", background: "var(--color-bg-surface)", borderColor: "var(--color-border-default)" }}>
+                <div className="rounded-[var(--radius-lg)] border-l-4 py-5 pl-5 pr-5 transition-shadow hover:shadow-[var(--shadow-md)]" style={{ borderLeftColor: "var(--color-accent-primary)", background: "#FFFFFF", borderColor: "var(--color-border-default)" }}>
                   <div className="flex gap-4">
                     <div className="flex h-6 w-6 shrink-0 items-center justify-center" style={{ color: "var(--color-accent-primary)" }}>
                       <f.icon className="h-6 w-6" aria-hidden />

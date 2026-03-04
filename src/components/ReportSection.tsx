@@ -15,7 +15,7 @@ export default function ReportSection({ data }: { data: AnalysisResult }) {
     data.confidence === "medium" || data.confidence === "low";
 
   return (
-    <section className="py-16 md:py-24" style={{ background: "var(--color-bg-base)" }}>
+    <section className="py-16 md:py-24" style={{ background: "#F8FAFC" }}>
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <FadeIn>
           <h2 className="text-2xl font-semibold md:text-3xl" style={{ color: "var(--color-text-primary)" }}>

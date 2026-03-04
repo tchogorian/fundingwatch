@@ -32,7 +32,7 @@ export default function WhoThisIsFor() {
   return (
     <section
       className="reveal py-16 md:py-24"
-      style={{ background: "var(--color-bg-base)" }}
+      style={{ background: "#F8FAFC" }}
     >
       <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
         <FadeIn>

@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <footer
       className="border-t border-[var(--color-border-default)] pt-16 pb-8"
-      style={{ background: "var(--color-bg-surface)" }}
+      style={{ background: "#F8FAFC" }}
     >
       <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">

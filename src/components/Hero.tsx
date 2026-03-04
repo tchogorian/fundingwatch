@@ -14,7 +14,8 @@ export default function Hero() {
 
   return (
     <section
-      className="hero-bg has-grain relative min-h-[calc(100vh-64px)] overflow-hidden pt-[120px] pb-20 md:pb-24"
+      className="hero-bg relative min-h-[calc(100vh-64px)] overflow-hidden pt-[120px] pb-20 md:pb-24"
+      style={{ background: "#F8FAFC" }}
       aria-label="Hero"
     >
       <div className="relative mx-auto grid w-full max-w-[var(--max-width-content)] grid-cols-1 gap-12 px-4 lg:grid-cols-[60%_40%] lg:items-center lg:gap-16 lg:px-6">
@@ -33,7 +34,7 @@ export default function Hero() {
           </h1>
           <p
             className="mt-6 max-w-[480px] text-[var(--text-lg)] font-light leading-relaxed"
-            style={{ color: "var(--color-text-primary)" }}
+            style={{ color: "#334155" }}
           >
             Upload your contract. Our AI reveals your true APR, hidden terms, and red flags —
             free, in under 30 seconds.
@@ -85,11 +86,11 @@ function SampleReportCard({ onAnalyze }: { onAnalyze: () => void }) {
   return (
     <div
       ref={cardRef}
-      className="rounded-[var(--radius-xl)] border border-[var(--color-border-strong)] pt-[3px] shadow-[var(--shadow-lg),var(--shadow-danger)]"
+      className="rounded-[var(--radius-xl)] border border-[var(--color-border-default)] shadow-[var(--shadow-md)]"
       style={{
-        background: "var(--color-bg-elevated)",
-        borderTopColor: "var(--color-danger)",
-        borderTopWidth: "3px",
+        background: "#FFFFFF",
+        borderLeftWidth: "3px",
+        borderLeftColor: "#DC2626",
         animation: "fadeInUp 600ms var(--ease-out) 200ms both",
       }}
     >

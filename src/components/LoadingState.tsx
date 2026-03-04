@@ -37,7 +37,7 @@ export default function LoadingState() {
   const progress = (elapsedMs / totalMs) * 100;
 
   return (
-    <section id="upload" className="py-16 md:py-24" style={{ background: "var(--color-bg-base)" }}>
+    <section id="upload" className="py-16 md:py-24" style={{ background: "#FFFFFF" }}>
       <div className="mx-auto max-w-[480px] px-4 sm:px-6">
         <div className="space-y-4">
           {steps.map((step, i) => {

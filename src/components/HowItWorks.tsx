@@ -31,7 +31,7 @@ export default function HowItWorks() {
     <section
       id="how-it-works"
       className="reveal py-16 md:py-24"
-      style={{ background: "var(--color-bg-base)" }}
+      style={{ background: "#FFFFFF" }}
     >
       <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
         <FadeIn>

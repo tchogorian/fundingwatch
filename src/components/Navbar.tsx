@@ -35,11 +35,8 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="sticky top-0 z-[100] h-16 border-b border-[var(--color-border-default)]"
-        style={{
-          background: "rgba(6, 11, 20, 0.85)",
-          backdropFilter: "blur(16px) saturate(180%)",
-        }}
+        className="sticky top-0 z-[100] h-16 border-b bg-white"
+        style={{ borderBottomColor: "#E2E8F0" }}
       >
         <div className="mx-auto flex h-full max-w-[var(--max-width-content)] items-center justify-between px-4 sm:px-6">
           <Link
@@ -120,7 +117,7 @@ export default function Navbar() {
       <div
         className="fixed inset-y-0 right-0 z-[90] w-[300px] transform border-l border-[var(--color-border-strong)] transition-transform duration-300 ease-[var(--ease-out)] md:hidden"
         style={{
-          background: "var(--color-bg-elevated)",
+          background: "#FFFFFF",
           transform: mobileOpen ? "translateX(0)" : "translateX(100%)",
           top: "64px",
           height: "calc(100vh - 64px)",
@@ -166,9 +163,9 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* Overlay when drawer open */}
+      {/* Overlay when drawer open — light, no dark overlay */}
       <div
-        className="fixed inset-0 z-[80] bg-black/40 transition-opacity duration-300 md:hidden"
+        className="fixed inset-0 z-[80] bg-black/10 transition-opacity duration-300 md:hidden"
         style={{
           top: "64px",
           opacity: mobileOpen ? 1 : 0,

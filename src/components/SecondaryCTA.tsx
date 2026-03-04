@@ -9,8 +9,8 @@ export default function SecondaryCTA() {
 
   return (
     <section
-      className="hero-bg has-grain relative overflow-hidden py-16 md:py-24"
-      style={{ background: "var(--color-bg-base)" }}
+      className="hero-bg relative overflow-hidden py-16 md:py-24"
+      style={{ background: "#F8FAFC" }}
     >
       <div className="relative mx-auto max-w-[var(--max-width-narrow)] px-4 text-center sm:px-6">
         <h2

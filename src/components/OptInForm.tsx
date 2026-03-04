@@ -80,7 +80,7 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
 
   if (status === "success") {
     return (
-      <section className="py-16 md:py-24" style={{ background: "var(--color-bg-surface)" }}>
+      <section className="py-16 md:py-24" style={{ background: "#FFFFFF" }}>
         <div className="mx-auto max-w-[560px] px-4 text-center sm:px-6">
           <div className="flex justify-center">
             <div className="flex h-20 w-20 items-center justify-center rounded-full" style={{ background: "var(--color-accent-muted)" }}>
@@ -99,7 +99,7 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
   }
 
   return (
-    <section className="py-16 md:py-24" style={{ background: "var(--color-bg-surface)" }}>
+    <section className="py-16 md:py-24" style={{ background: "#FFFFFF" }}>
       <div className="mx-auto max-w-[560px] px-4 sm:px-6">
         <h2 className="text-center text-[32px] font-semibold" style={{ color: "var(--color-text-primary)" }}>
           Concerned About Your Current Contract?
