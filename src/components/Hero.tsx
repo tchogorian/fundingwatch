@@ -14,8 +14,6 @@ export default function Hero() {
 
   return (
     <section className="hero relative min-h-screen overflow-hidden" aria-label="Hero">
-      {/* Plaid-style wavy line pattern — left side, fades to the right */}
-      <div className="hero-waves" aria-hidden="true" />
       <div className="hero-inner">
         {/* Left column — content */}
         <div>

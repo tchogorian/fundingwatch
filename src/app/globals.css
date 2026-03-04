@@ -128,85 +128,13 @@ h3 {
   color: var(--hero-mid);
 }
 
-/* ========== HERO (overridden by Hero component) ========== */
-.hero-bg {
-  background: linear-gradient(
-    135deg,
-    var(--hero-start) 0%,
-    var(--hero-mid) 30%,
-    #0e7dc0 55%,
-    #0a9cb8 78%,
-    #08b5c4 100%
-  );
-}
-
-/* Hero — single composite image (gradient + figure) */
+/* ========== HERO ========== */
 .hero {
-  min-height: 100vh;
-  margin-top: -76px;
-  padding-top: 148px;
-  background-color: #0a3d8f;
-  background-image: url("/images/hero-composite.png");
+  background-image: url("/images/hero-bg.jpg");
   background-size: cover;
-  background-position: right center;
+  background-position: center top;
+  min-height: 100vh;
   position: relative;
-  overflow: hidden;
-}
-/* Plaid-style wavy lines — left ~2/3, fade to right */
-.hero-waves {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.85;
-  mask-image: linear-gradient(to right, black 0%, black 55%, transparent 85%);
-  -webkit-mask-image: linear-gradient(to right, black 0%, black 55%, transparent 85%);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' fill='none'%3E%3Cpath d='M0 120 Q150 80 300 120 T600 120 T900 120 T1200 120' stroke='rgba(255,255,255,0.06)' stroke-width='1' fill='none'/%3E%3Cpath d='M0 220 Q180 160 360 220 T720 220 T1080 220 T1200 220' stroke='rgba(255,255,255,0.07)' stroke-width='1' fill='none'/%3E%3Cpath d='M0 320 Q120 280 240 320 T480 320 T720 320 T960 320 T1200 320' stroke='rgba(255,255,255,0.05)' stroke-width='1' fill='none'/%3E%3Cpath d='M0 420 Q200 360 400 420 T800 420 T1200 420' stroke='rgba(255,255,255,0.06)' stroke-width='1' fill='none'/%3E%3Cpath d='M0 520 Q160 480 320 520 T640 520 T960 520 T1200 520' stroke='rgba(255,255,255,0.05)' stroke-width='1' fill='none'/%3E%3Cpath d='M0 620 Q220 560 440 620 T880 620 T1200 620' stroke='rgba(255,255,255,0.06)' stroke-width='1' fill='none'/%3E%3Cpath d='M0 720 Q140 680 280 720 T560 720 T840 720 T1200 720' stroke='rgba(255,255,255,0.04)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
-  background-size: 1200px 800px;
-  background-position: left center;
-  background-repeat: no-repeat;
-}
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: repeating-radial-gradient(
-    ellipse 130% 90% at 68% 50%,
-    transparent 0px,
-    transparent 29px,
-    rgba(255, 255, 255, 0.055) 30px,
-    rgba(255, 255, 255, 0.055) 31px,
-    transparent 32px,
-    transparent 59px,
-    rgba(255, 255, 255, 0.045) 60px,
-    rgba(255, 255, 255, 0.045) 61px,
-    transparent 62px,
-    transparent 89px,
-    rgba(255, 255, 255, 0.035) 90px,
-    rgba(255, 255, 255, 0.035) 91px,
-    transparent 92px,
-    transparent 119px,
-    rgba(255, 255, 255, 0.025) 120px,
-    rgba(255, 255, 255, 0.025) 121px,
-    transparent 122px,
-    transparent 149px,
-    rgba(255, 255, 255, 0.02) 150px,
-    rgba(255, 255, 255, 0.02) 151px
-  );
-  pointer-events: none;
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    -18deg,
-    transparent 0px,
-    transparent 44px,
-    rgba(255, 255, 255, 0.018) 45px,
-    rgba(255, 255, 255, 0.018) 46px
-  );
-  pointer-events: none;
 }
 .hero-inner {
   position: relative;
