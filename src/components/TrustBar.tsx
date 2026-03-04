@@ -10,11 +10,10 @@ export default function TrustBar() {
 
   return (
     <section
-      className="stats-bar border-t border-b border-[#E5E7EB]"
-      style={{ background: "#FFFFFF" }}
+      className="section-white stats-bar border-t border-b border-[var(--border-light)]"
       aria-label="Trust metrics"
     >
-      <div className="stats-inner mx-auto grid max-w-[1280px] grid-cols-2 px-4 md:grid-cols-4 md:px-8 lg:px-12"
+      <div className="stats-inner mx-auto grid max-w-[1280px] grid-cols-2 gap-0 px-4 md:grid-cols-4 md:px-12"
       >
         {stats.map(({ value, label }, i) => (
           <div

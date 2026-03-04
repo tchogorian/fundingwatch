@@ -32,8 +32,8 @@ const features = [
 
 export default function WhatYourReportIncludes() {
   return (
-    <section className="py-16 md:py-24" style={{ background: "#F8FAFC" }}>
-      <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
+    <section className="section-white" aria-label="What your report includes">
+      <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
         <FadeIn>
           <p className="eyebrow text-center">YOUR ANALYSIS</p>
           <h2 className="mt-3 text-center" style={{ color: "var(--color-text-primary)" }}>

@@ -81,6 +81,39 @@
   --color-danger: var(--danger);
 }
 
+/* ========== SECTION LAYOUT — dark/light alternation (Plaid) ========== */
+.section-dark {
+  background: var(--bg-dark);
+  color: var(--on-dark-1);
+}
+
+.section-dark-grad {
+  background: linear-gradient(160deg, #0F0A2A 0%, #0A1E5C 50%, #081830 100%);
+  color: var(--on-dark-1);
+}
+
+.section-light {
+  background: var(--bg-light);
+  color: var(--on-light-1);
+}
+
+.section-white {
+  background: var(--bg-white);
+  color: var(--on-light-1);
+}
+
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 96px 48px;
+}
+
+/* CTA gradient (blue → teal) */
+.cta-section {
+  background: linear-gradient(135deg, #0A1E5C 0%, #1060C8 50%, #0AABB8 100%);
+  color: var(--on-dark-1);
+}
+
 /* ========== GLOBAL BASE ========== */
 html {
   scroll-behavior: smooth;

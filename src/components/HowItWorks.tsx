@@ -30,13 +30,13 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="reveal py-16 md:py-24"
-      style={{ background: "#FFFFFF" }}
+      className="section-dark-grad reveal"
+      aria-label="How it works"
     >
-      <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
+      <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
         <FadeIn>
-          <p className="eyebrow text-center">HOW IT WORKS</p>
-          <h2 className="mt-3 text-center" style={{ color: "var(--color-text-primary)" }}>
+          <p className="eyebrow text-center" style={{ color: "var(--accent-cyan)" }}>HOW IT WORKS</p>
+          <h2 className="mt-3 text-center text-[clamp(1.8rem,3.5vw,2.8rem)] font-extrabold leading-tight tracking-tight" style={{ color: "var(--on-dark-1)" }}>
             Three Steps to Contract Clarity
           </h2>
         </FadeIn>

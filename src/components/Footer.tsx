@@ -12,40 +12,41 @@ export default function Footer() {
 
   return (
     <footer
-      className="border-t border-[var(--color-border-default)] pt-16 pb-8"
-      style={{ background: "#F8FAFC" }}
+      className="section-dark border-t pt-16 pb-8"
+      style={{ borderColor: "var(--border-dark)" }}
+      aria-label="Footer"
     >
-      <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
+      <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
           {/* Column 1: Brand (wider) */}
           <div className="lg:col-span-1">
             <Link
               href="/"
               className="text-[18px] font-semibold transition hover:opacity-90"
-              style={{ color: "var(--color-text-primary)" }}
+              style={{ color: "var(--on-dark-1)" }}
             >
-              Funding<span style={{ color: "var(--color-accent-primary)" }}>Watch</span>
+              Funding<span style={{ color: "var(--accent-cyan)" }}>Watch</span>
             </Link>
             <p
               className="mt-2 text-[var(--text-sm)]"
-              style={{ color: "var(--color-text-secondary)" }}
+              style={{ color: "var(--on-dark-2)" }}
             >
               Free MCA Contract Intelligence
             </p>
             <p
               className="mt-4 max-w-[280px] text-[var(--text-sm)] leading-[1.6]"
-              style={{ color: "var(--color-text-secondary)" }}
+              style={{ color: "var(--on-dark-2)" }}
             >
               Helping small business owners understand their MCA contracts. Free contract intelligence.
             </p>
             <a
               href="mailto:hello@fundingwatch.org"
               className="mt-4 inline-block text-[var(--text-sm)] transition hover:underline"
-              style={{ color: "var(--color-accent-primary)" }}
+              style={{ color: "var(--accent-cyan)" }}
             >
               hello@fundingwatch.org
             </a>
-            <p className="mt-2 text-[var(--text-sm)]" style={{ color: "var(--color-text-tertiary)" }}>
+            <p className="mt-2 text-[var(--text-sm)]" style={{ color: "var(--on-dark-3)" }}>
               Miami, FL
             </p>
           </div>
@@ -54,7 +55,7 @@ export default function Footer() {
           <div>
             <h3
               className="text-[var(--text-sm)] font-semibold uppercase tracking-wider"
-              style={{ color: "var(--color-text-primary)" }}
+              style={{ color: "var(--on-dark-3)" }}
             >
               Product
             </h3>
@@ -64,7 +65,7 @@ export default function Footer() {
                   type="button"
                   onClick={() => scrollTo("#how-it-works")}
                   className="text-left text-[var(--text-sm)] transition-colors hover:underline"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  style={{ color: "var(--on-dark-2)" }}
                 >
                   How It Works
                 </button>
@@ -74,7 +75,7 @@ export default function Footer() {
                   type="button"
                   onClick={() => document.getElementById("upload")?.scrollIntoView({ behavior: "smooth" })}
                   className="text-left text-[var(--text-sm)] transition-colors hover:underline"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  style={{ color: "var(--on-dark-2)" }}
                 >
                   Analyze Your Contract
                 </button>
@@ -83,7 +84,7 @@ export default function Footer() {
                 <Link
                   href="/sample-report"
                   className="text-[var(--text-sm)] transition-colors hover:underline"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  style={{ color: "var(--on-dark-2)" }}
                 >
                   Sample Report
                 </Link>
@@ -92,7 +93,7 @@ export default function Footer() {
                 <Link
                   href="/apr-calculator"
                   className="text-[var(--text-sm)] transition-colors hover:underline"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  style={{ color: "var(--on-dark-2)" }}
                 >
                   APR Calculator
                 </Link>
@@ -104,7 +105,7 @@ export default function Footer() {
           <div>
             <h3
               className="text-[var(--text-sm)] font-semibold uppercase tracking-wider"
-              style={{ color: "var(--color-text-primary)" }}
+              style={{ color: "var(--on-dark-3)" }}
             >
               Resources
             </h3>
@@ -114,7 +115,7 @@ export default function Footer() {
                   type="button"
                   onClick={() => scrollTo("#resources")}
                   className="text-left text-[var(--text-sm)] transition-colors hover:underline"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  style={{ color: "var(--on-dark-2)" }}
                 >
                   Understanding MCAs
                 </button>
@@ -124,18 +125,18 @@ export default function Footer() {
                   type="button"
                   onClick={() => scrollTo("#faq")}
                   className="text-left text-[var(--text-sm)] transition-colors hover:underline"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  style={{ color: "var(--on-dark-2)" }}
                 >
                   FAQ
                 </button>
               </li>
               <li>
-                <Link href="/blog" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--color-text-secondary)" }}>
+                <Link href="/blog" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--on-dark-2)" }}>
                   Industry News
                 </Link>
               </li>
               <li>
-                <Link href="/glossary" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--color-text-secondary)" }}>
+                <Link href="/glossary" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--on-dark-2)" }}>
                   MCA Glossary
                 </Link>
               </li>
@@ -146,7 +147,7 @@ export default function Footer() {
           <div>
             <h3
               className="text-[var(--text-sm)] font-semibold uppercase tracking-wider"
-              style={{ color: "var(--color-text-primary)" }}
+              style={{ color: "var(--on-dark-3)" }}
             >
               Company
             </h3>
@@ -156,23 +157,23 @@ export default function Footer() {
                   type="button"
                   onClick={() => scrollTo("#about")}
                   className="text-left text-[var(--text-sm)] transition-colors hover:underline"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  style={{ color: "var(--on-dark-2)" }}
                 >
                   About
                 </button>
               </li>
               <li>
-                <Link href="/privacy" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--color-text-secondary)" }}>
+                <Link href="/privacy" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--on-dark-2)" }}>
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--color-text-secondary)" }}>
+                <Link href="/terms" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--on-dark-2)" }}>
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <a href="mailto:hello@fundingwatch.org" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--color-text-secondary)" }}>
+                <a href="mailto:hello@fundingwatch.org" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--on-dark-2)" }}>
                   Contact
                 </a>
               </li>
@@ -183,11 +184,11 @@ export default function Footer() {
           <div>
             <h3
               className="text-[var(--text-sm)] font-semibold uppercase tracking-wider"
-              style={{ color: "var(--color-text-primary)" }}
+              style={{ color: "var(--on-dark-3)" }}
             >
               MCA Industry Updates
             </h3>
-            <p className="mt-2 text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>
+            <p className="mt-2 text-[var(--text-sm)]" style={{ color: "var(--on-dark-2)" }}>
               New settlements, regulatory changes, borrower rights.
             </p>
             <form
@@ -199,8 +200,8 @@ export default function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="min-h-[44px] flex-1 rounded-[var(--radius-full)] border border-[var(--color-border-strong)] bg-[var(--color-bg-base)] px-4 text-[var(--text-base)] outline-none transition focus:border-[var(--color-accent-primary)] focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-opacity-30"
-                style={{ color: "var(--color-text-primary)" }}
+                className="min-h-[44px] flex-1 rounded-[var(--radius-full)] border px-4 text-[var(--text-base)] outline-none transition focus:ring-2 focus:ring-[var(--accent-cyan)] focus:ring-opacity-30"
+                style={{ color: "var(--on-dark-1)", background: "var(--bg-dark-card)", borderColor: "var(--border-dark)" }}
                 aria-label="Email for newsletter"
               />
               <button type="submit" className="btn-primary shrink-0 px-5 py-2.5 text-[13px] uppercase">
@@ -211,16 +212,16 @@ export default function Footer() {
         </div>
 
         {/* Trust badges strip */}
-        <div className="mt-12 border-t border-[var(--color-border-default)] pt-8">
+        <div className="mt-12 border-t pt-8" style={{ borderColor: "var(--border-dark)" }}>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {["Bank-Grade Privacy", "Contracts Never Stored", "Free Forever", "Facts Only — Never Legal Advice"].map((text) => (
               <span
                 key={text}
                 className="rounded-full border px-4 py-2 text-[var(--text-xs)] font-medium uppercase tracking-wider"
                 style={{
-                  borderColor: "var(--color-border-strong)",
-                  background: "var(--color-bg-elevated)",
-                  color: "var(--color-text-secondary)",
+                  borderColor: "var(--border-dark)",
+                  background: "var(--bg-dark-card)",
+                  color: "var(--on-dark-2)",
                 }}
               >
                 {text}
@@ -230,18 +231,18 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-[var(--color-border-default)] pt-6 sm:flex-row">
-          <p className="text-[13px]" style={{ color: "var(--color-text-tertiary)" }}>
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-6 sm:flex-row" style={{ borderColor: "var(--border-dark)" }}>
+          <p className="text-[13px]" style={{ color: "var(--on-dark-3)" }}>
             © 2026 FundingWatch · Miami, FL
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="text-[13px] transition hover:underline" style={{ color: "var(--color-text-tertiary)" }}>
+            <Link href="/privacy" className="text-[13px] transition hover:underline" style={{ color: "var(--on-dark-3)" }}>
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-[13px] transition hover:underline" style={{ color: "var(--color-text-tertiary)" }}>
+            <Link href="/terms" className="text-[13px] transition hover:underline" style={{ color: "var(--on-dark-3)" }}>
               Terms of Service
             </Link>
-            <a href="mailto:hello@fundingwatch.org" className="text-[13px] transition hover:underline" style={{ color: "var(--color-text-tertiary)" }}>
+            <a href="mailto:hello@fundingwatch.org" className="text-[13px] transition hover:underline" style={{ color: "var(--on-dark-3)" }}>
               Contact
             </a>
           </div>

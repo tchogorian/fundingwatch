@@ -30,19 +30,16 @@ export default function WhoThisIsFor() {
   };
 
   return (
-    <section
-      className="reveal py-16 md:py-24"
-      style={{ background: "#F8FAFC" }}
-    >
-      <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
+    <section className="section-dark reveal" aria-label="Who this is for">
+      <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
         <FadeIn>
-          <p className="eyebrow text-center">WHO THIS IS FOR</p>
-          <h2 className="mt-3 text-center" style={{ color: "var(--color-text-primary)" }}>
+          <p className="eyebrow text-center" style={{ color: "var(--accent-cyan)" }}>WHO THIS IS FOR</p>
+          <h2 className="mt-3 text-center text-[clamp(1.8rem,3.5vw,2.8rem)] font-extrabold leading-tight tracking-tight" style={{ color: "var(--on-dark-1)" }}>
             Every MCA Borrower Deserves Clarity
           </h2>
           <p
             className="mx-auto mt-2 max-w-[600px] text-center text-[var(--text-base)]"
-            style={{ color: "var(--color-text-secondary)" }}
+            style={{ color: "var(--on-dark-2)" }}
           >
             Choose your situation below.
           </p>
