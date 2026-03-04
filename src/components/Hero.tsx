@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 export default function Hero() {
@@ -66,17 +65,6 @@ export default function Hero() {
       {/* Sample report card — mobile only (hero right column alternative) */}
       <div className="relative z-10 mx-4 mt-8 lg:hidden" style={{ maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
         <SampleReportCard onAnalyze={scrollToUpload} />
-      </div>
-
-      {/* Floating notification card — bottom left */}
-      <div className="hero-notify max-md:left-4 max-md:right-4 max-md:bottom-6 max-md:left-4">
-        <div className="notify-thumb">📄</div>
-        <div>
-          <p className="notify-title">New red flag detected 🚨</p>
-          <Link href="#upload" onClick={(e) => { e.preventDefault(); scrollToUpload(); }} className="notify-sub hover:underline">
-            See what&apos;s in your contract →
-          </Link>
-        </div>
       </div>
 
       {/* Scroll indicator */}

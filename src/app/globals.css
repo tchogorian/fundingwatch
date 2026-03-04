@@ -906,7 +906,43 @@ h3 {
   cursor: pointer;
   margin-top: 12px;
 }
-/* ========== ACCORDION / FAQ / MCA EDUCATION CARDS ========== */
+/* ========== ACCORDION / FAQ / MCA EDUCATION ========== */
+/* Simple list style — no boxes, just dividers */
+.accordion-simple {
+  border-bottom: 1px solid var(--border-light);
+}
+.accordion-simple-item {
+  border-top: 1px solid var(--border-light);
+}
+.accordion-simple-item:first-child {
+  border-top: none;
+}
+.accordion-simple button {
+  width: 100%;
+  text-align: left;
+  padding: 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--on-light-1);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: color 150ms;
+}
+.accordion-simple button:hover {
+  color: var(--accent-blue);
+}
+.accordion-simple .accordion-body {
+  padding: 0 0 20px 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--on-light-2);
+}
+
 .accordion-card {
   background: var(--bg-white);
   border: 1px solid var(--border-light);

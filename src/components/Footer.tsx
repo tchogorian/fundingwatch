@@ -211,25 +211,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Trust badges strip */}
-        <div className="mt-12 border-t pt-8" style={{ borderColor: "var(--border-dark)" }}>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {["Bank-Grade Privacy", "Contracts Never Stored", "Free Forever", "Facts Only — Never Legal Advice"].map((text) => (
-              <span
-                key={text}
-                className="rounded-full border px-4 py-2 text-[var(--text-xs)] font-medium uppercase tracking-wider"
-                style={{
-                  borderColor: "var(--border-dark)",
-                  background: "var(--bg-dark-card)",
-                  color: "var(--on-dark-2)",
-                }}
-              >
-                {text}
-              </span>
-            ))}
-          </div>
-        </div>
-
         {/* Bottom bar */}
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-6 sm:flex-row" style={{ borderColor: "var(--border-dark)" }}>
           <p className="text-[13px]" style={{ color: "var(--on-dark-3)" }}>

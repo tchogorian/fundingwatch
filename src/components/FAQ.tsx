@@ -60,10 +60,10 @@ export default function FAQ() {
           </h2>
         </FadeIn>
 
-        <div className="mt-12 space-y-4">
+        <div className="mt-12 accordion-simple space-y-0">
           {items.map((item, i) => (
             <FadeIn key={item.question} delay={i * 40}>
-              <div className="accordion-card">
+              <div className="accordion-simple-item">
                 <button
                   type="button"
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -73,7 +73,7 @@ export default function FAQ() {
                       setOpenIndex(openIndex === i ? null : i);
                     }
                   }}
-                  className="flex w-full cursor-pointer items-center justify-between focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg-light)] rounded-t-[15px]"
+                  className="flex w-full cursor-pointer items-center justify-between focus:outline-none focus:ring-0 focus:ring-offset-0"
                   style={{ color: "var(--color-text-primary)" }}
                   aria-expanded={openIndex === i}
                   aria-controls={`faq-content-${i}`}
