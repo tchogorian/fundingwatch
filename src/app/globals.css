@@ -592,9 +592,9 @@ h3 {
   .hero {
     background-position: 78% top;
     background-size: cover;
-    height: 68vh;
-    max-height: 68vh;
-    min-height: 380px;
+    height: 62vh;
+    max-height: 62vh;
+    min-height: 360px;
     padding-bottom: 0;
   }
   .hero .hero-scroll-hint {
@@ -612,7 +612,7 @@ h3 {
 }
 @media (max-width: 1024px) {
   .hero::before {
-    opacity: 0.28;
+    opacity: 0.5;
   }
 }
 /* Mobile only: softer hero text (not blinding) */

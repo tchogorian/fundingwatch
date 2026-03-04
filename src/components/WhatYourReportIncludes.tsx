@@ -62,6 +62,7 @@ export default function WhatYourReportIncludes() {
                 </div>
                 <div>
                   <p className="text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>Sample MCA Co.</p>
+                  <p className="text-[var(--text-sm)] mt-1 font-medium" style={{ color: "var(--color-text-secondary)" }}>ACTUAL APR</p>
                   <span className="badge badge-danger mt-1">147%</span>
                 </div>
                 <div className="space-y-2">
