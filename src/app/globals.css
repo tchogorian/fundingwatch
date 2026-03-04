@@ -129,8 +129,9 @@ h3 {
 }
 
 /* ========== HERO ========== */
+/* Uses hero-composite.png so background works; replace with /images/hero-bg.jpg when you have a final hero image */
 .hero {
-  background-image: url("/images/hero-bg.jpg");
+  background-image: url("/images/hero-composite.png");
   background-size: cover;
   background-position: center top;
   min-height: 100vh;
