@@ -50,14 +50,6 @@ export default function Hero() {
               Analyze My Contract Free
               <ArrowRight className="h-5 w-5" aria-hidden />
             </button>
-            <button
-              type="button"
-              onClick={scrollToUpload}
-              className="btn-hero-secondary inline-flex items-center gap-2"
-            >
-              See Your Report
-              <ArrowRight className="h-5 w-5" aria-hidden />
-            </button>
           </div>
           <div className="trust-logos">
             <span className="trust-logos-label">Trusted by business owners in:</span>
