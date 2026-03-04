@@ -567,11 +567,24 @@ h3 {
   min-height: 100vh;
   position: relative;
 }
+/* Desktop: end hero shortly after trust line (no large empty blue gap) */
+@media (min-width: 1025px) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 72px;
+  }
+  .hero-inner {
+    min-height: auto;
+    padding-bottom: 0;
+  }
+}
 /* Mobile: position background so Robin Hood figure (right side of composite) is visible; no extra card */
 @media (max-width: 1024px) {
   .hero {
     background-position: right top;
     background-size: cover;
+    min-height: auto;
+    padding-bottom: 56px;
   }
 }
 /* Solid blue overlay so hero reads as one color; figure in composite still shows through */
@@ -588,6 +601,39 @@ h3 {
     opacity: 0.28;
   }
 }
+/* Mobile only: improve hero text readability over background figure */
+@media (max-width: 1024px) {
+  .hero .eyebrow {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+  .hero h1 .hero-white {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35), 0 0 24px rgba(0, 0, 0, 0.15);
+  }
+  .hero h1 .hero-gradient {
+    color: #4AE8A4;
+    -webkit-text-fill-color: #4AE8A4;
+    background: none;
+    background-clip: unset;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), 0 0 24px rgba(0, 0, 0, 0.2);
+  }
+  .hero-sub {
+    color: rgba(255, 255, 255, 0.98);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 16px rgba(0, 0, 0, 0.15);
+  }
+  .hero .trust-logos-label {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  }
+  .hero .trust-logo-item {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  }
+  .hero .hero-scroll-hint {
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+}
 .hero-inner {
   position: relative;
   z-index: 2;
@@ -600,10 +646,20 @@ h3 {
   align-items: start;
   min-height: calc(100vh - 156px);
 }
+/* Desktop: "Really Costing" matches header "Watch" teal */
+@media (min-width: 1025px) {
+  .hero h1 .hero-gradient {
+    color: #4AE8A4;
+    background: none;
+    -webkit-text-fill-color: #4AE8A4;
+    background-clip: unset;
+  }
+}
 @media (max-width: 1024px) {
   .hero-inner {
     grid-template-columns: 1fr;
     padding: 64px 24px 48px;
+    min-height: auto;
   }
 }
 .hero h1 .hero-white {
