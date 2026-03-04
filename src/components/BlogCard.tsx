@@ -49,11 +49,11 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         <span
           className="shrink-0 font-mono text-[var(--text-xs)] whitespace-nowrap"
           style={{ color: "var(--color-text-tertiary)" }}
+          title={new Date(post.date).toLocaleDateString("en-US", { dateStyle: "full" })}
         >
           {new Date(post.date).toLocaleDateString("en-US", {
             month: "short",
             day: "numeric",
-            year: "numeric",
           })}
         </span>
       </div>
