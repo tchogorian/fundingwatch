@@ -14,6 +14,8 @@ export default function Hero() {
 
   return (
     <section className="hero relative min-h-screen overflow-hidden" aria-label="Hero">
+      {/* Plaid-style wavy line pattern — left side, fades to the right */}
+      <div className="hero-waves" aria-hidden="true" />
       <div className="hero-inner">
         {/* Left column — content */}
         <div>
@@ -43,7 +45,7 @@ export default function Hero() {
             <button
               type="button"
               onClick={scrollToUpload}
-              className="btn-hero-outline inline-flex items-center gap-2"
+              className="btn-hero-primary inline-flex items-center gap-2"
             >
               Analyze My Contract Free
               <ArrowRight className="h-5 w-5" aria-hidden />
@@ -51,7 +53,7 @@ export default function Hero() {
             <button
               type="button"
               onClick={scrollToUpload}
-              className="btn-hero-dark inline-flex items-center gap-2"
+              className="btn-hero-secondary inline-flex items-center gap-2"
             >
               See Your Report
               <ArrowRight className="h-5 w-5" aria-hidden />
