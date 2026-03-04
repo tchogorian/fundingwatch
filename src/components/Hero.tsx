@@ -19,8 +19,7 @@ export default function Hero() {
         <div
           className="hero-illustration-img"
           role="img"
-          aria-hidden="true"
-          style={{ backgroundImage: "url(/images/robin-hood.png)" }}
+          aria-label="Decorative illustration"
         />
         <div className="hero-illustration-stitch" aria-hidden="true" />
       </div>

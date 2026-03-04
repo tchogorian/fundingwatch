@@ -344,11 +344,18 @@ h3 {
 .hero-illustration-img {
   position: absolute;
   inset: 0;
-  background-size: 52% auto;
-  background-position: 100% 50%;
-  background-repeat: no-repeat;
-  filter: grayscale(100%) brightness(1.15) contrast(1.05) sepia(100%) hue-rotate(165deg) saturate(4) brightness(1.35);
-  opacity: 0.9;
+  /* Use PNG as mask so transparency is preserved (filters would turn transparent pixels black) */
+  background: linear-gradient(135deg, rgba(8, 181, 196, 0.85) 0%, rgba(10, 156, 184, 0.9) 50%, rgba(14, 125, 192, 0.85) 100%);
+  mask-image: url("/images/robin-hood.png");
+  mask-size: 48% auto;
+  mask-position: 100% 50%;
+  mask-repeat: no-repeat;
+  mask-mode: alpha;
+  -webkit-mask-image: url("/images/robin-hood.png");
+  -webkit-mask-size: 48% auto;
+  -webkit-mask-position: 100% 50%;
+  -webkit-mask-repeat: no-repeat;
+  opacity: 0.95;
 }
 /* Stitched texture overlay — very subtle */
 .hero-illustration-stitch {
