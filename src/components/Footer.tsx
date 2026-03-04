@@ -36,7 +36,7 @@ export default function Footer() {
               className="mt-4 max-w-[280px] text-[var(--text-sm)] leading-[1.6]"
               style={{ color: "var(--color-text-secondary)" }}
             >
-              Helping small business owners understand their MCA contracts. Free AI-powered analysis.
+              Helping small business owners understand their MCA contracts. Free contract intelligence.
             </p>
             <a
               href="mailto:hello@fundingwatch.org"

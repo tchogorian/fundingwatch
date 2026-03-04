@@ -36,55 +36,46 @@ export default function Navbar() {
     <>
       <header
         className="sticky top-0 z-[100] h-16 border-b bg-white"
-        style={{ borderBottomColor: "#E2E8F0" }}
+        style={{
+          borderBottomWidth: "2px",
+          borderBottomColor: "#E2E8F0",
+          boxShadow: "0 1px 4px rgba(0,0,0,0.06)",
+        }}
       >
         <div className="mx-auto flex h-full max-w-[var(--max-width-content)] items-center justify-between px-4 sm:px-6">
           <Link
             href="/"
             className="flex items-center gap-2 text-[18px] font-semibold tracking-tight"
-            style={{ color: "var(--color-text-primary)" }}
+            style={{ color: "#0F172A" }}
           >
             <Shield
               className="h-5 w-5 shrink-0"
-              style={{ color: "var(--color-accent-primary)" }}
+              style={{ color: "#0D9488" }}
               aria-hidden
             />
             <span>
-              Funding<span style={{ color: "var(--color-accent-primary)" }}>Watch</span>
+              Funding<span style={{ color: "#0D9488" }}>Watch</span>
             </span>
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
             {navLinks.map(({ label, href }) => {
               const isHash = href.startsWith("#");
+              const linkClass = "text-[15px] font-medium transition-colors duration-200 hover:text-[#0D9488]";
+              const linkStyle = { color: "#374151" };
               return isHash ? (
                 <button
                   key={href}
                   type="button"
                   onClick={() => scrollTo(href)}
-                  className="text-[14px] font-normal transition-colors duration-200 hover:text-[var(--color-text-primary)]"
-                  style={{
-                    color: "var(--color-text-secondary)",
-                    textUnderlineOffset: "4px",
-                  }}
+                  className={linkClass}
+                  style={linkStyle}
                 >
-                  <span className="border-b border-transparent hover:border-[var(--color-accent-primary)]">
-                    {label}
-                  </span>
+                  {label}
                 </button>
               ) : (
-                <Link
-                  key={href}
-                  href={href}
-                  className="text-[14px] font-normal transition-colors duration-200 hover:text-[var(--color-text-primary)]"
-                  style={{
-                    color: "var(--color-text-secondary)",
-                    textUnderlineOffset: "4px",
-                  }}
-                >
-                  <span className="border-b border-transparent hover:border-[var(--color-accent-primary)]">
-                    {label}
-                  </span>
+                <Link key={href} href={href} className={linkClass} style={linkStyle}>
+                  {label}
                 </Link>
               );
             })}

@@ -13,7 +13,7 @@ const items = [
   {
     question: "Is my contract kept private?",
     answer:
-      "Your contract is analyzed in real-time by our AI and the contents are never stored on our servers. We don't share your document with anyone. The analysis is generated instantly and exists only in your browser session.",
+      "Your contract is analyzed in real-time by our system and the contents are never stored on our servers. We don't share your document with anyone. The analysis is generated instantly and exists only in your browser session.",
   },
   {
     question: "Who sees my analysis results?",
@@ -26,9 +26,9 @@ const items = [
       "No. FundingWatch provides factual analysis of your contract terms — things like your effective APR, payment structure, and whether specific clauses are present. We present data, not legal opinions. If your analysis reveals concerning terms and you'd like legal guidance, we can connect you with a licensed attorney who specializes in MCA defense.",
   },
   {
-    question: "How accurate is the AI analysis?",
+    question: "How accurate is the analysis?",
     answer:
-      "Our AI analyzes the actual text of your contract and calculates your effective APR using standard financial formulas. It identifies specific clauses, terms, and conditions based on what's written in your document. The analysis is only as complete as the document you provide — clearer documents produce more detailed results.",
+      "Our engine analyzes the actual text of your contract and calculates your effective APR using standard financial formulas. It identifies specific clauses, terms, and conditions based on what's written in your document. The analysis is only as complete as the document you provide — clearer documents produce more detailed results.",
   },
   {
     question: "What file types can I upload?",

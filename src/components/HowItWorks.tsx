@@ -12,7 +12,7 @@ const steps = [
   },
   {
     number: 2,
-    title: "AI Analyzes",
+    title: "Our Engine Analyzes",
     description:
       "Our system extracts every term, calculates your real APR, and checks for red flags.",
     Icon: Sparkles,

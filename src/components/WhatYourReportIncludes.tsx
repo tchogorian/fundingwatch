@@ -14,7 +14,7 @@ const features = [
     icon: AlertTriangle,
     title: "Red Flag Detection",
     description:
-      "Our AI identifies concerning clauses — confessions of judgment, personal guarantees, UCC liens, prepayment penalties, and missing reconciliation.",
+      "Our system identifies concerning clauses — confessions of judgment, personal guarantees, UCC liens, prepayment penalties, and missing reconciliation.",
   },
   {
     icon: BarChart3,
@@ -40,7 +40,7 @@ export default function WhatYourReportIncludes() {
             Everything You Need to Understand Your Contract
           </h2>
           <p className="mx-auto mt-4 max-w-[640px] text-center text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
-            Our AI reads your contract the way a financial analyst would — then gives you the facts in plain English.
+            Our system reads your contract the way a financial analyst would — then gives you the facts in plain English.
           </p>
         </FadeIn>
 

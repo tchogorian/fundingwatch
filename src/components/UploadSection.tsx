@@ -96,7 +96,7 @@ export default function UploadSection({
           className="mx-auto mt-4 max-w-[600px] text-center text-[var(--text-base)]"
           style={{ color: "var(--color-text-secondary)" }}
         >
-          Upload your MCA contract and get an instant AI-powered analysis. PDF, images, even phone photos.
+          Upload your MCA contract and get instant contract intelligence. PDF, images, even phone photos.
         </p>
 
         <div

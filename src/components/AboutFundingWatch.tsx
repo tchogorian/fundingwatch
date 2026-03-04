@@ -27,7 +27,7 @@ export default function AboutFundingWatch() {
                 Factor rates sound simple. A rate of 1.3 doesn&apos;t sound alarming. But when you convert that to an annual percentage rate, the number can be shocking — 80%, 150%, sometimes over 300%. And buried in the fine print are clauses that can freeze your bank account, seize your assets, and leave you with no legal recourse.
               </p>
               <p>
-                FundingWatch exists to fix this. We built an AI-powered tool that reads your contract the way a financial analyst would — and translates the complexity into plain English. No jargon, no sales pitch, no cost. Just the facts about what you signed and what it really means for your business.
+                FundingWatch exists to fix this. We built the FundingWatch scanner that reads your contract the way a financial analyst would — and translates the complexity into plain English. No jargon, no sales pitch, no cost. Just the facts about what you signed and what it really means for your business.
               </p>
             </div>
             <div className="mt-10 flex flex-wrap gap-10">

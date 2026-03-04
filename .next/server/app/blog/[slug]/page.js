@@ -66,4 +66,4 @@
 
 <h2 id="other-states">Other states</h2>
 <p>Texas, New York, and others have moved in similar directions. Check your state and always get your contract analyzed so you know exactly what you're signing.</p>
-    `.trim()}];function n(e){return s.find(t=>t.slug===e)}function i(e,t=3){return s.filter(t=>t.slug!==e.slug).sort((e,t)=>(t.readCount??0)-(e.readCount??0)).slice(0,t)}}};var t=require("../../../webpack-runtime.js");t.C(e);var r=e=>t(t.s=e),a=t.X(0,[276,232,988],()=>r(66));module.exports=a})();
+    `.trim()}];function n(e){return s.find(t=>t.slug===e)}function i(e,t=3){return s.filter(t=>t.slug!==e.slug).sort((e,t)=>(t.readCount??0)-(e.readCount??0)).slice(0,t)}}};var t=require("../../../webpack-runtime.js");t.C(e);var r=e=>t(t.s=e),a=t.X(0,[276,171,707],()=>r(66));module.exports=a})();

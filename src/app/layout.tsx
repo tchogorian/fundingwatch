@@ -4,6 +4,7 @@ import {
   IBM_Plex_Sans,
   IBM_Plex_Mono,
   IBM_Plex_Sans_Condensed,
+  Plus_Jakarta_Sans,
 } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
@@ -12,6 +13,13 @@ const dmSerif = DM_Serif_Display({
   weight: ["400"],
   subsets: ["latin"],
   variable: "--font-display",
+  display: "swap",
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  variable: "--font-hero",
   display: "swap",
 });
 
@@ -39,7 +47,7 @@ const ibmPlexCondensed = IBM_Plex_Sans_Condensed({
 export const metadata: Metadata = {
   title: "FundingWatch — Free MCA Contract Intelligence",
   description:
-    "Upload your merchant cash advance contract. Our AI reveals your true APR, hidden terms, and red flags — free, in under 30 seconds.",
+    "Upload your merchant cash advance contract. Our system reveals your true APR, hidden terms, and red flags — free, in under 30 seconds.",
 };
 
 export default function RootLayout({
@@ -50,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSerif.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} ${ibmPlexCondensed.variable}`}
+      className={`${dmSerif.variable} ${plusJakarta.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} ${ibmPlexCondensed.variable}`}
     >
       <body className="font-sans antialiased">
         <a

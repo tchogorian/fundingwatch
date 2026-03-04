@@ -21,10 +21,28 @@ export default function Hero() {
       <div className="relative mx-auto grid w-full max-w-[var(--max-width-content)] grid-cols-1 gap-12 px-4 lg:grid-cols-[60%_40%] lg:items-center lg:gap-16 lg:px-6">
         {/* Left column — content */}
         <div className="flex flex-col">
-          <p className="eyebrow">FREE MCA CONTRACT INTELLIGENCE</p>
+          <p
+            className="uppercase"
+            style={{
+              fontSize: "11px",
+              fontWeight: 700,
+              letterSpacing: "0.14em",
+              color: "#0D9488",
+              marginBottom: "20px",
+            }}
+          >
+            FREE MCA CONTRACT INTELLIGENCE
+          </p>
           <h1
-            className="mt-4 font-display text-[2.25rem] leading-[1.08] tracking-tight text-[var(--color-text-primary)] sm:text-[3rem] lg:text-[4.768rem]"
-            style={{ letterSpacing: "-0.02em" }}
+            className="mt-0"
+            style={{
+              fontFamily: "var(--font-hero), 'Inter', sans-serif",
+              fontWeight: 800,
+              fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
+              lineHeight: 1.1,
+              color: "#0F172A",
+              letterSpacing: "-0.03em",
+            }}
           >
             What&apos;s Your MCA
             <br />
@@ -33,10 +51,10 @@ export default function Hero() {
             Costing You?
           </h1>
           <p
-            className="mt-6 max-w-[480px] text-[var(--text-lg)] font-light leading-relaxed"
-            style={{ color: "#334155" }}
+            className="mt-6 max-w-[460px] font-normal leading-relaxed"
+            style={{ fontSize: "18px", color: "#4B5563", lineHeight: 1.6 }}
           >
-            Upload your contract. Our AI reveals your true APR, hidden terms, and red flags —
+            Upload your contract. Our system reveals your true APR, hidden terms, and red flags —
             free, in under 30 seconds.
           </p>
           <div className="mt-10 flex flex-col gap-4">
@@ -86,71 +104,132 @@ function SampleReportCard({ onAnalyze }: { onAnalyze: () => void }) {
   return (
     <div
       ref={cardRef}
-      className="rounded-[var(--radius-xl)] border border-[var(--color-border-default)] shadow-[var(--shadow-md)]"
+      className="rounded-[var(--radius-xl)] overflow-hidden"
       style={{
         background: "#FFFFFF",
-        borderLeftWidth: "3px",
-        borderLeftColor: "#DC2626",
+        border: "1px solid #E2E8F0",
+        borderTop: "3px solid #DC2626",
+        boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
         animation: "fadeInUp 600ms var(--ease-out) 200ms both",
       }}
     >
       <div className="p-6">
-        <p
-          className="text-[var(--text-sm)] font-semibold uppercase tracking-wider"
-          style={{ color: "var(--color-text-secondary)" }}
-        >
-          Sample Report Preview
+        <p style={{ fontSize: "11px", textTransform: "uppercase", color: "#6B7280" }}>
+          SAMPLE ANALYSIS REPORT
         </p>
-        <p className="mt-1 font-mono text-[var(--text-base)] font-medium text-[var(--color-text-primary)]">
-          Sample MCA Co. &nbsp;&nbsp;
-          <span className="text-[var(--color-accent-primary)]">████████ 78/100</span>
-        </p>
-        <hr className="my-4 border-[var(--color-border-default)]" />
-        <div className="space-y-3">
-          <div className="flex justify-between">
-            <span style={{ color: "var(--color-text-secondary)" }}>Effective APR</span>
-            <span className="font-mono font-medium text-[var(--color-accent-primary)]">187%</span>
+
+        <div className="mt-3 flex items-start justify-between gap-3">
+          <div>
+            <p className="font-semibold" style={{ fontSize: "15px", color: "#0F172A" }}>
+              Riverside Deli & Catering LLC
+            </p>
+            <p style={{ fontSize: "13px", color: "#6B7280" }}>New York, NY</p>
           </div>
-          <div className="flex justify-between">
-            <span style={{ color: "var(--color-text-secondary)" }}>Factor Rate</span>
-            <span className="font-mono font-medium text-[var(--color-text-primary)]">1.45×</span>
+          <div className="flex flex-col items-end">
+            <div className="flex items-baseline gap-0.5">
+              <div
+                className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full font-mono text-[18px] font-bold"
+                style={{
+                  border: "3px solid #DC2626",
+                  background: "#FEF2F2",
+                  color: "#DC2626",
+                }}
+              >
+                78
+              </div>
+              <span style={{ fontSize: "12px", color: "#9CA3AF", marginLeft: "2px" }}>/100</span>
+            </div>
+            <span style={{ fontSize: "10px", color: "#DC2626", fontWeight: 700, marginTop: "4px" }}>
+              HIGH RISK
+            </span>
           </div>
-          <div className="flex justify-between">
-            <span style={{ color: "var(--color-text-secondary)" }}>Daily Payment</span>
-            <span className="font-mono font-medium text-[var(--color-text-primary)]">$892</span>
+        </div>
+
+        <hr className="my-5 border-[#E2E8F0]" />
+
+        <p style={{ fontSize: "12px", color: "#6B7280" }}>You&apos;re paying</p>
+        <p className="font-mono font-extrabold" style={{ fontSize: "32px", color: "#DC2626" }}>
+          187% APR
+        </p>
+        <p style={{ fontSize: "13px", color: "#6B7280" }}>on a $50,000 advance</p>
+        <p className="mt-2 italic" style={{ fontSize: "14px", color: "#374151" }}>
+          That&apos;s $22,500 in fees — for 6 months.
+        </p>
+
+        <hr className="my-5 border-[#E2E8F0]" />
+
+        <p className="font-semibold" style={{ fontSize: "13px", color: "#374151" }}>
+          3 Contract Problems Found:
+        </p>
+
+        <div className="mt-4 space-y-4">
+          <div>
+            <span
+              className="inline-block px-2 py-[3px] text-[10px] font-bold uppercase"
+              style={{
+                background: "#FEF2F2",
+                border: "1px solid #FECACA",
+                color: "#991B1B",
+                borderRadius: "4px",
+              }}
+            >
+              RED FLAG
+            </span>
+            <span className="ml-2 font-medium" style={{ fontSize: "13px", color: "#374151" }}>
+              Confession of Judgment
+            </span>
+            <p className="mt-1 pl-0" style={{ fontSize: "12px", color: "#6B7280" }}>
+              Lender can freeze your bank account without warning
+            </p>
+          </div>
+          <div>
+            <span
+              className="inline-block px-2 py-[3px] text-[10px] font-bold uppercase"
+              style={{
+                background: "#FEF2F2",
+                border: "1px solid #FECACA",
+                color: "#991B1B",
+                borderRadius: "4px",
+              }}
+            >
+              RED FLAG
+            </span>
+            <span className="ml-2 font-medium" style={{ fontSize: "13px", color: "#374151" }}>
+              No Reconciliation Clause
+            </span>
+            <p className="mt-1 pl-0" style={{ fontSize: "12px", color: "#6B7280" }}>
+              Payments won&apos;t adjust if your revenue drops
+            </p>
+          </div>
+          <div>
+            <span
+              className="inline-block px-2 py-[3px] text-[10px] font-bold uppercase"
+              style={{
+                background: "#FFFBEB",
+                border: "1px solid #FDE68A",
+                color: "#92400E",
+                borderRadius: "4px",
+              }}
+            >
+              CAUTION
+            </span>
+            <span className="ml-2 font-medium" style={{ fontSize: "13px", color: "#374151" }}>
+              Personal Guarantee
+            </span>
+            <p className="mt-1 pl-0" style={{ fontSize: "12px", color: "#6B7280" }}>
+              Your personal assets are at risk
+            </p>
           </div>
         </div>
-        <div className="mt-4 flex flex-wrap gap-2">
-          <span className="badge badge-danger">Red Flag</span>
-          <span className="text-[var(--text-xs)]" style={{ color: "var(--color-text-secondary)" }}>
-            Confession of Judgment
-          </span>
-        </div>
-        <div className="mt-2 flex flex-wrap gap-2">
-          <span className="badge badge-danger">Red Flag</span>
-          <span className="text-[var(--text-xs)]" style={{ color: "var(--color-text-secondary)" }}>
-            No Reconciliation Clause
-          </span>
-        </div>
-        <div className="mt-2 flex flex-wrap gap-2">
-          <span className="badge badge-warning">Caution</span>
-          <span className="text-[var(--text-xs)]" style={{ color: "var(--color-text-secondary)" }}>
-            Personal Guarantee
-          </span>
-        </div>
-        <hr className="my-4 border-[var(--color-border-default)]" />
-        <p className="text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>
-          Advance → Repayment
-        </p>
-        <p className="font-mono text-[var(--text-base)] font-medium text-[var(--color-text-primary)]">
-          $50,000 → $72,500
-        </p>
+
+        <hr className="my-5 border-[#E2E8F0]" />
+
         <button
           type="button"
           onClick={onAnalyze}
-          className="btn-primary mt-4 flex w-full items-center justify-center gap-2 py-3 text-[13px] uppercase tracking-[0.06em]"
+          className="btn-primary flex w-full items-center justify-center gap-2 py-3 text-[13px] uppercase tracking-[0.06em]"
         >
-          Analyze Your Contract
+          Analyze Your Contract Free
           <ArrowRight className="h-4 w-4" aria-hidden />
         </button>
       </div>
