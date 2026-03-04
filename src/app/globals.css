@@ -347,3 +347,45 @@ h3 {
   border-radius: var(--radius-md);
   width: 100%;
 }
+
+/* ========== ARTICLE PROSE ========== */
+.article-prose {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-text-primary);
+}
+.article-prose p {
+  margin-bottom: 1em;
+}
+.article-prose h2 {
+  margin-top: 56px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border-default);
+  font-size: var(--text-2xl);
+}
+.article-prose h3 {
+  margin-top: 36px;
+  margin-bottom: 16px;
+  font-size: var(--text-xl);
+}
+.article-prose a {
+  color: var(--color-accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.article-prose blockquote {
+  border-left: 3px solid var(--color-accent-primary);
+  background: var(--color-accent-muted);
+  padding: 16px 20px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-style: normal;
+  margin: 1.5em 0;
+}
+.article-prose .callout-danger {
+  border-left: 3px solid var(--color-danger);
+  background: var(--color-danger-muted);
+  padding: 16px 20px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin: 1.5em 0;
+}
