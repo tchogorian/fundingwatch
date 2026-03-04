@@ -47,43 +47,47 @@ export default function WhatYourReportIncludes() {
         <div className="mt-12 flex flex-col-reverse gap-12 lg:mt-16 lg:flex-row lg:items-start lg:gap-10">
           {/* Report mockup — left 55% */}
           <FadeIn delay={100} className="lg:order-2 lg:w-[55%]">
-            <div className="report-mockup-card rounded-2xl border border-[var(--color-border-default)] p-6 shadow-[0_4px_24px_rgba(0,0,0,0.08)]" style={{ background: "#FFFFFF" }}>
-              <div className="flex flex-col gap-6">
-                <div className="flex justify-center">
-                  <div className="relative h-20 w-20">
-                    <svg className="h-full w-full -rotate-90" viewBox="0 0 80 80" aria-hidden>
-                      <circle cx="40" cy="40" r="32" fill="none" stroke="var(--color-bg-subtle)" strokeWidth="6" />
-                      <circle cx="40" cy="40" r="32" fill="none" stroke="var(--color-danger)" strokeWidth="6" strokeLinecap="round" strokeDasharray={2 * Math.PI * 32} strokeDashoffset={2 * Math.PI * 32 * (1 - 0.78)} />
-                    </svg>
-                    <span className="absolute inset-0 flex items-center justify-center font-mono text-lg font-semibold" style={{ color: "var(--color-text-primary)" }}>
-                      78
-                    </span>
-                  </div>
+            <div className="report-mockup-card rounded-2xl border border-[var(--color-border-default)] overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.08)]" style={{ background: "#FFFFFF" }}>
+              {/* Header: company + risk score */}
+              <div className="flex items-center justify-between border-b border-[var(--color-border-default)] px-5 py-4" style={{ background: "#FAFBFC" }}>
+                <p className="text-base font-semibold" style={{ color: "var(--color-text-primary)" }}>Sample MCA Co.</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-medium uppercase tracking-wider" style={{ color: "var(--color-text-secondary)" }}>Risk</span>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full font-mono text-sm font-bold" style={{ background: "var(--color-danger-muted)", color: "var(--danger)" }}>78</div>
                 </div>
-                <div>
-                  <p className="text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>Sample MCA Co.</p>
-                  <p className="text-[var(--text-sm)] mt-1 font-medium" style={{ color: "var(--color-text-secondary)" }}>ACTUAL APR</p>
-                  <span className="badge badge-danger mt-1">147%</span>
+              </div>
+              <div className="p-5 space-y-5">
+                {/* Actual APR — one clear row */}
+                <div className="flex items-baseline justify-between gap-4">
+                  <span className="text-sm font-medium" style={{ color: "var(--color-text-secondary)" }}>ACTUAL APR</span>
+                  <span className="font-mono text-xl font-bold" style={{ color: "var(--danger)" }}>147%</span>
                 </div>
+                {/* Red flags — compact list */}
                 <div className="space-y-2">
-                  <div className="flex gap-2 rounded py-2 pl-3 text-sm" style={{ borderLeft: "3px solid var(--color-danger)", background: "var(--color-danger-muted)", color: "var(--color-text-secondary)" }}>
-                    Confession of judgment
-                  </div>
-                  <div className="flex gap-2 rounded py-2 pl-3 text-sm" style={{ borderLeft: "3px solid var(--color-warning)", background: "var(--color-warning-muted)", color: "var(--color-text-secondary)" }}>
-                    No reconciliation clause
-                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--color-text-tertiary)" }}>Red flags</p>
+                  <ul className="space-y-1.5 text-sm" style={{ color: "var(--color-text-secondary)" }}>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--danger)" }} aria-hidden />
+                      Confession of judgment
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--warning)" }} aria-hidden />
+                      No reconciliation clause
+                    </li>
+                  </ul>
                 </div>
-                <div className="rounded-[var(--radius-md)] border border-[var(--color-border-default)]" style={{ background: "#F8FAFC" }}>
-                  <div className="flex justify-between border-b border-[var(--color-border-default)] px-4 py-2 text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>
-                    <span>Factor rate</span>
+                {/* Terms */}
+                <div className="rounded-lg border border-[var(--color-border-default)] overflow-hidden" style={{ background: "#F8FAFC" }}>
+                  <div className="flex justify-between px-4 py-2.5 text-sm border-b border-[var(--color-border-default)]">
+                    <span style={{ color: "var(--color-text-secondary)" }}>Factor rate</span>
                     <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>1.45</span>
                   </div>
-                  <div className="flex justify-between border-b border-[var(--color-border-default)] px-4 py-2 text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>
-                    <span>Payment</span>
+                  <div className="flex justify-between px-4 py-2.5 text-sm border-b border-[var(--color-border-default)]">
+                    <span style={{ color: "var(--color-text-secondary)" }}>Payment</span>
                     <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>Daily</span>
                   </div>
-                  <div className="flex justify-between px-4 py-2 text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>
-                    <span>Personal guarantee</span>
+                  <div className="flex justify-between px-4 py-2.5 text-sm">
+                    <span style={{ color: "var(--color-text-secondary)" }}>Personal guarantee</span>
                     <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>Yes</span>
                   </div>
                 </div>
