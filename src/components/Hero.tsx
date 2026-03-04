@@ -20,9 +20,8 @@ export default function Hero() {
             FREE MCA CONTRACT INTELLIGENCE
           </p>
           <h1
-            className="mb-6"
+            className="mb-6 hero-title"
             style={{
-              fontSize: "clamp(3rem, 6.5vw, 5.2rem)",
               fontWeight: 800,
               lineHeight: 1,
               letterSpacing: "-0.04em",
