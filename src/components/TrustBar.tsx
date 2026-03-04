@@ -9,11 +9,9 @@ export default function TrustBar() {
   ];
 
   return (
-    <section
-      className="stats-bar"
-      aria-label="Trust metrics"
-    >
-      <div className="stats-inner">
+    <section className="section-card" aria-label="Trust metrics">
+      <div className="stats-bar">
+        <div className="stats-inner">
         {stats.map(({ value, label }, i) => {
           const variants = ["stat-cell--blue", "stat-cell--teal", "stat-cell--purple", "stat-cell--green"];
           return (
@@ -23,6 +21,7 @@ export default function TrustBar() {
             </div>
           );
         })}
+        </div>
       </div>
     </section>
   );

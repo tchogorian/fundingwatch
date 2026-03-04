@@ -3,30 +3,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========== DESIGN TOKENS — PLAID ========== */
+/* ========== DESIGN TOKENS — FundingWatch (README guidelines) ========== */
 :root {
-  /* Backgrounds */
-  --bg-hero:        #1060C8;
-  --bg-dark:        #1E2A3A;
-  --bg-dark-2:      #243044;
-  --bg-dark-card:   #2A3648;
+  /* Backgrounds — README: Navy primary dark, White alternate */
+  --bg-hero:        #2E75B6;
+  --bg-dark:        #1A1A2E;
+  --bg-dark-2:      #22223A;
+  --bg-dark-card:   #252538;
   --bg-light:       #F7F9FC;
   --bg-white:       #FFFFFF;
 
-  /* Accent colors — Plaid palette */
-  --accent-blue:    #1060C8;
-  --accent-teal:    #0AABB8;
-  --accent-cyan:    #00D4E8;
-  --accent-green:   #4AE880;
-  --accent-purple:  #7B3FE4;
-  --accent-pink:    #E040A0;
-  --accent-yellow:  #F5C842;
+  /* Accent colors — README palette */
+  --accent-blue:    #2E75B6;
+  --accent-teal:    #1A8FB4;
+  --accent-cyan:    #1A8FB4;
+  --accent-green:   #2E7D32;
+  --accent-purple:  #5E35B1;
+  --accent-pink:    #C2185B;
+  --accent-yellow:  #F9A825;
 
-  /* Gradients */
-  --grad-blue-teal: linear-gradient(135deg, #1060C8 0%, #0AABB8 100%);
-  --grad-purple-blue: linear-gradient(135deg, #7B3FE4 0%, #1060C8 100%);
-  --grad-teal-green: linear-gradient(135deg, #0AABB8 0%, #4AE880 100%);
-  --grad-dark: linear-gradient(180deg, #1E2A3A 0%, #243044 100%);
+  /* Gradients — use README navy + accent blue */
+  --grad-blue-teal: linear-gradient(135deg, #2E75B6 0%, #1A8FB4 100%);
+  --grad-purple-blue: linear-gradient(135deg, #5E35B1 0%, #2E75B6 100%);
+  --grad-teal-green: linear-gradient(135deg, #1A8FB4 0%, #2E7D32 100%);
+  --grad-dark: linear-gradient(180deg, #1A1A2E 0%, #22223A 100%);
 
   /* Text on dark */
   --on-dark-1:  #FFFFFF;
@@ -34,7 +34,7 @@
   --on-dark-3:  rgba(255,255,255,0.40);
 
   /* Text on light */
-  --on-light-1: #0B1F3A;
+  --on-light-1: #1A1A2E;
   --on-light-2: #374151;
   --on-light-3: #6B7280;
 
@@ -42,10 +42,10 @@
   --border-dark:  rgba(255,255,255,0.08);
   --border-light: #E5E7EB;
 
-  /* Danger/warning */
-  --danger:     #E5484D;
-  --warning:    #F5A623;
-  --success:    #30D158;
+  /* README: Red critical, Orange warnings, Green positive */
+  --danger:     #C62828;
+  --warning:    #E65100;
+  --success:    #2E7D32;
 
   /* Typography (layout can override with next/font) */
   --font: 'Sora', -apple-system, sans-serif;
@@ -65,9 +65,9 @@
 
 /* Backward-compat: components still using old names */
 :root {
-  --danger-bg: #FEF2F2;
-  --danger-border: #FECACA;
-  --warning-bg: #FFFBEB;
+  --danger-bg: #FFEBEE;
+  --danger-border: #EF9A9A;
+  --warning-bg: #FFF3E0;
   --font-body: var(--font);
   --font-mono: var(--mono);
   --shadow-card: var(--shadow-md);
@@ -108,7 +108,7 @@
 }
 
 .section-dark-grad {
-  background: linear-gradient(160deg, #2A3654 0%, #1E3A6E 50%, #1E3A5C 100%);
+  background: linear-gradient(160deg, #1A1A2E 0%, #1E2A4A 50%, #1A2840 100%);
   color: var(--on-dark-1);
   position: relative;
 }
@@ -153,15 +153,15 @@
   margin-bottom: 48px;
 }
 
-/* CTA gradient (blue → teal) */
+/* CTA gradient (README: accent blue) */
 .cta-section {
-  background: linear-gradient(135deg, #1E3A6E 0%, #1060C8 50%, #0AABB8 100%);
+  background: linear-gradient(135deg, #1A1A2E 0%, #2E75B6 50%, #1A8FB4 100%);
   color: var(--on-dark-1);
 }
 
 /* ========== STATS BAR (Plaid: gradient bar + white boxes) ========== */
 .stats-bar {
-  background: linear-gradient(160deg, #2A3654 0%, #1E3A6E 50%, #1E3A5C 100%);
+  background: linear-gradient(160deg, #1A1A2E 0%, #1E2A4A 50%, #1A2840 100%);
   border-top: none;
   border-bottom: none;
   padding: 48px 0;
@@ -442,6 +442,80 @@ main#main {
   background: transparent;
 }
 
+/* ========== PAGE BASE BELOW HERO (Plaid-style: one light white base) ========== */
+.page-base {
+  background: #FAFBFC;
+  padding: 40px 24px 56px;
+  min-height: 50vh;
+}
+@media (min-width: 768px) {
+  .page-base {
+    padding: 48px 32px 64px;
+  }
+}
+
+/* Each section is one round-edged box with design (like Plaid) */
+.section-card {
+  max-width: 1280px;
+  margin: 0 auto 32px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #FFFFFF;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  position: relative;
+  padding: 48px 40px 56px;
+}
+.section-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-waves);
+  background-size: 120px 30px;
+  opacity: 0.5;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.section-card > * {
+  position: relative;
+  z-index: 1;
+}
+@media (min-width: 768px) {
+  .section-card {
+    padding: 56px 48px 64px;
+    margin-bottom: 40px;
+  }
+}
+.section-card:last-child {
+  margin-bottom: 0;
+}
+.section-card--dark {
+  background: var(--bg-dark);
+  color: var(--on-dark-1);
+}
+.section-card--dark::before {
+  background-image: var(--pattern-waves-light);
+  opacity: 0.5;
+}
+.section-card--cta {
+  background: linear-gradient(135deg, #1A1A2E 0%, var(--accent-blue) 50%, #1A8FB4 100%);
+  color: var(--on-dark-1);
+}
+.section-card--cta::before {
+  background-image: var(--pattern-waves-light);
+  opacity: 0.4;
+}
+
+/* Sections inside page-base: stats bar lives in a section-card (no full-bleed gradient) */
+.section-card .stats-bar,
+.section-card .stats-inner {
+  background: none;
+  padding: 0;
+  max-width: none;
+}
+.section-card .stats-bar .stat-cell {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
 /* All numbers, APRs, scores, dollar amounts */
 .mono,
 [data-type="number"],
@@ -514,7 +588,7 @@ h3 {
   color: #ffffff;
 }
 .hero h1 .hero-gradient {
-  background: linear-gradient(90deg, #4ae8a4, #09c5d8);
+  background: linear-gradient(90deg, #64B5F6, #2E75B6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -771,16 +845,16 @@ h3 {
   z-index: 1;
 }
 .section-box--blue {
-  background: linear-gradient(145deg, #EFF6FF 0%, #DBEAFE 50%, #FFFFFF 100%);
+  background: linear-gradient(145deg, #E3F2FD 0%, #BBDEFB 50%, #FFFFFF 100%);
 }
 .section-box--teal {
-  background: linear-gradient(145deg, #ECFDFA 0%, #CCFBF1 50%, #FFFFFF 100%);
+  background: linear-gradient(145deg, #E0F7FA 0%, #B2EBF2 50%, #FFFFFF 100%);
 }
 .section-box--purple {
-  background: linear-gradient(145deg, #F5F0FF 0%, #EDE9FE 50%, #FFFFFF 100%);
+  background: linear-gradient(145deg, #EDE7F6 0%, #D1C4E9 50%, #FFFFFF 100%);
 }
 .section-box--green {
-  background: linear-gradient(145deg, #ECFDF5 0%, #D1FAE5 50%, #FFFFFF 100%);
+  background: linear-gradient(145deg, #E8F5E9 0%, #C8E6C9 50%, #FFFFFF 100%);
 }
 .section-box:hover {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -790,7 +864,7 @@ h3 {
 .section-box .accordion-trigger {
   width: 100%;
   text-align: left;
-  padding: 4px 0 12px;
+  padding: 2px 0 14px;
   font-size: 16px;
   font-weight: 600;
   color: var(--on-light-1);
@@ -806,11 +880,22 @@ h3 {
   color: var(--accent-blue);
 }
 .section-box .accordion-panel {
-  padding-top: 4px;
-  padding-bottom: 8px;
+  padding: 0;
+  overflow: hidden;
   font-size: 15px;
   line-height: 1.65;
   color: var(--on-light-2);
+  transition: max-height 0.3s ease-in-out;
+}
+.section-box .accordion-panel-inner {
+  padding-top: 14px;
+  padding-bottom: 6px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+.section-box .accordion-panel-inner p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
 /* Plaid box color/design variants (each box different) */
@@ -884,19 +969,19 @@ h3 {
 .badge-danger {
   background: var(--danger-bg);
   border: 1px solid var(--danger-border);
-  color: #991b1b;
+  color: #B71C1C;
 }
 
 .badge-warning {
   background: var(--warning-bg);
-  border: 1px solid #fde68a;
-  color: #92400e;
+  border: 1px solid #FFB74D;
+  color: #E65100;
 }
 
 .badge-safe {
-  background: rgba(10, 171, 184, 0.1);
-  border: 1px solid rgba(10, 171, 184, 0.25);
-  color: var(--accent-teal);
+  background: rgba(46, 125, 50, 0.12);
+  border: 1px solid rgba(46, 125, 50, 0.3);
+  color: var(--success);
 }
 
 @keyframes pulse {

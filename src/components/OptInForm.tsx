@@ -80,8 +80,8 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
 
   if (status === "success") {
     return (
-      <section className="section-white" aria-label="Submission complete">
-        <div className="section-inner mx-auto max-w-[560px] px-4 text-center sm:px-6">
+      <section className="section-card" aria-label="Submission complete">
+        <div className="mx-auto max-w-[560px] px-4 text-center sm:px-6">
           <div className="flex justify-center">
             <div className="flex h-20 w-20 items-center justify-center rounded-full" style={{ background: "var(--color-accent-muted)" }}>
               <CheckCircle className="h-12 w-12" style={{ color: "var(--color-accent-primary)" }} aria-hidden />
@@ -99,8 +99,8 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
   }
 
   return (
-    <section className="section-white" aria-label="Get professional help">
-      <div className="section-inner mx-auto max-w-[560px] px-4 sm:px-6">
+    <section className="section-card" aria-label="Get professional help">
+      <div className="mx-auto max-w-[560px] px-4 sm:px-6">
         <h2 className="text-center text-[32px] font-semibold" style={{ color: "var(--color-text-primary)" }}>
           Concerned About Your Current Contract?
         </h2>

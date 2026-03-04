@@ -59,6 +59,7 @@ export default function Home() {
     <RevealOnScrollProvider>
     <>
       <Hero />
+      <div className="page-base">
       <TrustBar />
       <WhoThisIsFor />
       <HowItWorks />
@@ -85,6 +86,7 @@ export default function Home() {
       <AboutFundingWatch />
       <SecondaryCTA />
       <Footer />
+      </div>
     </>
     </RevealOnScrollProvider>
   );

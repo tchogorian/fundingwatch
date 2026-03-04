@@ -28,15 +28,11 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section
-      id="how-it-works"
-      className="section-dark-grad reveal"
-      aria-label="How it works"
-    >
-      <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
+    <section id="how-it-works" className="section-card reveal" aria-label="How it works">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
         <FadeIn>
-          <p className="eyebrow text-center" style={{ color: "var(--accent-cyan)" }}>HOW IT WORKS</p>
-          <h2 className="mt-3 text-center text-[clamp(1.8rem,3.5vw,2.8rem)] font-extrabold leading-tight tracking-tight" style={{ color: "var(--on-dark-1)" }}>
+          <p className="eyebrow text-center" style={{ color: "var(--accent-blue)" }}>HOW IT WORKS</p>
+          <h2 className="section-heading text-center" style={{ color: "var(--on-light-1)" }}>
             Three Steps to Contract Clarity
           </h2>
         </FadeIn>
@@ -57,8 +53,7 @@ export default function HowItWorks() {
                 </div>
                 {i < steps.length - 1 && (
                   <div
-                    className="absolute -bottom-6 left-1/2 h-8 w-px border-l-2 border-dashed sm:-right-4 sm:top-9 sm:left-auto sm:h-0 sm:w-24 sm:border-t-2 sm:border-l-0"
-                    style={{ borderColor: "rgba(255,255,255,0.3)" }}
+                    className="absolute -bottom-6 left-1/2 h-8 w-px border-l-2 border-dashed sm:-right-4 sm:top-9 sm:left-auto sm:h-0 sm:w-24 sm:border-t-2 sm:border-l-0 border-[var(--border-light)]"
                   />
                 )}
                 <div className={`plaid-box ${variants[i]} mt-8 w-full text-left`}>
@@ -85,12 +80,8 @@ export default function HowItWorks() {
         </div>
         <FadeIn delay={300}>
           <div
-            className="mt-10 flex cursor-default items-center justify-center gap-2 rounded-full border px-5 py-2.5 text-[var(--text-sm)]"
-            style={{
-              borderColor: "rgba(255,255,255,0.35)",
-              color: "var(--on-dark-1)",
-              background: "rgba(255,255,255,0.08)",
-            }}
+            className="mt-10 flex cursor-default items-center justify-center gap-2 rounded-full border px-5 py-2.5 text-[var(--text-sm)] border-[var(--border-light)] bg-[var(--bg-light)]"
+            style={{ color: "var(--on-light-2)" }}
           >
             <Clock className="h-4 w-4" aria-hidden />
             Average analysis time: under 30 seconds

@@ -30,17 +30,14 @@ export default function WhoThisIsFor() {
   };
 
   return (
-    <section className="section-dark who-section reveal" aria-label="Who this is for">
-      <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
+    <section className="section-card reveal" aria-label="Who this is for">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
         <FadeIn>
-          <p className="eyebrow text-center">WHO THIS IS FOR</p>
-          <h2 className="section-title text-center">
+          <p className="eyebrow text-center" style={{ color: "var(--accent-blue)" }}>WHO THIS IS FOR</p>
+          <h2 className="section-heading text-center" style={{ color: "var(--on-light-1)" }}>
             Every MCA Borrower Deserves Clarity
           </h2>
-          <p
-            className="mx-auto mt-2 max-w-[600px] text-center text-[var(--text-base)]"
-            style={{ color: "var(--on-dark-2)" }}
-          >
+          <p className="mx-auto mt-2 max-w-[600px] text-center text-[var(--text-base)]" style={{ color: "var(--on-light-2)" }}>
             Choose your situation below.
           </p>
         </FadeIn>

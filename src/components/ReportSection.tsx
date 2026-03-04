@@ -15,8 +15,8 @@ export default function ReportSection({ data }: { data: AnalysisResult }) {
     data.confidence === "medium" || data.confidence === "low";
 
   return (
-    <section className="section-light" aria-label="Your analysis report">
-      <div className="section-inner mx-auto max-w-3xl px-4 sm:px-6">
+    <section className="section-card" aria-label="Your analysis report">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <FadeIn>
           <h2 className="text-2xl font-semibold md:text-3xl" style={{ color: "var(--color-text-primary)" }}>
             Your Analysis Report

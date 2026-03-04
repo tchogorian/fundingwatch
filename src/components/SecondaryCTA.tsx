@@ -8,20 +8,12 @@ export default function SecondaryCTA() {
   };
 
   return (
-    <section
-      className="cta-section relative overflow-hidden"
-      aria-label="Call to action"
-    >
-      <div className="section-inner relative mx-auto max-w-[var(--max-width-narrow)] px-4 text-center sm:px-6">
-        <h2
-          className="text-2xl font-semibold leading-tight text-white md:text-3xl"
-        >
+    <section className="section-card section-card--cta" aria-label="Call to action">
+      <div className="relative mx-auto max-w-2xl px-4 text-center sm:px-6">
+        <h2 className="text-2xl font-semibold leading-tight text-white md:text-3xl">
           Don&apos;t Pay More Than You Have To
         </h2>
-        <p
-          className="mx-auto mt-6 max-w-xl text-base leading-relaxed"
-          style={{ color: "var(--on-dark-2)" }}
-        >
+        <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed" style={{ color: "var(--on-dark-2)" }}>
           Courts are ruling that fixed daily payments without reconciliation may make your advance a loan subject to usury limits. See if your contract has red flags.
         </p>
         <div className="mt-10 flex justify-center">

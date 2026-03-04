@@ -11,8 +11,8 @@ const stats = [
 
 export default function AboutFundingWatch() {
   return (
-    <section id="about" className="section-white" aria-label="About FundingWatch">
-      <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
+    <section id="about" className="section-card" aria-label="About FundingWatch">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           <FadeIn className="lg:order-1">
             <div className="mission-block rounded-2xl border border-[var(--border-light)] bg-[var(--bg-light)] p-8 shadow-[0_2px_16px_rgba(0,0,0,0.06)] md:p-10">

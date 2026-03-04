@@ -41,10 +41,10 @@ export default function UnderstandingYourMCA() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="resources" className="section-light" aria-label="MCA Education">
-      <div className="section-inner mx-auto max-w-[800px] px-4 sm:px-6">
+    <section id="resources" className="section-card" aria-label="MCA Education">
+      <div className="mx-auto max-w-[800px] px-4 sm:px-6">
         <FadeIn>
-          <p className="eyebrow text-center">MCA EDUCATION</p>
+          <p className="eyebrow text-center" style={{ color: "var(--accent-blue)" }}>MCA EDUCATION</p>
           <h2 className="section-heading text-center" style={{ color: "var(--color-text-primary)" }}>
             Understanding Your Merchant Cash Advance
           </h2>
@@ -53,52 +53,48 @@ export default function UnderstandingYourMCA() {
           </p>
         </FadeIn>
 
-        <div className="mt-12 space-y-4">
-          {items.map((item, i) => {
-            const variants = ["section-box--blue", "section-box--teal", "section-box--purple", "section-box--green"] as const;
-            const boxVariant = variants[i % 4];
-            return (
-            <FadeIn key={item.question} delay={i * 50}>
-              <div className={`section-box ${boxVariant}`}>
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setOpenIndex(openIndex === i ? null : i);
-                    }
-                  }}
-                  className="accordion-trigger focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg-light)] rounded-xl"
-                  style={{ color: "var(--color-text-primary)" }}
-                  aria-expanded={openIndex === i}
-                  aria-controls={`accordion-content-${i}`}
-                  id={`accordion-header-${i}`}
-                >
-                  <span className="pr-4 text-[16px] font-semibold">
-                    {item.question}
-                  </span>
-                  <ChevronDown
-                    className={`h-5 w-5 shrink-0 transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
-                    style={{ color: "var(--color-text-secondary)" }}
-                    aria-hidden
-                  />
-                </button>
-                <div
-                  id={`accordion-content-${i}`}
-                  role="region"
-                  aria-labelledby={`accordion-header-${i}`}
-                  className="accordion-panel transition-[max-height] duration-300 ease-in-out"
-                  style={{ maxHeight: openIndex === i ? "2000px" : "0", overflow: "hidden" }}
-                >
-                  <p style={{ color: "var(--color-text-secondary)" }}>
+        <div className="mt-12 accordion-simple">
+          {items.map((item, i) => (
+            <div key={item.question} className="accordion-simple-item">
+              <button
+                type="button"
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setOpenIndex(openIndex === i ? null : i);
+                  }
+                }}
+                className="flex w-full cursor-pointer items-center justify-between py-4 text-left focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 rounded-xl"
+                style={{ color: "var(--color-text-primary)" }}
+                aria-expanded={openIndex === i}
+                aria-controls={`accordion-content-${i}`}
+                id={`accordion-header-${i}`}
+              >
+                <span className="pr-4 text-[16px] font-semibold">
+                  {item.question}
+                </span>
+                <ChevronDown
+                  className={`h-5 w-5 shrink-0 transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
+                  style={{ color: "var(--color-text-secondary)" }}
+                  aria-hidden
+                />
+              </button>
+              <div
+                id={`accordion-content-${i}`}
+                role="region"
+                aria-labelledby={`accordion-header-${i}`}
+                className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                style={{ maxHeight: openIndex === i ? "2000px" : "0" }}
+              >
+                <div className="border-t border-[var(--border-light)] pt-3 pb-4">
+                  <p className="text-[15px] leading-[1.7]" style={{ color: "var(--color-text-secondary)" }}>
                     {item.content}
                   </p>
                 </div>
               </div>
-            </FadeIn>
-          );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

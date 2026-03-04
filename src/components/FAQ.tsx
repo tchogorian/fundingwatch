@@ -51,61 +51,57 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="section-light" aria-label="FAQ">
-      <div className="section-inner mx-auto max-w-[800px] px-4 sm:px-6">
+    <section id="faq" className="section-card" aria-label="FAQ">
+      <div className="mx-auto max-w-[800px] px-4 sm:px-6">
         <FadeIn>
-          <p className="eyebrow text-center">FAQ</p>
+          <p className="eyebrow text-center" style={{ color: "var(--accent-blue)" }}>FAQ</p>
           <h2 className="section-heading text-center" style={{ color: "var(--color-text-primary)" }}>
             Frequently Asked Questions
           </h2>
         </FadeIn>
 
-        <div className="mt-12 space-y-4">
-          {items.map((item, i) => {
-            const variants = ["section-box--blue", "section-box--teal", "section-box--purple", "section-box--green"] as const;
-            const boxVariant = variants[i % 4];
-            return (
-            <FadeIn key={item.question} delay={i * 40}>
-              <div className={`section-box ${boxVariant}`}>
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setOpenIndex(openIndex === i ? null : i);
-                    }
-                  }}
-                  className="accordion-trigger focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg-light)] rounded-xl"
-                  style={{ color: "var(--color-text-primary)" }}
-                  aria-expanded={openIndex === i}
-                  aria-controls={`faq-content-${i}`}
-                  id={`faq-header-${i}`}
-                >
-                  <span className="pr-4 text-[16px] font-semibold">
-                    {item.question}
-                  </span>
-                  <ChevronDown
-                    className={`h-5 w-5 shrink-0 transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
-                    style={{ color: "var(--color-text-secondary)" }}
-                    aria-hidden
-                  />
-                </button>
-                <div
-                  id={`faq-content-${i}`}
-                  role="region"
-                  aria-labelledby={`faq-header-${i}`}
-                  className="accordion-panel"
-                  style={{ maxHeight: openIndex === i ? "1000px" : "0", overflow: "hidden", transition: "max-height 0.3s ease-in-out" }}
-                >
-                  <p style={{ color: "var(--color-text-secondary)" }}>
+        <div className="mt-12 accordion-simple">
+          {items.map((item, i) => (
+            <div key={item.question} className="accordion-simple-item">
+              <button
+                type="button"
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setOpenIndex(openIndex === i ? null : i);
+                  }
+                }}
+                className="flex w-full cursor-pointer items-center justify-between py-4 text-left focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 rounded-xl"
+                style={{ color: "var(--color-text-primary)" }}
+                aria-expanded={openIndex === i}
+                aria-controls={`faq-content-${i}`}
+                id={`faq-header-${i}`}
+              >
+                <span className="pr-4 text-[16px] font-semibold">
+                  {item.question}
+                </span>
+                <ChevronDown
+                  className={`h-5 w-5 shrink-0 transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
+                  style={{ color: "var(--color-text-secondary)" }}
+                  aria-hidden
+                />
+              </button>
+              <div
+                id={`faq-content-${i}`}
+                role="region"
+                aria-labelledby={`faq-header-${i}`}
+                className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                style={{ maxHeight: openIndex === i ? "800px" : "0" }}
+              >
+                <div className="border-t border-[var(--border-light)] pt-3 pb-4">
+                  <p className="text-[15px] leading-[1.7]" style={{ color: "var(--color-text-secondary)" }}>
                     {item.answer}
                   </p>
                 </div>
               </div>
-            </FadeIn>
-          );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

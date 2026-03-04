@@ -12,11 +12,10 @@ export default function Footer() {
 
   return (
     <footer
-      className="section-dark border-t pt-16 pb-8"
-      style={{ borderColor: "var(--border-dark)" }}
+      className="section-card section-card--dark"
       aria-label="Footer"
     >
-      <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
           {/* Column 1: Brand (wider) */}
           <div className="lg:col-span-1">

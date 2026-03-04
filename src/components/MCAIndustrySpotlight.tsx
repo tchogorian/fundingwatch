@@ -26,14 +26,14 @@ const cards = [
 
 export default function MCAIndustrySpotlight() {
   return (
-    <section className="section-dark" aria-label="Industry news">
-      <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
+    <section className="section-card" aria-label="Industry news">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
         <FadeIn>
-          <p className="eyebrow text-center text-[var(--accent-cyan)] font-semibold tracking-widest">INDUSTRY NEWS</p>
-          <h2 className="section-title text-center mt-2" style={{ color: "var(--on-dark-1)" }}>
+          <p className="eyebrow text-center" style={{ color: "var(--accent-blue)" }}>INDUSTRY NEWS</p>
+          <h2 className="section-heading text-center" style={{ color: "var(--on-light-1)" }}>
             What&apos;s Happening in the MCA Industry
           </h2>
-          <p className="mt-4 text-center text-[var(--text-base)]" style={{ color: "var(--on-dark-2)" }}>
+          <p className="mt-4 text-center text-[var(--text-base)]" style={{ color: "var(--on-light-2)" }}>
             Recent legal developments and regulatory actions affecting MCA borrowers.
           </p>
         </FadeIn>

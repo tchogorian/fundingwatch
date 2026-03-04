@@ -83,10 +83,10 @@ export default function UploadSection({
   return (
     <section
       id="upload"
-      className="section-light reveal"
+      className="section-card reveal"
       aria-label="Upload your contract"
     >
-      <div className="section-inner mx-auto max-w-[640px] px-4 sm:px-6">
+      <div className="mx-auto max-w-[640px] px-4 sm:px-6">
         <p className="eyebrow text-center">ANALYZE YOUR CONTRACT</p>
         <h2 className="section-heading text-center" style={{ color: "var(--color-text-primary)" }}>
           See What&apos;s Really in Your Agreement
