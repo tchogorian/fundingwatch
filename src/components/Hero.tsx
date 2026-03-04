@@ -14,6 +14,16 @@ export default function Hero() {
 
   return (
     <section className="hero relative min-h-screen overflow-hidden" aria-label="Hero">
+      {/* Illustration as seamless layer on the hero — no box, blends into gradient (Plaid-style) */}
+      <div className="hero-illustration-layer" aria-hidden="true">
+        <div
+          className="hero-illustration-img"
+          role="img"
+          style={{ backgroundImage: "url(/images/robin-hood.png)" }}
+        />
+        <div className="hero-illustration-stitch" aria-hidden="true" />
+      </div>
+
       <div className="hero-inner">
         {/* Left column — content */}
         <div>
@@ -67,17 +77,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right column — hero illustration: gradient layer + image blend (no black box), bigger, stitched */}
-        <div className="hero-illustration-wrap max-lg:mx-auto max-lg:mt-12">
-          <div className="hero-illustration-bg" aria-hidden="true" />
-          <div
-            className="hero-illustration-img"
-            role="img"
-            aria-hidden="true"
-            style={{ backgroundImage: "url(/images/robin-hood.png)" }}
-          />
-          <div className="hero-illustration-stitch" aria-hidden="true" />
-        </div>
+        {/* Spacer for layout on desktop so content doesn't overlap figure */}
+        <div className="hero-illustration-spacer max-lg:hidden" aria-hidden="true" />
       </div>
 
       {/* Sample report card — mobile only (hero right column alternative) */}
