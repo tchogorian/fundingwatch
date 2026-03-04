@@ -327,6 +327,7 @@ h3 {
   color: #6b7280;
 }
 /* Hero illustration — seamless layer on the hero (no box, Plaid-style) */
+/* Every parent of the img is transparent so only the hero section keeps its gradient */
 .hero-illustration-layer {
   position: absolute;
   top: 0;
@@ -335,6 +336,8 @@ h3 {
   left: 50%;
   z-index: 1;
   pointer-events: none;
+  background: transparent !important;
+  background-color: transparent !important;
 }
 @media (max-width: 1024px) {
   .hero-illustration-layer {
@@ -342,20 +345,16 @@ h3 {
   }
 }
 .hero-illustration-img {
+  background: transparent;
+  mix-blend-mode: normal;
+  filter: none;
+  opacity: 1;
   position: absolute;
-  inset: 0;
-  /* Use PNG as mask so transparency is preserved (filters would turn transparent pixels black) */
-  background: linear-gradient(135deg, rgba(8, 181, 196, 0.85) 0%, rgba(10, 156, 184, 0.9) 50%, rgba(14, 125, 192, 0.85) 100%);
-  mask-image: url("/images/robin-hood.png");
-  mask-size: 48% auto;
-  mask-position: 100% 50%;
-  mask-repeat: no-repeat;
-  mask-mode: alpha;
-  -webkit-mask-image: url("/images/robin-hood.png");
-  -webkit-mask-size: 48% auto;
-  -webkit-mask-position: 100% 50%;
-  -webkit-mask-repeat: no-repeat;
-  opacity: 0.95;
+  right: 0;
+  bottom: 0;
+  height: 92%;
+  width: auto;
+  object-fit: contain;
 }
 /* Stitched texture overlay — very subtle */
 .hero-illustration-stitch {

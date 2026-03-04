@@ -14,12 +14,12 @@ export default function Hero() {
 
   return (
     <section className="hero relative min-h-screen overflow-hidden" aria-label="Hero">
-      {/* Illustration as seamless layer on the hero — no box, blends into gradient (Plaid-style) */}
+      {/* Illustration: img + wrapper divs (all wrappers transparent so hero gradient shows) */}
       <div className="hero-illustration-layer" aria-hidden="true">
-        <div
+        <img
+          src="/images/robin-hood-teal.png"
+          alt=""
           className="hero-illustration-img"
-          role="img"
-          aria-label="Decorative illustration"
         />
         <div className="hero-illustration-stitch" aria-hidden="true" />
       </div>
