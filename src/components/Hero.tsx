@@ -1,51 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
-/** Strip black/dark background from raw image so it blends into the hero with no box */
-function useTransparentRobinHood() {
-  const [bgImage, setBgImage] = useState<string | null>(null);
-
-  useEffect(() => {
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = () => {
-      try {
-        const canvas = document.createElement("canvas");
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
-        ctx.drawImage(img, 0, 0);
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const data = imageData.data;
-        const threshold = 45; // pixels darker than this become transparent
-        for (let i = 0; i < data.length; i += 4) {
-          const r = data[i];
-          const g = data[i + 1];
-          const b = data[i + 2];
-          if (r <= threshold && g <= threshold && b <= threshold) {
-            data[i + 3] = 0;
-          }
-        }
-        ctx.putImageData(imageData, 0, 0);
-        setBgImage(canvas.toDataURL("image/png"));
-      } catch {
-        setBgImage("url(/images/robin-hood.png)");
-      }
-    };
-    img.onerror = () => setBgImage("url(/images/robin-hood.png)");
-    img.src = "/images/robin-hood.png";
-  }, []);
-
-  return bgImage;
-}
-
 export default function Hero() {
-  const robinHoodBg = useTransparentRobinHood();
-
   const scrollToUpload = () => {
     document.getElementById("upload")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -61,9 +19,8 @@ export default function Hero() {
         <div
           className="hero-illustration-img"
           role="img"
-          style={{
-            backgroundImage: robinHoodBg ? `url(${robinHoodBg})` : "url(/images/robin-hood.png)",
-          }}
+          aria-hidden="true"
+          style={{ backgroundImage: "url(/images/robin-hood.png)" }}
         />
         <div className="hero-illustration-stitch" aria-hidden="true" />
       </div>
