@@ -30,23 +30,25 @@ export default function SecondaryCTA() {
         }}
       />
       <div className="relative mx-auto max-w-2xl px-4 text-center sm:px-6">
-        <h2 className="text-section-mobile font-bold text-white sm:text-section-desktop">
+        <h2 className="text-section-mobile font-bold leading-tight text-white sm:text-section-desktop sm:leading-tight">
           Don&apos;t Pay More Than You Have To
         </h2>
-        <p className="mt-6 text-body text-slate-400">
+        <p className="mx-auto mt-6 max-w-xl text-body text-slate-400">
           Courts are ruling that fixed daily payments without reconciliation may make your advance a loan subject to usury limits. See if your contract has red flags.
         </p>
-        <button
-          type="button"
-          onClick={scrollToUpload}
-          className="group mt-10 flex cursor-pointer items-center justify-center gap-2 rounded-button bg-accent px-8 py-4 text-body font-semibold text-white shadow-button-accent transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-button-accent-hover"
-          style={{
-            background: "linear-gradient(180deg, #2563EB 0%, #1D4ED8 100%)",
-          }}
-        >
-          Analyze My Contract Free
-          <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-        </button>
+        <div className="mt-10 flex justify-center">
+          <button
+            type="button"
+            onClick={scrollToUpload}
+            className="group flex cursor-pointer items-center justify-center gap-2 rounded-button bg-accent px-8 py-4 text-body font-semibold text-white shadow-button-accent transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-button-accent-hover"
+            style={{
+              background: "linear-gradient(180deg, #2563EB 0%, #1D4ED8 100%)",
+            }}
+          >
+            Analyze My Contract Free
+            <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+          </button>
+        </div>
       </div>
     </section>
   );

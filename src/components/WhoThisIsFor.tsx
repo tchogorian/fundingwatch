@@ -40,11 +40,11 @@ export default function WhoThisIsFor() {
             Every MCA Borrower Deserves Clarity
           </h2>
         </FadeIn>
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 md:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 md:grid-cols-3 md:items-stretch">
           {cards.map((card, i) => (
-            <FadeIn key={card.title} delay={i * 80}>
-              <div className="flex cursor-default flex-col rounded-card border border-border bg-primary p-8 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-card-hover">
-                <div className="flex h-12 w-12 items-center justify-center rounded-card bg-trust-bg text-accent">
+            <FadeIn key={card.title} delay={i * 80} className="flex md:h-full">
+              <div className="flex h-full w-full cursor-default flex-col rounded-card border border-border bg-primary p-8 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-card-hover">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-card bg-trust-bg text-accent">
                   <card.icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-6 text-subhead-mobile font-semibold text-dark-text sm:text-subhead-desktop">
@@ -56,7 +56,7 @@ export default function WhoThisIsFor() {
                 <button
                   type="button"
                   onClick={scrollToUpload}
-                  className="mt-6 cursor-pointer text-[15px] font-medium text-accent transition-colors hover:text-accent-dark"
+                  className="mt-6 shrink-0 cursor-pointer text-[15px] font-medium text-accent transition-colors hover:text-accent-dark"
                 >
                   Check Your Contract →
                 </button>
