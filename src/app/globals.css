@@ -571,27 +571,31 @@ h3 {
   position: relative;
   overflow: hidden;
 }
-/* Desktop: end hero shortly after trust line (no large empty blue gap) */
+/* Desktop: crop the background image — fixed height so Robin Hood is cut off */
 @media (min-width: 1025px) {
   .hero {
-    min-height: auto;
-    padding-bottom: 8px;
+    height: 72vh;
+    max-height: 72vh;
+    min-height: 480px;
+    padding-bottom: 0;
   }
   .hero-inner {
-    min-height: auto;
+    min-height: 0;
     padding-bottom: 12px;
   }
   .hero .hero-scroll-hint {
     bottom: 8px;
   }
 }
-/* Mobile: position background so Robin Hood figure (right side of composite) is visible; no extra card */
+/* Mobile: crop the background image — fixed height so figure is cut off at elbow */
 @media (max-width: 1024px) {
   .hero {
     background-position: right top;
     background-size: cover;
-    min-height: auto;
-    padding-bottom: 6px;
+    height: 68vh;
+    max-height: 68vh;
+    min-height: 380px;
+    padding-bottom: 0;
   }
   .hero .hero-scroll-hint {
     bottom: 6px;
@@ -611,31 +615,38 @@ h3 {
     opacity: 0.28;
   }
 }
-/* Mobile only: improve hero text readability over background figure */
+/* Mobile only: softer hero text (not blinding) */
 @media (max-width: 1024px) {
   .hero .eyebrow {
-    color: #fff;
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 600;
+  }
+  .hero .hero-title {
+    font-size: clamp(1.875rem, 3rem, 4rem);
+    font-weight: 700;
   }
   .hero h1 .hero-white {
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.92);
   }
   .hero h1 .hero-gradient {
-    color: #fff;
-    -webkit-text-fill-color: #fff;
+    color: rgba(255, 255, 255, 0.9);
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.9);
     background: none;
     background-clip: unset;
   }
   .hero-sub {
-    color: rgba(255, 255, 255, 0.98);
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 17px;
+    font-weight: 400;
   }
   .hero .trust-logos-label {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.72);
   }
   .hero .trust-logo-item {
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255, 255, 255, 0.78);
   }
   .hero .hero-scroll-hint {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.65);
   }
 }
 .hero-inner {
