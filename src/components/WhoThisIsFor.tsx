@@ -30,11 +30,11 @@ export default function WhoThisIsFor() {
   };
 
   return (
-    <section className="section-dark reveal" aria-label="Who this is for">
+    <section className="section-dark who-section reveal" aria-label="Who this is for">
       <div className="section-inner mx-auto max-w-[1280px] px-4 sm:px-6">
         <FadeIn>
-          <p className="eyebrow text-center" style={{ color: "var(--accent-cyan)" }}>WHO THIS IS FOR</p>
-          <h2 className="mt-3 text-center text-[clamp(1.8rem,3.5vw,2.8rem)] font-extrabold leading-tight tracking-tight" style={{ color: "var(--on-dark-1)" }}>
+          <p className="eyebrow text-center">WHO THIS IS FOR</p>
+          <h2 className="section-title text-center">
             Every MCA Borrower Deserves Clarity
           </h2>
           <p
@@ -44,43 +44,26 @@ export default function WhoThisIsFor() {
             Choose your situation below.
           </p>
         </FadeIn>
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 md:grid-cols-3 md:items-stretch">
+        <div className="who-grid mt-12 sm:mt-16">
           {cards.map((card, i) => (
-            <FadeIn key={card.title} delay={i * 80} className="flex md:h-full">
-              <div
-                className="card flex h-full w-full cursor-default flex-col border-l-4 p-8 transition-all duration-300"
-                style={{
-                  borderLeftColor: "var(--color-accent-primary)",
-                  background: "var(--color-bg-surface)",
-                  borderColor: "var(--color-border-default)",
-                }}
-              >
+            <FadeIn key={card.title} delay={i * 80}>
+              <div className="who-card flex h-full flex-col">
+                <span className="who-card-num">{String(i + 1).padStart(2, "0")}</span>
                 <div
                   className="flex h-8 w-8 shrink-0 items-center justify-center"
-                  style={{ color: "var(--color-accent-primary)" }}
+                  style={{ color: "var(--accent-cyan)" }}
                 >
                   <card.icon className="h-8 w-8" strokeWidth={1.5} aria-hidden />
                 </div>
-                <h3
-                  className="mt-4 text-[18px] font-semibold"
-                  style={{ color: "var(--color-text-primary)" }}
-                >
-                  {card.title}
-                </h3>
-                <p
-                  className="mt-2 flex-1 text-[15px] leading-[1.7]"
-                  style={{ color: "var(--color-text-secondary)" }}
-                >
-                  {card.description}
-                </p>
+                <h3 className="who-card-title">{card.title}</h3>
+                <p className="who-card-desc flex-1">{card.description}</p>
                 <button
                   type="button"
                   onClick={scrollToUpload}
-                  className="group mt-5 flex shrink-0 cursor-pointer items-center gap-1 text-[14px] font-medium transition-colors"
-                  style={{ color: "var(--color-accent-primary)" }}
+                  className="who-card-link"
                 >
                   Check Your Contract
-                  <ArrowRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-1" aria-hidden />
+                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-150 group-hover:translate-x-1" aria-hidden />
                 </button>
               </div>
             </FadeIn>

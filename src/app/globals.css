@@ -171,7 +171,104 @@
   }
 }
 
-/* ========== GLOBAL BASE ========== */
+/* ========== WHO THIS IS FOR (dark section) ========== */
+.who-section {
+  background: var(--bg-dark);
+}
+.who-section .eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 12px;
+}
+.who-section .section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--on-dark-1);
+  line-height: 1.15;
+  margin-bottom: 48px;
+}
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.who-card {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-dark);
+  border-radius: 16px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 250ms, transform 250ms;
+}
+.who-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-4px);
+}
+.who-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+.who-card:nth-child(1)::before {
+  background: var(--grad-blue-teal);
+}
+.who-card:nth-child(2)::before {
+  background: var(--grad-purple-blue);
+}
+.who-card:nth-child(3)::before {
+  background: var(--grad-teal-green);
+}
+.who-card-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--on-dark-3);
+  margin-bottom: 20px;
+}
+.who-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--on-dark-1);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.who-card-desc {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--on-dark-2);
+  margin-bottom: 24px;
+}
+.who-card-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 150ms;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.who-card-link:hover {
+  gap: 8px;
+}
+@media (max-width: 768px) {
+  .who-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
