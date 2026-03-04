@@ -41,8 +41,8 @@ export default function UnderstandingYourMCA() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="resources" className="py-16 md:py-24" style={{ background: "#F8FAFC" }}>
-      <div className="mx-auto max-w-[800px] px-4 sm:px-6">
+    <section id="resources" className="section-white" aria-label="MCA Education">
+      <div className="section-inner mx-auto max-w-[800px] px-4 sm:px-6">
         <FadeIn>
           <p className="eyebrow text-center">MCA EDUCATION</p>
           <h2 className="mt-3 text-center" style={{ color: "var(--color-text-primary)" }}>

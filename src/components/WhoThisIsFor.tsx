@@ -47,12 +47,9 @@ export default function WhoThisIsFor() {
         <div className="who-grid mt-12 sm:mt-16">
           {cards.map((card, i) => (
             <FadeIn key={card.title} delay={i * 80}>
-              <div className="who-card flex h-full flex-col">
+              <div className={`who-card who-card--${i + 1} flex h-full flex-col`}>
                 <span className="who-card-num">{String(i + 1).padStart(2, "0")}</span>
-                <div
-                  className="flex h-8 w-8 shrink-0 items-center justify-center"
-                  style={{ color: "var(--accent-cyan)" }}
-                >
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl">
                   <card.icon className="h-8 w-8" strokeWidth={1.5} aria-hidden />
                 </div>
                 <h3 className="who-card-title">{card.title}</h3>

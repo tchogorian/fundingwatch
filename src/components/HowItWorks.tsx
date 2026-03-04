@@ -41,7 +41,9 @@ export default function HowItWorks() {
           </h2>
         </FadeIn>
         <div className="mt-16 flex flex-col items-stretch gap-12 sm:flex-row sm:justify-between sm:gap-6">
-          {steps.map(({ number, title, description, Icon }, i) => (
+          {steps.map(({ number, title, description, Icon }, i) => {
+            const variants = ["plaid-box--blue", "plaid-box--purple", "plaid-box--teal"];
+            return (
             <FadeIn key={number} delay={i * 150}>
               <div className="relative flex flex-1 flex-col items-center text-center">
                 <div
@@ -56,18 +58,15 @@ export default function HowItWorks() {
                 {i < steps.length - 1 && (
                   <div
                     className="absolute -bottom-6 left-1/2 h-8 w-px border-l-2 border-dashed sm:-right-4 sm:top-9 sm:left-auto sm:h-0 sm:w-24 sm:border-t-2 sm:border-l-0"
-                    style={{ borderColor: "var(--color-border-strong)" }}
+                    style={{ borderColor: "rgba(255,255,255,0.3)" }}
                   />
                 )}
-                <div className="mt-8 w-full rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-6 transition-shadow hover:shadow-[var(--shadow-md)]" style={{ background: "var(--color-bg-surface)" }}>
-                  <div
-                    className="mx-auto flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)]"
-                    style={{ background: "var(--color-accent-muted)", color: "var(--color-accent-primary)" }}
-                  >
-                    <Icon className="h-5 w-5" aria-hidden />
+                <div className={`plaid-box ${variants[i]} mt-8 w-full text-left`}>
+                  <div className="step-icon-wrap flex h-12 w-12 items-center justify-center rounded-2xl">
+                    <Icon className="h-6 w-6" aria-hidden />
                   </div>
                   <h3
-                    className="mt-4 text-[16px] font-semibold"
+                    className="mt-4 text-[17px] font-semibold"
                     style={{ color: "var(--color-text-primary)" }}
                   >
                     {title}
@@ -81,15 +80,16 @@ export default function HowItWorks() {
                 </div>
               </div>
             </FadeIn>
-          ))}
+          );
+          })}
         </div>
         <FadeIn delay={300}>
           <div
             className="mt-10 flex cursor-default items-center justify-center gap-2 rounded-full border px-5 py-2.5 text-[var(--text-sm)]"
             style={{
-              borderColor: "var(--color-accent-border)",
-              color: "var(--color-accent-primary)",
-              background: "var(--color-bg-elevated)",
+              borderColor: "rgba(255,255,255,0.35)",
+              color: "var(--on-dark-1)",
+              background: "rgba(255,255,255,0.08)",
             }}
           >
             <Clock className="h-4 w-4" aria-hidden />

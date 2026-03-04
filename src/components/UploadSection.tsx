@@ -83,11 +83,10 @@ export default function UploadSection({
   return (
     <section
       id="upload"
-      className="reveal py-16 md:py-24"
-      style={{ background: "var(--color-bg-base)" }}
+      className="section-light reveal"
       aria-label="Upload your contract"
     >
-      <div className="mx-auto max-w-[var(--max-width-narrow)] px-4 sm:px-6">
+      <div className="section-inner mx-auto max-w-[var(--max-width-narrow)] px-4 sm:px-6">
         <p className="eyebrow text-center">ANALYZE YOUR CONTRACT</p>
         <h2 className="mt-3 text-center font-semibold" style={{ color: "var(--color-text-primary)" }}>
           See What&apos;s Really in Your Agreement
