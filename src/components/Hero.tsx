@@ -14,16 +14,6 @@ export default function Hero() {
 
   return (
     <section className="hero relative min-h-screen overflow-hidden" aria-label="Hero">
-      {/* Illustration: img + wrapper divs (all wrappers transparent so hero gradient shows) */}
-      <div className="hero-illustration-layer" aria-hidden="true">
-        <img
-          src="/images/robin-hood-teal.png"
-          alt=""
-          className="hero-illustration-img"
-        />
-        <div className="hero-illustration-stitch" aria-hidden="true" />
-      </div>
-
       <div className="hero-inner">
         {/* Left column — content */}
         <div>

@@ -140,19 +140,15 @@ h3 {
   );
 }
 
-/* Hero topographic contour lines */
+/* Hero — single composite image (gradient + figure) */
 .hero {
   min-height: 100vh;
   margin-top: -76px;
   padding-top: 148px;
-  background: linear-gradient(
-    135deg,
-    #0a3d8f 0%,
-    #0b5dc2 30%,
-    #0e7dc0 55%,
-    #0a9cb8 78%,
-    #08b5c4 100%
-  );
+  background-color: #0a3d8f;
+  background-image: url("/images/hero-composite.png");
+  background-size: cover;
+  background-position: right center;
   position: relative;
   overflow: hidden;
 }
@@ -326,72 +322,7 @@ h3 {
   font-weight: 400;
   color: #6b7280;
 }
-/* Hero illustration — seamless layer on the hero (no box, Plaid-style) */
-/* Every parent of the img is transparent so only the hero section keeps its gradient */
-.hero-illustration-layer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 50%;
-  z-index: 1;
-  pointer-events: none;
-  background: transparent !important;
-  background-color: transparent !important;
-}
-@media (max-width: 1024px) {
-  .hero-illustration-layer {
-    left: 55%;
-  }
-}
-.hero-illustration-img {
-  background: transparent;
-  mix-blend-mode: normal;
-  filter: none;
-  opacity: 1;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 92%;
-  width: auto;
-  object-fit: contain;
-}
-/* Stitched texture overlay — very subtle */
-.hero-illustration-stitch {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.08;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 3px,
-      rgba(255, 255, 255, 0.12) 3px,
-      rgba(255, 255, 255, 0.12) 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 3px,
-      rgba(255, 255, 255, 0.12) 3px,
-      rgba(255, 255, 255, 0.12) 4px
-    );
-  background-size: 4px 4px;
-}
-/* Pink accent bar (Plaid-style) */
-.hero-illustration-layer::after {
-  content: "";
-  position: absolute;
-  left: -10%;
-  right: -5%;
-  top: 52%;
-  height: 3px;
-  background: rgba(224, 64, 160, 0.55);
-  transform: rotate(-1deg);
-  pointer-events: none;
-}
-/* Spacer so left content doesn't overlap figure */
+/* Spacer so left content doesn't overlap figure (layout only; figure is in composite image) */
 .hero-illustration-spacer {
   min-height: 1px;
 }
