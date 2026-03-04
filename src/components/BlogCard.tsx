@@ -37,17 +37,17 @@ export default function BlogCard({ post }: { post: BlogPost }) {
     <Link
       href={`/blog/${post.slug}`}
       className="card group flex min-h-[220px] flex-col rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-accent-border)] hover:shadow-[var(--shadow-md)]"
-      style={{ background: "var(--color-bg-surface)" }}
+      style={{ background: "#FFFFFF" }}
     >
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex items-center justify-between gap-3">
         <span
-          className={`${badgeClass} shrink-0`}
+          className={`shrink-0 ${badgeClass}`}
           style={badgeStyle}
         >
           {CATEGORY_LABELS[post.category]}
         </span>
         <span
-          className="font-mono text-[var(--text-xs)]"
+          className="shrink-0 font-mono text-[var(--text-xs)] whitespace-nowrap"
           style={{ color: "var(--color-text-tertiary)" }}
         >
           {new Date(post.date).toLocaleDateString("en-US", {
@@ -58,23 +58,24 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         </span>
       </div>
       <h3
-        className="mt-3 font-display text-[22px] leading-snug transition-colors group-hover:underline"
+        className="mt-3 text-[20px] font-semibold leading-snug transition-colors group-hover:underline"
         style={{
           color: "var(--color-text-primary)",
+          fontFamily: "var(--font-body), system-ui, sans-serif",
           textDecorationColor: "var(--color-accent-primary)",
         }}
       >
         {post.title}
       </h3>
       <p
-        className="mt-2 line-clamp-2 flex-1 text-[var(--text-base)] leading-relaxed"
+        className="mt-2 line-clamp-2 flex-1 text-[15px] leading-relaxed"
         style={{ color: "var(--color-text-secondary)" }}
       >
         {post.excerpt}
       </p>
-      <div className="mt-4 flex items-center justify-between">
+      <div className="mt-4 flex items-center justify-between gap-2">
         <span
-          className="text-[14px] font-medium transition-colors group-hover:underline"
+          className="text-[14px] font-medium transition-colors group-hover:underline shrink-0"
           style={{
             color: "var(--color-accent-primary)",
             textDecorationColor: "var(--color-accent-primary)",
@@ -83,7 +84,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           → Read Article
         </span>
         <span
-          className="text-[var(--text-sm)]"
+          className="text-[var(--text-sm)] whitespace-nowrap"
           style={{ color: "var(--color-text-tertiary)" }}
         >
           {post.readTimeMinutes} min read

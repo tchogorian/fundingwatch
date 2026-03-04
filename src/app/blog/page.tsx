@@ -61,8 +61,8 @@ export default function BlogIndexPage() {
           <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
             <p className="eyebrow text-center">THE MCA INTELLIGENCE HUB</p>
             <h1
-              className="mt-3 text-center font-display text-3xl leading-tight md:text-4xl"
-              style={{ color: "var(--color-text-primary)" }}
+              className="mt-3 text-center text-3xl font-semibold leading-tight md:text-4xl"
+              style={{ color: "var(--color-text-primary)", fontFamily: "var(--font-hero), 'Inter', sans-serif" }}
             >
               Understand, Challenge, and Escape Predatory Lending
             </h1>
@@ -184,17 +184,17 @@ export default function BlogIndexPage() {
                 </h2>
                 <ul className="mt-4 space-y-3">
                   {popular.map((p) => (
-                    <li key={p.slug}>
+                    <li key={p.slug} className="flex items-baseline justify-between gap-2">
                       <Link
                         href={`/blog/${p.slug}`}
-                        className="text-[14px] leading-snug transition hover:underline"
+                        className="min-w-0 flex-1 text-[14px] leading-snug transition hover:underline line-clamp-2"
                         style={{ color: "var(--color-text-secondary)" }}
                       >
                         {p.title}
                       </Link>
                       {p.readCount != null && (
                         <span
-                          className="ml-2 font-mono text-[var(--text-xs)]"
+                          className="shrink-0 font-mono text-[var(--text-xs)]"
                           style={{ color: "var(--color-text-tertiary)" }}
                         >
                           {p.readCount >= 1000
