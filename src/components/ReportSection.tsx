@@ -7,6 +7,7 @@ import RedFlagsSection from "./RedFlagsSection";
 import ContractDetailsTable from "./ContractDetailsTable";
 import ConfidenceNotice from "./ConfidenceNotice";
 import Disclaimer from "./Disclaimer";
+import ExploreYourOptions from "./ExploreYourOptions";
 import FadeIn from "./FadeIn";
 
 export default function ReportSection({ data }: { data: AnalysisResult }) {
@@ -48,6 +49,9 @@ export default function ReportSection({ data }: { data: AnalysisResult }) {
               <ConfidenceNotice />
             </FadeIn>
           )}
+          <FadeIn delay={280}>
+            <ExploreYourOptions data={data} />
+          </FadeIn>
           <FadeIn delay={300}>
             <Disclaimer />
           </FadeIn>

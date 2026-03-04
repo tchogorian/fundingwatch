@@ -112,10 +112,10 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
     >
       <div className="mx-auto max-w-[560px] px-4 sm:px-6">
         <h2 className="text-center text-[32px] font-semibold text-dark-text">
-          Want an Expert to Review Your Contract?
+          Concerned About Your Current Contract?
         </h2>
         <p className="mt-4 text-center text-body text-muted">
-          A licensed professional will review your analysis at no cost or obligation.
+          If your contract contains serious red flags like confessions of judgment, UCC liens, or predatory terms, a licensed professional can review your situation and advise you on your rights — at no cost.
         </p>
         <form
           onSubmit={handleSubmit}

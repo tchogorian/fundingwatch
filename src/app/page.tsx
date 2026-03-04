@@ -3,14 +3,19 @@
 import { useState, useCallback } from "react";
 import type { AnalysisResult } from "@/types/analysis";
 import Hero from "@/components/Hero";
-import HowItWorks from "@/components/HowItWorks";
 import TrustBar from "@/components/TrustBar";
+import WhoThisIsFor from "@/components/WhoThisIsFor";
+import HowItWorks from "@/components/HowItWorks";
+import WhatYourReportIncludes from "@/components/WhatYourReportIncludes";
 import UploadSection from "@/components/UploadSection";
 import LoadingState from "@/components/LoadingState";
 import ReportSection from "@/components/ReportSection";
 import OptInForm from "@/components/OptInForm";
+import UnderstandingYourMCA from "@/components/UnderstandingYourMCA";
+import MCAIndustrySpotlight from "@/components/MCAIndustrySpotlight";
+import FAQ from "@/components/FAQ";
+import AboutFundingWatch from "@/components/AboutFundingWatch";
 import SecondaryCTA from "@/components/SecondaryCTA";
-import IndustryInfoSection from "@/components/IndustryInfoSection";
 import Footer from "@/components/Footer";
 
 const MIN_LOADING_MS = 16000;
@@ -53,7 +58,9 @@ export default function Home() {
     <main>
       <Hero />
       <TrustBar />
+      <WhoThisIsFor />
       <HowItWorks />
+      <WhatYourReportIncludes />
       {isAnalyzing ? (
         <LoadingState />
       ) : (
@@ -70,7 +77,10 @@ export default function Home() {
           <OptInForm analysisData={analysisResult} />
         </>
       )}
-      <IndustryInfoSection />
+      <UnderstandingYourMCA />
+      <MCAIndustrySpotlight />
+      <FAQ />
+      <AboutFundingWatch />
       <SecondaryCTA />
       <Footer />
     </main>
