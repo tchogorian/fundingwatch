@@ -567,11 +567,11 @@ h3 {
   min-height: 100vh;
   position: relative;
 }
-/* Mobile: position background so Robin Hood figure (right side of composite) is visible */
+/* Mobile: position background so Robin Hood figure (right side of composite) is visible; no extra card */
 @media (max-width: 1024px) {
   .hero {
-    background-position: 60% top;
-    background-size: 220%;
+    background-position: right top;
+    background-size: cover;
   }
 }
 /* Solid blue overlay so hero reads as one color; figure in composite still shows through */
@@ -585,7 +585,7 @@ h3 {
 }
 @media (max-width: 1024px) {
   .hero::before {
-    opacity: 0.35;
+    opacity: 0.28;
   }
 }
 .hero-inner {
