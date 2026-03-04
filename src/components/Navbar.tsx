@@ -43,10 +43,8 @@ export default function Navbar() {
         <nav
           className="mx-auto flex h-[60px] max-w-[1180px] items-center justify-between rounded-full px-7"
           style={{
-            background: "rgba(255, 255, 255, 0.06)",
-            backdropFilter: "blur(20px) saturate(120%)",
-            WebkitBackdropFilter: "blur(20px) saturate(120%)",
-            boxShadow: "0 4px 24px rgba(0, 0, 0, 0.08)",
+            background: "#2E75B6",
+            boxShadow: "0 4px 24px rgba(0, 0, 0, 0.15)",
             border: "1px solid rgba(255, 255, 255, 0.12)",
           }}
         >

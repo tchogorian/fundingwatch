@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Lock, ArrowRight, Shield, CheckCircle } from "lucide-react";
-import type { AnalysisResult } from "@/types/analysis";
+import { Lock, ArrowRight, Shield, CheckCircle, AlertCircle, AlertTriangle, Info } from "lucide-react";
+import type { AnalysisResult, RedFlag } from "@/types/analysis";
 
 const US_STATES = [
   "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
@@ -26,6 +26,56 @@ interface FormState {
   businessName: string;
   state: string;
   consent: boolean;
+}
+
+const severityConfig: Record<RedFlag["severity"], { label: string; Icon: typeof AlertCircle }> = {
+  critical: { label: "Critical", Icon: AlertCircle },
+  warning: { label: "Warning", Icon: AlertTriangle },
+  info: { label: "Info", Icon: Info },
+};
+
+function FlagsSummary({ flags, title, compact = false }: { flags: RedFlag[]; title: string; compact?: boolean }) {
+  const sorted = [...flags].sort((a, b) => {
+    const order: Record<RedFlag["severity"], number> = { critical: 0, warning: 1, info: 2 };
+    return order[a.severity] - order[b.severity];
+  });
+  if (sorted.length === 0) return null;
+  return (
+    <div className="rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-5" style={{ background: "var(--color-bg-elevated)" }}>
+      <h3 className="text-[var(--text-base)] font-semibold" style={{ color: "var(--color-text-primary)" }}>
+        {title}
+        <span className="ml-2 rounded-full px-2.5 py-0.5 text-[var(--text-sm)] font-medium" style={{ background: "rgba(198,40,40,0.1)", color: "var(--danger)" }}>
+          {sorted.length} {sorted.length === 1 ? "flag" : "flags"}
+        </span>
+      </h3>
+      <ul className={compact ? "mt-3 space-y-2" : "mt-4 space-y-3"}>
+        {sorted.map((flag, i) => {
+          const config = severityConfig[flag.severity];
+          const Icon = config.Icon;
+          return (
+            <li
+              key={i}
+              className="rounded-r-[var(--radius-md)] border-l-4 py-2 pr-2"
+              style={{
+                borderLeftColor: flag.severity === "critical" ? "var(--danger)" : flag.severity === "warning" ? "var(--warning)" : "var(--color-accent-primary)",
+                background: flag.severity === "critical" ? "rgba(198,40,40,0.06)" : flag.severity === "warning" ? "rgba(230,81,0,0.06)" : "var(--color-bg-elevated)",
+              }}
+            >
+              <div className="flex items-start gap-2">
+                <Icon className="mt-0.5 h-4 w-4 shrink-0" style={{ color: flag.severity === "critical" ? "var(--danger)" : flag.severity === "warning" ? "var(--warning)" : "var(--color-accent-primary)" }} aria-hidden />
+                <div>
+                  <span className="text-[var(--text-sm)] font-medium" style={{ color: "var(--color-text-primary)" }}>{flag.title}</span>
+                  {!compact && flag.description && (
+                    <p className="mt-1 text-[var(--text-sm)] leading-snug" style={{ color: "var(--color-text-secondary)" }}>{flag.description}</p>
+                  )}
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
 
 export default function OptInForm({ analysisData }: OptInFormProps) {
@@ -93,6 +143,11 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
           <p className="mt-4 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
             A licensed professional will review your contract and reach out within 24–48 hours.
           </p>
+          {analysisData?.red_flags?.length ? (
+            <div className="mt-8 text-left">
+              <FlagsSummary flags={analysisData.red_flags} title="Red flags we'll review" compact />
+            </div>
+          ) : null}
         </div>
       </section>
     );
@@ -107,6 +162,11 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
         <p className="mt-4 text-center text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
           If your contract contains serious red flags like confessions of judgment, UCC liens, or predatory terms, a licensed professional can review your situation and advise you on your rights — at no cost.
         </p>
+        {analysisData?.red_flags?.length ? (
+          <div className="mt-8">
+            <FlagsSummary flags={analysisData.red_flags} title="Red flags in your contract" />
+          </div>
+        ) : null}
         <form
           onSubmit={handleSubmit}
           className="mt-10 rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-8"
