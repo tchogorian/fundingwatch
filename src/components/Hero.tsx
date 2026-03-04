@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 export default function Hero() {
@@ -13,73 +13,83 @@ export default function Hero() {
   };
 
   return (
-    <section
-      className="hero-bg relative min-h-[calc(100vh-64px)] overflow-hidden pt-[120px] pb-20 md:pb-24"
-      style={{ background: "#F8FAFC" }}
-      aria-label="Hero"
-    >
-      <div className="relative mx-auto grid w-full max-w-[var(--max-width-content)] grid-cols-1 gap-12 px-4 lg:grid-cols-[60%_40%] lg:items-center lg:gap-16 lg:px-6">
+    <section className="hero relative min-h-screen overflow-hidden" aria-label="Hero">
+      <div className="hero-inner">
         {/* Left column — content */}
-        <div className="flex flex-col">
-          <p
-            className="uppercase"
-            style={{
-              fontSize: "11px",
-              fontWeight: 700,
-              letterSpacing: "0.14em",
-              color: "#0D9488",
-              marginBottom: "20px",
-            }}
-          >
+        <div>
+          <p className="eyebrow" style={{ marginBottom: 14 }}>
             FREE MCA CONTRACT INTELLIGENCE
           </p>
           <h1
-            className="mt-0"
+            className="mb-6"
             style={{
-              fontFamily: "var(--font-hero), 'Inter', sans-serif",
+              fontSize: "clamp(3rem, 6.5vw, 5.2rem)",
               fontWeight: 800,
-              fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
-              lineHeight: 1.1,
-              color: "#0F172A",
-              letterSpacing: "-0.03em",
+              lineHeight: 1,
+              letterSpacing: "-0.04em",
             }}
           >
-            What&apos;s Your MCA
+            <span className="hero-white">What&apos;s Your MCA</span>
             <br />
-            Really
+            <span className="hero-gradient">Really Costing</span>
             <br />
-            Costing You?
+            <span className="hero-white">You?</span>
           </h1>
-          <p
-            className="mt-6 max-w-[460px] font-normal leading-relaxed"
-            style={{ fontSize: "18px", color: "#4B5563", lineHeight: 1.6 }}
-          >
+          <p className="hero-sub">
             Upload your contract. Our system reveals your true APR, hidden terms, and red flags —
             free, in under 30 seconds.
           </p>
-          <div className="mt-10 flex flex-col gap-4">
+          <div className="hero-btns">
             <button
               type="button"
               onClick={scrollToUpload}
-              className="btn-primary inline-flex w-fit items-center gap-2 px-8 py-4 text-base"
+              className="btn-hero-outline inline-flex items-center gap-2"
             >
               Analyze My Contract Free
               <ArrowRight className="h-5 w-5" aria-hidden />
             </button>
-            <p
-              className="flex flex-wrap gap-x-6 gap-y-1 text-[var(--text-sm)]"
-              style={{ color: "var(--color-text-secondary)" }}
+            <button
+              type="button"
+              onClick={scrollToUpload}
+              className="btn-hero-dark inline-flex items-center gap-2"
             >
-              <span>✓ No signup</span>
-              <span>✓ Never stored</span>
-              <span>✓ Free forever</span>
-            </p>
+              See Your Report
+              <ArrowRight className="h-5 w-5" aria-hidden />
+            </button>
+          </div>
+          <div className="trust-logos">
+            <span className="trust-logos-label">Trusted by business owners in:</span>
+            <span className="trust-logo-item">NY</span>
+            <span className="trust-logo-item">CA</span>
+            <span className="trust-logo-item">FL</span>
+            <span className="trust-logo-item">TX</span>
+            <span className="trust-logo-item">IL</span>
           </div>
         </div>
 
-        {/* Right column — sample report card (desktop) */}
-        <div className="hidden lg:block">
-          <SampleReportCard onAnalyze={scrollToUpload} />
+        {/* Right column — hero illustration (desktop): flush bottom-right, cropped at top */}
+        <div className="hero-illustration-wrap max-lg:mx-auto max-lg:mt-12">
+          <img
+            src="/images/robin-hood.png"
+            alt=""
+            className="hero-illustration"
+          />
+        </div>
+      </div>
+
+      {/* Sample report card — mobile only (hero right column alternative) */}
+      <div className="relative z-10 mx-4 mt-8 lg:hidden" style={{ maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
+        <SampleReportCard onAnalyze={scrollToUpload} />
+      </div>
+
+      {/* Floating notification card — bottom left */}
+      <div className="hero-notify max-md:left-4 max-md:right-4 max-md:bottom-6 max-md:left-4">
+        <div className="notify-thumb">📄</div>
+        <div>
+          <p className="notify-title">New red flag detected 🚨</p>
+          <Link href="#upload" onClick={(e) => { e.preventDefault(); scrollToUpload(); }} className="notify-sub hover:underline">
+            See what&apos;s in your contract →
+          </Link>
         </div>
       </div>
 
@@ -87,147 +97,122 @@ export default function Hero() {
       <button
         type="button"
         onClick={scrollToLearn}
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 transition-colors hover:opacity-80"
-        style={{ color: "var(--color-text-tertiary)" }}
+        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/60 transition-colors hover:text-white/90"
         aria-label="Scroll to learn more"
       >
-        <span className="text-[12px]">Scroll to learn more</span>
-        <ChevronDown className="h-5 w-5 animate-bounce-soft" aria-hidden />
+        <span className="text-xs">Scroll to learn more</span>
+        <ChevronDown className="h-5 w-5 animate-bounce" aria-hidden />
       </button>
     </section>
   );
 }
 
 function SampleReportCard({ onAnalyze }: { onAnalyze: () => void }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-
   return (
     <div
-      ref={cardRef}
-      className="rounded-[var(--radius-xl)] overflow-hidden"
+      className="overflow-hidden rounded-[18px]"
       style={{
         background: "#FFFFFF",
-        border: "1px solid #E2E8F0",
-        borderTop: "3px solid #DC2626",
-        boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
-        animation: "fadeInUp 600ms var(--ease-out) 200ms both",
+        borderTop: "3px solid var(--danger)",
+        boxShadow: "0 24px 64px rgba(0,0,0,0.25)",
+        animation: "slideUpFade 600ms 400ms both cubic-bezier(0.16, 1, 0.3, 1)",
       }}
     >
       <div className="p-6">
         <p style={{ fontSize: "11px", textTransform: "uppercase", color: "#6B7280" }}>
           SAMPLE ANALYSIS REPORT
         </p>
-
         <div className="mt-3 flex items-start justify-between gap-3">
           <div>
-            <p className="font-semibold" style={{ fontSize: "15px", color: "#0F172A" }}>
+            <p className="font-semibold" style={{ fontSize: "15px", color: "#0B1F3A" }}>
               Riverside Deli & Catering LLC
             </p>
             <p style={{ fontSize: "13px", color: "#6B7280" }}>New York, NY</p>
           </div>
           <div className="flex flex-col items-end">
-            <div className="flex items-baseline gap-0.5">
-              <div
-                className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full font-mono text-[18px] font-bold"
-                style={{
-                  border: "3px solid #DC2626",
-                  background: "#FEF2F2",
-                  color: "#DC2626",
-                }}
-              >
-                78
-              </div>
-              <span style={{ fontSize: "12px", color: "#9CA3AF", marginLeft: "2px" }}>/100</span>
+            <div
+              className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full font-mono text-[16px] font-bold"
+              style={{
+                border: "2.5px solid var(--danger)",
+                background: "var(--danger-bg)",
+                color: "var(--danger)",
+              }}
+            >
+              78
             </div>
-            <span style={{ fontSize: "10px", color: "#DC2626", fontWeight: 700, marginTop: "4px" }}>
+            <span style={{ fontSize: "9px", color: "#9CA3AF", marginTop: "2px" }}>/100</span>
+            <span style={{ fontSize: "10px", color: "var(--danger)", fontWeight: 700 }}>
               HIGH RISK
             </span>
           </div>
         </div>
-
-        <hr className="my-5 border-[#E2E8F0]" />
-
-        <p style={{ fontSize: "12px", color: "#6B7280" }}>You&apos;re paying</p>
-        <p className="font-mono font-extrabold" style={{ fontSize: "32px", color: "#DC2626" }}>
+        <hr className="my-5 border-[#F3F4F6]" />
+        <p style={{ fontSize: "11px", color: "#9CA3AF" }}>You&apos;re paying</p>
+        <p className="font-mono font-bold" style={{ fontSize: "38px", color: "var(--danger)", lineHeight: 1 }}>
           187% APR
         </p>
-        <p style={{ fontSize: "13px", color: "#6B7280" }}>on a $50,000 advance</p>
-        <p className="mt-2 italic" style={{ fontSize: "14px", color: "#374151" }}>
-          That&apos;s $22,500 in fees — for 6 months.
+        <p style={{ fontSize: "12px", color: "#6B7280", marginTop: 6 }}>
+          on a $50,000 advance. <strong style={{ color: "#0B1F3A" }}>That&apos;s $22,500 in fees</strong> — for 6 months.
         </p>
-
-        <hr className="my-5 border-[#E2E8F0]" />
-
+        <hr className="my-5 border-[#F3F4F6]" />
         <p className="font-semibold" style={{ fontSize: "13px", color: "#374151" }}>
           3 Contract Problems Found:
         </p>
-
         <div className="mt-4 space-y-4">
-          <div>
+          <div className="flex gap-2">
             <span
-              className="inline-block px-2 py-[3px] text-[10px] font-bold uppercase"
-              style={{
-                background: "#FEF2F2",
-                border: "1px solid #FECACA",
-                color: "#991B1B",
-                borderRadius: "4px",
-              }}
+              className="shrink-0 rounded px-2 py-[3px] text-[9px] font-bold uppercase"
+              style={{ background: "#FEF2F2", border: "1px solid #FECACA", color: "#991B1B" }}
             >
               RED FLAG
             </span>
-            <span className="ml-2 font-medium" style={{ fontSize: "13px", color: "#374151" }}>
-              Confession of Judgment
-            </span>
-            <p className="mt-1 pl-0" style={{ fontSize: "12px", color: "#6B7280" }}>
-              Lender can freeze your bank account without warning
-            </p>
+            <div>
+              <span className="font-semibold" style={{ fontSize: "13px", color: "#0B1F3A" }}>
+                Confession of Judgment
+              </span>
+              <p className="text-[11px] leading-snug" style={{ color: "#6B7280", marginTop: 2 }}>
+                Lender can freeze your bank account without warning
+              </p>
+            </div>
           </div>
-          <div>
+          <div className="flex gap-2">
             <span
-              className="inline-block px-2 py-[3px] text-[10px] font-bold uppercase"
-              style={{
-                background: "#FEF2F2",
-                border: "1px solid #FECACA",
-                color: "#991B1B",
-                borderRadius: "4px",
-              }}
+              className="shrink-0 rounded px-2 py-[3px] text-[9px] font-bold uppercase"
+              style={{ background: "#FEF2F2", border: "1px solid #FECACA", color: "#991B1B" }}
             >
               RED FLAG
             </span>
-            <span className="ml-2 font-medium" style={{ fontSize: "13px", color: "#374151" }}>
-              No Reconciliation Clause
-            </span>
-            <p className="mt-1 pl-0" style={{ fontSize: "12px", color: "#6B7280" }}>
-              Payments won&apos;t adjust if your revenue drops
-            </p>
+            <div>
+              <span className="font-semibold" style={{ fontSize: "13px", color: "#0B1F3A" }}>
+                No Reconciliation Clause
+              </span>
+              <p className="text-[11px] leading-snug" style={{ color: "#6B7280", marginTop: 2 }}>
+                Payments won&apos;t adjust if your revenue drops
+              </p>
+            </div>
           </div>
-          <div>
+          <div className="flex gap-2">
             <span
-              className="inline-block px-2 py-[3px] text-[10px] font-bold uppercase"
-              style={{
-                background: "#FFFBEB",
-                border: "1px solid #FDE68A",
-                color: "#92400E",
-                borderRadius: "4px",
-              }}
+              className="shrink-0 rounded px-2 py-[3px] text-[9px] font-bold uppercase"
+              style={{ background: "#FFFBEB", border: "1px solid #FDE68A", color: "#92400E" }}
             >
               CAUTION
             </span>
-            <span className="ml-2 font-medium" style={{ fontSize: "13px", color: "#374151" }}>
-              Personal Guarantee
-            </span>
-            <p className="mt-1 pl-0" style={{ fontSize: "12px", color: "#6B7280" }}>
-              Your personal assets are at risk
-            </p>
+            <div>
+              <span className="font-semibold" style={{ fontSize: "13px", color: "#0B1F3A" }}>
+                Personal Guarantee
+              </span>
+              <p className="text-[11px] leading-snug" style={{ color: "#6B7280", marginTop: 2 }}>
+                Your personal assets are at risk
+              </p>
+            </div>
           </div>
         </div>
-
-        <hr className="my-5 border-[#E2E8F0]" />
-
+        <hr className="my-5 border-[#F3F4F6]" />
         <button
           type="button"
           onClick={onAnalyze}
-          className="btn-primary flex w-full items-center justify-center gap-2 py-3 text-[13px] uppercase tracking-[0.06em]"
+          className="btn-hero-dark flex w-full items-center justify-center gap-2 py-3 text-[13px] font-semibold"
         >
           Analyze Your Contract Free
           <ArrowRight className="h-4 w-4" aria-hidden />

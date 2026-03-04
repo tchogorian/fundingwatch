@@ -10,32 +10,25 @@ export default function TrustBar() {
 
   return (
     <section
-      className="border-y border-[var(--color-border-default)] py-5"
+      className="stats-bar border-t border-b border-[#E5E7EB]"
       style={{ background: "#FFFFFF" }}
       aria-label="Trust metrics"
     >
-      <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-0">
-          {stats.map(({ value, label }, i) => (
-            <div
-              key={label}
-              className="flex flex-col items-center text-center md:border-r md:border-[var(--color-border-default)] md:last:border-r-0"
-            >
-              <span
-                className="font-mono text-2xl font-medium"
-                style={{ color: "var(--color-accent-primary)" }}
-              >
-                {value}
-              </span>
-              <span
-                className="mt-1 text-[12px] uppercase tracking-wider"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                {label}
-              </span>
-            </div>
-          ))}
-        </div>
+      <div className="stats-inner mx-auto grid max-w-[1280px] grid-cols-2 px-4 md:grid-cols-4 md:px-8 lg:px-12"
+      >
+        {stats.map(({ value, label }, i) => (
+          <div
+            key={label}
+            className="stat-cell border-r border-[#E5E7EB] py-7 text-center last:border-r-0 max-md:border-b max-md:border-r-0 max-md:py-5 odd:max-md:border-r max-md:last:border-b-0"
+          >
+            <p className="stat-val font-mono text-[26px] font-semibold leading-tight" style={{ color: "#0B1F3A", letterSpacing: "-0.02em" }}>
+              {value}
+            </p>
+            <p className="stat-lbl mt-1.5 text-[11px] font-semibold uppercase tracking-wider" style={{ color: "#9CA3AF" }}>
+              {label}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );

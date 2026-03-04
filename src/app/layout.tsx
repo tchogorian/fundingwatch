@@ -1,46 +1,19 @@
 import type { Metadata } from "next";
-import {
-  DM_Serif_Display,
-  IBM_Plex_Sans,
-  IBM_Plex_Mono,
-  IBM_Plex_Sans_Condensed,
-  Plus_Jakarta_Sans,
-} from "next/font/google";
+import { Sora, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
-const dmSerif = DM_Serif_Display({
-  weight: ["400"],
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const plusJakarta = Plus_Jakarta_Sans({
-  weight: ["400", "500", "600", "700", "800"],
-  subsets: ["latin"],
-  variable: "--font-hero",
-  display: "swap",
-});
-
-const ibmPlexSans = IBM_Plex_Sans({
-  weight: ["300", "400", "500", "600"],
+const sora = Sora({
+  weight: ["300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
-  weight: ["400", "500"],
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "500", "600"],
   subsets: ["latin"],
   variable: "--font-mono",
-  display: "swap",
-});
-
-const ibmPlexCondensed = IBM_Plex_Sans_Condensed({
-  weight: ["500", "600"],
-  subsets: ["latin"],
-  variable: "--font-label",
   display: "swap",
 });
 
@@ -58,12 +31,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSerif.variable} ${plusJakarta.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} ${ibmPlexCondensed.variable}`}
+      className={`${sora.variable} ${jetbrainsMono.variable}`}
     >
       <body className="font-sans antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[var(--color-accent-primary)] focus:px-4 focus:py-2 focus:text-[var(--color-text-inverse)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--color-bg-base)]"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[var(--accent-teal)] focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-[var(--accent-teal)] focus:ring-offset-2 focus:ring-offset-[var(--bg-light)]"
         >
           Skip to content
         </a>

@@ -18,7 +18,9 @@ export default function Navbar() {
   useEffect(() => {
     if (mobileOpen) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   const scrollTo = (id: string) => {
@@ -34,84 +36,103 @@ export default function Navbar() {
 
   return (
     <>
-      <header
-        className="sticky top-0 z-[100] h-16 border-b bg-white"
-        style={{
-          borderBottomWidth: "2px",
-          borderBottomColor: "#E2E8F0",
-          boxShadow: "0 1px 4px rgba(0,0,0,0.06)",
-        }}
+      <div
+        className="sticky top-4 z-[100] px-4 sm:px-6"
+        style={{ padding: "0 24px" }}
       >
-        <div className="mx-auto flex h-full max-w-[var(--max-width-content)] items-center justify-between px-4 sm:px-6">
+        <nav
+          className="mx-auto flex h-[60px] max-w-[1180px] items-center justify-between rounded-full px-7"
+          style={{
+            background: "rgba(255, 255, 255, 0.95)",
+            backdropFilter: "blur(20px) saturate(180%)",
+            WebkitBackdropFilter: "blur(20px) saturate(180%)",
+            boxShadow: "0 4px 24px rgba(0, 0, 0, 0.10)",
+          }}
+        >
           <Link
             href="/"
-            className="flex items-center gap-2 text-[18px] font-semibold tracking-tight"
-            style={{ color: "#0F172A" }}
+            className="flex items-center gap-2 text-[17px] font-extrabold tracking-tight"
+            style={{ color: "#0B1F3A", letterSpacing: "-0.03em" }}
           >
             <Shield
               className="h-5 w-5 shrink-0"
-              style={{ color: "#0D9488" }}
+              style={{ color: "#0B5DC2" }}
               aria-hidden
             />
             <span>
-              Funding<span style={{ color: "#0D9488" }}>Watch</span>
+              Funding<span style={{ color: "#0B5DC2" }}>Watch</span>
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+          <div className="hidden items-center gap-8 md:flex" aria-label="Main">
             {navLinks.map(({ label, href }) => {
               const isHash = href.startsWith("#");
-              const linkClass = "text-[15px] font-medium transition-colors duration-200 hover:text-[#0D9488]";
-              const linkStyle = { color: "#374151" };
               return isHash ? (
                 <button
                   key={href}
                   type="button"
                   onClick={() => scrollTo(href)}
-                  className={linkClass}
-                  style={linkStyle}
+                  className="text-[14px] font-medium transition-colors hover:opacity-80"
+                  style={{ color: "#374151" }}
                 >
                   {label}
                 </button>
               ) : (
-                <Link key={href} href={href} className={linkClass} style={linkStyle}>
+                <Link
+                  key={href}
+                  href={href}
+                  className="text-[14px] font-medium transition-colors hover:opacity-80"
+                  style={{ color: "#374151" }}
+                >
                   {label}
                 </Link>
               );
             })}
-          </nav>
+          </div>
 
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={scrollToUpload}
-              className="btn-primary hidden items-center gap-2 px-5 py-2.5 text-[13px] uppercase tracking-[0.06em] md:flex"
+            <Link
+              href="#upload"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToUpload();
+              }}
+              className="hidden items-center gap-2 md:inline-flex nav-cta"
+              style={{
+                background: "#0B1F3A",
+                color: "white",
+                borderRadius: "9999px",
+                padding: "10px 22px",
+                fontSize: "13px",
+                fontWeight: 600,
+              }}
             >
               Analyze Contract
               <ArrowRight className="h-4 w-4" aria-hidden />
-            </button>
+            </Link>
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
               className="flex h-10 w-10 min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center md:hidden"
-              style={{ color: "var(--color-text-primary)" }}
+              style={{ color: "#0B1F3A" }}
               aria-expanded={mobileOpen}
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
-        </div>
-      </header>
+        </nav>
+      </div>
 
-      {/* Mobile drawer — slides in from RIGHT, 300px wide */}
+      {/* Mobile drawer */}
       <div
-        className="fixed inset-y-0 right-0 z-[90] w-[300px] transform border-l border-[var(--color-border-strong)] transition-transform duration-300 ease-[var(--ease-out)] md:hidden"
+        className="fixed inset-y-0 right-0 z-[90] w-[300px] transform border-l border-[#E5E7EB] transition-transform duration-300 md:hidden"
         style={{
           background: "#FFFFFF",
           transform: mobileOpen ? "translateX(0)" : "translateX(100%)",
-          top: "64px",
-          height: "calc(100vh - 64px)",
+          top: "76px",
+          height: "calc(100vh - 76px)",
+          boxShadow: "-4px 0 24px rgba(0,0,0,0.08)",
         }}
         aria-hidden={!mobileOpen}
       >
@@ -124,8 +145,8 @@ export default function Navbar() {
                   key={href}
                   type="button"
                   onClick={() => scrollTo(href)}
-                  className="flex min-h-[56px] cursor-pointer items-center text-[20px] font-normal transition-colors"
-                  style={{ color: "var(--color-text-primary)" }}
+                  className="flex min-h-[56px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80"
+                  style={{ color: "#0B1F3A" }}
                 >
                   {label}
                 </button>
@@ -135,30 +156,32 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
-                className="flex min-h-[56px] cursor-pointer items-center text-[20px] font-normal transition-colors"
-                style={{ color: "var(--color-text-primary)" }}
+                className="flex min-h-[56px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80"
+                style={{ color: "#0B1F3A" }}
                 onClick={() => setMobileOpen(false)}
               >
                 {label}
               </Link>
             );
           })}
-          <button
-            type="button"
-            onClick={scrollToUpload}
-            className="btn-primary mt-8 flex w-full items-center justify-center gap-2 py-4 text-[13px] uppercase tracking-[0.06em]"
+          <Link
+            href="#upload"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToUpload();
+            }}
+            className="btn-primary mt-8 flex w-full items-center justify-center gap-2 py-4 text-[13px] font-semibold"
           >
             Analyze Contract
             <ArrowRight className="h-4 w-4" aria-hidden />
-          </button>
+          </Link>
         </nav>
       </div>
 
-      {/* Overlay when drawer open — light, no dark overlay */}
       <div
         className="fixed inset-0 z-[80] bg-black/10 transition-opacity duration-300 md:hidden"
         style={{
-          top: "64px",
+          top: "76px",
           opacity: mobileOpen ? 1 : 0,
           pointerEvents: mobileOpen ? "auto" : "none",
         }}
