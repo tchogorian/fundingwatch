@@ -43,24 +43,25 @@ export default function Navbar() {
         <nav
           className="mx-auto flex h-[60px] max-w-[1180px] items-center justify-between rounded-full px-7"
           style={{
-            background: "rgba(255, 255, 255, 0.95)",
-            backdropFilter: "blur(20px) saturate(180%)",
-            WebkitBackdropFilter: "blur(20px) saturate(180%)",
-            boxShadow: "0 4px 24px rgba(0, 0, 0, 0.10)",
+            background: "rgba(255, 255, 255, 0.06)",
+            backdropFilter: "blur(20px) saturate(120%)",
+            WebkitBackdropFilter: "blur(20px) saturate(120%)",
+            boxShadow: "0 4px 24px rgba(0, 0, 0, 0.08)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
           }}
         >
           <Link
             href="/"
             className="flex items-center gap-2 text-[17px] font-extrabold tracking-tight"
-            style={{ color: "#0B1F3A", letterSpacing: "-0.03em" }}
+            style={{ color: "#FFFFFF", letterSpacing: "-0.03em" }}
           >
             <Shield
               className="h-5 w-5 shrink-0"
-              style={{ color: "#0B5DC2" }}
+              style={{ color: "rgba(255,255,255,0.9)" }}
               aria-hidden
             />
             <span>
-              Funding<span style={{ color: "#0B5DC2" }}>Watch</span>
+              Funding<span style={{ color: "#4AE8A4" }}>Watch</span>
             </span>
           </Link>
 
@@ -72,8 +73,8 @@ export default function Navbar() {
                   key={href}
                   type="button"
                   onClick={() => scrollTo(href)}
-                  className="text-[14px] font-medium transition-colors hover:opacity-80"
-                  style={{ color: "#374151" }}
+                  className="text-[14px] font-medium transition-colors hover:opacity-90"
+                  style={{ color: "rgba(255, 255, 255, 0.9)" }}
                 >
                   {label}
                 </button>
@@ -81,8 +82,8 @@ export default function Navbar() {
                 <Link
                   key={href}
                   href={href}
-                  className="text-[14px] font-medium transition-colors hover:opacity-80"
-                  style={{ color: "#374151" }}
+                  className="text-[14px] font-medium transition-colors hover:opacity-90"
+                  style={{ color: "rgba(255, 255, 255, 0.9)" }}
                 >
                   {label}
                 </Link>
@@ -99,8 +100,8 @@ export default function Navbar() {
               }}
               className="hidden items-center gap-2 md:inline-flex nav-cta"
               style={{
-                background: "#0B1F3A",
-                color: "white",
+                background: "#FFFFFF",
+                color: "#0B1F3A",
                 borderRadius: "9999px",
                 padding: "10px 22px",
                 fontSize: "13px",
@@ -114,7 +115,7 @@ export default function Navbar() {
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
               className="flex h-10 w-10 min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center md:hidden"
-              style={{ color: "#0B1F3A" }}
+              style={{ color: "#FFFFFF" }}
               aria-expanded={mobileOpen}
               aria-label="Toggle menu"
             >

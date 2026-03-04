@@ -67,13 +67,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right column — hero illustration (desktop): flush bottom-right, cropped at top */}
+        {/* Right column — hero illustration: gradient layer + image blend (no black box), bigger, stitched */}
         <div className="hero-illustration-wrap max-lg:mx-auto max-lg:mt-12">
-          <img
-            src="/images/robin-hood.png"
-            alt=""
-            className="hero-illustration"
+          <div className="hero-illustration-bg" aria-hidden="true" />
+          <div
+            className="hero-illustration-img"
+            role="img"
+            aria-hidden="true"
+            style={{ backgroundImage: "url(/images/robin-hood.png)" }}
           />
+          <div className="hero-illustration-stitch" aria-hidden="true" />
         </div>
       </div>
 
