@@ -53,10 +53,13 @@ export default function UnderstandingYourMCA() {
           </p>
         </FadeIn>
 
-        <div className="mt-12 accordion-simple space-y-0">
-          {items.map((item, i) => (
+        <div className="mt-12 space-y-4">
+          {items.map((item, i) => {
+            const variants = ["section-box--blue", "section-box--teal", "section-box--purple", "section-box--green"] as const;
+            const boxVariant = variants[i % 4];
+            return (
             <FadeIn key={item.question} delay={i * 50}>
-              <div className="accordion-simple-item">
+              <div className={`section-box ${boxVariant}`}>
                 <button
                   type="button"
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -66,7 +69,7 @@ export default function UnderstandingYourMCA() {
                       setOpenIndex(openIndex === i ? null : i);
                     }
                   }}
-                  className="flex w-full cursor-pointer items-center justify-between focus:outline-none focus:ring-0 focus:ring-offset-0"
+                  className="accordion-trigger focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg-light)] rounded-xl"
                   style={{ color: "var(--color-text-primary)" }}
                   aria-expanded={openIndex === i}
                   aria-controls={`accordion-content-${i}`}
@@ -85,7 +88,7 @@ export default function UnderstandingYourMCA() {
                   id={`accordion-content-${i}`}
                   role="region"
                   aria-labelledby={`accordion-header-${i}`}
-                  className="accordion-body transition-[max-height] duration-300 ease-in-out"
+                  className="accordion-panel transition-[max-height] duration-300 ease-in-out"
                   style={{ maxHeight: openIndex === i ? "2000px" : "0", overflow: "hidden" }}
                 >
                   <p style={{ color: "var(--color-text-secondary)" }}>
@@ -94,7 +97,8 @@ export default function UnderstandingYourMCA() {
                 </div>
               </div>
             </FadeIn>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>

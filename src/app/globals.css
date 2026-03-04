@@ -55,6 +55,12 @@
   --shadow-sm:  0 2px 8px rgba(0,0,0,0.12);
   --shadow-md:  0 8px 32px rgba(0,0,0,0.20);
   --shadow-lg:  0 24px 64px rgba(0,0,0,0.30);
+
+  /* Subtle patterns for "little designs" in boxes */
+  --pattern-waves: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 60' width='240' height='60'%3E%3Cpath fill='none' stroke='rgba(0,0,0,0.04)' stroke-width='.8' d='M0 15 Q60 5 120 15 T240 15'/%3E%3Cpath fill='none' stroke='rgba(0,0,0,0.03)' stroke-width='.6' d='M0 30 Q60 20 120 30 T240 30'/%3E%3Cpath fill='none' stroke='rgba(0,0,0,0.025)' stroke-width='.5' d='M0 45 Q60 35 120 45 T240 45'/%3E%3C/svg%3E");
+  --pattern-grid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M24 0v24H0V0h24zm-1 1H1v22h22V1z' fill='none' stroke='rgba(0,0,0,0.04)' stroke-width='.5'/%3E%3C/svg%3E");
+  --pattern-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='2' cy='2' r='1' fill='rgba(0,0,0,0.05)'/%3E%3C/svg%3E");
+  --pattern-waves-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 60' width='240' height='60'%3E%3Cpath fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='.6' d='M0 15 Q60 5 120 15 T240 15'/%3E%3Cpath fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='.5' d='M0 30 Q60 20 120 30 T240 30'/%3E%3C/svg%3E");
 }
 
 /* Backward-compat: components still using old names */
@@ -85,11 +91,39 @@
 .section-dark {
   background: var(--bg-dark);
   color: var(--on-dark-1);
+  position: relative;
+}
+.section-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-waves-light);
+  background-size: 180px 45px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+.section-dark > * {
+  position: relative;
+  z-index: 1;
 }
 
 .section-dark-grad {
   background: linear-gradient(160deg, #2A3654 0%, #1E3A6E 50%, #1E3A5C 100%);
   color: var(--on-dark-1);
+  position: relative;
+}
+.section-dark-grad::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-waves-light);
+  background-size: 180px 45px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.section-dark-grad > * {
+  position: relative;
+  z-index: 1;
 }
 
 .section-light {
@@ -131,6 +165,20 @@
   border-top: none;
   border-bottom: none;
   padding: 48px 0;
+  position: relative;
+}
+.stats-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-waves-light);
+  background-size: 180px 45px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.stats-bar .stats-inner {
+  position: relative;
+  z-index: 1;
 }
 .stats-inner {
   max-width: 1280px;
@@ -149,6 +197,20 @@
   transition: box-shadow 250ms, transform 250ms;
   position: relative;
   overflow: hidden;
+}
+.stats-bar .stat-cell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-grid);
+  background-size: 20px 20px;
+  opacity: 0.35;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.stats-bar .stat-cell > * {
+  position: relative;
+  z-index: 1;
 }
 .stats-bar .stat-cell::before {
   content: "";
@@ -273,6 +335,20 @@
 .who-card:hover {
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.1);
   transform: translateY(-4px);
+}
+.who-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-waves);
+  background-size: 100px 25px;
+  opacity: 0.4;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.who-card > * {
+  position: relative;
+  z-index: 1;
 }
 /* Who card variants: different color + design per card */
 .who-card--1 {
@@ -611,6 +687,22 @@ h3 {
   padding: 32px 28px;
   color: var(--on-light-1);
   transition: box-shadow 250ms, transform 250ms;
+  position: relative;
+  overflow: hidden;
+}
+.plaid-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-waves);
+  background-size: 100px 25px;
+  opacity: 0.4;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.plaid-box > * {
+  position: relative;
+  z-index: 1;
 }
 .plaid-box:hover {
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -653,6 +745,72 @@ h3 {
   .plaid-box-grid.plaid-box-grid-4 {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+/* ========== ROUND-EDGED SECTION BOXES (different colors + little designs) ========== */
+.section-box {
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  padding: 24px 24px 28px;
+  transition: box-shadow 250ms, transform 250ms;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+.section-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-waves);
+  background-size: 120px 30px;
+  opacity: 0.6;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.section-box > * {
+  position: relative;
+  z-index: 1;
+}
+.section-box--blue {
+  background: linear-gradient(145deg, #EFF6FF 0%, #DBEAFE 50%, #FFFFFF 100%);
+}
+.section-box--teal {
+  background: linear-gradient(145deg, #ECFDFA 0%, #CCFBF1 50%, #FFFFFF 100%);
+}
+.section-box--purple {
+  background: linear-gradient(145deg, #F5F0FF 0%, #EDE9FE 50%, #FFFFFF 100%);
+}
+.section-box--green {
+  background: linear-gradient(145deg, #ECFDF5 0%, #D1FAE5 50%, #FFFFFF 100%);
+}
+.section-box:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+/* Accordion content inside section boxes */
+.section-box .accordion-trigger {
+  width: 100%;
+  text-align: left;
+  padding: 4px 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--on-light-1);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.section-box .accordion-trigger:hover {
+  color: var(--accent-blue);
+}
+.section-box .accordion-panel {
+  padding-top: 4px;
+  padding-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--on-light-2);
 }
 
 /* Plaid box color/design variants (each box different) */
