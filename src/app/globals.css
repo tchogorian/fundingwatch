@@ -344,11 +344,11 @@ h3 {
 .hero-illustration-img {
   position: absolute;
   inset: 0;
-  background-size: 135%;
-  background-position: bottom right;
+  background-size: 100% auto;
+  background-position: 100% 50%;
   background-repeat: no-repeat;
   filter: grayscale(100%) brightness(0.85) contrast(1.3) sepia(100%) hue-rotate(165deg) saturate(3.5) brightness(1.15);
-  opacity: 0.88;
+  opacity: 0.92;
 }
 /* Stitched texture overlay — very subtle */
 .hero-illustration-stitch {
