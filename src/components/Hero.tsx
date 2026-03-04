@@ -1,145 +1,158 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 export default function Hero() {
   const scrollToUpload = () => {
     document.getElementById("upload")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  return (
-    <section className="relative flex min-h-[calc(100vh-64px)] flex-col overflow-hidden bg-hero-from">
-      {/* Sophisticated dark gradient + radial blue */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `
-            radial-gradient(ellipse 80% 80% at 50% 50%, rgba(37,99,235,0.05) 0%, transparent 60%),
-            linear-gradient(180deg, #0F172A 0%, #1E293B 100%)
-          `,
-        }}
-      />
-      {/* Grid pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
-          `,
-          backgroundSize: "48px 48px",
-        }}
-      />
+  const scrollToLearn = () => {
+    document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+  };
 
-      <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col items-center px-4 pt-12 pb-24 sm:px-6 lg:flex-row lg:items-center lg:gap-12 lg:pt-0 lg:pb-20">
+  return (
+    <section
+      className="hero-bg has-grain relative min-h-[calc(100vh-64px)] overflow-hidden pt-[120px] pb-20 md:pb-24"
+      aria-label="Hero"
+    >
+      <div className="relative mx-auto grid w-full max-w-[var(--max-width-content)] grid-cols-1 gap-12 px-4 lg:grid-cols-[60%_40%] lg:items-center lg:gap-16 lg:px-6">
         {/* Left column — content */}
-        <div className="flex w-full max-w-[55%] flex-col text-left lg:max-w-none">
-          <p
-            className="animate-fade-in text-eyebrow font-semibold uppercase tracking-widest text-accent"
-            style={{ animationDelay: "0ms", animationFillMode: "forwards" }}
-          >
-            FREE MCA CONTRACT ANALYSIS
-          </p>
+        <div className="flex flex-col">
+          <p className="eyebrow">FREE MCA CONTRACT INTELLIGENCE</p>
           <h1
-            className="mt-4 animate-fade-in text-hero-mobile font-bold leading-[1.1] tracking-tight text-white opacity-0 lg:text-hero-desktop"
-            style={{ animationDelay: "100ms", animationFillMode: "forwards" }}
+            className="mt-4 font-display text-[2.25rem] leading-[1.08] tracking-tight text-[var(--color-text-primary)] sm:text-[3rem] lg:text-[4.768rem]"
+            style={{ letterSpacing: "-0.02em" }}
           >
-            What&apos;s Your MCA{" "}
-            <span className="text-accent-light">Really Costing You?</span>
+            What&apos;s Your MCA
+            <br />
+            Really
+            <br />
+            Costing You?
           </h1>
           <p
-            className="mt-6 max-w-[520px] animate-fade-in text-[20px] leading-[1.6] text-slate-400 opacity-0"
-            style={{ animationDelay: "200ms", animationFillMode: "forwards" }}
+            className="mt-6 max-w-[480px] text-[var(--text-lg)] font-light leading-relaxed"
+            style={{ color: "var(--color-text-primary)" }}
           >
-            Upload your contract. Our AI reveals your true APR, hidden terms, and red flags in seconds.
+            Upload your contract. Our AI reveals your true APR, hidden terms, and red flags —
+            free, in under 30 seconds.
           </p>
-          <div
-            className="mt-10 animate-fade-in opacity-0"
-            style={{ animationDelay: "300ms", animationFillMode: "forwards" }}
-          >
+          <div className="mt-10 flex flex-col gap-4">
             <button
               type="button"
               onClick={scrollToUpload}
-              className="group flex cursor-pointer items-center rounded-button bg-accent px-8 py-4 text-body font-semibold text-white shadow-button-accent transition-all duration-200 hover:-translate-y-0.5 hover:shadow-button-accent-hover"
-              style={{
-                background: "linear-gradient(180deg, #2563EB 0%, #1D4ED8 100%)",
-              }}
+              className="btn-primary inline-flex w-fit items-center gap-2 px-8 py-4 text-base"
             >
               Analyze My Contract Free
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+              <ArrowRight className="h-5 w-5" aria-hidden />
             </button>
-            <p className="mt-4 text-small text-muted">
-              No signup required · Free forever
+            <p
+              className="flex flex-wrap gap-x-6 gap-y-1 text-[var(--text-sm)]"
+              style={{ color: "var(--color-text-secondary)" }}
+            >
+              <span>✓ No signup</span>
+              <span>✓ Never stored</span>
+              <span>✓ Free forever</span>
             </p>
           </div>
         </div>
 
-        {/* Right column — product mockup */}
-        <div
-          className="mt-16 w-full max-w-[90%] animate-fade-in opacity-0 lg:mt-0 lg:max-w-[45%]"
-          style={{ animationDelay: "400ms", animationFillMode: "forwards" }}
-        >
-          <div
-            className="animate-float overflow-hidden rounded-card border border-white/10 bg-slate-900/90 shadow-mockup"
-            style={{
-              transform: "perspective(1000px) rotateY(-2deg) rotateX(2deg)",
-            }}
-          >
-            {/* Browser chrome */}
-            <div className="flex items-center gap-2 border-b border-white/10 bg-slate-800/80 px-4 py-3">
-              <div className="flex gap-1.5">
-                <div className="h-2.5 w-2.5 rounded-full bg-red-500/90" />
-                <div className="h-2.5 w-2.5 rounded-full bg-amber-500/90" />
-                <div className="h-2.5 w-2.5 rounded-full bg-green-500/90" />
-              </div>
-              <div className="ml-3 flex flex-1 items-center rounded-input bg-slate-800 px-3 py-2">
-                <span className="text-small text-slate-500">
-                  fundingwatch.org/report
-                </span>
-              </div>
-            </div>
-            {/* Report preview card */}
-            <div className="border-t border-white/5 bg-secondary-bg p-5">
-              <p className="text-small font-semibold uppercase tracking-wider text-muted">
-                Sample Report
-              </p>
-              <div className="mt-4 flex flex-wrap items-baseline gap-4">
-                <div>
-                  <p className="text-small text-muted">Effective APR</p>
-                  <p className="text-2xl font-bold text-danger">187%</p>
-                </div>
-                <div className="h-8 w-px bg-border" />
-                <div>
-                  <p className="text-small text-muted">Advance → Repayment</p>
-                  <p className="text-lg font-semibold text-dark-text">
-                    $50,000 → $72,500
-                  </p>
-                </div>
-              </div>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="rounded-button bg-danger/10 px-2.5 py-1 text-small font-medium text-danger">
-                  Confession of Judgment
-                </span>
-                <span className="rounded-button bg-warning/10 px-2.5 py-1 text-small font-medium text-warning">
-                  No Reconciliation
-                </span>
-                <span className="rounded-button bg-danger/10 px-2.5 py-1 text-small font-medium text-danger">
-                  187% APR
-                </span>
-              </div>
-            </div>
-          </div>
+        {/* Right column — sample report card (desktop) */}
+        <div className="hidden lg:block">
+          <SampleReportCard onAnalyze={scrollToUpload} />
         </div>
       </div>
 
-      {/* Gradient fade to white */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[120px]"
-        style={{
-          background: "linear-gradient(to top, #FFFFFF, transparent)",
-        }}
-      />
+      {/* Scroll indicator */}
+      <button
+        type="button"
+        onClick={scrollToLearn}
+        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 transition-colors hover:opacity-80"
+        style={{ color: "var(--color-text-tertiary)" }}
+        aria-label="Scroll to learn more"
+      >
+        <span className="text-[12px]">Scroll to learn more</span>
+        <ChevronDown className="h-5 w-5 animate-bounce-soft" aria-hidden />
+      </button>
     </section>
+  );
+}
+
+function SampleReportCard({ onAnalyze }: { onAnalyze: () => void }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div
+      ref={cardRef}
+      className="rounded-[var(--radius-xl)] border border-[var(--color-border-strong)] pt-[3px] shadow-[var(--shadow-lg),var(--shadow-danger)]"
+      style={{
+        background: "var(--color-bg-elevated)",
+        borderTopColor: "var(--color-danger)",
+        borderTopWidth: "3px",
+        animation: "fadeInUp 600ms var(--ease-out) 200ms both",
+      }}
+    >
+      <div className="p-6">
+        <p
+          className="text-[var(--text-sm)] font-semibold uppercase tracking-wider"
+          style={{ color: "var(--color-text-secondary)" }}
+        >
+          Sample Report Preview
+        </p>
+        <p className="mt-1 font-mono text-[var(--text-base)] font-medium text-[var(--color-text-primary)]">
+          Sample MCA Co. &nbsp;&nbsp;
+          <span className="text-[var(--color-accent-primary)]">████████ 78/100</span>
+        </p>
+        <hr className="my-4 border-[var(--color-border-default)]" />
+        <div className="space-y-3">
+          <div className="flex justify-between">
+            <span style={{ color: "var(--color-text-secondary)" }}>Effective APR</span>
+            <span className="font-mono font-medium text-[var(--color-accent-primary)]">187%</span>
+          </div>
+          <div className="flex justify-between">
+            <span style={{ color: "var(--color-text-secondary)" }}>Factor Rate</span>
+            <span className="font-mono font-medium text-[var(--color-text-primary)]">1.45×</span>
+          </div>
+          <div className="flex justify-between">
+            <span style={{ color: "var(--color-text-secondary)" }}>Daily Payment</span>
+            <span className="font-mono font-medium text-[var(--color-text-primary)]">$892</span>
+          </div>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <span className="badge badge-danger">Red Flag</span>
+          <span className="text-[var(--text-xs)]" style={{ color: "var(--color-text-secondary)" }}>
+            Confession of Judgment
+          </span>
+        </div>
+        <div className="mt-2 flex flex-wrap gap-2">
+          <span className="badge badge-danger">Red Flag</span>
+          <span className="text-[var(--text-xs)]" style={{ color: "var(--color-text-secondary)" }}>
+            No Reconciliation Clause
+          </span>
+        </div>
+        <div className="mt-2 flex flex-wrap gap-2">
+          <span className="badge badge-warning">Caution</span>
+          <span className="text-[var(--text-xs)]" style={{ color: "var(--color-text-secondary)" }}>
+            Personal Guarantee
+          </span>
+        </div>
+        <hr className="my-4 border-[var(--color-border-default)]" />
+        <p className="text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>
+          Advance → Repayment
+        </p>
+        <p className="font-mono text-[var(--text-base)] font-medium text-[var(--color-text-primary)]">
+          $50,000 → $72,500
+        </p>
+        <button
+          type="button"
+          onClick={onAnalyze}
+          className="btn-primary mt-4 flex w-full items-center justify-center gap-2 py-3 text-[13px] uppercase tracking-[0.06em]"
+        >
+          Analyze Your Contract
+          <ArrowRight className="h-4 w-4" aria-hidden />
+        </button>
+      </div>
+    </div>
   );
 }

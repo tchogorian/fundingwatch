@@ -17,6 +17,7 @@ import FAQ from "@/components/FAQ";
 import AboutFundingWatch from "@/components/AboutFundingWatch";
 import SecondaryCTA from "@/components/SecondaryCTA";
 import Footer from "@/components/Footer";
+import RevealOnScrollProvider from "@/components/RevealOnScroll";
 
 const MIN_LOADING_MS = 16000;
 
@@ -55,7 +56,8 @@ export default function Home() {
   }, [selectedFile]);
 
   return (
-    <main>
+    <RevealOnScrollProvider>
+    <>
       <Hero />
       <TrustBar />
       <WhoThisIsFor />
@@ -83,6 +85,7 @@ export default function Home() {
       <AboutFundingWatch />
       <SecondaryCTA />
       <Footer />
-    </main>
+    </>
+    </RevealOnScrollProvider>
   );
 }

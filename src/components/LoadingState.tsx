@@ -37,7 +37,7 @@ export default function LoadingState() {
   const progress = (elapsedMs / totalMs) * 100;
 
   return (
-    <section id="upload" className="bg-primary py-section-y-mobile sm:py-section-y">
+    <section id="upload" className="py-16 md:py-24" style={{ background: "var(--color-bg-base)" }}>
       <div className="mx-auto max-w-[480px] px-4 sm:px-6">
         <div className="space-y-4">
           {steps.map((step, i) => {
@@ -47,27 +47,31 @@ export default function LoadingState() {
             return (
               <div
                 key={step.id}
-                className={`flex items-center gap-4 rounded-card border border-border bg-primary px-5 py-4 shadow-card transition-all duration-200 ${
-                  isComplete ? "border-success/30 bg-success/5" : isActive ? "border-accent/50 bg-focus-ring" : "opacity-60"
+                className={`flex items-center gap-4 rounded-[var(--radius-lg)] border px-5 py-4 transition-all ${
+                  isComplete ? "border-[var(--color-accent-border)]" : isActive ? "border-[var(--color-accent-border)]" : "opacity-60"
                 }`}
+                style={{
+                  background: isComplete ? "var(--color-accent-muted)" : isActive ? "var(--color-accent-muted)" : "var(--color-bg-surface)",
+                  borderColor: isComplete ? "var(--color-accent-border)" : isActive ? "var(--color-accent-border)" : "var(--color-border-default)",
+                }}
               >
                 <div
                   className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
-                    isComplete ? "bg-success text-white" : isActive ? "bg-accent text-white" : "bg-border text-muted"
+                    isComplete ? "bg-[var(--color-accent-primary)] text-[var(--color-text-inverse)]" : isActive ? "bg-[var(--color-accent-primary)] text-[var(--color-text-inverse)]" : ""
                   }`}
+                  style={!isComplete && !isActive ? { background: "var(--color-bg-subtle)", color: "var(--color-text-tertiary)" } : {}}
                 >
                   {isComplete ? (
-                    <CheckCircle className="h-5 w-5" />
+                    <CheckCircle className="h-5 w-5" aria-hidden />
                   ) : isActive ? (
-                    <Loader2 className="h-5 w-5 animate-spin" />
+                    <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
                   ) : (
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-5 w-5" aria-hidden />
                   )}
                 </div>
                 <span
-                  className={`text-[16px] ${
-                    isComplete ? "font-medium text-dark-text" : isActive ? "font-semibold text-dark-text" : "font-normal text-muted"
-                  }`}
+                  className={`text-[16px] ${isComplete ? "font-medium" : isActive ? "font-semibold" : "font-normal"}`}
+                  style={{ color: isComplete || isActive ? "var(--color-text-primary)" : "var(--color-text-secondary)" }}
                 >
                   {step.label}
                 </span>
@@ -75,10 +79,10 @@ export default function LoadingState() {
             );
           })}
         </div>
-        <div className="mt-8 h-1.5 overflow-hidden rounded-full bg-border">
+        <div className="mt-8 h-1.5 overflow-hidden rounded-full" style={{ background: "var(--color-bg-subtle)" }}>
           <div
-            className="h-full rounded-full bg-accent transition-all duration-500 ease-out"
-            style={{ width: `${Math.min(progress, 100)}%` }}
+            className="h-full rounded-full transition-all duration-500 ease-[var(--ease-out)]"
+            style={{ width: `${Math.min(progress, 100)}%`, background: "var(--color-accent-primary)" }}
           />
         </div>
       </div>

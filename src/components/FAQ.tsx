@@ -51,16 +51,11 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section
-      id="faq"
-      className="bg-secondary-bg py-section-y-mobile sm:py-section-y"
-    >
+    <section id="faq" className="py-16 md:py-24" style={{ background: "var(--color-bg-base)" }}>
       <div className="mx-auto max-w-[800px] px-4 sm:px-6">
         <FadeIn>
-          <p className="text-center text-eyebrow font-semibold uppercase tracking-widest text-accent">
-            FAQ
-          </p>
-          <h2 className="mt-3 text-center text-section-mobile font-semibold text-dark-text sm:text-section-desktop">
+          <p className="eyebrow text-center">FAQ</p>
+          <h2 className="mt-3 text-center" style={{ color: "var(--color-text-primary)" }}>
             Frequently Asked Questions
           </h2>
         </FadeIn>
@@ -68,7 +63,7 @@ export default function FAQ() {
         <div className="mt-12 space-y-3">
           {items.map((item, i) => (
             <FadeIn key={item.question} delay={i * 40}>
-              <div className="overflow-hidden rounded-card border border-border bg-primary shadow-card">
+              <div className="overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border-default)]" style={{ background: "var(--color-bg-surface)" }}>
                 <button
                   type="button"
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -78,32 +73,29 @@ export default function FAQ() {
                       setOpenIndex(openIndex === i ? null : i);
                     }
                   }}
-                  className="flex w-full cursor-pointer items-center justify-between px-6 py-5 text-left transition-colors hover:bg-secondary-bg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-inset"
+                  className="flex w-full cursor-pointer items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[var(--color-bg-elevated)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--color-bg-base)]"
+                  style={{ color: "var(--color-text-primary)" }}
                   aria-expanded={openIndex === i}
                   aria-controls={`faq-content-${i}`}
                   id={`faq-header-${i}`}
                 >
-                  <span className="pr-4 text-[16px] font-semibold text-dark-text">
+                  <span className="pr-4 text-[16px] font-semibold">
                     {item.question}
                   </span>
                   <ChevronDown
-                    className={`h-5 w-5 shrink-0 text-muted transition-transform duration-200 ${
-                      openIndex === i ? "rotate-180" : ""
-                    }`}
+                    className={`h-5 w-5 shrink-0 transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
+                    style={{ color: "var(--color-text-secondary)" }}
+                    aria-hidden
                   />
                 </button>
                 <div
                   id={`faq-content-${i}`}
                   role="region"
                   aria-labelledby={`faq-header-${i}`}
-                  style={{
-                    maxHeight: openIndex === i ? "1000px" : "0",
-                    overflow: "hidden",
-                    transition: "max-height 0.3s ease-in-out",
-                  }}
+                  style={{ maxHeight: openIndex === i ? "1000px" : "0", overflow: "hidden", transition: "max-height 0.3s ease-in-out" }}
                 >
-                  <div className="border-t border-border px-6 pb-6 pt-2">
-                    <p className="text-[16px] leading-[1.6] text-muted">
+                  <div className="border-t border-[var(--color-border-default)] px-6 pb-6 pt-2">
+                    <p className="text-[16px] leading-[1.6]" style={{ color: "var(--color-text-secondary)" }}>
                       {item.answer}
                     </p>
                   </div>

@@ -80,22 +80,17 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
 
   if (status === "success") {
     return (
-      <section
-        className="py-section-y-mobile sm:py-section-y"
-        style={{
-          background: "linear-gradient(180deg, #F0F4F8 0%, #F8FAFB 100%)",
-        }}
-      >
+      <section className="py-16 md:py-24" style={{ background: "var(--color-bg-surface)" }}>
         <div className="mx-auto max-w-[560px] px-4 text-center sm:px-6">
           <div className="flex justify-center">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-success/10">
-              <CheckCircle className="h-12 w-12 text-success" />
+            <div className="flex h-20 w-20 items-center justify-center rounded-full" style={{ background: "var(--color-accent-muted)" }}>
+              <CheckCircle className="h-12 w-12" style={{ color: "var(--color-accent-primary)" }} aria-hidden />
             </div>
           </div>
-          <h2 className="mt-6 text-[32px] font-semibold text-dark-text">
+          <h2 className="mt-6 text-[32px] font-semibold" style={{ color: "var(--color-text-primary)" }}>
             You&apos;re All Set
           </h2>
-          <p className="mt-4 text-body text-muted">
+          <p className="mt-4 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
             A licensed professional will review your contract and reach out within 24–48 hours.
           </p>
         </div>
@@ -104,26 +99,22 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
   }
 
   return (
-    <section
-      className="py-section-y-mobile sm:py-16"
-      style={{
-        background: "linear-gradient(180deg, #F0F4F8 0%, #F8FAFB 100%)",
-      }}
-    >
+    <section className="py-16 md:py-24" style={{ background: "var(--color-bg-surface)" }}>
       <div className="mx-auto max-w-[560px] px-4 sm:px-6">
-        <h2 className="text-center text-[32px] font-semibold text-dark-text">
+        <h2 className="text-center text-[32px] font-semibold" style={{ color: "var(--color-text-primary)" }}>
           Concerned About Your Current Contract?
         </h2>
-        <p className="mt-4 text-center text-body text-muted">
+        <p className="mt-4 text-center text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
           If your contract contains serious red flags like confessions of judgment, UCC liens, or predatory terms, a licensed professional can review your situation and advise you on your rights — at no cost.
         </p>
         <form
           onSubmit={handleSubmit}
-          className="mt-10 rounded-card border border-border bg-primary p-8 shadow-card"
+          className="mt-10 rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-8"
+          style={{ background: "var(--color-bg-elevated)" }}
         >
           <div className="space-y-5">
             <div>
-              <label htmlFor="name" className="text-small font-medium text-dark-text">
+              <label htmlFor="name" className="text-[var(--text-sm)] font-medium" style={{ color: "var(--color-text-primary)" }}>
                 Full Name
               </label>
               <input
@@ -131,15 +122,19 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                className="mt-1.5 h-12 w-full rounded-input border border-border bg-primary px-4 py-3 text-[16px] transition-all duration-200 focus:border-accent focus:outline-none focus:ring-2 focus:ring-blue-100"
+                className="mt-1.5 h-12 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg-base)] px-4 py-3 text-[16px] transition-all focus:border-[var(--color-accent-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-opacity-30"
+                style={{ color: "var(--color-text-primary)" }}
+                aria-required
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "name-error" : undefined}
               />
               {errors.name && (
-                <p className="mt-1.5 text-small font-medium text-danger">{errors.name}</p>
+                <p id="name-error" className="mt-1.5 text-[var(--text-sm)] font-medium" style={{ color: "var(--color-danger)" }} role="alert">{errors.name}</p>
               )}
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label htmlFor="email" className="text-small font-medium text-dark-text">
+                <label htmlFor="email" className="text-[var(--text-sm)] font-medium" style={{ color: "var(--color-text-primary)" }}>
                   Email
                 </label>
                 <input
@@ -147,14 +142,18 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
                   type="email"
                   value={form.email}
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                  className="mt-1.5 h-12 w-full rounded-input border border-border bg-primary px-4 py-3 text-[16px] transition-all duration-200 focus:border-accent focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  className="mt-1.5 h-12 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg-base)] px-4 py-3 text-[16px] transition-all focus:border-[var(--color-accent-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-opacity-30"
+                  style={{ color: "var(--color-text-primary)" }}
+                  aria-required
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
                 />
                 {errors.email && (
-                  <p className="mt-1.5 text-small font-medium text-danger">{errors.email}</p>
+                  <p id="email-error" className="mt-1.5 text-[var(--text-sm)] font-medium" style={{ color: "var(--color-danger)" }} role="alert">{errors.email}</p>
                 )}
               </div>
               <div>
-                <label htmlFor="phone" className="text-small font-medium text-dark-text">
+                <label htmlFor="phone" className="text-[var(--text-sm)] font-medium" style={{ color: "var(--color-text-primary)" }}>
                   Phone
                 </label>
                 <input
@@ -162,15 +161,19 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
                   type="tel"
                   value={form.phone}
                   onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                  className="mt-1.5 h-12 w-full rounded-input border border-border bg-primary px-4 py-3 text-[16px] transition-all duration-200 focus:border-accent focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  className="mt-1.5 h-12 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg-base)] px-4 py-3 text-[16px] transition-all focus:border-[var(--color-accent-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-opacity-30"
+                  style={{ color: "var(--color-text-primary)" }}
+                  aria-required
+                  aria-invalid={!!errors.phone}
+                  aria-describedby={errors.phone ? "phone-error" : undefined}
                 />
                 {errors.phone && (
-                  <p className="mt-1.5 text-small font-medium text-danger">{errors.phone}</p>
+                  <p id="phone-error" className="mt-1.5 text-[var(--text-sm)] font-medium" style={{ color: "var(--color-danger)" }} role="alert">{errors.phone}</p>
                 )}
               </div>
             </div>
             <div>
-              <label htmlFor="businessName" className="text-small font-medium text-dark-text">
+              <label htmlFor="businessName" className="text-[var(--text-sm)] font-medium" style={{ color: "var(--color-text-primary)" }}>
                 Business Name
               </label>
               <input
@@ -178,23 +181,29 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
                 type="text"
                 value={form.businessName}
                 onChange={(e) => setForm((f) => ({ ...f, businessName: e.target.value }))}
-                className="mt-1.5 h-12 w-full rounded-input border border-border bg-primary px-4 py-3 text-[16px] transition-all duration-200 focus:border-accent focus:outline-none focus:ring-2 focus:ring-blue-100"
+                className="mt-1.5 h-12 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg-base)] px-4 py-3 text-[16px] transition-all focus:border-[var(--color-accent-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-opacity-30"
+                style={{ color: "var(--color-text-primary)" }}
+                aria-required
+                aria-invalid={!!errors.businessName}
+                aria-describedby={errors.businessName ? "businessName-error" : undefined}
               />
               {errors.businessName && (
-                <p className="mt-1.5 text-small font-medium text-danger">
-                  {errors.businessName}
-                </p>
+                <p id="businessName-error" className="mt-1.5 text-[var(--text-sm)] font-medium" style={{ color: "var(--color-danger)" }} role="alert">{errors.businessName}</p>
               )}
             </div>
             <div>
-              <label htmlFor="state" className="text-small font-medium text-dark-text">
+              <label htmlFor="state" className="text-[var(--text-sm)] font-medium" style={{ color: "var(--color-text-primary)" }}>
                 State
               </label>
               <select
                 id="state"
                 value={form.state}
                 onChange={(e) => setForm((f) => ({ ...f, state: e.target.value }))}
-                className="mt-1.5 h-12 w-full rounded-input border border-border bg-primary px-4 py-3 text-[16px] transition-all duration-200 focus:border-accent focus:outline-none focus:ring-2 focus:ring-blue-100"
+                className="mt-1.5 h-12 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg-base)] px-4 py-3 text-[16px] transition-all focus:border-[var(--color-accent-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-primary)] focus:ring-opacity-30"
+                style={{ color: "var(--color-text-primary)" }}
+                aria-required
+                aria-invalid={!!errors.state}
+                aria-describedby={errors.state ? "state-error" : undefined}
               >
                 <option value="">Select state</option>
                 {US_STATES.map((s) => (
@@ -204,7 +213,7 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
                 ))}
               </select>
               {errors.state && (
-                <p className="mt-1.5 text-small font-medium text-danger">{errors.state}</p>
+                <p id="state-error" className="mt-1.5 text-[var(--text-sm)] font-medium" style={{ color: "var(--color-danger)" }} role="alert">{errors.state}</p>
               )}
             </div>
             <div>
@@ -213,67 +222,49 @@ export default function OptInForm({ analysisData }: OptInFormProps) {
                   type="checkbox"
                   checked={form.consent}
                   onChange={(e) => setForm((f) => ({ ...f, consent: e.target.checked }))}
-                  className="mt-1 h-4 w-4 rounded border-border text-accent focus:ring-accent"
+                  className="mt-1 h-4 w-4 rounded border-[var(--color-border-strong)] focus:ring-[var(--color-accent-primary)]"
+                  style={{ accentColor: "var(--color-accent-primary)" }}
+                  aria-required
+                  aria-invalid={!!errors.consent}
+                  aria-describedby={errors.consent ? "consent-error" : undefined}
                 />
-                <span className="flex items-start gap-2 text-small text-dark-text">
-                  <Lock className="h-3.5 w-3.5 shrink-0 text-muted" />
+                <span className="flex items-start gap-2 text-[var(--text-sm)]" style={{ color: "var(--color-text-primary)" }}>
+                  <Lock className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--color-text-secondary)" }} aria-hidden />
                   I consent to being contacted by a licensed professional regarding my MCA contract.
                 </span>
               </label>
               {errors.consent && (
-                <p className="mt-1.5 text-small font-medium text-danger">{errors.consent}</p>
+                <p id="consent-error" className="mt-1.5 text-[var(--text-sm)] font-medium" style={{ color: "var(--color-danger)" }} role="alert">{errors.consent}</p>
               )}
             </div>
           </div>
           {status === "error" && (
-            <p className="mt-4 text-small font-medium text-danger">
+            <p className="mt-4 text-[var(--text-sm)] font-medium" style={{ color: "var(--color-danger)" }} role="alert">
               Something went wrong. Please try again.
             </p>
           )}
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="group mt-8 flex h-[52px] w-full cursor-pointer items-center justify-center gap-2 rounded-button bg-accent py-3 text-body font-semibold text-white shadow-button-accent transition-all duration-200 hover:scale-[1.02] hover:shadow-button-accent-hover disabled:opacity-70"
-            style={{
-              background:
-                status === "submitting"
-                  ? "#94A3B8"
-                  : "linear-gradient(180deg, #2563EB 0%, #1D4ED8 100%)",
-            }}
+            className="btn-primary mt-8 flex h-[52px] w-full items-center justify-center gap-2 py-3 disabled:opacity-70 disabled:pointer-events-none"
           >
             {status === "submitting" ? (
               <>
-                <svg
-                  className="h-5 w-5 animate-spin text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  />
+                <svg className="h-5 w-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden>
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
                 Sending...
               </>
             ) : (
               <>
                 Get Free Expert Review
-                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                <ArrowRight className="h-5 w-5" aria-hidden />
               </>
             )}
           </button>
-          <p className="mt-6 flex items-center justify-center gap-2 text-center text-small text-muted">
-            <Shield className="h-4 w-4" />
+          <p className="mt-6 flex items-center justify-center gap-2 text-center text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>
+            <Shield className="h-4 w-4" aria-hidden />
             256-bit encryption · Your data is private and secure
           </p>
         </form>

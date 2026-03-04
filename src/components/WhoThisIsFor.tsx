@@ -1,6 +1,6 @@
 "use client";
 
-import { FileSearch, FileWarning, Files } from "lucide-react";
+import { FileSearch, FileWarning, Files, ArrowRight } from "lucide-react";
 import FadeIn from "./FadeIn";
 
 const cards = [
@@ -30,35 +30,60 @@ export default function WhoThisIsFor() {
   };
 
   return (
-    <section className="bg-primary py-section-y-mobile sm:py-section-y">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section
+      className="reveal py-16 md:py-24"
+      style={{ background: "var(--color-bg-base)" }}
+    >
+      <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
         <FadeIn>
-          <p className="text-center text-eyebrow font-semibold uppercase tracking-widest text-accent">
-            WHO THIS IS FOR
-          </p>
-          <h2 className="mt-3 text-center text-section-mobile font-semibold text-dark-text sm:text-section-desktop">
+          <p className="eyebrow text-center">WHO THIS IS FOR</p>
+          <h2 className="mt-3 text-center" style={{ color: "var(--color-text-primary)" }}>
             Every MCA Borrower Deserves Clarity
           </h2>
+          <p
+            className="mx-auto mt-2 max-w-[600px] text-center text-[var(--text-base)]"
+            style={{ color: "var(--color-text-secondary)" }}
+          >
+            Choose your situation below.
+          </p>
         </FadeIn>
         <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 md:grid-cols-3 md:items-stretch">
           {cards.map((card, i) => (
             <FadeIn key={card.title} delay={i * 80} className="flex md:h-full">
-              <div className="flex h-full w-full cursor-default flex-col rounded-card border border-border bg-primary p-8 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-card-hover">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-card bg-trust-bg text-accent">
-                  <card.icon className="h-6 w-6" />
+              <div
+                className="card flex h-full w-full cursor-default flex-col border-l-4 p-8 transition-all duration-300"
+                style={{
+                  borderLeftColor: "var(--color-accent-primary)",
+                  background: "var(--color-bg-surface)",
+                  borderColor: "var(--color-border-default)",
+                }}
+              >
+                <div
+                  className="flex h-8 w-8 shrink-0 items-center justify-center"
+                  style={{ color: "var(--color-accent-primary)" }}
+                >
+                  <card.icon className="h-8 w-8" strokeWidth={1.5} aria-hidden />
                 </div>
-                <h3 className="mt-6 text-subhead-mobile font-semibold text-dark-text sm:text-subhead-desktop">
+                <h3
+                  className="mt-4 text-[18px] font-semibold"
+                  style={{ color: "var(--color-text-primary)" }}
+                >
                   {card.title}
                 </h3>
-                <p className="mt-3 flex-1 text-[16px] leading-[1.6] text-muted">
+                <p
+                  className="mt-2 flex-1 text-[15px] leading-[1.7]"
+                  style={{ color: "var(--color-text-secondary)" }}
+                >
                   {card.description}
                 </p>
                 <button
                   type="button"
                   onClick={scrollToUpload}
-                  className="mt-6 shrink-0 cursor-pointer text-[15px] font-medium text-accent transition-colors hover:text-accent-dark"
+                  className="group mt-5 flex shrink-0 cursor-pointer items-center gap-1 text-[14px] font-medium transition-colors"
+                  style={{ color: "var(--color-accent-primary)" }}
                 >
-                  Check Your Contract →
+                  Check Your Contract
+                  <ArrowRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-1" aria-hidden />
                 </button>
               </div>
             </FadeIn>

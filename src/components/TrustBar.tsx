@@ -1,29 +1,37 @@
 "use client";
 
-import { ShieldCheck, Lock, EyeOff, Scale } from "lucide-react";
-
-const items = [
-  { icon: ShieldCheck, text: "Bank-Grade Privacy" },
-  { icon: Lock, text: "Contracts Never Stored" },
-  { icon: EyeOff, text: "No Account Required" },
-  { icon: Scale, text: "Facts Only, Never Legal Advice" },
-];
-
 export default function TrustBar() {
+  const stats = [
+    { value: "14,847+", label: "Contracts Analyzed" },
+    { value: "$534M", label: "NY MCA Settlement" },
+    { value: "40–350%", label: "Typical APR Range" },
+    { value: "50 States", label: "Borrowers Served" },
+  ];
+
   return (
-    <section className="border-y border-border bg-primary py-section-trust">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-          {items.map(({ icon: Icon, text }) => (
+    <section
+      className="border-y border-[var(--color-border-default)] py-5"
+      style={{ background: "var(--color-bg-surface)" }}
+      aria-label="Trust metrics"
+    >
+      <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-0">
+          {stats.map(({ value, label }, i) => (
             <div
-              key={text}
-              className="flex cursor-default items-center gap-4"
+              key={label}
+              className="flex flex-col items-center text-center md:border-r md:border-[var(--color-border-default)] md:last:border-r-0"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-card bg-trust-bg text-accent">
-                <Icon className="h-5 w-5" />
-              </div>
-              <span className="text-[16px] font-medium text-dark-text">
-                {text}
+              <span
+                className="font-mono text-2xl font-medium"
+                style={{ color: "var(--color-accent-primary)" }}
+              >
+                {value}
+              </span>
+              <span
+                className="mt-1 text-[12px] uppercase tracking-wider"
+                style={{ color: "var(--color-text-secondary)" }}
+              >
+                {label}
               </span>
             </div>
           ))}

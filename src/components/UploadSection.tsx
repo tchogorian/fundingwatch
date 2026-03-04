@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import { UploadCloud, FileText, Check } from "lucide-react";
+import { useCallback, useState, useRef } from "react";
+import { Upload, FileText, Check } from "lucide-react";
 
 const ACCEPTED_TYPES = ["application/pdf", "image/jpeg", "image/png"];
 const MAX_SIZE_MB = 20;
@@ -22,6 +22,7 @@ export default function UploadSection({
 }: UploadSectionProps) {
   const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const validateFile = useCallback((file: File): string | null => {
     if (!ACCEPTED_TYPES.includes(file.type)) {
@@ -75,18 +76,26 @@ export default function UploadSection({
     [onFileSelect, validateFile]
   );
 
+  const handleBrowseClick = () => inputRef.current?.click();
+
   if (isAnalyzing) return null;
 
   return (
-    <section id="upload" className="bg-primary py-section-y-mobile sm:py-section-y">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <p className="text-center text-eyebrow font-semibold uppercase tracking-widest text-accent">
-          ANALYZE YOUR CONTRACT
-        </p>
-        <h2 className="mt-3 text-center text-section-mobile font-semibold text-dark-text sm:text-section-desktop">
+    <section
+      id="upload"
+      className="reveal py-16 md:py-24"
+      style={{ background: "var(--color-bg-base)" }}
+      aria-label="Upload your contract"
+    >
+      <div className="mx-auto max-w-[var(--max-width-narrow)] px-4 sm:px-6">
+        <p className="eyebrow text-center">ANALYZE YOUR CONTRACT</p>
+        <h2 className="mt-3 text-center font-semibold" style={{ color: "var(--color-text-primary)" }}>
           See What&apos;s Really in Your Agreement
         </h2>
-        <p className="mx-auto mt-4 max-w-[600px] text-center text-body text-muted">
+        <p
+          className="mx-auto mt-4 max-w-[600px] text-center text-[var(--text-base)]"
+          style={{ color: "var(--color-text-secondary)" }}
+        >
           Upload your MCA contract and get an instant AI-powered analysis. PDF, images, even phone photos.
         </p>
 
@@ -94,71 +103,70 @@ export default function UploadSection({
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
-          className={`mx-auto mt-12 min-h-[240px] max-w-[640px] rounded-dropzone border-2 transition-all duration-200 ${
-            selectedFile
-              ? "border-border bg-primary"
-              : dragActive
-                ? "border-accent bg-focus-ring"
-                : error
-                  ? "border-danger/50 bg-danger/5"
-                  : "border-dashed border-border-light bg-input-bg hover:border-accent hover:bg-[#F0F7FF]"
+          className={`upload-zone mx-auto mt-12 min-h-[200px] max-w-[640px] md:min-h-[200px] ${
+            selectedFile ? "" : dragActive ? "drag-over" : error ? "has-error" : ""
           }`}
         >
           {selectedFile ? (
-            <div className="flex flex-col items-center justify-center p-12">
-              <div className="flex h-14 w-14 items-center justify-center rounded-card bg-success/10 text-success">
-                <FileText className="h-7 w-7" />
+            <div className="flex flex-col items-center justify-center p-8">
+              <div
+                className="flex h-14 w-14 items-center justify-center rounded-[var(--radius-lg)]"
+                style={{ background: "var(--color-accent-muted)", color: "var(--color-accent-primary)" }}
+              >
+                <FileText className="h-7 w-7" aria-hidden />
               </div>
               <div className="mt-4 flex items-center gap-2">
-                <Check className="h-5 w-5 text-success" />
-                <span className="text-body font-medium text-dark-text">
-                  {selectedFile.name}
-                </span>
+                <Check className="h-5 w-5" style={{ color: "var(--color-accent-primary)" }} aria-hidden />
+                <span className="upload-label font-medium">{selectedFile.name}</span>
               </div>
-              <p className="mt-1 text-small text-muted">
-                {(selectedFile.size / 1024).toFixed(1)} KB
-              </p>
+              <p className="upload-sublabel mt-1">{(selectedFile.size / 1024).toFixed(1)} KB</p>
               <button
                 type="button"
                 onClick={onStartAnalysis}
-                className="animate-pulse-glow mt-8 w-full max-w-[400px] cursor-pointer rounded-button bg-accent py-4 text-body font-semibold text-white transition-all duration-200 hover:scale-[1.02]"
-                style={{
-                  background: "linear-gradient(180deg, #2563EB 0%, #1D4ED8 100%)",
-                  boxShadow: "0 4px 14px rgba(37,99,235,0.4)",
-                }}
+                className="btn-primary mt-8 w-full max-w-[400px] py-4"
               >
                 Analyze My Contract
               </button>
             </div>
           ) : (
-            <label className="flex cursor-pointer flex-col items-center justify-center p-12">
-              <UploadCloud
-                className={`h-14 w-14 transition-colors duration-200 ${
-                  dragActive ? "text-accent" : "text-slate-400"
-                }`}
+            <label className="flex cursor-pointer flex-col items-center justify-center p-8">
+              <Upload
+                className="upload-icon h-12 w-12"
+                aria-hidden
               />
-              <span className="mt-5 text-body font-medium text-dark-text">
-                Drag and drop your contract here
-              </span>
-              <span className="mt-2 text-small text-muted">or</span>
-              <span className="mt-3 inline-flex cursor-pointer items-center rounded-button border border-border-light bg-primary px-6 py-2.5 text-[16px] font-medium text-dark-text transition-all duration-200 hover:border-accent hover:bg-focus-ring">
+              <span className="upload-label">Drag and drop your contract here</span>
+              <span className="upload-sublabel">or</span>
+              <button
+                type="button"
+                onClick={(e) => { e.preventDefault(); handleBrowseClick(); }}
+                className="upload-browse font-medium"
+              >
                 Browse Files
-              </span>
+              </button>
               <input
+                ref={inputRef}
                 type="file"
                 accept=".pdf,.jpg,.jpeg,.png"
                 className="hidden"
                 onChange={handleChange}
+                aria-label="Choose contract file"
               />
             </label>
           )}
         </div>
         {error && (
-          <p className="mt-4 text-center text-small font-medium text-danger">
+          <p
+            className="mt-4 text-center text-[var(--text-sm)] font-medium"
+            style={{ color: "var(--color-danger)" }}
+            role="alert"
+          >
             {error}
           </p>
         )}
-        <p className="mt-5 text-center text-small text-muted">
+        <p
+          className="mt-5 text-center text-[var(--text-sm)]"
+          style={{ color: "var(--color-text-secondary)" }}
+        >
           Accepted: PDF, JPG, PNG. Max {MAX_SIZE_MB}MB.
         </p>
       </div>

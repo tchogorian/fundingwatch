@@ -1,6 +1,6 @@
 "use client";
 
-import { UploadCloud, Sparkles, FileCheck2, ChevronRight, Clock } from "lucide-react";
+import { UploadCloud, Sparkles, FileCheck2, Clock } from "lucide-react";
 import FadeIn from "./FadeIn";
 
 const steps = [
@@ -28,48 +28,73 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-secondary-bg py-section-y-mobile sm:py-section-y">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section
+      id="how-it-works"
+      className="reveal py-16 md:py-24"
+      style={{ background: "var(--color-bg-base)" }}
+    >
+      <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
         <FadeIn>
-          <p className="text-center text-eyebrow font-semibold uppercase tracking-widest text-accent">
-            HOW IT WORKS
-          </p>
-          <h2 className="mt-3 text-center text-section-mobile font-semibold text-dark-text sm:text-section-desktop">
+          <p className="eyebrow text-center">HOW IT WORKS</p>
+          <h2 className="mt-3 text-center" style={{ color: "var(--color-text-primary)" }}>
             Three Steps to Contract Clarity
           </h2>
         </FadeIn>
-        <div className="mt-16 flex flex-col items-stretch gap-8 sm:flex-row sm:justify-between sm:gap-4">
+        <div className="mt-16 flex flex-col items-stretch gap-12 sm:flex-row sm:justify-between sm:gap-6">
           {steps.map(({ number, title, description, Icon }, i) => (
-            <FadeIn key={number} delay={i * 100}>
-              <div className="relative flex flex-1 flex-col">
-                <div className="rounded-card border border-border bg-primary p-8 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-card-hover">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-lg font-bold text-white">
-                    {number}
+            <FadeIn key={number} delay={i * 150}>
+              <div className="relative flex flex-1 flex-col items-center text-center">
+                <div
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 font-mono text-[20px] font-medium"
+                  style={{
+                    borderColor: "var(--color-accent-primary)",
+                    color: "var(--color-accent-primary)",
+                  }}
+                >
+                  {number}
+                </div>
+                {i < steps.length - 1 && (
+                  <div
+                    className="absolute -bottom-6 left-1/2 h-8 w-px border-l-2 border-dashed sm:-right-4 sm:top-9 sm:left-auto sm:h-0 sm:w-24 sm:border-t-2 sm:border-l-0"
+                    style={{ borderColor: "var(--color-border-strong)" }}
+                  />
+                )}
+                <div className="mt-8 w-full rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-6 transition-shadow hover:shadow-[var(--shadow-md)]" style={{ background: "var(--color-bg-surface)" }}>
+                  <div
+                    className="mx-auto flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)]"
+                    style={{ background: "var(--color-accent-muted)", color: "var(--color-accent-primary)" }}
+                  >
+                    <Icon className="h-5 w-5" aria-hidden />
                   </div>
-                  <div className="mt-6 flex h-10 w-10 items-center justify-center rounded-card bg-trust-bg text-accent">
-                    <Icon className="h-8 w-8" />
-                  </div>
-                  <h3 className="mt-5 text-subhead-mobile font-semibold text-dark-text sm:text-subhead-desktop">
+                  <h3
+                    className="mt-4 text-[16px] font-semibold"
+                    style={{ color: "var(--color-text-primary)" }}
+                  >
                     {title}
                   </h3>
-                  <p className="mt-3 text-[16px] leading-[1.6] text-muted">
+                  <p
+                    className="mt-2 text-[14px] leading-relaxed"
+                    style={{ color: "var(--color-text-secondary)" }}
+                  >
                     {description}
                   </p>
                 </div>
-                {i < steps.length - 1 && (
-                  <div className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-muted sm:block">
-                    <ChevronRight className="h-6 w-6" />
-                  </div>
-                )}
               </div>
             </FadeIn>
           ))}
         </div>
         <FadeIn delay={300}>
-          <p className="mt-10 flex cursor-default items-center justify-center gap-2 text-small text-muted">
-            <Clock className="h-4 w-4" />
+          <div
+            className="mt-10 flex cursor-default items-center justify-center gap-2 rounded-full border px-5 py-2.5 text-[var(--text-sm)]"
+            style={{
+              borderColor: "var(--color-accent-border)",
+              color: "var(--color-accent-primary)",
+              background: "var(--color-bg-elevated)",
+            }}
+          >
+            <Clock className="h-4 w-4" aria-hidden />
             Average analysis time: under 30 seconds
-          </p>
+          </div>
         </FadeIn>
       </div>
     </section>

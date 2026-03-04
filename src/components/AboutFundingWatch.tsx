@@ -11,20 +11,15 @@ const stats = [
 
 export default function AboutFundingWatch() {
   return (
-    <section
-      id="about"
-      className="bg-primary py-section-y-mobile sm:py-section-y"
-    >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section id="about" className="py-16 md:py-24" style={{ background: "var(--color-bg-base)" }}>
+      <div className="mx-auto max-w-[var(--max-width-content)] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           <FadeIn className="lg:order-1">
-            <p className="text-eyebrow font-semibold uppercase tracking-widest text-accent">
-              OUR MISSION
-            </p>
-            <h2 className="mt-3 text-[36px] font-semibold leading-tight text-dark-text">
+            <p className="eyebrow">OUR MISSION</p>
+            <h2 className="mt-3 text-3xl font-semibold leading-tight" style={{ color: "var(--color-text-primary)" }}>
               Transparency for Every Business Owner
             </h2>
-            <div className="mt-6 max-w-[520px] space-y-6 text-body leading-[1.8] text-dark-text">
+            <div className="mt-6 max-w-[520px] space-y-6 text-[var(--text-base)] leading-[1.8]" style={{ color: "var(--color-text-primary)" }}>
               <p>
                 The merchant cash advance industry processes over $12 billion every year. For many small businesses, an MCA is the fastest — sometimes the only — way to access working capital. But speed comes at a cost that most borrowers never fully understand.
               </p>
@@ -38,19 +33,16 @@ export default function AboutFundingWatch() {
             <div className="mt-10 flex flex-wrap gap-10">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <p className="text-[32px] font-bold text-accent">{s.value}</p>
-                  <p className="mt-1 text-small text-muted">{s.label}</p>
+                  <p className="font-mono text-[32px] font-semibold" style={{ color: "var(--color-accent-primary)" }}>{s.value}</p>
+                  <p className="mt-1 text-[var(--text-sm)]" style={{ color: "var(--color-text-secondary)" }}>{s.label}</p>
                 </div>
               ))}
             </div>
           </FadeIn>
           <FadeIn delay={100} className="relative hidden lg:order-2 lg:block">
             <div className="flex justify-center">
-              <div
-                className="h-64 w-64 rounded-full opacity-[0.06]"
-                style={{ background: "radial-gradient(circle, #2563EB 0%, transparent 70%)" }}
-              />
-              <Shield className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 text-accent opacity-20" />
+              <div className="h-64 w-64 rounded-full opacity-[0.08]" style={{ background: "radial-gradient(circle, var(--color-accent-primary) 0%, transparent 70%)" }} />
+              <Shield className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 opacity-20" style={{ color: "var(--color-accent-primary)" }} aria-hidden />
             </div>
           </FadeIn>
         </div>

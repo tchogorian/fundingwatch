@@ -15,13 +15,13 @@ export default function ReportSection({ data }: { data: AnalysisResult }) {
     data.confidence === "medium" || data.confidence === "low";
 
   return (
-    <section className="animate-fade-in bg-secondary-bg py-section-y-mobile sm:py-section-y">
+    <section className="py-16 md:py-24" style={{ background: "var(--color-bg-base)" }}>
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <FadeIn>
-          <h2 className="text-section-mobile font-semibold text-dark-text sm:text-section-desktop">
+          <h2 className="text-2xl font-semibold md:text-3xl" style={{ color: "var(--color-text-primary)" }}>
             Your Analysis Report
           </h2>
-          <p className="mt-2 text-body text-muted">
+          <p className="mt-2 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
             Key terms and red flags from your contract.
           </p>
         </FadeIn>
@@ -38,7 +38,7 @@ export default function ReportSection({ data }: { data: AnalysisResult }) {
           </FadeIn>
           <FadeIn delay={200}>
             <div>
-              <h3 className="mb-4 text-subhead-desktop font-semibold text-dark-text">
+              <h3 className="mb-4 text-[var(--text-xl)] font-semibold" style={{ color: "var(--color-text-primary)" }}>
                 Contract Terms
               </h3>
               <ContractDetailsTable data={data} />
