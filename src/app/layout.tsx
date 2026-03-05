@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   title: "FundingWatch — Free MCA Contract Intelligence",
   description:
     "Upload your merchant cash advance contract. Our system reveals your true APR, hidden terms, and red flags — free, in under 30 seconds.",
+  verification: {
+    google: "6XMUkiJGV7qsaORZx0us0VRKXjam4XL5pTjjRuWqD2Y",
+  },
 };
 
 export const viewport = {
