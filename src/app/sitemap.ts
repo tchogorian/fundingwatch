@@ -2,18 +2,11 @@ import type { MetadataRoute } from "next";
 import { BLOG_POSTS } from "@/lib/blog";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  process.env.VERCEL_URL ||
-  "https://fundingwatch.org";
-
-function ensureHttps(url: string): string {
-  if (url.startsWith("http")) return url;
-  return `https://${url}`;
-}
-
-const base = ensureHttps(BASE_URL);
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.fundingwatch.org";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const base = BASE_URL.replace(/\/$/, "");
+
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
