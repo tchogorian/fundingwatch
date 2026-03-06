@@ -1,3 +1,5 @@
+import { PILLAR_POSTS } from "./blog-posts";
+
 export type BlogCategory =
   | "mca-basics"
   | "borrower-rights"
@@ -575,6 +577,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p><strong>This article is for educational purposes only and does not constitute legal or financial advice.</strong> California law on commercial financing disclosure is developed through statute and DFPI regulation. Consult a licensed California attorney for advice specific to your situation and contract.</p>
     `.trim(),
   },
+  ...PILLAR_POSTS,
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
