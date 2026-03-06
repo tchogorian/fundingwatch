@@ -8,6 +8,7 @@ import { Shield, ArrowRight, Menu, X } from "lucide-react";
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
   { label: "Resources", href: "#resources" },
+  { label: "MCA Calculator", href: "/apr-calculator" },
   { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "#faq" },
   { label: "About", href: "#about" },
