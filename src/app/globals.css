@@ -578,6 +578,23 @@ h3 {
   display: none !important;
   background-image: none !important;
 }
+/* Hide any stray image inside hero (old composite/figure must not show) */
+.hero img,
+.hero picture {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+/* Force no background image on hero or any child except the contract card */
+.hero,
+.hero *:not(.hero-contract-card):not(.hero-contract-card *) {
+  background-image: none !important;
+}
 /* Desktop: fixed height */
 @media (min-width: 1025px) {
   .hero {
@@ -676,16 +693,16 @@ h3 {
   color: #00C170;
 }
 .hero-title {
-  font-size: clamp(2.25rem, 4rem, 3.5rem);
+  font-size: clamp(2.25rem, 4rem, 3.25rem);
 }
 @media (min-width: 640px) {
   .hero-title {
-    font-size: clamp(2.75rem, 4vw, 3.5rem);
+    font-size: clamp(2.75rem, 3.5vw, 3.25rem);
   }
 }
 @media (min-width: 1024px) {
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 3.25rem;
   }
 }
 .hero-sub {

@@ -24,11 +24,12 @@ export default function Hero() {
             className="mb-6 hero-title"
             style={{
               fontWeight: 800,
-              lineHeight: 1,
+              lineHeight: 1.1,
               letterSpacing: "-0.04em",
             }}
           >
-            <span className="hero-headline-white">Something About Your MCA </span>
+            <span className="hero-headline-white">Something About Your MCA</span>
+            <br />
             <span className="hero-headline-accent">Feels Off.</span>
             <br />
             <span className="hero-headline-white">You&apos;re </span>

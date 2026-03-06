@@ -15,7 +15,7 @@ const CLAUSES = [
     heading: "Reconciliation",
     finePrint:
       "Available only if Merchant is in full compliance and not in default.",
-  ],
+  },
 ] as const;
 
 export default function HeroContractCard() {
