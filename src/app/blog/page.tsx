@@ -429,12 +429,6 @@ function BlogIndexCard({ post }: { post: BlogPost }) {
         >
           {CATEGORY_LABELS[post.category]}
         </span>
-        <span
-          className="shrink-0 font-mono text-sm"
-          style={{ color: "var(--color-text-tertiary)" }}
-        >
-          {new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-        </span>
       </div>
       <h3 className="mt-4 text-lg font-bold leading-snug md:text-xl" style={{ color: "var(--color-text-primary)" }}>
         {post.title}
