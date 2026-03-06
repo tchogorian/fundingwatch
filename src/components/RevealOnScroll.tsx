@@ -26,7 +26,7 @@ export function useRevealOnScroll(options?: Partial<IntersectionObserverInit>) {
 
     elements.forEach((el) => observer.observe(el));
     return () => elements.forEach((el) => observer.unobserve(el));
-  }, []);
+  }, [options]);
 }
 
 export default function RevealOnScrollProvider({
