@@ -50,12 +50,22 @@ export const BLOG_POSTS: BlogPost[] = [
       "When an MCA provider quotes you a factor rate of 1.35, it sounds reasonable. But factor rates aren't interest rates. Here's how to convert yours to a real APR.",
     category: "mca-basics",
     date: "2025-02-15",
-    readTimeMinutes: 6,
+    readTimeMinutes: 8,
     readCount: 12400,
     headings: [
       { id: "what-it-means", text: "What a factor rate actually means", level: 2 },
+      { id: "factor-rate-apr-table", text: "Factor rate to APR at a glance", level: 2 },
       { id: "convert-apr", text: "Converting factor rate to APR", level: 2 },
+      { id: "why-lenders-use", text: "Why lenders use factor rates instead of APR", level: 2 },
+      { id: "predatory", text: "What makes a factor rate predatory", level: 2 },
+      { id: "disclosure-laws", text: "California and New York disclosure laws", level: 2 },
       { id: "compare", text: "How to compare offers", level: 2 },
+      { id: "faq", text: "Frequently asked questions", level: 2 },
+      { id: "faq-1", text: "Is a 1.35 factor rate a good deal?", level: 3 },
+      { id: "faq-2", text: "Why don't MCA contracts show APR?", level: 3 },
+      { id: "faq-3", text: "Can I negotiate the factor rate?", level: 3 },
+      { id: "faq-4", text: "What's a reasonable factor rate?", level: 3 },
+      { id: "disclaimer", text: "Legal disclaimer", level: 2 },
     ],
     body: `
 <p>When an MCA provider quotes you a factor rate of 1.35, it sounds reasonable — like a 35% fee. But factor rates aren't interest rates. A factor rate of 1.35 on a $50,000 advance means you repay $67,500 — that's $17,500 in fees.</p>
@@ -63,13 +73,69 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>If your repayment term is 6 months, your effective APR is closer to 70%. If it's 3 months, you're looking at 140% or higher. Factor rates compress what would be a shocking annual rate into a small-sounding decimal. That's by design.</p>
 
 <h2 id="what-it-means">What a factor rate actually means</h2>
-<p>Unlike an interest rate, a factor rate is a multiplier applied once to your advance amount. There's no compounding, no annualization — which makes it hard to compare to a bank loan or SBA product.</p>
+<p>Unlike an interest rate, a factor rate is a multiplier applied once to your advance amount. There's no compounding, no annualization — which makes it hard to compare to a bank loan or SBA product. You multiply your advance by the factor rate to get total repayment: a $50,000 advance at 1.35 means you owe $67,500, period. The shorter your term, the higher the effective annual cost. That's why the same factor rate can look "reasonable" in marketing but translate to triple-digit APR when you run the numbers.</p>
+
+<h2 id="factor-rate-apr-table">Factor rate to APR at a glance</h2>
+<p>Below are equivalent APRs for common factor rates at 3-, 6-, and 12-month terms. These use a simplified annualized formula: (factor rate − 1) ÷ term in years. Your actual contract may vary with fees and payment frequency.</p>
+<table style="width:100%; border-collapse:collapse; font-size:0.9375rem; margin:1.5rem 0;">
+  <thead>
+    <tr style="background:#F7F9FC; border-bottom:2px solid #E5E7EB;">
+      <th scope="col" style="padding:0.75rem; text-align:left; font-weight:600; color:#1A1A2E;">Factor rate</th>
+      <th scope="col" style="padding:0.75rem; text-align:left; font-weight:600; color:#1A1A2E;">3-month term</th>
+      <th scope="col" style="padding:0.75rem; text-align:left; font-weight:600; color:#1A1A2E;">6-month term</th>
+      <th scope="col" style="padding:0.75rem; text-align:left; font-weight:600; color:#1A1A2E;">12-month term</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #E5E7EB;">
+      <td style="padding:0.75rem; font-weight:500; color:#1A1A2E;">1.20</td>
+      <td style="padding:0.75rem; color:#374151;">~80% APR</td>
+      <td style="padding:0.75rem; color:#374151;">~40% APR</td>
+      <td style="padding:0.75rem; color:#374151;">~20% APR</td>
+    </tr>
+    <tr style="border-bottom:1px solid #E5E7EB;">
+      <td style="padding:0.75rem; font-weight:500; color:#1A1A2E;">1.35</td>
+      <td style="padding:0.75rem; color:#374151;">~140% APR</td>
+      <td style="padding:0.75rem; color:#374151;">~70% APR</td>
+      <td style="padding:0.75rem; color:#374151;">~35% APR</td>
+    </tr>
+    <tr style="border-bottom:1px solid #E5E7EB;">
+      <td style="padding:0.75rem; font-weight:500; color:#1A1A2E;">1.50</td>
+      <td style="padding:0.75rem; color:#374151;">~200% APR</td>
+      <td style="padding:0.75rem; color:#374151;">~100% APR</td>
+      <td style="padding:0.75rem; color:#374151;">~50% APR</td>
+    </tr>
+  </tbody>
+</table>
+<p>Shorter terms make the same factor rate much more expensive on an annual basis. Always convert to APR and compare across the same term length.</p>
 
 <h2 id="convert-apr">Converting factor rate to APR</h2>
 <p>Our free tool converts your factor rate into a true APR so you can see what you're actually paying — and compare it to other financing options on equal terms. Upload your contract to get your number in under 30 seconds.</p>
 
+<h2 id="why-lenders-use">Why lenders use factor rates instead of APR</h2>
+<p>MCA providers often lead with factor rates for a few reasons. First, the number looks small: 1.35 sounds modest compared to "70% APR" or "140% APR," even though they can represent the same deal. Second, the industry has historically argued that MCAs are purchases of future receivables, not loans, so they aren't required to disclose APR in many states. Third, factor rates make cross-shopping harder. A business owner comparing a 1.30 from one provider and a 1.40 from another may not realize how much the term and payment frequency change the real cost. Leading with APR would make that comparison obvious — and would make high-cost deals harder to sell.</p>
+
+<h2 id="predatory">What makes a factor rate predatory</h2>
+<p>A factor rate itself isn't automatically predatory, but it becomes a red flag when it's combined with short terms, daily payments, and no reconciliation. For example, a 1.45 factor rate on a 4-month "daily pull" with no true reconciliation can push effective cost into the 200%+ APR range and leave the business with almost no flexibility if revenue dips. Other warning signs: pressure to take the advance without time to run the numbers, refusal to disclose an equivalent APR when asked, and contracts that lock in fixed daily amounts regardless of actual sales. If a lender won't put the cost in APR terms, that's a signal to slow down and get a second opinion.</p>
+
+<h2 id="disclosure-laws">California and New York disclosure laws</h2>
+<p>Regulators have started to require clearer cost disclosure. In California, the Department of Financial Protection and Innovation now requires MCA providers to disclose an equivalent APR before funding, so borrowers can compare offers on a level playing field. In New York, enforcement actions and settlement terms have pushed providers toward more transparent pricing and away from confessions of judgment. These changes don't eliminate high-cost advances, but they make it easier to see the true cost and to compare MCAs to loans and other options. If you're in California or New York, you have a right to see APR-style disclosures; use them.</p>
+
 <h2 id="compare">How to compare offers</h2>
-<p>Always ask for the effective APR, not just the factor rate. If a lender won't provide it, that's a red flag. Use our APR calculator to model different advance amounts and terms before you sign.</p>
+<p>Always ask for the effective APR, not just the factor rate. If a lender won't provide it, that's a red flag. Use our APR calculator to model different advance amounts and terms before you sign. And upload your contract to our free analyzer to see your true APR, red flags, and key terms in plain English.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<h3 id="faq-1">Is a 1.35 factor rate a good deal?</h3>
+<p>It depends on the term. At 12 months, 1.35 is roughly 35% APR — high but not unusual for alternative small-business funding. At 3 months, the same 1.35 is about 140% APR, which is very expensive. Always convert to APR and compare over the same term.</p>
+<h3 id="faq-2">Why don't MCA contracts show APR?</h3>
+<p>Many providers argue that an MCA is a purchase of receivables, not a loan, so they aren't required to disclose APR in every state. California and a growing number of states now require equivalent APR disclosure; others do not. That's why converting the factor rate yourself — or using a free tool like ours — is important.</p>
+<h3 id="faq-3">Can I negotiate the factor rate?</h3>
+<p>Sometimes. Strong revenue, clean bank statements, and existing relationships can give you leverage. It's also worth asking for a longer term or a reconciliation clause, which can reduce the effective cost even if the factor rate doesn't change much.</p>
+<h3 id="faq-4">What's a reasonable factor rate?</h3>
+<p>There's no single "reasonable" number — it depends on term, risk, and your alternatives. As a rough frame: factor rates in the 1.15–1.25 range on a 12-month term are on the lower end; 1.40+ on a short term can quickly exceed 100% APR. Run the numbers and compare to SBA or bank options when you can.</p>
+
+<h2 id="disclaimer">Legal disclaimer</h2>
+<p><strong>This article is for informational purposes only and does not constitute legal, tax, or financial advice.</strong> Factor rate and APR conversions are approximations; your actual contract may include fees, holdbacks, or payment structures that change the effective cost. Consult a licensed attorney or financial professional for advice specific to your situation. FundingWatch is not a law firm or financial advisor.</p>
     `.trim(),
   },
   {
