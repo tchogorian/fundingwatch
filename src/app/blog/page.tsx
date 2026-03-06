@@ -268,15 +268,10 @@ function BlogIndexContent() {
                 <li key={p.slug}>
                   <Link
                     href={`/blog/${p.slug}`}
-                    className="flex min-h-[48px] items-center justify-between gap-2 rounded-lg py-2 text-base transition hover:underline"
+                    className="flex min-h-[48px] items-center gap-2 rounded-lg py-2 text-base transition hover:underline"
                     style={{ color: "var(--color-text-secondary)" }}
                   >
                     <span className="line-clamp-2 flex-1">{p.title}</span>
-                    {p.readCount != null && (
-                      <span className="shrink-0 font-mono text-sm" style={{ color: "var(--color-text-tertiary)" }}>
-                        {p.readCount >= 1000 ? `${(p.readCount / 1000).toFixed(1)}k` : p.readCount}
-                      </span>
-                    )}
                   </Link>
                 </li>
               ))}
@@ -299,19 +294,14 @@ function BlogIndexContent() {
               </h2>
               <ul className="mt-4 space-y-3">
                 {popular.map((p) => (
-                  <li key={p.slug} className="flex items-baseline justify-between gap-2">
+                  <li key={p.slug}>
                     <Link
                       href={`/blog/${p.slug}`}
-                      className="min-w-0 flex-1 text-sm leading-snug transition hover:underline line-clamp-2"
+                      className="block text-sm leading-snug transition hover:underline line-clamp-2"
                       style={{ color: "var(--color-text-secondary)" }}
                     >
                       {p.title}
                     </Link>
-                    {p.readCount != null && (
-                      <span className="shrink-0 font-mono text-xs" style={{ color: "var(--color-text-tertiary)" }}>
-                        {p.readCount >= 1000 ? `${(p.readCount / 1000).toFixed(1)}k` : p.readCount}
-                      </span>
-                    )}
                   </li>
                 ))}
               </ul>
