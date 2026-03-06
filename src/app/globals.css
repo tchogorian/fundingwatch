@@ -751,6 +751,29 @@ h3 {
 .hero .hero-scroll-hint:hover {
   color: rgba(255, 255, 255, 0.9) !important;
 }
+/* Desktop fixes only — add these after existing hero styles */
+@media (min-width: 769px) {
+  .hero {
+    padding: 40px 0 40px;
+  }
+  .hero-title {
+    font-size: 3rem;
+  }
+  .hero-curiosity {
+    display: none !important;
+  }
+  .hero-trust-line {
+    text-align: center;
+  }
+  .hero-btns {
+    justify-content: flex-start;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 3.2rem;
+  }
+}
 /* Primary CTA: solid blue button on hero */
 .btn-hero-primary {
   position: relative;
