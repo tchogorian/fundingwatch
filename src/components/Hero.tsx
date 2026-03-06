@@ -30,7 +30,7 @@ export default function Hero() {
               letterSpacing: "-0.04em",
             }}
           >
-            <span className="hero-headline-white">Something About Your MCA</span>
+            <span className="hero-headline-white">Something About Your{"\u00A0"}MCA</span>
             <br />
             <span className="hero-headline-accent">Feels Off.</span>
             <br />
