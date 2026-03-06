@@ -32,6 +32,10 @@ export default function BlogCard({ post }: { post: BlogPost }) {
   const isRedFlag = post.category === "contract-analysis";
   const badgeClass = CATEGORY_BADGE_CLASS[post.category];
   const badgeStyle = isRedFlag ? {} : getCategoryBadgeStyle(post.category);
+  const dateObj = new Date(post.date);
+  const shortDate = dateObj.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  const longDate = dateObj.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  const fullDateTitle = dateObj.toLocaleDateString("en-US", { dateStyle: "full" });
 
   return (
     <Link
@@ -49,13 +53,10 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         <span
           className="shrink-0 font-mono text-[var(--text-xs)] whitespace-nowrap"
           style={{ color: "var(--color-text-tertiary)" }}
-          title={new Date(post.date).toLocaleDateString("en-US", { dateStyle: "full" })}
+          title={fullDateTitle}
         >
-          {new Date(post.date).toLocaleDateString("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-          })}
+          <span className="sm:hidden">{shortDate}</span>
+          <span className="hidden sm:inline">{longDate}</span>
         </span>
       </div>
       <h3

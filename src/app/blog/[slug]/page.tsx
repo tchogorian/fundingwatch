@@ -84,9 +84,9 @@ export default async function BlogArticlePage({
 
   return (
     <>
-      <article className="mx-auto max-w-[1008px] px-5 py-12 sm:px-6 lg:flex lg:gap-12 pb-24 md:pb-12">
-        {/* Main column — max-width 680px */}
-        <div className="min-w-0 flex-1 lg:max-w-[var(--max-width-text)]">
+      <article className="mx-auto max-w-[1080px] px-5 py-12 sm:px-6 lg:flex lg:gap-10 pb-24 md:pb-12">
+        {/* Main column — priority width for reading */}
+        <div className="min-w-0 flex-1 lg:min-w-[min(100%,var(--max-width-text))] lg:max-w-[var(--max-width-text)]">
           {/* Breadcrumb */}
           <nav
             className="text-sm min-[375px]:text-[var(--text-sm)]"
@@ -290,28 +290,28 @@ export default async function BlogArticlePage({
         {/* Sidebar ToC — sticky on desktop (only when we have headings) */}
         {post.headings && post.headings.length > 0 && (
           <aside
-            className="hidden shrink-0 lg:block"
-            style={{ width: "var(--sidebar-width)" }}
+            className="hidden shrink-0 lg:block lg:w-[var(--sidebar-width)]"
+            style={{ maxWidth: "220px" }}
           >
             <div
-              className="sticky top-20 rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-6"
+              className="sticky top-20 rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-4"
               style={{ background: "var(--color-bg-surface)" }}
             >
               <h2
-                className="text-[var(--text-xs)] font-semibold uppercase tracking-wider"
+                className="text-[11px] font-semibold uppercase tracking-wider"
                 style={{ color: "var(--color-accent-primary)" }}
               >
                 Contents
               </h2>
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-3 space-y-1">
                 {post.headings.map((h) => (
                   <li key={h.id}>
                     <a
                       href={`#${h.id}`}
-                      className="block border-l-2 border-transparent py-1 pl-3 text-[14px] transition hover:underline"
+                      className="block border-l-2 border-transparent py-0.5 pl-2.5 text-[13px] leading-snug transition hover:underline line-clamp-2"
                       style={{
                         color: "var(--color-text-secondary)",
-                        marginLeft: h.level === 3 ? 12 : 0,
+                        marginLeft: h.level === 3 ? 8 : 0,
                       }}
                     >
                       {h.text}

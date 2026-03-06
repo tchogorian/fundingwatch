@@ -85,6 +85,9 @@
   --color-text-tertiary: var(--on-light-3);
   --color-border-default: var(--border-light);
   --color-danger: var(--danger);
+  /* Blog article layout: article column vs TOC sidebar */
+  --max-width-text: 720px;
+  --sidebar-width: 200px;
 }
 
 /* ========== SECTION LAYOUT — dark/light alternation (Plaid) ========== */
