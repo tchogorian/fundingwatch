@@ -33,7 +33,7 @@ export default function Hero() {
             <span style={{ color: "#FFFFFF" }}>Something About</span>
             <br />
             <span style={{ color: "#FFFFFF" }}>Your </span>
-            <span style={{ color: "#DC2626" }}>MCA</span>
+            <span style={{ color: "#F87171" }}>MCA</span>
             <span style={{ color: "#FFFFFF" }}> Feels Off.</span>
             <br />
             <span style={{ color: "#FFFFFF" }}>You&apos;re </span>
