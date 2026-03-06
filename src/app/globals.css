@@ -606,21 +606,33 @@ h3 {
   gap: 48px;
   align-items: center;
 }
-/* Right column: document image wrapper — flex center, transparent. Hidden on mobile. */
+/* Right column: document image wrapper */
 .hero-document-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  background-color: transparent;
+  background: transparent !important;
+  background-color: transparent !important;
   overflow: visible;
+  position: relative;
 }
+
+/* Kill any Next.js Image wrapper span background */
+.hero-document-wrapper span,
+.hero-document-wrapper div {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
 .hero-contract-document-img {
   max-width: 380px;
   width: 100%;
+  height: auto !important;
   display: block;
   border-radius: 8px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  background: transparent !important;
+  background-color: transparent !important;
 }
 @media (max-width: 768px) {
   .hero-document-wrapper {
