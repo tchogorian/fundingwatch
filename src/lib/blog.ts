@@ -42,6 +42,7 @@ export interface BlogPost {
   headings?: { id: string; text: string; level: 2 | 3 }[];
   author?: string;
   authorBio?: string;
+  credentials?: string;
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -57,6 +58,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Alex Tchogorian",
     authorBio:
       "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+    credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "what-factor-rate-is", text: "What a Factor Rate Actually Is", level: 2 },
       { id: "compare-interest-rates", text: "How Factor Rates Compare to Interest Rates", level: 2 },
@@ -153,6 +155,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Alex Tchogorian",
     authorBio:
       "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+    credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "what-is-coj", text: "What Is a Confession of Judgment?", level: 2 },
       { id: "how-coj-works", text: "How a Confession of Judgment Works Step by Step", level: 2 },
@@ -245,6 +248,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Alex Tchogorian",
     authorBio:
       "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+    credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "what-reconciliation-means", text: "What Reconciliation Means in an MCA Context", level: 2 },
       { id: "fixed-vs-true", text: "Fixed Payments Versus True Reconciliation", level: 2 },
@@ -332,6 +336,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Alex Tchogorian",
     authorBio:
       "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+    credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "who-yellowstone", text: "Who Is Yellowstone Capital?", level: 2 },
       { id: "what-ag-alleged", text: "What the New York AG Alleged", level: 2 },
@@ -401,6 +406,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Alex Tchogorian",
     authorBio:
       "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+    credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "how-stacking-happens", text: "How MCA Stacking Happens", level: 2 },
       { id: "real-cost", text: "The Real Cost of Stacked Advances", level: 2 },
@@ -493,6 +499,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Alex Tchogorian",
     authorBio:
       "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+    credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "what-sb1235-requires", text: "What SB 1235 Actually Requires", level: 2 },
       { id: "dfpi-calculates", text: "How the DFPI Calculates the Annualized Rate", level: 2 },

@@ -11,5 +11,9 @@ export default function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <div className="blog-layout min-h-screen w-full overflow-x-hidden">
+      {children}
+    </div>
+  );
 }

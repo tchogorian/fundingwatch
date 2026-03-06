@@ -42,11 +42,29 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return { title: "Not Found" };
+  const title = `${post.title} — FundingWatch Blog`;
+  const description = post.excerpt;
+  const url = `https://www.fundingwatch.org/blog/${slug}`;
   return {
-    title: `${post.title} — FundingWatch Blog`,
-    description: post.excerpt,
+    title,
+    description,
+    authors: post.author ? [{ name: post.author }] : undefined,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url,
+      siteName: "FundingWatch",
+      authors: post.author ? [post.author] : undefined,
+      publishedTime: post.date,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
     alternates: {
-      canonical: `https://www.fundingwatch.org/blog/${slug}`,
+      canonical: url,
     },
   };
 }
@@ -228,7 +246,11 @@ export default async function BlogArticlePage({
           <div
             className="mt-12 rounded-xl border border-[var(--color-border-default)] p-5 md:p-6"
             style={{ background: "var(--color-bg-surface)" }}
+            aria-label="About the author"
           >
+            <h2 className="text-sm font-semibold uppercase tracking-wider mb-4" style={{ color: "var(--color-accent-primary)" }}>
+              About the author
+            </h2>
             <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:text-left">
               <div
                 className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-mono text-xl font-medium"
@@ -246,6 +268,14 @@ export default async function BlogArticlePage({
                 >
                   {post.author ?? "FundingWatch Research Team"}
                 </p>
+                {post.credentials && (
+                  <p
+                    className="mt-1 text-sm font-medium"
+                    style={{ color: "var(--color-accent-primary)" }}
+                  >
+                    {post.credentials}
+                  </p>
+                )}
                 <p
                   className="mt-1 text-sm leading-relaxed md:text-[var(--text-sm)]"
                   style={{ color: "var(--color-text-secondary)" }}

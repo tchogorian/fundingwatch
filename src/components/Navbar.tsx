@@ -69,17 +69,16 @@ export default function Navbar() {
           <div className="hidden items-center gap-8 md:flex" aria-label="Main">
             {navLinks.map(({ label, href }) => {
               const isHash = href.startsWith("#");
-              const goToHomeWithHash = isHash && !isHome;
-              if (goToHomeWithHash) {
+              if (isHash && !isHome) {
                 return (
-                  <Link
+                  <a
                     key={href}
-                    href={`/${href}`}
+                    href={`/#${href.slice(1)}`}
                     className="text-[14px] font-medium transition-colors hover:opacity-90 min-h-[48px] min-w-[48px] inline-flex items-center"
                     style={{ color: "rgba(255, 255, 255, 0.9)" }}
                   >
                     {label}
-                  </Link>
+                  </a>
                 );
               }
               if (isHash) {
@@ -130,7 +129,7 @@ export default function Navbar() {
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
             ) : (
-              <Link
+              <a
                 href="/#upload"
                 className="hidden items-center gap-2 md:inline-flex nav-cta min-h-[48px]"
                 style={{
@@ -144,7 +143,7 @@ export default function Navbar() {
               >
                 Analyze Contract
                 <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
+              </a>
             )}
             <button
               type="button"
@@ -175,18 +174,17 @@ export default function Navbar() {
         <nav className="flex flex-col gap-0 px-4 pt-6 pb-8" aria-label="Mobile">
           {navLinks.map(({ label, href }) => {
             const isHash = href.startsWith("#");
-            const goToHomeWithHash = isHash && !isHome;
-            if (goToHomeWithHash) {
+            if (isHash && !isHome) {
               return (
-                <Link
+                <a
                   key={href}
-                  href={`/${href}`}
+                  href={`/#${href.slice(1)}`}
                   className="flex min-h-[56px] min-w-[48px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80 py-3"
                   style={{ color: "#0B1F3A" }}
                   onClick={() => setMobileOpen(false)}
                 >
                   {label}
-                </Link>
+                </a>
               );
             }
             if (isHash) {
@@ -195,7 +193,7 @@ export default function Navbar() {
                   key={href}
                   type="button"
                   onClick={() => scrollTo(href)}
-                  className="flex min-h-[56px] min-w-[48px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80 py-3 text-left"
+                  className="flex min-h-[56px] min-w-[48px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80 py-3 text-left w-full"
                   style={{ color: "#0B1F3A" }}
                 >
                   {label}
@@ -227,14 +225,14 @@ export default function Navbar() {
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           ) : (
-            <Link
+            <a
               href="/#upload"
               className="btn-primary mt-8 flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-[13px] font-semibold"
               onClick={() => setMobileOpen(false)}
             >
               Analyze Contract
               <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
+            </a>
           )}
         </nav>
       </div>

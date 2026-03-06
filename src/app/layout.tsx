@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import ScrollToHash from "@/components/ScrollToHash";
 import "./globals.css";
 
 const sora = Sora({
@@ -54,6 +55,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Navbar />
+        <ScrollToHash />
         <main id="main">{children}</main>
       </body>
     </html>
