@@ -59,9 +59,9 @@ export default function Home() {
     <>
       <Hero />
       <div className="page-base">
+      <WhatYourReportIncludes />
       <WhoThisIsFor />
       <HowItWorks />
-      <WhatYourReportIncludes />
       {isAnalyzing ? (
         <LoadingState />
       ) : (

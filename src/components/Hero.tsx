@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
+import HeroContractCard from "./HeroContractCard";
 
 export default function Hero() {
   const scrollToUpload = () => {
@@ -53,8 +54,10 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Spacer for layout on desktop so content doesn't overlap figure */}
-        <div className="hero-illustration-spacer max-lg:hidden" aria-hidden="true" />
+        {/* Right column: contract card (replaces former illustration) */}
+        <div className="flex w-full max-w-full justify-end lg:min-w-0 lg:max-w-[50%]">
+          <HeroContractCard />
+        </div>
       </div>
 
       {/* Scroll indicator */}

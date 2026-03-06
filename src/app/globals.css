@@ -564,13 +564,10 @@ h3 {
 }
 
 /* ========== HERO ========== */
-/* Hero illustration: transparent PNG on blue gradient; no overlay, no blend, no filter */
+/* Hero uses contract card component; no background image */
 .hero {
   background-color: #2E75B6;
-  background-image: url("/images/hero-composite.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right center;
+  background-image: none;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
@@ -591,10 +588,9 @@ h3 {
     bottom: 8px;
   }
 }
-/* Mobile: illustration position */
+/* Mobile: hero height */
 @media (max-width: 1024px) {
   .hero {
-    background-position: 80% center;
     height: 62vh;
     max-height: 62vh;
     min-height: 360px;
@@ -839,7 +835,7 @@ h3 {
   font-weight: 600;
   color: var(--text-dark-1);
 }
-/* Spacer so left content doesn't overlap figure (layout only; figure is in composite image) */
+/* Right column placeholder (card replaces illustration) */
 .hero-illustration-spacer {
   min-height: 1px;
 }
@@ -1098,6 +1094,9 @@ h3 {
     opacity: 0.5;
     transform: scale(0.8);
   }
+}
+.hero-contract-card-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
 /* ========== BUTTONS ========== */

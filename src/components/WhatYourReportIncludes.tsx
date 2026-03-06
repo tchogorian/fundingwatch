@@ -3,6 +3,13 @@
 import { TrendingUp, AlertTriangle, BarChart3, Search } from "lucide-react";
 import FadeIn from "./FadeIn";
 
+const scanFinds = [
+  "Estimated APR",
+  "Hidden default triggers",
+  "Confession of judgment clauses",
+  "Stacking and renewal traps",
+];
+
 const features = [
   {
     icon: TrendingUp,
@@ -34,6 +41,23 @@ export default function WhatYourReportIncludes() {
   return (
     <section className="section-card" aria-label="What your report includes">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
+        {/* Contract Scan Finds — dark block, amber ⚠, white text */}
+        <div className="section-dark rounded-2xl px-6 py-8 sm:px-8 sm:py-10" style={{ marginBottom: "3rem" }}>
+          <FadeIn>
+            <h2 className="section-heading text-center" style={{ color: "#FFFFFF" }}>
+              Contract Scan Finds:
+            </h2>
+            <ul className="mx-auto mt-8 max-w-[560px] space-y-4 text-lg font-medium" style={{ color: "#FFFFFF" }}>
+              {scanFinds.map((label, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <span className="shrink-0 text-xl" style={{ color: "#F59E0B" }} aria-hidden>⚠</span>
+                  <span>{label}</span>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+        </div>
+
         <FadeIn>
           <p className="eyebrow text-center">YOUR ANALYSIS</p>
           <h2 className="section-heading text-center" style={{ color: "var(--color-text-primary)" }}>
