@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 export default function Hero() {
   const scrollToUpload = () => {
@@ -16,8 +16,8 @@ export default function Hero() {
       <div className="hero-inner">
         {/* Left column — content */}
         <div>
-          <p className="eyebrow" style={{ marginBottom: 14 }}>
-            FREE MCA CONTRACT INTELLIGENCE
+          <p className="eyebrow hero-eyebrow" style={{ marginBottom: 14 }}>
+            For business owners with Merchant Cash Advances
           </p>
           <h1
             className="mb-6 hero-title"
@@ -27,33 +27,29 @@ export default function Hero() {
               letterSpacing: "-0.04em",
             }}
           >
-            <span className="hero-white">What&apos;s Your MCA</span>
+            <span className="hero-headline-white">Something About Your MCA </span>
+            <span className="hero-headline-accent">Feels Off.</span>
             <br />
-            <span className="hero-gradient">Really Costing</span>
-            <br />
-            <span className="hero-white">You?</span>
+            <span className="hero-headline-white">You&apos;re </span>
+            <span className="hero-headline-accent">Probably Right.</span>
           </h1>
           <p className="hero-sub">
-            Upload your contract. Our system reveals your true APR, hidden terms, and red flags —
-            free, in under 30 seconds.
+            Upload the contract. The analyzer highlights hidden terms, real cost, and the parts most people miss.
+          </p>
+          <p className="hero-curiosity" style={{ marginBottom: 12 }}>
+            Most owners miss at least one of these clauses.
           </p>
           <div className="hero-btns">
             <button
               type="button"
               onClick={scrollToUpload}
-              className="btn-hero-primary inline-flex items-center gap-2"
+              className="btn-hero-primary inline-flex min-h-[48px] items-center justify-center gap-2 w-full sm:w-auto"
             >
-              Analyze My Contract Free
-              <ArrowRight className="h-5 w-5" aria-hidden />
+              Analyze My Contract →
             </button>
           </div>
-          <div className="trust-logos">
-            <span className="trust-logos-label">Trusted by business owners in:</span>
-            <span className="trust-logo-item">NY</span>
-            <span className="trust-logo-item">CA</span>
-            <span className="trust-logo-item">FL</span>
-            <span className="trust-logo-item">TX</span>
-            <span className="trust-logo-item">IL</span>
+          <div className="hero-trust-line">
+            Private. No signup required.
           </div>
         </div>
 

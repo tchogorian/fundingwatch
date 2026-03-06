@@ -604,35 +604,29 @@ h3 {
     bottom: 6px;
   }
 }
-/* Mobile only: softer hero text (not blinding) */
+/* Mobile only: hero text and layout */
 @media (max-width: 1024px) {
-  .hero .eyebrow {
-    color: rgba(255, 255, 255, 0.82);
-    font-weight: 600;
-  }
-  .hero .hero-title {
-    font-size: clamp(1.875rem, 3rem, 4rem);
+  .hero .eyebrow.hero-eyebrow {
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 700;
   }
-  .hero h1 .hero-white {
-    color: rgba(255, 255, 255, 0.92);
+  .hero .hero-title {
+    font-size: clamp(14px, 5.5vw, 2.25rem);
+    font-weight: 800;
   }
-  .hero h1 .hero-gradient {
-    color: rgba(255, 255, 255, 0.9);
-    -webkit-text-fill-color: rgba(255, 255, 255, 0.9);
-    background: none;
-    background-clip: unset;
+  .hero h1 .hero-headline-white {
+    color: #FFFFFF;
+  }
+  .hero h1 .hero-headline-accent {
+    color: #00D97E;
   }
   .hero-sub {
     color: rgba(255, 255, 255, 0.88);
     font-size: 17px;
     font-weight: 400;
   }
-  .hero .trust-logos-label {
-    color: rgba(255, 255, 255, 0.72);
-  }
-  .hero .trust-logo-item {
-    color: rgba(255, 255, 255, 0.78);
+  .hero .hero-curiosity {
+    font-size: 14px;
   }
   .hero .hero-scroll-hint {
     color: rgba(255, 255, 255, 0.65);
@@ -650,13 +644,13 @@ h3 {
   align-items: start;
   min-height: calc(100vh - 156px);
 }
-/* Desktop: "Really Costing" matches header "Watch" teal */
+/* Desktop: headline colors — solid only, no gradient */
 @media (min-width: 1025px) {
-  .hero h1 .hero-gradient {
-    color: #4AE8A4;
-    background: none;
-    -webkit-text-fill-color: #4AE8A4;
-    background-clip: unset;
+  .hero h1 .hero-headline-white {
+    color: #FFFFFF;
+  }
+  .hero h1 .hero-headline-accent {
+    color: #00D97E;
   }
 }
 @media (max-width: 1024px) {
@@ -666,8 +660,18 @@ h3 {
     min-height: auto;
   }
 }
-.hero h1 .hero-white {
-  color: #ffffff;
+.hero .eyebrow.hero-eyebrow {
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.hero h1 .hero-headline-white {
+  color: #FFFFFF;
+}
+.hero h1 .hero-headline-accent {
+  color: #00D97E;
 }
 .hero-title {
   font-size: clamp(2.25rem, 4rem, 5.2rem);
@@ -682,12 +686,6 @@ h3 {
     font-size: 5.2rem;
   }
 }
-.hero h1 .hero-gradient {
-  background: linear-gradient(90deg, #64B5F6, #2E75B6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 .hero-sub {
   font-size: 18px;
   font-weight: 300;
@@ -696,11 +694,22 @@ h3 {
   max-width: 520px;
   margin-bottom: 40px;
 }
+.hero-curiosity {
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 12px;
+}
 .hero-btns {
   display: flex;
   gap: 14px;
   align-items: center;
   margin-bottom: 48px;
+}
+.hero-trust-line {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
 }
 /* Primary: gradient fill + gradient border (Plaid-style) */
 .btn-hero-primary {
