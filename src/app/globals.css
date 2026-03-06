@@ -1379,6 +1379,11 @@ h3 {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+.article-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
 .article-prose blockquote {
   border-left: 3px solid var(--hero-mid);
   background: rgba(11, 93, 194, 0.06);
@@ -1399,4 +1404,39 @@ h3 {
 .nav-cta:hover {
   background: rgba(255, 255, 255, 0.9) !important;
   color: #0B1F3A !important;
+}
+
+/* ========== BLOG ========== */
+@media (max-width: 767px) {
+  .blog-hero {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .blog-hero-title {
+    font-size: 32px;
+  }
+  .blog-hero-sub {
+    font-size: 16px;
+  }
+  .article-prose {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}
+.blog-article-title {
+  max-width: 100%;
+}
+@media (max-width: 767px) {
+  .blog-article-title {
+    font-size: 28px;
+  }
+}
+.blog-cat-pill,
+.blog-featured-card,
+.blog-card {
+  min-width: 0;
+}
+/* Blog post: TOC dropdown arrow when open */
+details[open] .blog-toc-chevron {
+  transform: rotate(180deg);
 }

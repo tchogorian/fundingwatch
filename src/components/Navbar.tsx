@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Shield, ArrowRight, Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -13,6 +14,8 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
@@ -66,21 +69,37 @@ export default function Navbar() {
           <div className="hidden items-center gap-8 md:flex" aria-label="Main">
             {navLinks.map(({ label, href }) => {
               const isHash = href.startsWith("#");
-              return isHash ? (
-                <button
-                  key={href}
-                  type="button"
-                  onClick={() => scrollTo(href)}
-                  className="text-[14px] font-medium transition-colors hover:opacity-90"
-                  style={{ color: "rgba(255, 255, 255, 0.9)" }}
-                >
-                  {label}
-                </button>
-              ) : (
+              const goToHomeWithHash = isHash && !isHome;
+              if (goToHomeWithHash) {
+                return (
+                  <Link
+                    key={href}
+                    href={`/${href}`}
+                    className="text-[14px] font-medium transition-colors hover:opacity-90 min-h-[48px] min-w-[48px] inline-flex items-center"
+                    style={{ color: "rgba(255, 255, 255, 0.9)" }}
+                  >
+                    {label}
+                  </Link>
+                );
+              }
+              if (isHash) {
+                return (
+                  <button
+                    key={href}
+                    type="button"
+                    onClick={() => scrollTo(href)}
+                    className="text-[14px] font-medium transition-colors hover:opacity-90 min-h-[48px] min-w-[48px] flex items-center"
+                    style={{ color: "rgba(255, 255, 255, 0.9)" }}
+                  >
+                    {label}
+                  </button>
+                );
+              }
+              return (
                 <Link
                   key={href}
                   href={href}
-                  className="text-[14px] font-medium transition-colors hover:opacity-90"
+                  className="text-[14px] font-medium transition-colors hover:opacity-90 min-h-[48px] min-w-[48px] inline-flex items-center"
                   style={{ color: "rgba(255, 255, 255, 0.9)" }}
                 >
                   {label}
@@ -90,29 +109,47 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link
-              href="#upload"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToUpload();
-              }}
-              className="hidden items-center gap-2 md:inline-flex nav-cta"
-              style={{
-                background: "#FFFFFF",
-                color: "#0B1F3A",
-                borderRadius: "9999px",
-                padding: "10px 22px",
-                fontSize: "13px",
-                fontWeight: 600,
-              }}
-            >
-              Analyze Contract
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
+            {isHome ? (
+              <Link
+                href="#upload"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToUpload();
+                }}
+                className="hidden items-center gap-2 md:inline-flex nav-cta min-h-[48px]"
+                style={{
+                  background: "#FFFFFF",
+                  color: "#0B1F3A",
+                  borderRadius: "9999px",
+                  padding: "10px 22px",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                }}
+              >
+                Analyze Contract
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            ) : (
+              <Link
+                href="/#upload"
+                className="hidden items-center gap-2 md:inline-flex nav-cta min-h-[48px]"
+                style={{
+                  background: "#FFFFFF",
+                  color: "#0B1F3A",
+                  borderRadius: "9999px",
+                  padding: "10px 22px",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                }}
+              >
+                Analyze Contract
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            )}
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="flex h-10 w-10 min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center md:hidden"
+              className="flex h-12 w-12 min-h-[48px] min-w-[48px] cursor-pointer items-center justify-center md:hidden"
               style={{ color: "#FFFFFF" }}
               aria-expanded={mobileOpen}
               aria-label="Toggle menu"
@@ -138,13 +175,27 @@ export default function Navbar() {
         <nav className="flex flex-col gap-0 px-4 pt-6 pb-8" aria-label="Mobile">
           {navLinks.map(({ label, href }) => {
             const isHash = href.startsWith("#");
+            const goToHomeWithHash = isHash && !isHome;
+            if (goToHomeWithHash) {
+              return (
+                <Link
+                  key={href}
+                  href={`/${href}`}
+                  className="flex min-h-[56px] min-w-[48px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80 py-3"
+                  style={{ color: "#0B1F3A" }}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {label}
+                </Link>
+              );
+            }
             if (isHash) {
               return (
                 <button
                   key={href}
                   type="button"
                   onClick={() => scrollTo(href)}
-                  className="flex min-h-[56px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80"
+                  className="flex min-h-[56px] min-w-[48px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80 py-3 text-left"
                   style={{ color: "#0B1F3A" }}
                 >
                   {label}
@@ -155,7 +206,7 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
-                className="flex min-h-[56px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80"
+                className="flex min-h-[56px] min-w-[48px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80 py-3"
                 style={{ color: "#0B1F3A" }}
                 onClick={() => setMobileOpen(false)}
               >
@@ -163,17 +214,28 @@ export default function Navbar() {
               </Link>
             );
           })}
-          <Link
-            href="#upload"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToUpload();
-            }}
-            className="btn-primary mt-8 flex w-full items-center justify-center gap-2 py-4 text-[13px] font-semibold"
-          >
-            Analyze Contract
-            <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
+          {isHome ? (
+            <Link
+              href="#upload"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToUpload();
+              }}
+              className="btn-primary mt-8 flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-[13px] font-semibold"
+            >
+              Analyze Contract
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          ) : (
+            <Link
+              href="/#upload"
+              className="btn-primary mt-8 flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-[13px] font-semibold"
+              onClick={() => setMobileOpen(false)}
+            >
+              Analyze Contract
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          )}
         </nav>
       </div>
 

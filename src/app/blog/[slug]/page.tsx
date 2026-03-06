@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Shield, ArrowRight } from "lucide-react";
 import Footer from "@/components/Footer";
 import BlogCard from "@/components/BlogCard";
+import BlogStickyCTA from "@/components/BlogStickyCTA";
 import {
   getPostBySlug,
   getRelatedPosts,
@@ -65,24 +66,24 @@ export default async function BlogArticlePage({
 
   return (
     <>
-      <article className="mx-auto max-w-[1008px] px-4 py-12 sm:px-6 lg:flex lg:gap-12">
+      <article className="mx-auto max-w-[1008px] px-5 py-12 sm:px-6 lg:flex lg:gap-12 pb-24 md:pb-12">
         {/* Main column — max-width 680px */}
         <div className="min-w-0 flex-1 lg:max-w-[var(--max-width-text)]">
           {/* Breadcrumb */}
           <nav
-            className="text-[var(--text-sm)]"
+            className="text-sm min-[375px]:text-[var(--text-sm)]"
             style={{ color: "var(--color-text-secondary)" }}
             aria-label="Breadcrumb"
           >
-            <Link href="/" className="transition hover:underline">Home</Link>
+            <Link href="/" className="transition hover:underline min-h-[48px] min-w-[48px] inline-flex items-center">Home</Link>
             <span className="mx-2">/</span>
-            <Link href="/blog" className="transition hover:underline">Blog</Link>
+            <Link href="/blog" className="transition hover:underline min-h-[48px] min-w-[48px] inline-flex items-center">Blog</Link>
             <span className="mx-2">/</span>
             <span style={{ color: "var(--color-text-primary)" }}>
               {CATEGORY_LABELS[post.category]}
             </span>
             <span className="mx-2">/</span>
-            <span style={{ color: "var(--color-text-tertiary)" }}>{post.title}</span>
+            <span style={{ color: "var(--color-text-tertiary)" }} className="line-clamp-1">{post.title}</span>
           </nav>
 
           <span
@@ -93,7 +94,7 @@ export default async function BlogArticlePage({
           </span>
 
           <h1
-            className="mt-4 font-display text-3xl leading-tight md:text-[3rem]"
+            className="blog-article-title mt-4 font-display text-[28px] leading-tight md:text-3xl lg:text-[3rem]"
             style={{ color: "var(--color-text-primary)" }}
           >
             {post.title}
@@ -108,13 +109,13 @@ export default async function BlogArticlePage({
                 color: "var(--color-accent-primary)",
               }}
             >
-              F
+              {post.author ? post.author.charAt(0) : "F"}
             </div>
             <span
               className="text-[var(--text-base)] font-medium"
               style={{ color: "var(--color-text-primary)" }}
             >
-              FundingWatch Research Team
+              {post.author ?? "FundingWatch Research Team"}
             </span>
             <span
               className="font-mono text-[var(--text-sm)]"
@@ -139,34 +140,31 @@ export default async function BlogArticlePage({
             aria-hidden
           />
 
-          {/* Table of Contents — visible on mobile only */}
+          {/* Table of Contents — mobile: collapsible dropdown; desktop: sidebar only */}
           {post.headings && post.headings.length > 0 && (
-            <aside
-              className="mb-8 rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-6 lg:mb-0 lg:hidden"
-              style={{ background: "var(--color-bg-surface)" }}
-            >
-              <h2
-                className="text-[var(--text-xs)] font-semibold uppercase tracking-wider"
-                style={{ color: "var(--color-accent-primary)" }}
-              >
-                Contents
-              </h2>
-              <ul className="mt-4 space-y-2">
-                {post.headings.map((h) => (
-                  <li key={h.id}>
-                    <a
-                      href={`#${h.id}`}
-                      className="text-[14px] transition hover:underline"
-                      style={{
-                        color: "var(--color-text-secondary)",
-                        paddingLeft: h.level === 3 ? 12 : 0,
-                      }}
-                    >
-                      {h.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            <aside className="mb-8 lg:mb-0 lg:hidden" aria-label="Table of contents">
+              <details className="group rounded-xl border border-[var(--color-border-default)] overflow-hidden" style={{ background: "var(--color-bg-surface)" }}>
+                <summary className="flex min-h-[48px] cursor-pointer list-none items-center justify-between px-5 py-3 text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--color-accent-primary)" }}>
+                  Contents
+                  <span className="blog-toc-chevron ml-2 transition-transform" aria-hidden>▼</span>
+                </summary>
+                <ul className="border-t border-[var(--color-border-default)] px-5 py-4 space-y-2">
+                  {post.headings.map((h) => (
+                    <li key={h.id}>
+                      <a
+                        href={`#${h.id}`}
+                        className="block min-h-[48px] py-2 text-sm transition hover:underline"
+                        style={{
+                          color: "var(--color-text-secondary)",
+                          paddingLeft: h.level === 3 ? 12 : 0,
+                        }}
+                      >
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
             </aside>
           )}
 
@@ -178,19 +176,19 @@ export default async function BlogArticlePage({
 
           {/* Mid-article style CTA — one after content */}
           <div
-            className="mt-12 flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-lg)] border border-[var(--color-accent-border)] p-6 md:p-7"
+            className="mt-12 flex flex-col gap-4 rounded-xl border border-[var(--color-accent-border)] p-5 sm:flex-row sm:items-center sm:justify-between md:p-7"
             style={{ background: "var(--color-bg-elevated)" }}
           >
             <div>
               <p
-                className="flex items-center gap-2 text-[var(--text-lg)] font-semibold"
+                className="flex items-center gap-2 text-base font-semibold md:text-[var(--text-lg)]"
                 style={{ color: "var(--color-text-primary)" }}
               >
-                <Shield className="h-5 w-5" style={{ color: "var(--color-accent-primary)" }} aria-hidden />
+                <Shield className="h-5 w-5 shrink-0" style={{ color: "var(--color-accent-primary)" }} aria-hidden />
                 Does Your Contract Have These Red Flags?
               </p>
               <p
-                className="mt-1 text-[var(--text-base)]"
+                className="mt-1 text-sm md:text-[var(--text-base)]"
                 style={{ color: "var(--color-text-secondary)" }}
               >
                 Upload it free — get your full analysis in under 30 seconds.
@@ -198,36 +196,40 @@ export default async function BlogArticlePage({
             </div>
             <Link
               href="/#upload"
-              className="btn-primary inline-flex shrink-0 items-center gap-2"
+              className="btn-primary inline-flex min-h-[48px] min-w-[48px] shrink-0 items-center justify-center gap-2"
             >
               Analyze Free
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           </div>
 
-          {/* Related Articles */}
+          {/* Related Articles — horizontal scroll on mobile */}
           {related.length > 0 && (
             <section className="mt-16">
               <h2
-                className="text-xl font-semibold"
+                className="text-lg font-semibold md:text-xl"
                 style={{ color: "var(--color-text-primary)" }}
               >
                 Related Articles
               </h2>
-              <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
-                {related.map((p) => (
-                  <BlogCard key={p.slug} post={p} />
-                ))}
+              <div className="mt-6 overflow-x-auto pb-2 -mx-5 px-5 sm:mx-0 sm:px-0 sm:overflow-visible sm:grid sm:grid-cols-3 sm:gap-6">
+                <div className="flex gap-4 sm:contents">
+                  {related.map((p) => (
+                    <div key={p.slug} className="min-w-[280px] flex-1 sm:min-w-0">
+                      <BlogCard post={p} />
+                    </div>
+                  ))}
+                </div>
               </div>
             </section>
           )}
 
-          {/* Author bio */}
+          {/* Author bio — stack on mobile */}
           <div
-            className="mt-12 rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-6"
+            className="mt-12 rounded-xl border border-[var(--color-border-default)] p-5 md:p-6"
             style={{ background: "var(--color-bg-surface)" }}
           >
-            <div className="flex items-start gap-4">
+            <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:text-left">
               <div
                 className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-mono text-xl font-medium"
                 style={{
@@ -235,20 +237,20 @@ export default async function BlogArticlePage({
                   color: "var(--color-accent-primary)",
                 }}
               >
-                F
+                {post.author ? post.author.charAt(0) : "F"}
               </div>
-              <div>
+              <div className="min-w-0">
                 <p
-                  className="font-semibold"
+                  className="text-base font-semibold md:text-[var(--text-base)]"
                   style={{ color: "var(--color-text-primary)" }}
                 >
-                  FundingWatch Research Team
+                  {post.author ?? "FundingWatch Research Team"}
                 </p>
                 <p
-                  className="mt-1 text-[var(--text-sm)] leading-relaxed"
+                  className="mt-1 text-sm leading-relaxed md:text-[var(--text-sm)]"
                   style={{ color: "var(--color-text-secondary)" }}
                 >
-                  Our team analyzes MCA contracts, regulatory actions, and borrower rights so small business owners have the facts they need to make informed decisions.
+                  {post.authorBio ?? "Our team analyzes MCA contracts, regulatory actions, and borrower rights so small business owners have the facts they need to make informed decisions."}
                 </p>
               </div>
             </div>
@@ -291,6 +293,7 @@ export default async function BlogArticlePage({
           </aside>
         )}
       </article>
+      <BlogStickyCTA />
       <Footer />
     </>
   );
