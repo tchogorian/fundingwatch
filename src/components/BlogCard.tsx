@@ -52,8 +52,9 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           title={new Date(post.date).toLocaleDateString("en-US", { dateStyle: "full" })}
         >
           {new Date(post.date).toLocaleDateString("en-US", {
-            month: "short",
+            month: "long",
             day: "numeric",
+            year: "numeric",
           })}
         </span>
       </div>

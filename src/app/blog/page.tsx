@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
 import Footer from "@/components/Footer";
 import {
   BLOG_POSTS,
@@ -92,6 +92,7 @@ function BlogIndexContent() {
 
   const counts = getCategoryCounts();
   const popular = getPopularPosts(5);
+  const [expandedCategory, setExpandedCategory] = useState<BlogCategory | null>(null);
   const featuredPost = BLOG_POSTS[0];
   const restForFirstPage = BLOG_POSTS.slice(1, POSTS_PER_PAGE);
   const displayPosts =
@@ -314,21 +315,59 @@ function BlogIndexContent() {
               <h2 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--color-accent-primary)" }}>
                 Categories
               </h2>
-              <ul className="mt-4 space-y-2">
-                {CATEGORIES.map((cat) => (
-                  <li key={cat}>
-                    <Link
-                      href={`/blog?category=${cat}`}
-                      className="flex min-h-[44px] items-center justify-between text-sm transition hover:underline"
-                      style={{ color: "var(--color-text-secondary)" }}
-                    >
-                      {CATEGORY_LABELS[cat]}
-                      <span className="font-mono text-xs" style={{ color: "var(--color-text-tertiary)" }}>
-                        {counts[cat]}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
+              <ul className="mt-4 space-y-1">
+                {CATEGORIES.map((cat) => {
+                  const isExpanded = expandedCategory === cat;
+                  const postsInCat = BLOG_POSTS.filter((p) => p.category === cat);
+                  return (
+                    <li key={cat} className="rounded-lg">
+                      <div className="flex items-center gap-1">
+                        <button
+                          type="button"
+                          onClick={() => setExpandedCategory(isExpanded ? null : cat)}
+                          className="flex min-h-[44px] flex-1 items-center justify-between rounded-lg px-2 py-2 text-left text-sm transition hover:bg-white/50"
+                          style={{ color: "var(--color-text-secondary)" }}
+                          aria-expanded={isExpanded}
+                        >
+                          <span className="flex items-center gap-1.5">
+                            {isExpanded ? (
+                              <ChevronDown className="h-4 w-4 shrink-0" aria-hidden />
+                            ) : (
+                              <ChevronRight className="h-4 w-4 shrink-0" aria-hidden />
+                            )}
+                            {CATEGORY_LABELS[cat]}
+                          </span>
+                          <span className="font-mono text-xs" style={{ color: "var(--color-text-tertiary)" }}>
+                            {counts[cat]}
+                          </span>
+                        </button>
+                        <Link
+                          href={`/blog?category=${cat}`}
+                          className="min-h-[44px] shrink-0 px-2 py-2 text-sm font-medium transition hover:underline"
+                          style={{ color: "var(--color-accent-primary)" }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          View all
+                        </Link>
+                      </div>
+                      {isExpanded && postsInCat.length > 0 && (
+                        <ul className="ml-6 mt-1 space-y-1 border-l-2 border-[var(--color-border-default)] pl-3 pb-2">
+                          {postsInCat.map((p) => (
+                            <li key={p.slug}>
+                              <Link
+                                href={`/blog/${p.slug}`}
+                                className="block py-1.5 text-sm leading-snug transition hover:underline line-clamp-2"
+                                style={{ color: "var(--color-text-secondary)" }}
+                              >
+                                {p.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -394,7 +433,7 @@ function BlogIndexCard({ post }: { post: BlogPost }) {
           className="shrink-0 font-mono text-sm"
           style={{ color: "var(--color-text-tertiary)" }}
         >
-          {new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+          {new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
         </span>
       </div>
       <h3 className="mt-4 text-lg font-bold leading-snug md:text-xl" style={{ color: "var(--color-text-primary)" }}>
