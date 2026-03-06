@@ -1,7 +1,6 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
-import HeroContractCard from "./HeroContractCard";
 
 export default function Hero() {
   const scrollToUpload = () => {
@@ -13,9 +12,9 @@ export default function Hero() {
   };
 
   return (
-    <section className="hero relative min-h-screen overflow-hidden" aria-label="Hero">
+    <section className="hero relative overflow-hidden" aria-label="Hero">
       <div className="hero-inner">
-        {/* Left column — content */}
+        {/* Left column — qualifier, headline, subheadline, curiosity, button, trust line */}
         <div>
           <p className="eyebrow hero-eyebrow" style={{ marginBottom: 14 }}>
             For business owners with Merchant Cash Advances
@@ -55,9 +54,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right column: contract card (replaces former illustration) */}
-        <div className="flex w-full max-w-full justify-end lg:min-w-0 lg:max-w-[50%]">
-          <HeroContractCard />
+        {/* Right column: contract document image */}
+        <div className="hero-document-wrapper">
+          <img
+            src="/images/hero-contract-document.png"
+            alt="Merchant Cash Advance Agreement document with warning"
+            className="hero-contract-document-img"
+          />
         </div>
       </div>
 

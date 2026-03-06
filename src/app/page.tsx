@@ -3,7 +3,6 @@
 import { useState, useCallback } from "react";
 import type { AnalysisResult } from "@/types/analysis";
 import Hero from "@/components/Hero";
-import WhatYourReportIncludes from "@/components/WhatYourReportIncludes";
 import WhoThisIsFor from "@/components/WhoThisIsFor";
 import HowItWorks from "@/components/HowItWorks";
 import UploadSection from "@/components/UploadSection";
@@ -59,8 +58,6 @@ export default function Home() {
     <>
       <Hero />
       <div className="page-base">
-      {/* 1. Contract Scan Findings first, then Who This Is For, then rest */}
-      <WhatYourReportIncludes />
       <WhoThisIsFor />
       <HowItWorks />
       {isAnalyzing ? (

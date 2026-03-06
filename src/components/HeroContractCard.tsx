@@ -21,7 +21,7 @@ const CLAUSES = [
 export default function HeroContractCard() {
   return (
     <div
-      className="hero-contract-card w-full max-w-full lg:max-w-[420px]"
+      className="hero-contract-card w-full max-w-[460px]"
       style={{
         background: "#0F172A",
         border: "1px solid rgba(255,255,255,0.15)",
@@ -39,8 +39,8 @@ export default function HeroContractCard() {
         }}
       >
         <p
-          className="font-mono text-[10px] uppercase tracking-[0.15em]"
-          style={{ color: "rgba(255,255,255,0.4)" }}
+          className="font-mono uppercase tracking-[0.15em]"
+          style={{ color: "rgba(255,255,255,0.4)", fontSize: 11 }}
         >
           MERCHANT CASH ADVANCE AGREEMENT
         </p>
@@ -52,22 +52,22 @@ export default function HeroContractCard() {
           <li key={i}>
             <div className="flex items-center gap-2 flex-wrap">
               <span
-                className="font-bold text-[14px]"
-                style={{ color: "#FFFFFF" }}
+                className="font-bold"
+                style={{ color: "#FFFFFF", fontSize: 15 }}
               >
                 {clause.heading}
               </span>
               <span
-                className="inline-flex h-5 w-5 items-center justify-center rounded text-[14px] shrink-0"
-                style={{ background: "#EF4444", color: "#FFFFFF", fontSize: "14px" }}
+                className="inline-flex h-5 w-5 items-center justify-center rounded shrink-0"
+                style={{ background: "#EF4444", color: "#FFFFFF", fontSize: 14 }}
                 aria-hidden
               >
                 ⚠
               </span>
             </div>
             <p
-              className="mt-1.5 font-mono text-[11px] leading-snug"
-              style={{ color: "rgba(255,255,255,0.45)" }}
+              className="mt-1.5 font-mono leading-snug"
+              style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}
             >
               {clause.finePrint}
             </p>
