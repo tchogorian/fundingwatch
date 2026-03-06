@@ -2,6 +2,9 @@
 
 import { ChevronDown } from "lucide-react";
 
+const HERO_DOCUMENT_IMAGE =
+  process.env.NEXT_PUBLIC_HERO_DOCUMENT_IMAGE_URL ?? "/images/hero-contract-document.png";
+
 export default function Hero() {
   const scrollToUpload = () => {
     document.getElementById("upload")?.scrollIntoView({ behavior: "smooth" });
@@ -57,7 +60,7 @@ export default function Hero() {
         {/* Right column: contract document image */}
         <div className="hero-document-wrapper">
           <img
-            src="/images/hero-contract-document.png"
+            src={HERO_DOCUMENT_IMAGE}
             alt="Merchant Cash Advance Agreement document with warning"
             className="hero-contract-document-img"
           />
