@@ -564,9 +564,9 @@ h3 {
 }
 
 /* ========== HERO ========== */
-/* Hero: white background, green/teal accent scheme */
+/* Hero: blue background */
 .hero {
-  background-color: #FFFFFF !important;
+  background-color: #2E75B6 !important;
   background-image: none !important;
   position: relative;
   overflow: hidden;
@@ -629,13 +629,13 @@ h3 {
     overflow: hidden !important;
   }
 }
-/* Desktop: headline colors — light green + teal */
+/* Desktop: headline colors — white + green accent on blue */
 @media (min-width: 769px) {
   .hero h1 .hero-headline-white {
-    color: #6CCF5F;
+    color: #FFFFFF;
   }
   .hero h1 .hero-headline-accent {
-    color: #00897B;
+    color: #00A86B;
   }
 }
 /* Mobile: single column, card below content, full width — no min-height, shrink to content */
@@ -651,7 +651,7 @@ h3 {
     min-height: 0;
   }
   .hero .eyebrow.hero-eyebrow {
-    color: #00897B;
+    color: rgba(255, 255, 255, 0.95);
     font-weight: 700;
     font-size: 10px;
     letter-spacing: 0.08em;
@@ -662,22 +662,22 @@ h3 {
     font-weight: 800;
   }
   .hero h1 .hero-headline-white {
-    color: #6CCF5F;
+    color: #FFFFFF;
   }
   .hero h1 .hero-headline-accent {
-    color: #00897B;
+    color: #00A86B;
   }
   .hero-sub {
-    color: #616161;
+    color: rgba(255, 255, 255, 0.88);
     font-size: 17px;
     font-weight: 400;
   }
   .hero .hero-curiosity {
     font-size: 14px;
-    color: #616161;
+    color: rgba(255, 255, 255, 0.85);
   }
   .hero .hero-scroll-hint {
-    color: #757575;
+    color: rgba(255, 255, 255, 0.65);
     bottom: 6px;
   }
 }
@@ -688,17 +688,17 @@ h3 {
   }
 }
 .hero .eyebrow.hero-eyebrow {
-  color: #00897B;
+  color: #FFFFFF;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .hero h1 .hero-headline-white {
-  color: #6CCF5F;
+  color: #FFFFFF;
 }
 .hero h1 .hero-headline-accent {
-  color: #00897B;
+  color: #00A86B;
 }
 .hero-title {
   font-size: clamp(2.25rem, 4rem, 3.25rem);
@@ -717,14 +717,14 @@ h3 {
   font-size: 18px;
   font-weight: 300;
   line-height: 1.65;
-  color: #616161;
+  color: rgba(255, 255, 255, 0.88);
   max-width: 520px;
   margin-bottom: 40px;
 }
 .hero-curiosity {
   font-size: 13px;
   font-style: italic;
-  color: #616161;
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 12px;
 }
 .hero-btns {
@@ -736,33 +736,33 @@ h3 {
 .hero-trust-line {
   font-size: 12px;
   font-weight: 500;
-  color: #757575;
+  color: rgba(255, 255, 255, 0.7);
 }
 .hero .hero-scroll-hint {
-  color: #757575 !important;
+  color: rgba(255, 255, 255, 0.65) !important;
 }
 .hero .hero-scroll-hint:hover {
-  color: #616161 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
 }
-/* Primary CTA: outline style — light green border, gray text */
+/* Primary CTA: solid blue button on hero */
 .btn-hero-primary {
   position: relative;
-  background: transparent !important;
-  background-color: transparent !important;
+  background-color: #2563EB !important;
   background-image: none !important;
-  color: #616161 !important;
-  border: 1.5px solid #80D87D;
+  color: white !important;
+  border: none;
   border-radius: 9999px;
   padding: 14px 28px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 200ms, box-shadow 200ms, border-color 200ms, color 200ms;
+  transition: transform 200ms, box-shadow 200ms;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 .btn-hero-primary:hover {
   transform: translateY(-2px);
-  border-color: #6CCF5F;
-  color: #00897B !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  background-color: #1d4ed8 !important;
 }
 /* Secondary: dark fill + gradient border (yellow/orange) */
 .btn-hero-secondary {
