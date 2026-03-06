@@ -564,13 +564,19 @@ h3 {
 }
 
 /* ========== HERO ========== */
-/* Hero uses contract card component; no background image */
+/* Hero uses contract card only; no illustration/background image — force off */
 .hero {
-  background-color: #2E75B6;
-  background-image: none;
+  background-color: #2E75B6 !important;
+  background-image: none !important;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
+}
+.hero::before,
+.hero::after {
+  content: none !important;
+  display: none !important;
+  background-image: none !important;
 }
 /* Desktop: fixed height */
 @media (min-width: 1025px) {
@@ -614,7 +620,7 @@ h3 {
     color: #FFFFFF;
   }
   .hero h1 .hero-headline-accent {
-    color: #00D97E;
+    color: #00C170;
   }
   .hero-sub {
     color: rgba(255, 255, 255, 0.88);
@@ -646,7 +652,7 @@ h3 {
     color: #FFFFFF;
   }
   .hero h1 .hero-headline-accent {
-    color: #00D97E;
+    color: #00C170;
   }
 }
 @media (max-width: 1024px) {
@@ -667,19 +673,19 @@ h3 {
   color: #FFFFFF;
 }
 .hero h1 .hero-headline-accent {
-  color: #00D97E;
+  color: #00C170;
 }
 .hero-title {
-  font-size: clamp(2.25rem, 4rem, 5.2rem);
+  font-size: clamp(2.25rem, 4rem, 3.5rem);
 }
 @media (min-width: 640px) {
   .hero-title {
-    font-size: clamp(2.75rem, 4.25rem, 5.2rem);
+    font-size: clamp(2.75rem, 4vw, 3.5rem);
   }
 }
 @media (min-width: 1024px) {
   .hero-title {
-    font-size: 5.2rem;
+    font-size: 3.5rem;
   }
 }
 .hero-sub {
@@ -1097,6 +1103,10 @@ h3 {
 }
 .hero-contract-card-pulse {
   animation: pulse 1.5s ease-in-out infinite;
+}
+.hero-contract-card {
+  position: relative;
+  z-index: 2;
 }
 
 /* ========== BUTTONS ========== */

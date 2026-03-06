@@ -42,7 +42,7 @@ export default function HeroContractCard() {
           className="font-mono text-[10px] uppercase tracking-[0.15em]"
           style={{ color: "rgba(255,255,255,0.4)" }}
         >
-          Merchant Cash Advance Agreement
+          MERCHANT CASH ADVANCE AGREEMENT
         </p>
       </div>
 
