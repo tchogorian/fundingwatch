@@ -763,7 +763,7 @@ h3 {
     display: none !important;
   }
   .hero-trust-line {
-    text-align: center;
+    text-align: left;
   }
   .hero-btns {
     justify-content: flex-start;
