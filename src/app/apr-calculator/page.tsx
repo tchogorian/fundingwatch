@@ -69,40 +69,51 @@ function calcTab1(
 }
 
 // -------- Tab 2 types and calc --------
+type Tab2Frequency = "daily" | "weekly" | "monthly";
+
 type Tab2Position = {
-  dailyDebit: string;
+  debitAmount: string; // raw input: daily, weekly, or monthly amount
+  frequency: Tab2Frequency;
   originalAdvance: string;
   remainingBalance: string;
   totalPaybackAmount: string; // optional, from contract
 };
 
+function getDailyEquivalent(amount: number, frequency: Tab2Frequency): number {
+  if (frequency === "daily") return amount;
+  if (frequency === "weekly") return amount / 5;
+  return amount / BUSINESS_DAYS_PER_MONTH; // 21.75 monthly
+}
+
 function calcTab2Position(p: Tab2Position) {
-  const daily = parseFloat(p.dailyDebit) || 0;
+  const amount = parseFloat(p.debitAmount) || 0;
   const advance = parseFloat(p.originalAdvance) || 0;
   const remaining = parseFloat(p.remainingBalance) || 0;
-  const totalPayback = parseFloat(p.totalPaybackAmount) || 0;
-  if (daily <= 0 || advance <= 0) return null;
-  const daysToPayoff = remaining > 0 && daily > 0 ? remaining / daily : 0;
-  let amountAlreadyPaid = 0;
-  let impliedFactor = 0;
-  let impliedApr = 0;
-  if (totalPayback > 0) {
-    amountAlreadyPaid = totalPayback - remaining;
-    impliedFactor = totalPayback / advance;
-    const fee = totalPayback - advance;
-    const termDays = totalPayback / daily;
-    impliedApr = termDays > 0 ? (fee / advance) * (BUSINESS_DAYS_PER_YEAR / termDays) * 100 : 0;
-  }
+  if (amount <= 0 || advance <= 0) return null;
+  const dailyEquivalent = getDailyEquivalent(amount, p.frequency);
+  if (dailyEquivalent <= 0) return null;
+
+  // Exact formulas from spec
+  const totalPayback = advance + remaining;
+  const amountPaid = advance - remaining;
+  const impliedFactorRate = advance > 0 ? totalPayback / advance : 0;
+  const daysRemaining = remaining > 0 ? remaining / dailyEquivalent : 0;
+
+  const fees = totalPayback - advance;
+  const costRate = advance > 0 ? fees / advance : 0;
+  const impliedApr =
+    daysRemaining > 0 ? (costRate / daysRemaining) * BUSINESS_DAYS_PER_YEAR * 100 : 0;
+
   return {
-    dailyDebit: daily,
+    dailyDebit: dailyEquivalent,
     originalAdvance: advance,
     remainingBalance: remaining,
     totalPaybackAmount: totalPayback,
-    amountAlreadyPaid,
+    amountAlreadyPaid: amountPaid,
     amountStillOwed: remaining,
-    impliedFactor,
+    impliedFactor: impliedFactorRate,
     impliedApr,
-    daysToPayoff,
+    daysToPayoff: daysRemaining,
   };
 }
 
@@ -134,7 +145,7 @@ export default function APRCalculatorPage() {
   // Tab 2 state
   const [tab2MonthlyRevenue, setTab2MonthlyRevenue] = useState("");
   const [tab2Positions, setTab2Positions] = useState<Tab2Position[]>([
-    { dailyDebit: "", originalAdvance: "", remainingBalance: "", totalPaybackAmount: "" },
+    { debitAmount: "", frequency: "daily", originalAdvance: "", remainingBalance: "", totalPaybackAmount: "" },
   ]);
 
   const addTab1Position = () => {
@@ -154,7 +165,7 @@ export default function APRCalculatorPage() {
   };
   const addTab2Position = () => {
     if (tab2Positions.length >= 5) return;
-    setTab2Positions((prev) => [...prev, { dailyDebit: "", originalAdvance: "", remainingBalance: "", totalPaybackAmount: "" }]);
+    setTab2Positions((prev) => [...prev, { debitAmount: "", frequency: "daily", originalAdvance: "", remainingBalance: "", totalPaybackAmount: "" }]);
   };
   const updateTab1 = (index: number, updates: Partial<Tab1Position>) => {
     setTab1Positions((prev) => prev.map((p, i) => (i === index ? { ...p, ...updates } : p)));
@@ -670,20 +681,42 @@ export default function APRCalculatorPage() {
                     MCA position {idx + 1}
                   </span>
                   <div className="grid gap-4 sm:grid-cols-3">
-                    <div className="w-full min-w-0">
+                    <div className="w-full min-w-0 sm:col-span-3">
                       <label className="block text-xs font-medium" style={textSecondary}>
-                        Daily ACH debit from bank statement ($)
+                        {pos.frequency === "daily"
+                          ? "Daily ACH debit from bank statement ($)"
+                          : pos.frequency === "weekly"
+                            ? "Weekly ACH debit from bank statement ($)"
+                            : "Monthly ACH debit from bank statement ($)"}
                       </label>
                       <p className="text-[11px] mt-0.5" style={textTertiary}>Check your bank statement</p>
                       <input
                         type="number"
                         min={0}
                         step={1}
-                        value={pos.dailyDebit}
-                        onChange={(e) => updateTab2(idx, { dailyDebit: e.target.value })}
+                        value={pos.debitAmount}
+                        onChange={(e) => updateTab2(idx, { debitAmount: e.target.value })}
                         className={inputCls}
                         style={textPrimary}
                       />
+                      <div className="flex gap-2 mt-2">
+                        {(["daily", "weekly", "monthly"] as const).map((freq) => (
+                          <button
+                            key={freq}
+                            type="button"
+                            onClick={() => updateTab2(idx, { frequency: freq })}
+                            className="px-4 py-2 text-sm font-medium capitalize"
+                            style={{
+                              borderRadius: "9999px",
+                              ...(pos.frequency === freq
+                                ? { backgroundColor: "#2563EB", color: "white", border: "none" }
+                                : { backgroundColor: "white", color: "#374151", border: "1px solid #D1D5DB" }),
+                            }}
+                          >
+                            {freq}
+                          </button>
+                        ))}
+                      </div>
                     </div>
                     <div className="w-full min-w-0">
                       <label className="block text-xs font-medium" style={textSecondary}>
