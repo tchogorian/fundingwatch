@@ -37,7 +37,7 @@ export default function Hero() {
             <span style={{ color: "#FFFFFF" }}> Feels Off.</span>
             <br />
             <span style={{ color: "#FFFFFF" }}>You&apos;re </span>
-            <span style={{ color: "#00A86B" }}>Probably Right.</span>
+            <span style={{ color: "#00C170" }}>Probably Right.</span>
           </h1>
           <p className="hero-sub">
             Upload the contract. The analyzer highlights hidden terms, real cost, and the parts most people miss.
