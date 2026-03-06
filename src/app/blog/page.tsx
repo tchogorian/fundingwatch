@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ArrowRight } from "lucide-react";
@@ -38,7 +38,34 @@ const BLOG_CATEGORY_COLORS: Record<BlogCategory, string> = {
 
 const POSTS_PER_PAGE = 9;
 
-export default function BlogIndexPage() {
+function BlogIndexSkeleton() {
+  return (
+    <>
+      <section
+        className="blog-hero relative overflow-hidden px-6 py-16 md:px-8 md:py-20 lg:px-12 lg:py-24"
+        style={{
+          background: "linear-gradient(160deg, #1A1A2E 0%, #1E2A4A 50%, #1A2840 100%)",
+        }}
+        aria-label="Blog hero"
+      >
+        <div className="mx-auto max-w-[1180px]">
+          <div className="h-10 w-3/4 max-w-[520px] rounded bg-white/20" />
+          <div className="mt-4 h-5 w-full max-w-[640px] rounded bg-white/10" />
+        </div>
+      </section>
+      <div className="mx-auto max-w-[1180px] px-4 py-8 md:px-6 md:py-10 lg:px-8">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="min-h-[260px] rounded-xl border border-[var(--color-border-default)] bg-white p-6 animate-pulse" />
+          ))}
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+}
+
+function BlogIndexContent() {
   const searchParams = useSearchParams();
   const categoryFromUrl = searchParams.get("category") as BlogCategory | null;
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | "all">("all");
@@ -347,6 +374,14 @@ export default function BlogIndexPage() {
 
       <Footer />
     </>
+  );
+}
+
+export default function BlogIndexPage() {
+  return (
+    <Suspense fallback={<BlogIndexSkeleton />}>
+      <BlogIndexContent />
+    </Suspense>
   );
 }
 
