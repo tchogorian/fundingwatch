@@ -638,7 +638,7 @@ h3 {
   .hero {
     min-height: unset !important;
     height: auto !important;
-    padding: 40px 0 32px;
+    padding: 32px 0 60px;
   }
   .hero-inner {
     grid-template-columns: 1fr;
@@ -656,20 +656,38 @@ h3 {
     font-size: 9px;
     letter-spacing: 0.06em;
     white-space: nowrap;
+    margin-bottom: 8px !important;
   }
   .hero-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 800;
+    margin-bottom: 12px;
   }
   .hero-sub {
-    font-size: 16px;
-    margin-bottom: 24px;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 16px;
   }
   .hero-curiosity {
-    font-size: 13px;
+    font-size: 12px;
+    margin-bottom: 10px;
   }
   .btn-hero-primary {
     width: 100%;
+    margin-bottom: 8px;
+  }
+  .hero-trust-line {
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+  .hero-scroll-hint {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    display: flex;
+    margin: 16px auto 0;
+    width: fit-content;
   }
 }
 .hero .eyebrow.hero-eyebrow {
@@ -698,7 +716,7 @@ h3 {
 }
 @media (max-width: 400px) {
   .hero-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 }
 .hero-sub {
