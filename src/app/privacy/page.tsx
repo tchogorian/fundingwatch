@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+export const metadata = {
+  alternates: {
+    canonical: "https://www.fundingwatch.org/privacy",
+  },
+};
+
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white px-4 py-16">

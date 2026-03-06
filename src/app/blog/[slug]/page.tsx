@@ -44,6 +44,9 @@ export async function generateMetadata({
   return {
     title: `${post.title} — FundingWatch Blog`,
     description: post.excerpt,
+    alternates: {
+      canonical: `https://www.fundingwatch.org/blog/${slug}`,
+    },
   };
 }
 

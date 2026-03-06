@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
 import { BLOG_POSTS } from "@/lib/blog";
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.fundingwatch.org";
+const BASE_URL = "https://www.fundingwatch.org";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = BASE_URL.replace(/\/$/, "");
