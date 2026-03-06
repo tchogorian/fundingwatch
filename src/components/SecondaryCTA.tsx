@@ -22,7 +22,7 @@ export default function SecondaryCTA() {
             onClick={scrollToUpload}
             className="btn-primary inline-flex items-center gap-2 px-8 py-4"
           >
-            Analyze My Contract Free
+            Analyze My Contract →
             <ArrowRight className="h-5 w-5" aria-hidden />
           </button>
         </div>
