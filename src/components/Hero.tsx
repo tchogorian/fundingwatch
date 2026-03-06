@@ -30,19 +30,14 @@ export default function Hero() {
               letterSpacing: "-0.04em",
             }}
           >
-            <span style={{ color: "#FFFFFF" }}>
-              Something About Your MCA{" "}
-            </span>
-            <span style={{ color: "#00A86B" }}>
-              Feels Off.
-            </span>
+            <span style={{ color: "#FFFFFF" }}>Something About</span>
             <br />
-            <span style={{ color: "#FFFFFF" }}>
-              You&apos;re{" "}
-            </span>
-            <span style={{ color: "#00A86B" }}>
-              Probably Right.
-            </span>
+            <span style={{ color: "#FFFFFF" }}>Your </span>
+            <span style={{ color: "#DC2626" }}>MCA</span>
+            <span style={{ color: "#FFFFFF" }}> Feels Off.</span>
+            <br />
+            <span style={{ color: "#FFFFFF" }}>You&apos;re </span>
+            <span style={{ color: "#00A86B" }}>Probably Right.</span>
           </h1>
           <p className="hero-sub">
             Upload the contract. The analyzer highlights hidden terms, real cost, and the parts most people miss.
