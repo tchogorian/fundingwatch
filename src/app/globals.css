@@ -564,9 +564,9 @@ h3 {
 }
 
 /* ========== HERO ========== */
-/* Hero uses contract card only; no illustration/background image — force off */
+/* Hero: white background, green/teal accent scheme */
 .hero {
-  background-color: #2E75B6 !important;
+  background-color: #FFFFFF !important;
   background-image: none !important;
   position: relative;
   overflow: hidden;
@@ -627,13 +627,13 @@ h3 {
     display: none !important;
   }
 }
-/* Desktop: headline colors */
+/* Desktop: headline colors — light green + teal */
 @media (min-width: 769px) {
   .hero h1 .hero-headline-white {
-    color: #FFFFFF;
+    color: #6CCF5F;
   }
   .hero h1 .hero-headline-accent {
-    color: #00A86B;
+    color: #00897B;
   }
 }
 /* Mobile: single column, card below content, full width */
@@ -647,7 +647,7 @@ h3 {
     gap: 32px;
   }
   .hero .eyebrow.hero-eyebrow {
-    color: rgba(255, 255, 255, 0.9);
+    color: #00897B;
     font-weight: 700;
   }
   .hero .hero-title {
@@ -655,36 +655,37 @@ h3 {
     font-weight: 800;
   }
   .hero h1 .hero-headline-white {
-    color: #FFFFFF;
+    color: #6CCF5F;
   }
   .hero h1 .hero-headline-accent {
-    color: #00A86B;
+    color: #00897B;
   }
   .hero-sub {
-    color: rgba(255, 255, 255, 0.88);
+    color: #616161;
     font-size: 17px;
     font-weight: 400;
   }
   .hero .hero-curiosity {
     font-size: 14px;
+    color: #616161;
   }
   .hero .hero-scroll-hint {
-    color: rgba(255, 255, 255, 0.65);
+    color: #757575;
     bottom: 6px;
   }
 }
 .hero .eyebrow.hero-eyebrow {
-  color: #FFFFFF;
+  color: #00897B;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .hero h1 .hero-headline-white {
-  color: #FFFFFF;
+  color: #6CCF5F;
 }
 .hero h1 .hero-headline-accent {
-  color: #00A86B;
+  color: #00897B;
 }
 .hero-title {
   font-size: clamp(2.25rem, 4rem, 3.25rem);
@@ -703,14 +704,14 @@ h3 {
   font-size: 18px;
   font-weight: 300;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.8);
+  color: #616161;
   max-width: 520px;
   margin-bottom: 40px;
 }
 .hero-curiosity {
   font-size: 13px;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.8);
+  color: #616161;
   margin-bottom: 12px;
 }
 .hero-btns {
@@ -722,27 +723,33 @@ h3 {
 .hero-trust-line {
   font-size: 12px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
+  color: #757575;
 }
-/* Primary CTA: solid filled button */
+.hero .hero-scroll-hint {
+  color: #757575 !important;
+}
+.hero .hero-scroll-hint:hover {
+  color: #616161 !important;
+}
+/* Primary CTA: outline style — light green border, gray text */
 .btn-hero-primary {
   position: relative;
-  background-color: #2563EB !important;
+  background: transparent !important;
+  background-color: transparent !important;
   background-image: none !important;
-  color: white !important;
-  border: none;
+  color: #616161 !important;
+  border: 1.5px solid #80D87D;
   border-radius: 9999px;
   padding: 14px 28px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 200ms, box-shadow 200ms;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 200ms, box-shadow 200ms, border-color 200ms, color 200ms;
 }
 .btn-hero-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  background-color: #1d4ed8 !important;
+  border-color: #6CCF5F;
+  color: #00897B !important;
 }
 /* Secondary: dark fill + gradient border (yellow/orange) */
 .btn-hero-secondary {
