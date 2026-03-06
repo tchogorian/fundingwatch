@@ -564,17 +564,18 @@ h3 {
 }
 
 /* ========== HERO ========== */
-/* Uses hero-composite.png so background works; replace with /images/hero-bg.jpg when you have a final hero image */
+/* Hero illustration: transparent PNG on blue gradient; no overlay, no blend, no filter */
 .hero {
   background-color: #2E75B6;
   background-image: url("/images/hero-composite.png");
-  background-size: cover;
-  background-position: center top;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right center;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
 }
-/* Desktop: crop the background image — fixed height so Robin Hood is cut off */
+/* Desktop: fixed height */
 @media (min-width: 1025px) {
   .hero {
     height: 72vh;
@@ -590,11 +591,10 @@ h3 {
     bottom: 8px;
   }
 }
-/* Mobile: crop the background image — fixed height + crop right edge (no dark strip) */
+/* Mobile: illustration position */
 @media (max-width: 1024px) {
   .hero {
-    background-position: 78% top;
-    background-size: cover;
+    background-position: 80% center;
     height: 62vh;
     max-height: 62vh;
     min-height: 360px;
@@ -602,20 +602,6 @@ h3 {
   }
   .hero .hero-scroll-hint {
     bottom: 6px;
-  }
-}
-/* Solid blue overlay so hero reads as one color; figure in composite still shows through */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #2E75B6;
-  opacity: 0.55;
-  pointer-events: none;
-}
-@media (max-width: 1024px) {
-  .hero::before {
-    opacity: 0.5;
   }
 }
 /* Mobile only: softer hero text (not blinding) */
