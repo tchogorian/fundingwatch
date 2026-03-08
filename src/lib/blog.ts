@@ -49,6 +49,132 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "mca-reconciliation-request-how-to",
+    title: "How to Reconcile Your MCA Payments Without Paying Anyone",
+    excerpt:
+      "Your MCA contract already gives you the right to lower your daily payments when revenue drops. Here's the legal basis, the email template, and how to do it yourself for free.",
+    category: "borrower-rights",
+    date: "2026-03-06",
+    readTimeMinutes: 14,
+    readCount: 0,
+    author: "FundingWatch Editorial Team",
+    authorBio:
+      "FundingWatch analyzes MCA contracts, court rulings, and borrower rights so small business owners have the facts they need to exercise their rights and make informed decisions.",
+    credentials: "Original legal education content with primary source citations",
+    headings: [
+      { id: "what-reconciliation-is", text: "What Reconciliation Actually Is", level: 2 },
+      { id: "what-courts-have-said", text: "What Courts Have Said About Funders Who Ignore Reconciliation Requests", level: 2 },
+      { id: "why-this-matters-before-default", text: "Why This Matters Before You Default", level: 2 },
+      { id: "step-by-step", text: "Step by Step: How to Submit a Reconciliation Request", level: 2 },
+      { id: "step-1", text: "Step 1: Pull Your Contract and Find the Reconciliation Clause", level: 3 },
+      { id: "step-2", text: "Step 2: Pull Three Months of Bank Statements", level: 3 },
+      { id: "step-3", text: "Step 3: Calculate What Your Daily Payment Should Be", level: 3 },
+      { id: "step-4", text: "Step 4: Send the Email", level: 3 },
+      { id: "step-5", text: "Step 5: Document Everything", level: 3 },
+      { id: "step-6", text: "Step 6: If They Ignore You", level: 3 },
+      { id: "what-about-companies", text: "What About the Companies Offering to Do This for You?", level: 2 },
+      { id: "when-you-need-lawyer", text: "When You Do Need a Lawyer", level: 2 },
+      { id: "the-bottom-line", text: "The Bottom Line", level: 2 },
+      { id: "primary-sources", text: "Primary Sources", level: 2 },
+    ],
+    body: `
+<p>If you are currently struggling to make daily MCA payments, there is a good chance someone has already called you offering to help, for a fee. Debt relief companies, settlement firms, and "MCA consultants" have built entire businesses around the premise that reconciliation is a complicated service requiring professional expertise.</p>
+<p>It is not. Reconciliation is a clause in your contract. It is a right you already paid for when you signed the agreement. And the way you exercise it is by sending your funder an email with three months of bank statements attached.</p>
+<p>What follows is the legal basis for that right, what courts have said about funders who ignore it, and the exact steps including template language to invoke it yourself.</p>
+
+<h2 id="what-reconciliation-is">What Reconciliation Actually Is</h2>
+<p>A merchant cash advance is, in legal theory, a purchase of your future receivables, not a loan. The funder buys a fixed dollar amount of your future sales and collects it as a percentage of your actual daily revenue. When business is good, you pay faster. When business slows, the daily pull shrinks proportionally.</p>
+<p>That is the product as it is supposed to work. The reconciliation provision is the mechanism that makes it work. It requires the funder to periodically, or upon request, adjust the daily payment amount based on your actual revenue so that the effective collection rate stays at the agreed percentage of receivables.</p>
+<p>If your revenue is down 40%, your daily payment should be down 40%. That adjustment is not a favor. It is what you contracted for.</p>
+<p>In practice, many MCA funders treat the reconciliation clause as boilerplate, language inserted to satisfy the legal definition of a receivables purchase, never intended to be honored. That practice has become the single most litigated issue in MCA case law, and courts have consistently ruled against funders who operate that way.</p>
+
+<h2 id="what-courts-have-said">What Courts Have Said About Funders Who Ignore Reconciliation Requests</h2>
+<p>The legal record on reconciliation is now extensive and unambiguous.</p>
+<p>In <em>People v. Richmond Capital Group LLC</em>, New York Commercial Division Justice Andrew Borrok held that Richmond's reconciliation provisions were, in his words, a "complete sham." The funder had included the clause in its contracts to satisfy the legal definition of a receivables purchase but had no intention of honoring it in practice. Justice Borrok found that Richmond's actual goal was to engineer defaults, not accommodate revenue fluctuations. The court held the agreements were usurious loans, not receivables purchases, in part because the reconciliation right was illusory.</p>
+<p>The Second Circuit reached the same conclusion in <em>Fleetwood Services LLC v. Richmond Capital Group LLC</em> in 2023, finding that payment obligations were absolute and the funder bore no real risk of the merchant's business failure. An agreement where the funder ignores revenue performance entirely is a loan, not a purchase, and a criminally usurious one when the effective APR exceeds New York's 25% cap.</p>
+<p>In multiple bankruptcy court decisions, including the 2025 ruling in <em>In re Williams Land Clearing</em>, courts found that funders who refused to honor reconciliation while keeping daily debits fixed regardless of actual receivables had their agreements voided entirely as usurious loans, with prior payments ordered returned to the debtor.</p>
+<p>A funder who refuses a documented, legitimate reconciliation request is not just being difficult. They are potentially converting a legal receivables purchase into an illegal loan, creating usury liability and voiding their own agreement.</p>
+
+<h2 id="why-this-matters-before-default">Why This Matters Before You Default</h2>
+<p>The documentation you create when you submit a reconciliation request has legal significance that extends well beyond the immediate question of whether your daily payment gets reduced.</p>
+<p>If your funder honors the request, you get payment relief proportional to your revenue decline, exactly what the contract promised. If your funder ignores the request, you have created a dated, written record that: you invoked the reconciliation right, you provided supporting documentation, and the funder declined to comply.</p>
+<p>That record is the factual foundation for a recharacterization argument, the legal theory that your agreement was a loan, not a receivables purchase, because the funder treated it as one. Courts in New York, the Second Circuit, and bankruptcy courts across the country have found exactly this pattern to support recharacterization.</p>
+<p>Submitting the request is not just about getting payment relief today. It is about building the record that protects you if this ends in litigation.</p>
+
+<h2 id="step-by-step">Step by Step: How to Submit a Reconciliation Request</h2>
+
+<h3 id="step-1">Step 1: Pull Your Contract and Find the Reconciliation Clause</h3>
+<p>Look for language describing the "specified percentage" or "purchased percentage" of receivables, typically in the first two pages of the agreement. It will describe the collection rate as a percentage of your daily or weekly receipts. Note the exact percentage stated. This is the number your funder is legally obligated to collect, not a fixed daily dollar amount.</p>
+
+<h3 id="step-2">Step 2: Pull Three Months of Bank Statements</h3>
+<p>You need documentation showing your actual revenue decline. Three months of complete business bank statements showing all deposits is the standard. If your business uses a point-of-sale system, daily sales reports corroborate the bank data. The more specific the documentation, the harder the request is to ignore.</p>
+
+<h3 id="step-3">Step 3: Calculate What Your Daily Payment Should Be</h3>
+<p>Take your average monthly deposits over the three-month period, divide by the number of business days, and multiply by your contracted receivables percentage. That number is your correct daily payment under the agreement. Compare it to what is currently being debited. The difference is what you are demanding be corrected.</p>
+
+<h3 id="step-4">Step 4: Send the Email</h3>
+<p>Email the funder's servicing or collections address. CC any address you have for your account representative. Subject line should include your account or contract number. Keep the tone professional and factual. Do not threaten legal action in the initial request. State your right, provide your documentation, and request written confirmation of the adjustment.</p>
+<p><strong>Template language:</strong></p>
+<div style="background: var(--color-bg-surface); border: 1px solid var(--color-border-default); border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; font-family: ui-monospace, monospace; font-size: 0.9rem; white-space: pre-wrap;">Subject: Reconciliation Request, Account #[YOUR ACCOUNT NUMBER]
+
+To Whom It May Concern,
+
+I am writing to formally request reconciliation of my daily payment amount under the Receivables Purchase Agreement dated [DATE], Account Number [NUMBER].
+
+Section [X] of our agreement specifies that daily remittances shall represent [X]% of my daily receivables. My actual average daily receivables for the period [START DATE] through [END DATE] are $[AMOUNT], as documented in the attached bank statements.
+
+The correct daily remittance under our agreement is therefore $[CALCULATED AMOUNT]. I am requesting that you adjust my daily ACH debit to this amount, effective immediately, and confirm this adjustment in writing.
+
+I am attaching three months of business bank statements in support of this request. Please confirm receipt and provide written confirmation of the adjusted daily amount within five business days.
+
+Regards,
+[YOUR NAME]
+[BUSINESS NAME]
+[CONTACT INFORMATION]</div>
+
+<h3 id="step-5">Step 5: Document Everything</h3>
+<p>Save the sent email with timestamp. Save delivery receipts. If the funder calls you instead of responding in writing, follow up the call with an email summarizing what was discussed and asking for written confirmation. The written record is what matters legally. A phone conversation that leaves no trace does not exist in litigation.</p>
+
+<h3 id="step-6">Step 6: If They Ignore You</h3>
+<p>Wait five business days. If you receive no response or a denial without explanation, send a follow-up email referencing the initial request by date and asking for the specific contractual basis for the denial. This creates a second timestamp and forces the funder to either comply, explain their refusal in writing, or ignore a second documented request.</p>
+<p>A funder who ignores two documented reconciliation requests, supported by bank statement documentation, while continuing to debit a fixed daily amount that does not reflect your actual receivables percentage, has created the factual record that courts in New York and the Second Circuit have used to void MCA agreements and impose usury liability.</p>
+
+<h2 id="what-about-companies">What About the Companies Offering to Do This for You?</h2>
+<p>There is an entire industry of companies, operating under names like "MCA relief," "merchant debt solutions," and variations thereof, that offer to negotiate reconciliation on your behalf, typically for upfront fees ranging from hundreds to thousands of dollars.</p>
+<p>The FTC's own rules on debt relief services state that a company cannot collect any fees until at least one debt has been successfully settled or reduced, the borrower has agreed to the terms, and the company has shown a written agreement from the creditor. Many of the companies operating in this space collect fees before doing any of that.</p>
+<p>Consumer review records show borrowers paying five and six figures to companies that sent a single email, or in some cases, made no documented contact with the funder at all, before the borrower's account went to collections and they faced lawsuits from the original MCA company on top of having lost money to the relief company.</p>
+<p>What these companies charge thousands for is the email template above. The reconciliation right belongs to you. The documentation is yours to gather. The email takes twenty minutes to write. No one can negotiate a contractual right more effectively than the party who holds it.</p>
+
+<h2 id="when-you-need-lawyer">When You Do Need a Lawyer</h2>
+<p>Reconciliation is something you can and should handle yourself. There are situations, however, where legal representation is appropriate and necessary.</p>
+<ul>
+<li><strong>Your funder has already sued you.</strong> Once litigation is filed, you are in a legal proceeding. Reconciliation requests become evidence in that proceeding and should be coordinated with counsel.</li>
+<li><strong>Your funder has filed a <a href="/blog/confession-of-judgment-danger">Confession of Judgment</a> against you.</strong> COJs bypass the court process entirely and can result in bank account freezes and asset seizure with no advance notice. Vacating a COJ requires a lawyer.</li>
+<li><strong>You are considering bankruptcy.</strong> The interaction between MCA obligations, preference periods, and recharacterization in bankruptcy is a legal analysis that requires a qualified bankruptcy attorney.</li>
+<li><strong>Your funder's agreement has rates exceeding 100% APR.</strong> If your effective APR approaches or exceeds New York's 25% criminal usury threshold, an attorney can evaluate whether the agreement is voidable as a matter of law, separate from any reconciliation issue.</li>
+</ul>
+<p>In those situations, what you want is a licensed attorney who handles MCA defense, not a debt settlement company. The distinction matters because only an attorney can represent you in litigation, file legal motions, and take legal positions on your behalf. A settlement company cannot do any of those things.</p>
+
+<h2 id="the-bottom-line">The Bottom Line</h2>
+<p>Reconciliation is not a mystery. It is not a specialized service. It is a provision in a contract you signed, grounded in the legal definition of what an MCA is supposed to be: a revenue-contingent receivables purchase, not a fixed-payment loan.</p>
+<p>Courts at every level, from New York trial courts to the Second Circuit Court of Appeals, have validated the reconciliation right and penalized funders who treat it as a sham. The legal record supports you. The contractual language supports you. The documentation process is straightforward.</p>
+<p>If your revenue is down, send the email. Do it in writing. Attach your bank statements. Keep the confirmation. And if your funder ignores a documented, legitimate reconciliation request, that is not your problem. Under the case law developed over the last five years, it is theirs.</p>
+<p>Upload your MCA contract at fundingwatch.org for a free analysis that identifies your reconciliation clause, flags your lender's enforcement history, and tells you exactly where you stand before you make another payment.</p>
+
+<h2 id="primary-sources">Primary Sources</h2>
+<ul>
+<li><em>People v. Richmond Capital Group LLC</em>, Justice Borrok ruling on reconciliation as "sham" (NY Commercial Division 2023) — <a href="https://www.nycdebtlawyers.com/debt-defense-blog/2023/october/new-york-state-judge-rules-that-merchant-cash-ad/" target="_blank" rel="noopener noreferrer">nycdebtlawyers.com</a></li>
+<li><em>Fleetwood Services LLC v. Richmond Capital Group LLC</em>, Second Circuit (2023) — <a href="https://www.clm.com/second-circuit-brings-federal-rico-caselaw-in-line-with-new-york-state-merchant-cash-advance-decisions/" target="_blank" rel="noopener noreferrer">clm.com</a></li>
+<li><em>In re Williams Land Clearing</em>, reconciliation failure and agreement voided ab initio (Bankr. E.D.N.C. 2025) — <a href="https://www.lplegal.com/content/recharacterization-merchant-cash-advance-agreements-bankruptcy/" target="_blank" rel="noopener noreferrer">lplegal.com</a></li>
+<li>NY AG v. <a href="/blog/new-york-mca-settlement-534m">Yellowstone Capital</a>, reconciliation provisions as false representations (NYAG Official Page) — <a href="https://ag.ny.gov/resources/individuals/credit-debt-lending/yellowstone-settlement" target="_blank" rel="noopener noreferrer">ag.ny.gov</a></li>
+<li>FTC Debt Relief Rules, fee prohibition before settlement — <a href="https://www.ftc.gov/debt-relief" target="_blank" rel="noopener noreferrer">ftc.gov</a></li>
+</ul>
+
+<p><strong>This article is for educational purposes only and does not constitute legal or financial advice.</strong> If you are dealing with an MCA contract dispute or considering your legal options, consult a licensed attorney in your jurisdiction.</p>
+<p><em>Last reviewed: March 2026.</em></p>
+    `.trim(),
+  },
+  {
     slug: "what-is-factor-rate",
     title: "What Is a Factor Rate on a Merchant Cash Advance?",
     excerpt:
