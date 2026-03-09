@@ -1,49 +1,76 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FileText, Search, Calculator, AlertTriangle, CheckCircle, Loader2 } from "lucide-react";
 
-const steps = [
+const STEPS = [
   { id: "extract", label: "Extracting text from document...", Icon: FileText },
   { id: "terms", label: "Identifying contract terms...", Icon: Search },
   { id: "apr", label: "Calculating effective APR...", Icon: Calculator },
   { id: "flags", label: "Checking for red flags...", Icon: AlertTriangle },
-];
+] as const;
 
-const STEP_DURATION_MS = 4000;
+const STEP_DELAYS_MS = [0, 5_000, 12_000, 18_000];
+const PROGRESS_CAP_PERCENT = 90;
+const PROGRESS_RAMP_MS = 27_000;
+const LONG_WAIT_MS = 30_000;
+const SUCCESS_PAUSE_MS = 500;
 
-export default function LoadingState() {
-  const [completedSteps, setCompletedSteps] = useState(0);
-  const [activeStep, setActiveStep] = useState(0);
+export interface LoadingStateProps {
+  apiComplete?: boolean;
+  onAnimationComplete?: () => void;
+}
+
+export default function LoadingState({ apiComplete = false, onAnimationComplete }: LoadingStateProps) {
   const [elapsedMs, setElapsedMs] = useState(0);
-  const totalMs = steps.length * STEP_DURATION_MS;
+  const [progressPercent, setProgressPercent] = useState(0);
+  const [successPhase, setSuccessPhase] = useState(false);
+  const onCompleteRef = useRef(onAnimationComplete);
+  onCompleteRef.current = onAnimationComplete;
+
+  const visibleCount = STEP_DELAYS_MS.filter((d) => elapsedMs >= d).length;
+  const completedSteps = successPhase ? STEPS.length : Math.max(0, Math.min(visibleCount - 1, STEPS.length - 1));
+  const activeStepIndex = successPhase ? -1 : (visibleCount >= 1 ? Math.min(visibleCount - 1, STEPS.length - 1) : -1);
+  const isFinalizing = !successPhase && visibleCount >= STEPS.length;
+  const showLongWaitMessage = !successPhase && elapsedMs >= LONG_WAIT_MS;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setElapsedMs((prev) => Math.min(prev + 100, totalMs));
+      setElapsedMs((prev) => prev + 100);
     }, 100);
     return () => clearInterval(interval);
-  }, [totalMs]);
+  }, []);
 
   useEffect(() => {
-    if (activeStep >= steps.length) return;
-    const t = setTimeout(() => {
-      setCompletedSteps(activeStep + 1);
-      setActiveStep((s) => s + 1);
-    }, STEP_DURATION_MS);
-    return () => clearTimeout(t);
-  }, [activeStep]);
+    if (successPhase) return;
+    if (apiComplete) {
+      setSuccessPhase(true);
+      setProgressPercent(100);
+      const t = setTimeout(() => {
+        onCompleteRef.current?.();
+      }, SUCCESS_PAUSE_MS);
+      return () => clearTimeout(t);
+    }
+    const target = Math.min(
+      PROGRESS_CAP_PERCENT,
+      (elapsedMs / PROGRESS_RAMP_MS) * PROGRESS_CAP_PERCENT
+    );
+    setProgressPercent(target);
+  }, [elapsedMs, apiComplete, successPhase]);
 
-  const progress = (elapsedMs / totalMs) * 100;
+  const progressDisplay = successPhase ? 100 : Math.min(progressPercent, 100);
+  const isPulsing = isFinalizing && !successPhase && progressPercent >= PROGRESS_CAP_PERCENT * 0.9;
 
   return (
     <section id="upload" className="section-card" aria-label="Analysis in progress">
       <div className="mx-auto max-w-[480px] px-4 sm:px-6">
         <div className="space-y-4">
-          {steps.map((step, i) => {
+          {STEPS.map((step, i) => {
+            if (!successPhase && elapsedMs < STEP_DELAYS_MS[i]) return null;
             const isComplete = i < completedSteps;
-            const isActive = i === activeStep && !isComplete;
+            const isActive = i === activeStepIndex;
             const Icon = step.Icon;
+            const label = isFinalizing && i === STEPS.length - 1 ? "Finalizing analysis..." : step.label;
             return (
               <div
                 key={step.id}
@@ -73,17 +100,33 @@ export default function LoadingState() {
                   className={`text-[16px] ${isComplete ? "font-medium" : isActive ? "font-semibold" : "font-normal"}`}
                   style={{ color: isComplete || isActive ? "var(--color-text-primary)" : "var(--color-text-secondary)" }}
                 >
-                  {step.label}
+                  {label}
                 </span>
               </div>
             );
           })}
         </div>
-        <div className="mt-8 h-1.5 overflow-hidden rounded-full" style={{ background: "var(--color-bg-subtle)" }}>
-          <div
-            className="h-full rounded-full transition-all duration-500 ease-[var(--ease-out)]"
-            style={{ width: `${Math.min(progress, 100)}%`, background: "var(--color-accent-primary)" }}
-          />
+
+        <div className="mt-6">
+          <div className="h-1.5 overflow-hidden rounded-full" style={{ background: "var(--color-bg-subtle)" }}>
+            <div
+              className={`h-full rounded-full transition-all duration-300 ${isPulsing ? "animate-pulse" : ""}`}
+              style={{
+                width: `${Math.min(progressDisplay, 100)}%`,
+                background: "var(--color-accent-primary)",
+                opacity: isPulsing ? 0.9 : 1,
+              }}
+            />
+          </div>
+          {showLongWaitMessage && (
+            <p
+              className="mt-3 text-center text-[var(--text-sm)]"
+              style={{ color: "var(--color-text-secondary)" }}
+              role="status"
+            >
+              Almost there — complex contracts take a bit longer
+            </p>
+          )}
         </div>
       </div>
     </section>

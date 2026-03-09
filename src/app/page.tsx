@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import type { AnalysisResult } from "@/types/analysis";
 import Hero from "@/components/Hero";
 import WhatYourReportIncludes from "@/components/WhatYourReportIncludes";
@@ -20,6 +20,8 @@ export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisError, setAnalysisError] = useState<string | null>(null);
+  const [analysisSuccess, setAnalysisSuccess] = useState(false);
+  const analysisResultRef = useRef<AnalysisResult | null>(null);
 
   const handleFileSelect = useCallback((file: File) => {
     setAnalysisError(null);
@@ -30,6 +32,8 @@ export default function Home() {
     if (!selectedFile) return;
     setIsAnalyzing(true);
     setAnalysisError(null);
+    setAnalysisSuccess(false);
+    analysisResultRef.current = null;
 
     const formData = new FormData();
     formData.append("file", selectedFile);
@@ -40,10 +44,8 @@ export default function Home() {
       try {
         const data = await res.json();
         if (res.ok) {
-          if (typeof window !== "undefined") {
-            sessionStorage.setItem("analysisResult", JSON.stringify(data as AnalysisResult));
-            window.location.href = "/results";
-          }
+          analysisResultRef.current = data as AnalysisResult;
+          setAnalysisSuccess(true);
           return;
         }
         if (data?.error && typeof data.error === "string") message = data.error;
@@ -54,9 +56,17 @@ export default function Home() {
     } catch (e) {
       setAnalysisError(e instanceof Error ? e.message : "Analysis failed. Please try again.");
     } finally {
-      setIsAnalyzing(false);
+      if (!analysisResultRef.current) setIsAnalyzing(false);
     }
   }, [selectedFile]);
+
+  const handleAnimationComplete = useCallback(() => {
+    const result = analysisResultRef.current;
+    if (result && typeof window !== "undefined") {
+      sessionStorage.setItem("analysisResult", JSON.stringify(result));
+      window.location.href = "/results";
+    }
+  }, []);
 
   return (
     <RevealOnScrollProvider>
@@ -67,7 +77,10 @@ export default function Home() {
       <WhoThisIsFor />
       <HowItWorks />
       {isAnalyzing ? (
-        <LoadingState />
+        <LoadingState
+          apiComplete={analysisSuccess}
+          onAnimationComplete={handleAnimationComplete}
+        />
       ) : (
         <UploadSection
           selectedFile={selectedFile}

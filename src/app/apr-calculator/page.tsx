@@ -272,7 +272,7 @@ export default function APRCalculatorPage() {
       <section
         className="relative overflow-hidden px-4 py-12 md:py-16"
         style={{
-          background: "linear-gradient(160deg, #1A1A2E 0%, #1E2A4A 50%, #1A2840 100%)",
+          backgroundColor: "#2E75B6",
         }}
         aria-label="Calculator header"
       >

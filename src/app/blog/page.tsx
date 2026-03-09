@@ -44,7 +44,7 @@ function BlogIndexSkeleton() {
       <section
         className="blog-hero relative overflow-hidden px-6 py-16 md:px-8 md:py-20 lg:px-12 lg:py-24"
         style={{
-          background: "linear-gradient(160deg, #1A1A2E 0%, #1E2A4A 50%, #1A2840 100%)",
+          backgroundColor: "#2E75B6",
         }}
         aria-label="Blog hero"
       >
@@ -106,7 +106,7 @@ function BlogIndexContent() {
       <section
         className="blog-hero relative overflow-hidden px-6 py-16 md:px-8 md:py-20 lg:px-12 lg:py-24"
         style={{
-          background: "linear-gradient(160deg, #1A1A2E 0%, #1E2A4A 50%, #1A2840 100%)",
+          backgroundColor: "#2E75B6",
         }}
         aria-label="Blog hero"
       >

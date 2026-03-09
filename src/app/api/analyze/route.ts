@@ -56,6 +56,15 @@ Return ONLY valid JSON with this exact structure:
   "recommended_actions": ["action 1", "action 2"]
 }
 
+IMPORTANT: Assume the business owner has ALREADY SIGNED this contract. They are not evaluating whether to sign — they already did. All recommended actions and language should reflect this reality. Instead of "do not sign" or "negotiate removal of", use actionable advice like:
+- "Consult an attorney experienced in MCA defense to review your options"
+- "Document all payments and communications with this lender"
+- "If you experience revenue drops, exercise the reconciliation clause immediately by submitting a written request with bank statements"
+- "Be aware that [specific clause] gives the lender [specific power] — if they attempt to exercise it, seek legal counsel immediately"
+- "Monitor your bank account for any unauthorized debits beyond the agreed daily amount"
+
+Never say "do not sign", "before signing", "negotiate removal of", or similar pre-signing language. The contract is already executed.
+
 Red flag examples to look for:
 - Confession of Judgment (COJ) clause — allows lender to collect without notice
 - No reconciliation clause — can't adjust payments if revenue drops
