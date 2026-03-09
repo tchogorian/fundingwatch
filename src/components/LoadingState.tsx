@@ -10,18 +10,11 @@ const STEPS = [
   { id: "flags", label: "Checking for red flags...", Icon: AlertTriangle },
 ] as const;
 
-const STEP_DELAYS_MS = [0, 30_000, 60_000, 90_000];
+const STEP_DELAYS_MS = [0, 5_000, 12_000, 18_000];
 const PROGRESS_CAP_PERCENT = 90;
-const PROGRESS_RAMP_MS = 120_000;
-const LONG_WAIT_MS = 60_000;
+const PROGRESS_RAMP_MS = 35_000;
+const LONG_WAIT_MS = 30_000;
 const SUCCESS_PAUSE_MS = 500;
-
-const FINALIZING_MESSAGES = [
-  "Finalizing analysis...",
-  "Reading every clause...",
-  "Almost there — analysis usually takes 2–3 minutes",
-] as const;
-const ROTATE_MESSAGE_MS = 25_000;
 
 export interface LoadingStateProps {
   apiComplete?: boolean;
@@ -33,6 +26,7 @@ export default function LoadingState({ apiComplete = false, onAnimationComplete 
   const [progressPercent, setProgressPercent] = useState(0);
   const [successPhase, setSuccessPhase] = useState(false);
   const onCompleteRef = useRef(onAnimationComplete);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   onCompleteRef.current = onAnimationComplete;
 
   const visibleCount = STEP_DELAYS_MS.filter((d) => elapsedMs >= d).length;
@@ -40,28 +34,39 @@ export default function LoadingState({ apiComplete = false, onAnimationComplete 
   const activeStepIndex = successPhase ? -1 : (visibleCount >= 1 ? Math.min(visibleCount - 1, STEPS.length - 1) : -1);
   const isFinalizing = !successPhase && visibleCount >= STEPS.length;
   const showLongWaitMessage = !successPhase && elapsedMs >= LONG_WAIT_MS;
-  const finalizingMessageIndex = isFinalizing && elapsedMs >= STEP_DELAYS_MS[STEP_DELAYS_MS.length - 1]
-    ? Math.floor((elapsedMs - STEP_DELAYS_MS[STEP_DELAYS_MS.length - 1]) / ROTATE_MESSAGE_MS) % FINALIZING_MESSAGES.length
-    : 0;
-  const finalizingLabel = FINALIZING_MESSAGES[finalizingMessageIndex];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setElapsedMs((prev) => prev + 100);
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
-
+  // Animation timer: runs independently, purely cosmetic. Cleared as soon as API completes.
   useEffect(() => {
     if (successPhase) return;
-    if (apiComplete) {
-      setSuccessPhase(true);
-      setProgressPercent(100);
-      const t = setTimeout(() => {
-        onCompleteRef.current?.();
-      }, SUCCESS_PAUSE_MS);
-      return () => clearTimeout(t);
+    intervalRef.current = setInterval(() => {
+      setElapsedMs((prev) => prev + 100);
+    }, 100);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [successPhase]);
+
+  // As soon as API succeeds: cancel animation, show 100%, redirect after 500ms. Never wait for animation.
+  useEffect(() => {
+    if (!apiComplete) return;
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
+    setSuccessPhase(true);
+    setProgressPercent(100);
+    const t = setTimeout(() => {
+      onCompleteRef.current?.();
+    }, SUCCESS_PAUSE_MS);
+    return () => clearTimeout(t);
+  }, [apiComplete]);
+
+  // Progress bar: ramp while waiting; ignored once apiComplete fired (successPhase shows 100%).
+  useEffect(() => {
+    if (successPhase || apiComplete) return;
     const target = Math.min(
       PROGRESS_CAP_PERCENT,
       (elapsedMs / PROGRESS_RAMP_MS) * PROGRESS_CAP_PERCENT
@@ -81,7 +86,7 @@ export default function LoadingState({ apiComplete = false, onAnimationComplete 
             const isComplete = i < completedSteps;
             const isActive = i === activeStepIndex;
             const Icon = step.Icon;
-            const label = isFinalizing && i === STEPS.length - 1 ? finalizingLabel : step.label;
+            const label = isFinalizing && i === STEPS.length - 1 ? "Finalizing analysis..." : step.label;
             return (
               <div
                 key={step.id}
@@ -134,7 +139,7 @@ export default function LoadingState({ apiComplete = false, onAnimationComplete 
               style={{ color: "var(--color-text-secondary)" }}
               role="status"
             >
-              Almost there — analysis usually takes 2–3 minutes
+              Almost there — complex contracts take a bit longer
             </p>
           )}
         </div>
