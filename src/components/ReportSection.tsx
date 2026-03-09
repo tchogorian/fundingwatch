@@ -11,8 +11,7 @@ import ExploreYourOptions from "./ExploreYourOptions";
 import FadeIn from "./FadeIn";
 
 export default function ReportSection({ data }: { data: AnalysisResult }) {
-  const showConfidenceNotice =
-    data.confidence === "medium" || data.confidence === "low";
+  const showConfidenceNotice = false;
 
   return (
     <section className="section-card" aria-label="Your analysis report">

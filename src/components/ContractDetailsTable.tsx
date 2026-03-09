@@ -6,38 +6,38 @@ const rows: {
   key: keyof AnalysisResult;
   label: string;
   format: (v: unknown) => string;
+  getValue?: (d: AnalysisResult) => unknown;
   concerningIfYes?: boolean;
   goodIfYes?: boolean;
 }[] = [
-  { key: "factor_rate", label: "Factor rate", format: (v) => String(v) },
+  { key: "factor_rate", label: "Factor rate", format: (v) => (v != null ? String(v) + "x" : "—") },
+  { key: "daily_payment", label: "Daily payment", format: (v) => (v != null ? "$" + Number(v).toLocaleString() : "—") },
   {
-    key: "payment_frequency",
-    label: "Payment frequency",
-    format: (v) => String(v),
-  },
-  {
-    key: "has_personal_guarantee",
+    key: "personal_guarantee",
     label: "Personal guarantee",
+    getValue: (d) => d.personal_guarantee?.present,
     format: (v) => (v ? "Yes" : "No"),
     concerningIfYes: true,
   },
   {
-    key: "has_reconciliation_clause",
+    key: "reconciliation_clause",
     label: "Reconciliation clause",
+    getValue: (d) => d.reconciliation_clause?.present,
     format: (v) => (v ? "Yes" : "No"),
     goodIfYes: true,
   },
   {
-    key: "has_confession_of_judgment",
+    key: "confession_of_judgment",
     label: "Confession of judgment",
+    getValue: (d) => d.confession_of_judgment?.present,
     format: (v) => (v ? "Yes" : "No"),
     concerningIfYes: true,
   },
   {
-    key: "has_ucc_filing",
-    label: "UCC filing provision",
+    key: "stacking_prohibition",
+    label: "Stacking prohibition",
+    getValue: (d) => d.stacking_prohibition?.present,
     format: (v) => (v ? "Yes" : "No"),
-    concerningIfYes: true,
   },
 ];
 
@@ -85,18 +85,19 @@ function Badge({
 
 export default function ContractDetailsTable({ data }: { data: AnalysisResult }) {
   const boolKeys = new Set([
-    "has_personal_guarantee",
-    "has_reconciliation_clause",
-    "has_confession_of_judgment",
-    "has_ucc_filing",
+    "personal_guarantee",
+    "reconciliation_clause",
+    "confession_of_judgment",
+    "stacking_prohibition",
   ]);
 
   return (
     <div className="overflow-hidden rounded-card border border-border shadow-card">
       <div className="divide-y divide-border">
-        {rows.map(({ key, label, format, concerningIfYes }, i) => {
-          const value = data[key];
+        {rows.map(({ key, label, format, getValue, concerningIfYes }, i) => {
+          const value = getValue ? getValue(data) : data[key];
           const isEven = i % 2 === 0;
+          const isBool = boolKeys.has(key);
           return (
             <div
               key={key}
@@ -108,7 +109,7 @@ export default function ContractDetailsTable({ data }: { data: AnalysisResult })
                 {label}
               </span>
               <span className="text-[16px] font-medium text-dark-text">
-                {boolKeys.has(key) ? (
+                {isBool && (value === true || value === false) ? (
                   <Badge
                     value={value as boolean}
                     concerningIfYes={rows.find((r) => r.key === key)

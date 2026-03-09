@@ -4,16 +4,20 @@ import { useEffect, useState } from "react";
 import type { AnalysisResult } from "@/types/analysis";
 
 function computeRiskScore(data: AnalysisResult): number {
+  if (data.overall_risk_score != null && data.overall_risk_score >= 1 && data.overall_risk_score <= 10) {
+    return Math.round((data.overall_risk_score / 10) * 100);
+  }
   let score = 0;
-  if (data.effective_apr >= 100) score += 40;
-  else if (data.effective_apr >= 50) score += 25;
-  else if (data.effective_apr >= 30) score += 15;
-  if (data.has_confession_of_judgment) score += 25;
-  if (data.has_personal_guarantee) score += 15;
-  if (data.has_reconciliation_clause) score += 10;
-  data.red_flags.forEach((f) => {
-    if (f.severity === "critical") score += 8;
-    else if (f.severity === "warning") score += 4;
+  const apr = data.effective_apr ?? 0;
+  if (apr >= 100) score += 40;
+  else if (apr >= 50) score += 25;
+  else if (apr >= 30) score += 15;
+  if (data.confession_of_judgment?.present) score += 25;
+  if (data.personal_guarantee?.present) score += 15;
+  if (data.reconciliation_clause?.present) score += 10;
+  (data.red_flags || []).forEach((f) => {
+    if (f.severity === "high") score += 8;
+    else if (f.severity === "medium") score += 4;
   });
   return Math.min(100, score);
 }

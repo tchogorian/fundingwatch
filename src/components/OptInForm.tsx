@@ -29,14 +29,14 @@ interface FormState {
 }
 
 const severityConfig: Record<RedFlag["severity"], { label: string; Icon: typeof AlertCircle }> = {
-  critical: { label: "Critical", Icon: AlertCircle },
-  warning: { label: "Warning", Icon: AlertTriangle },
-  info: { label: "Info", Icon: Info },
+  high: { label: "High", Icon: AlertCircle },
+  medium: { label: "Medium", Icon: AlertTriangle },
+  low: { label: "Low", Icon: Info },
 };
 
 function FlagsSummary({ flags, title, compact = false }: { flags: RedFlag[]; title: string; compact?: boolean }) {
   const sorted = [...flags].sort((a, b) => {
-    const order: Record<RedFlag["severity"], number> = { critical: 0, warning: 1, info: 2 };
+    const order: Record<RedFlag["severity"], number> = { high: 0, medium: 1, low: 2 };
     return order[a.severity] - order[b.severity];
   });
   if (sorted.length === 0) return null;
@@ -57,14 +57,14 @@ function FlagsSummary({ flags, title, compact = false }: { flags: RedFlag[]; tit
               key={i}
               className="rounded-r-[var(--radius-md)] border-l-4 py-2 pr-2"
               style={{
-                borderLeftColor: flag.severity === "critical" ? "var(--danger)" : flag.severity === "warning" ? "var(--warning)" : "var(--color-accent-primary)",
-                background: flag.severity === "critical" ? "rgba(198,40,40,0.06)" : flag.severity === "warning" ? "rgba(230,81,0,0.06)" : "var(--color-bg-elevated)",
+                borderLeftColor: flag.severity === "high" ? "var(--danger)" : flag.severity === "medium" ? "var(--warning)" : "var(--color-accent-primary)",
+                background: flag.severity === "high" ? "rgba(198,40,40,0.06)" : flag.severity === "medium" ? "rgba(230,81,0,0.06)" : "var(--color-bg-elevated)",
               }}
             >
               <div className="flex items-start gap-2">
-                <Icon className="mt-0.5 h-4 w-4 shrink-0" style={{ color: flag.severity === "critical" ? "var(--danger)" : flag.severity === "warning" ? "var(--warning)" : "var(--color-accent-primary)" }} aria-hidden />
+                <Icon className="mt-0.5 h-4 w-4 shrink-0" style={{ color: flag.severity === "high" ? "var(--danger)" : flag.severity === "medium" ? "var(--warning)" : "var(--color-accent-primary)" }} aria-hidden />
                 <div>
-                  <span className="text-[var(--text-sm)] font-medium" style={{ color: "var(--color-text-primary)" }}>{flag.title}</span>
+                  <span className="text-[var(--text-sm)] font-medium" style={{ color: "var(--color-text-primary)" }}>{flag.flag}</span>
                   {!compact && flag.description && (
                     <p className="mt-1 text-[var(--text-sm)] leading-snug" style={{ color: "var(--color-text-secondary)" }}>{flag.description}</p>
                   )}

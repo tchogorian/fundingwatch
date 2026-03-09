@@ -21,7 +21,8 @@ const REVENUE_OPTIONS = [
   "Over $100K",
 ];
 
-function aprPillClass(apr: number) {
+function aprPillClass(apr: number | null) {
+  if (apr == null) return "bg-muted/20 text-muted";
   if (apr > 100) return "bg-danger text-white";
   if (apr >= 50) return "bg-warning text-white";
   return "bg-success text-white";
@@ -51,7 +52,8 @@ const fairLendingCards = [
 export default function ExploreYourOptions({ data }: { data: AnalysisResult }) {
   const [showForm, setShowForm] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const aprAbove30 = data.effective_apr > 30;
+  const apr = data.effective_apr ?? 0;
+  const aprAbove30 = apr > 30;
 
   return (
     <div className="space-y-10">
@@ -80,39 +82,41 @@ export default function ExploreYourOptions({ data }: { data: AnalysisResult }) {
                   <span
                     className={`rounded-button px-2 py-0.5 text-[16px] font-semibold ${aprPillClass(data.effective_apr)}`}
                   >
-                    {data.effective_apr.toFixed(1)}%
+                    {data.effective_apr != null ? data.effective_apr.toFixed(1) + "%" : "—"}
                   </span>
                 </div>
                 <div className="flex justify-between text-small">
                   <span className="text-muted">Factor rate</span>
-                  <span className="font-medium text-dark-text">{data.factor_rate}</span>
+                  <span className="font-medium text-dark-text">{data.factor_rate != null ? data.factor_rate + "x" : "—"}</span>
                 </div>
                 <div className="flex justify-between text-small">
-                  <span className="text-muted">Payment frequency</span>
-                  <span className="font-medium text-dark-text">{data.payment_frequency}</span>
+                  <span className="text-muted">Payment</span>
+                  <span className="font-medium text-dark-text">
+                    {data.daily_payment != null ? "$" + data.daily_payment.toLocaleString() + "/day" : data.weekly_payment != null ? "$" + data.weekly_payment.toLocaleString() + "/wk" : "—"}
+                  </span>
                 </div>
                 <div className="flex justify-between text-small">
                   <span className="text-muted">Reconciliation</span>
                   <span
                     className={
-                      data.has_reconciliation_clause
+                      data.reconciliation_clause?.present
                         ? "rounded-button bg-success px-2 py-0.5 text-white"
                         : "rounded-button bg-danger px-2 py-0.5 text-white"
                     }
                   >
-                    {data.has_reconciliation_clause ? "Yes" : "No"}
+                    {data.reconciliation_clause?.present ? "Yes" : "No"}
                   </span>
                 </div>
                 <div className="flex justify-between text-small">
                   <span className="text-muted">Confession of Judgment</span>
                   <span
                     className={
-                      data.has_confession_of_judgment
+                      data.confession_of_judgment?.present
                         ? "rounded-button bg-danger px-2 py-0.5 text-white"
                         : "rounded-button bg-success px-2 py-0.5 text-white"
                     }
                   >
-                    {data.has_confession_of_judgment ? "Yes" : "No"}
+                    {data.confession_of_judgment?.present ? "Yes" : "No"}
                   </span>
                 </div>
               </div>

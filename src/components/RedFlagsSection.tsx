@@ -5,21 +5,21 @@ import { AlertCircle, AlertTriangle, Info } from "lucide-react";
 import FadeIn from "./FadeIn";
 
 const severityConfig = {
-  critical: {
+  high: {
     border: "border-l-danger",
     bg: "bg-[#FEF2F2]",
     badge: "bg-danger/10 text-danger",
     icon: AlertCircle,
     iconClass: "text-danger",
   },
-  warning: {
+  medium: {
     border: "border-l-warning",
     bg: "bg-[#FFFBEB]",
     badge: "bg-warning/10 text-warning",
     icon: AlertTriangle,
     iconClass: "text-warning",
   },
-  info: {
+  low: {
     border: "border-l-accent",
     bg: "bg-focus-ring",
     badge: "bg-accent/10 text-accent",
@@ -30,7 +30,7 @@ const severityConfig = {
 
 export default function RedFlagsSection({ flags }: { flags: RedFlag[] }) {
   const sorted = [...flags].sort((a, b) => {
-    const order = { critical: 0, warning: 1, info: 2 };
+    const order = { high: 0, medium: 1, low: 2 };
     return order[a.severity] - order[b.severity];
   });
 
@@ -45,7 +45,7 @@ export default function RedFlagsSection({ flags }: { flags: RedFlag[] }) {
   }
 
   const badgeLabel = (s: RedFlag["severity"]) =>
-    s === "critical" ? "Critical" : s === "warning" ? "Warning" : "Info";
+    s === "high" ? "High" : s === "medium" ? "Medium" : "Low";
 
   return (
     <div className="space-y-4">
@@ -70,7 +70,7 @@ export default function RedFlagsSection({ flags }: { flags: RedFlag[] }) {
                   {badgeLabel(flag.severity)}
                 </span>
                 <span className="text-body font-semibold text-dark-text">
-                  {flag.title}
+                  {flag.flag}
                 </span>
               </div>
               <p className="mt-3 text-[16px] leading-[1.6] text-muted">
