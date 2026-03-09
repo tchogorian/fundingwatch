@@ -96,7 +96,7 @@ export default function ResultsPage() {
 
   const handleOptInSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.phone.trim() || !form.business.trim() || !form.consent) return;
+    if (!form.name.trim() || !form.email.trim() || !form.phone.trim() || !form.business.trim() || !form.consent || !data) return;
     setSubmitStatus("submitting");
     try {
       const res = await fetch("/api/opt-in", {
@@ -108,6 +108,14 @@ export default function ResultsPage() {
           phone: form.phone.trim(),
           business: form.business.trim(),
           consent: true,
+          lender_name: data.lender_name ?? null,
+          risk_score: data.overall_risk_score ?? null,
+          risk_label: data.overall_risk_label ?? null,
+          effective_apr: data.effective_apr ?? null,
+          red_flag_count: data.red_flags?.length ?? null,
+          high_flag_count: data.red_flags?.filter((f) => f.severity === "high").length ?? null,
+          has_coj: data.confession_of_judgment?.present ?? null,
+          has_personal_guarantee: data.personal_guarantee?.present ?? null,
         }),
       });
       if (!res.ok) throw new Error("Submit failed");
