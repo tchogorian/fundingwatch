@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/Footer";
@@ -65,6 +65,13 @@ export default function ResultsPage() {
     consent: false,
   });
   const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "error">("idle");
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (optInSuccess && typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [optInSuccess]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -129,7 +136,7 @@ export default function ResultsPage() {
     return (
       <>
         <main className="min-h-screen px-4 py-16" style={{ background: "var(--color-bg-base)" }}>
-          <div className="mx-auto max-w-[560px] text-center">
+          <div ref={successRef} className="mx-auto max-w-[560px] text-center">
             <div className="flex justify-center">
               <div
                 className="flex h-20 w-20 items-center justify-center rounded-full"
