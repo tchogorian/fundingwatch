@@ -84,7 +84,7 @@ export default function HowItWorks() {
             style={{ color: "var(--on-light-2)" }}
           >
             <Clock className="h-4 w-4" aria-hidden />
-            Average analysis time: under 30 seconds
+            Average analysis time: about 3 minutes
           </div>
         </FadeIn>
       </div>

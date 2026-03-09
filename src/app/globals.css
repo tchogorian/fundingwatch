@@ -1267,6 +1267,16 @@ h3 {
   }
 }
 
+@keyframes loading-bar-shimmer {
+  0% { opacity: 0.85; }
+  50% { opacity: 1; }
+  100% { opacity: 0.85; }
+}
+
+.loading-bar-indeterminate {
+  animation: loading-bar-shimmer 1.5s ease-in-out infinite;
+}
+
 /* ========== UPLOAD ZONE ========== */
 .upload-zone {
   display: flex;

@@ -10,11 +10,18 @@ const STEPS = [
   { id: "flags", label: "Checking for red flags...", Icon: AlertTriangle },
 ] as const;
 
-const STEP_DELAYS_MS = [0, 5_000, 12_000, 18_000];
+const STEP_DELAYS_MS = [0, 30_000, 60_000, 90_000];
 const PROGRESS_CAP_PERCENT = 90;
-const PROGRESS_RAMP_MS = 27_000;
-const LONG_WAIT_MS = 30_000;
+const PROGRESS_RAMP_MS = 120_000;
+const LONG_WAIT_MS = 60_000;
 const SUCCESS_PAUSE_MS = 500;
+
+const FINALIZING_MESSAGES = [
+  "Finalizing analysis...",
+  "Reading every clause...",
+  "Almost there — analysis usually takes 2–3 minutes",
+] as const;
+const ROTATE_MESSAGE_MS = 25_000;
 
 export interface LoadingStateProps {
   apiComplete?: boolean;
@@ -33,6 +40,10 @@ export default function LoadingState({ apiComplete = false, onAnimationComplete 
   const activeStepIndex = successPhase ? -1 : (visibleCount >= 1 ? Math.min(visibleCount - 1, STEPS.length - 1) : -1);
   const isFinalizing = !successPhase && visibleCount >= STEPS.length;
   const showLongWaitMessage = !successPhase && elapsedMs >= LONG_WAIT_MS;
+  const finalizingMessageIndex = isFinalizing && elapsedMs >= STEP_DELAYS_MS[STEP_DELAYS_MS.length - 1]
+    ? Math.floor((elapsedMs - STEP_DELAYS_MS[STEP_DELAYS_MS.length - 1]) / ROTATE_MESSAGE_MS) % FINALIZING_MESSAGES.length
+    : 0;
+  const finalizingLabel = FINALIZING_MESSAGES[finalizingMessageIndex];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -59,7 +70,7 @@ export default function LoadingState({ apiComplete = false, onAnimationComplete 
   }, [elapsedMs, apiComplete, successPhase]);
 
   const progressDisplay = successPhase ? 100 : Math.min(progressPercent, 100);
-  const isPulsing = isFinalizing && !successPhase && progressPercent >= PROGRESS_CAP_PERCENT * 0.9;
+  const isPulsing = isFinalizing && !successPhase;
 
   return (
     <section id="upload" className="section-card" aria-label="Analysis in progress">
@@ -70,7 +81,7 @@ export default function LoadingState({ apiComplete = false, onAnimationComplete 
             const isComplete = i < completedSteps;
             const isActive = i === activeStepIndex;
             const Icon = step.Icon;
-            const label = isFinalizing && i === STEPS.length - 1 ? "Finalizing analysis..." : step.label;
+            const label = isFinalizing && i === STEPS.length - 1 ? finalizingLabel : step.label;
             return (
               <div
                 key={step.id}
@@ -110,11 +121,10 @@ export default function LoadingState({ apiComplete = false, onAnimationComplete 
         <div className="mt-6">
           <div className="h-1.5 overflow-hidden rounded-full" style={{ background: "var(--color-bg-subtle)" }}>
             <div
-              className={`h-full rounded-full transition-all duration-300 ${isPulsing ? "animate-pulse" : ""}`}
+              className={`h-full rounded-full transition-all duration-300 ${isPulsing ? "loading-bar-indeterminate" : ""}`}
               style={{
                 width: `${Math.min(progressDisplay, 100)}%`,
                 background: "var(--color-accent-primary)",
-                opacity: isPulsing ? 0.9 : 1,
               }}
             />
           </div>
@@ -124,7 +134,7 @@ export default function LoadingState({ apiComplete = false, onAnimationComplete 
               style={{ color: "var(--color-text-secondary)" }}
               role="status"
             >
-              Almost there — complex contracts take a bit longer
+              Almost there — analysis usually takes 2–3 minutes
             </p>
           )}
         </div>
