@@ -12,6 +12,7 @@ interface UploadSectionProps {
   onStartAnalysis: () => void;
   selectedFile: File | null;
   isAnalyzing: boolean;
+  analysisError?: string | null;
 }
 
 export default function UploadSection({
@@ -19,6 +20,7 @@ export default function UploadSection({
   onStartAnalysis,
   selectedFile,
   isAnalyzing,
+  analysisError = null,
 }: UploadSectionProps) {
   const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -160,6 +162,15 @@ export default function UploadSection({
             role="alert"
           >
             {error}
+          </p>
+        )}
+        {analysisError && (
+          <p
+            className="mt-4 text-center text-[var(--text-sm)] font-medium"
+            style={{ color: "var(--color-danger)" }}
+            role="alert"
+          >
+            {analysisError}
           </p>
         )}
         <p

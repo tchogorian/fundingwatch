@@ -19,27 +19,42 @@ import RevealOnScrollProvider from "@/components/RevealOnScroll";
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysisError, setAnalysisError] = useState<string | null>(null);
+
+  const handleFileSelect = useCallback((file: File) => {
+    setAnalysisError(null);
+    setSelectedFile(file);
+  }, []);
 
   const handleStartAnalysis = useCallback(async () => {
     if (!selectedFile) return;
     setIsAnalyzing(true);
+    setAnalysisError(null);
 
     const formData = new FormData();
     formData.append("file", selectedFile);
 
     try {
       const res = await fetch("/api/analyze", { method: "POST", body: formData });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || "Analysis failed");
+      let message = "Analysis failed. Please try again.";
+      try {
+        const data = await res.json();
+        if (res.ok) {
+          if (typeof window !== "undefined") {
+            sessionStorage.setItem("analysisResult", JSON.stringify(data as AnalysisResult));
+            window.location.href = "/results";
+          }
+          return;
+        }
+        if (data?.error && typeof data.error === "string") message = data.error;
+      } catch {
+        if (!res.ok) message = res.status === 500 ? "Analysis failed. Please try again." : `Request failed (${res.status}).`;
       }
-      if (typeof window !== "undefined") {
-        sessionStorage.setItem("analysisResult", JSON.stringify(data as AnalysisResult));
-        window.location.href = "/results";
-      }
-    } catch {
+      setAnalysisError(message);
+    } catch (e) {
+      setAnalysisError(e instanceof Error ? e.message : "Analysis failed. Please try again.");
+    } finally {
       setIsAnalyzing(false);
-      setSelectedFile(null);
     }
   }, [selectedFile]);
 
@@ -56,9 +71,10 @@ export default function Home() {
       ) : (
         <UploadSection
           selectedFile={selectedFile}
-          onFileSelect={setSelectedFile}
+          onFileSelect={handleFileSelect}
           onStartAnalysis={handleStartAnalysis}
           isAnalyzing={isAnalyzing}
+          analysisError={analysisError}
         />
       )}
       <UnderstandingYourMCA />
