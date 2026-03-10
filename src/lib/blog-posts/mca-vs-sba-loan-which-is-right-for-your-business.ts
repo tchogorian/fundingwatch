@@ -8,7 +8,7 @@ export const post: BlogPost = {
   category: "mca-basics",
   date: "2026-03-10",
   readTimeMinutes: 5,
-  author: "FundingWatch Editorial Team",
+  author: "Alex Tchogorian",
   authorBio: AUTHOR_BIO,
   credentials: CREDENTIALS,
   headings: [
