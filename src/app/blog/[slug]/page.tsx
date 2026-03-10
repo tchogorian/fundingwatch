@@ -43,7 +43,7 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
   if (!post) return { title: "Not Found" };
   const title = `${post.title} — FundingWatch Blog`;
-  const description = post.excerpt;
+  const description = post.metaDescription || post.excerpt;
   const url = `https://www.fundingwatch.org/blog/${slug}`;
   return {
     title,

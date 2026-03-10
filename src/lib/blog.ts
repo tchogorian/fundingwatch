@@ -36,6 +36,7 @@ export interface BlogPost {
   slug: string;
   title: string;
   excerpt: string;
+  metaDescription?: string; // SEO meta description (≤155 chars, keyword-optimized)
   category: BlogCategory;
   date: string; // ISO
   readTimeMinutes: number;
