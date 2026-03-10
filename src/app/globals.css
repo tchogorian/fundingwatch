@@ -564,21 +564,25 @@ h3 {
 }
 
 /* ========== HERO ========== */
-/* Hero: blue background */
+
 .hero {
   background-color: #2E75B6 !important;
   background-image: none !important;
   position: relative;
   overflow: hidden;
-  padding: 80px 0 24px;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 0 0;
 }
+
 .hero::before,
 .hero::after {
   content: none !important;
   display: none !important;
   background-image: none !important;
 }
-/* Hide any stray image inside hero (old composite/figure must not show) — exclude document image */
+
+/* Hide any stray image inside hero — exclude document image */
 .hero img:not(.hero-contract-document-img),
 .hero picture {
   display: none !important;
@@ -590,11 +594,13 @@ h3 {
   height: 0 !important;
   pointer-events: none !important;
 }
-/* Force no background image on hero or any child except the contract card and CTA button */
+
+/* Force no background image on hero children */
 .hero,
 .hero *:not(.hero-contract-card):not(.hero-contract-card *):not(.btn-hero-primary) {
   background-image: none !important;
 }
+
 .hero-inner {
   position: relative;
   z-index: 2;
@@ -605,8 +611,9 @@ h3 {
   grid-template-columns: 3fr 2fr;
   gap: 48px;
   align-items: center;
-  min-height: 0;
+  flex: 1;
 }
+
 /* Right column: document image wrapper */
 .hero-document-wrapper {
   display: flex;
@@ -618,7 +625,6 @@ h3 {
   position: relative;
 }
 
-/* Kill any Next.js Image wrapper span background */
 .hero-document-wrapper span,
 .hero-document-wrapper div {
   background: transparent !important;
@@ -635,11 +641,113 @@ h3 {
   background: transparent !important;
   background-color: transparent !important;
 }
+
+/* Eyebrow */
+.hero .eyebrow.hero-eyebrow {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* Title */
+.hero-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+/* Subtext */
+.hero-sub {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+/* Buttons */
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+/* Scroll hint — centered at bottom of hero */
+.hero-scroll-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: 24px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 200ms;
+}
+
+.hero-scroll-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-scroll-btn span {
+  font-size: 12px;
+}
+
+/* Primary CTA */
+.btn-hero-primary {
+  position: relative;
+  background-color: #2563EB !important;
+  background-image: none !important;
+  color: white !important;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 200ms, box-shadow 200ms;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  background-color: #1d4ed8 !important;
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .hero {
+    padding: 72px 0 0;
+  }
+  .hero-title {
+    font-size: 3rem;
+  }
+  .hero-btns {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 3.2rem;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .hero {
     min-height: unset !important;
     height: auto !important;
-    padding: 48px 0 24px;
+    padding: 48px 0 0;
   }
   .hero-inner {
     grid-template-columns: 1fr;
@@ -666,134 +774,20 @@ h3 {
   .hero-sub {
     font-size: 15px;
     line-height: 1.5;
-    margin-bottom: 32px;
-  }
-  .hero-curiosity {
-    font-size: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 24px;
   }
   .btn-hero-primary {
     width: 100%;
-    margin-bottom: 0;
   }
-  .hero-scroll-wrap {
-    padding: 12px 0 16px;
-  }
-  .hero-scroll-hint {
-    margin: 0 auto;
-    width: fit-content;
+  .hero-scroll-btn {
+    padding: 16px 0;
   }
 }
-.hero .eyebrow.hero-eyebrow {
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
-.hero h1 .hero-headline-white {
-  color: #FFFFFF;
-}
-.hero h1 .hero-headline-accent {
-  color: #00A86B;
-}
-.hero-title {
-  font-size: 2.6rem;
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
-  margin-bottom: 24px;
-}
-@media (min-width: 1024px) {
-  .hero-title {
-    font-size: 2.8rem;
-  }
-}
+
 @media (max-width: 400px) {
   .hero-title {
     font-size: 1.5rem;
   }
-}
-.hero-sub {
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 520px;
-  margin-bottom: 56px;
-}
-.hero-curiosity {
-  font-size: 13px;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 12px;
-}
-.hero-btns {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  margin-bottom: 0;
-}
-/* Scroll hint: full-width at bottom of hero */
-.hero-scroll-wrap {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 0 20px;
-}
-.hero .hero-scroll-hint {
-  color: rgba(255, 255, 255, 0.65) !important;
-}
-.hero .hero-scroll-hint:hover {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-.hero-trust-line {
-  margin-top: 10px;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-}
-/* Desktop fixes only — add these after existing hero styles */
-@media (min-width: 769px) {
-  .hero {
-    padding: 72px 0 28px;
-  }
-  .hero-title {
-    font-size: 3rem;
-  }
-  .hero-curiosity {
-    display: none !important;
-  }
-  .hero-btns {
-    justify-content: flex-start;
-  }
-}
-@media (min-width: 1024px) {
-  .hero-title {
-    font-size: 3.2rem;
-  }
-}
-/* Primary CTA: solid blue button on hero */
-.btn-hero-primary {
-  position: relative;
-  background-color: #2563EB !important;
-  background-image: none !important;
-  color: white !important;
-  border: none;
-  border-radius: 9999px;
-  padding: 14px 28px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 200ms, box-shadow 200ms;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-.btn-hero-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  background-color: #1d4ed8 !important;
 }
 /* Secondary: dark fill + gradient border (yellow/orange) */
 .btn-hero-secondary {

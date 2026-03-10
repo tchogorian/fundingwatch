@@ -17,11 +17,12 @@ export default function Hero() {
   return (
     <section className="hero relative overflow-hidden" aria-label="Hero">
       <div className="hero-inner">
-        {/* Left column — eyebrow, headline, subheadline, curiosity, button */}
+        {/* Left column */}
         <div>
           <p className="eyebrow hero-eyebrow">
             For business owners with Merchant Cash Advances
           </p>
+
           <h1
             className="hero-title"
             style={{
@@ -40,11 +41,10 @@ export default function Hero() {
             <span style={{ color: "#00C170" }}>Probably Right.</span>
           </h1>
           <p className="hero-sub">
-            Upload the contract. The analyzer highlights hidden terms, real cost, and the parts most people miss.
+            Upload the contract. The analyzer highlights hidden terms, real
+            cost, and the parts most people miss.
           </p>
-          <p className="hero-curiosity">
-            Most owners miss at least one of these clauses.
-          </p>
+
           <div className="hero-btns">
             <button
               type="button"
@@ -66,18 +66,16 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator — full-width at bottom of hero */}
-      <div className="hero-scroll-wrap">
-        <button
-          type="button"
-          onClick={scrollToLearn}
-          className="hero-scroll-hint flex flex-col items-center gap-2 text-white/60 transition-colors hover:text-white/90"
-          aria-label="Scroll to learn more"
-        >
-          <span className="text-xs">Scroll to learn more</span>
-          <ChevronDown className="h-5 w-5 animate-bounce" aria-hidden />
-        </button>
-      </div>
+      {/* Scroll indicator — centered at bottom */}
+      <button
+        type="button"
+        onClick={scrollToLearn}
+        className="hero-scroll-btn"
+        aria-label="Scroll to learn more"
+      >
+        <span>Scroll to learn more</span>
+        <ChevronDown className="h-5 w-5 animate-bounce" aria-hidden />
+      </button>
     </section>
   );
 }
