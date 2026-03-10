@@ -23,6 +23,11 @@ import { post as whatIsPersonalGuaranteeMca } from "./what-is-personal-guarantee
 import { post as cfpbMerchantCashAdvanceCrackdown } from "./cfpb-merchant-cash-advance-crackdown";
 import { post as signsMcaLenderActingInBadFaith } from "./signs-mca-lender-acting-in-bad-faith";
 
+import { post as regalCapitalMcaContractReview } from "./regal-capital-mca-contract-review";
+import { post as kapitusMcaContractReview } from "./kapitus-mca-contract-review";
+import { post as whatHappensIfYouStopPayingYourMca } from "./what-happens-if-you-stop-paying-your-mca";
+import { post as iDefaultedOnMyMcaWhatAreMyOptions } from "./i-defaulted-on-my-mca-what-are-my-options";
+
 export const PILLAR_POSTS = [
   mcaDebtReliefGuide,
   merchantCashAdvanceDefense,
@@ -46,4 +51,8 @@ export const PILLAR_POSTS = [
   whatIsPersonalGuaranteeMca,
   cfpbMerchantCashAdvanceCrackdown,
   signsMcaLenderActingInBadFaith,
+  regalCapitalMcaContractReview,
+  kapitusMcaContractReview,
+  whatHappensIfYouStopPayingYourMca,
+  iDefaultedOnMyMcaWhatAreMyOptions,
 ];
