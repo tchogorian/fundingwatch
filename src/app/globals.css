@@ -570,7 +570,7 @@ h3 {
   background-image: none !important;
   position: relative;
   overflow: hidden;
-  padding: 60px 0 40px;
+  padding: 80px 0 48px;
 }
 .hero::before,
 .hero::after {
@@ -605,6 +605,7 @@ h3 {
   grid-template-columns: 3fr 2fr;
   gap: 48px;
   align-items: center;
+  min-height: 0;
 }
 /* Right column: document image wrapper */
 .hero-document-wrapper {
@@ -638,7 +639,7 @@ h3 {
   .hero {
     min-height: unset !important;
     height: auto !important;
-    padding: 32px 0 60px;
+    padding: 48px 0 40px;
   }
   .hero-inner {
     grid-template-columns: 1fr;
@@ -653,20 +654,19 @@ h3 {
     padding: 0 !important;
   }
   .hero .eyebrow.hero-eyebrow {
-    font-size: 9px;
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-    margin-bottom: 8px !important;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px !important;
   }
   .hero-title {
     font-size: 1.75rem;
     font-weight: 800;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   .hero-sub {
     font-size: 15px;
     line-height: 1.5;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
   }
   .hero-curiosity {
     font-size: 12px;
@@ -674,28 +674,23 @@ h3 {
   }
   .btn-hero-primary {
     width: 100%;
-    margin-bottom: 8px;
-  }
-  .hero-trust-line {
-    margin-top: 6px;
     margin-bottom: 0;
   }
+  .hero-scroll-wrap {
+    padding: 20px 0 24px;
+  }
   .hero-scroll-hint {
-    position: relative !important;
-    bottom: auto !important;
-    left: auto !important;
-    transform: none !important;
-    display: flex;
-    margin: 16px auto 0;
+    margin: 0 auto;
     width: fit-content;
   }
 }
 .hero .eyebrow.hero-eyebrow {
-  color: #FFFFFF;
-  font-size: 11px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  margin-bottom: 24px;
 }
 .hero h1 .hero-headline-white {
   color: #FFFFFF;
@@ -708,6 +703,7 @@ h3 {
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.04em;
+  margin-bottom: 24px;
 }
 @media (min-width: 1024px) {
   .hero-title {
@@ -725,7 +721,7 @@ h3 {
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.88);
   max-width: 520px;
-  margin-bottom: 40px;
+  margin-bottom: 56px;
 }
 .hero-curiosity {
   font-size: 13px;
@@ -739,11 +735,11 @@ h3 {
   align-items: center;
   margin-bottom: 0;
 }
-.hero-trust-line {
-  margin-top: 10px;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
+/* Scroll hint: full-width at bottom of hero */
+.hero-scroll-wrap {
+  width: 100%;
+  text-align: center;
+  padding: 24px 0 32px;
 }
 .hero .hero-scroll-hint {
   color: rgba(255, 255, 255, 0.65) !important;
@@ -751,19 +747,22 @@ h3 {
 .hero .hero-scroll-hint:hover {
   color: rgba(255, 255, 255, 0.9) !important;
 }
+.hero-trust-line {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+}
 /* Desktop fixes only — add these after existing hero styles */
 @media (min-width: 769px) {
   .hero {
-    padding: 40px 0 40px;
+    padding: 72px 0 56px;
   }
   .hero-title {
     font-size: 3rem;
   }
   .hero-curiosity {
     display: none !important;
-  }
-  .hero-trust-line {
-    text-align: left;
   }
   .hero-btns {
     justify-content: flex-start;

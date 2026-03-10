@@ -174,6 +174,12 @@ export default function UploadSection({
           </p>
         )}
         <p
+          className="mt-4 text-center text-[var(--text-sm)]"
+          style={{ color: "var(--color-text-tertiary)" }}
+        >
+          Private. No signup required.
+        </p>
+        <p
           className="mt-5 text-center text-[var(--text-sm)]"
           style={{ color: "var(--color-text-secondary)" }}
         >

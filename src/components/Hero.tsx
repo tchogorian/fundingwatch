@@ -17,13 +17,13 @@ export default function Hero() {
   return (
     <section className="hero relative overflow-hidden" aria-label="Hero">
       <div className="hero-inner">
-        {/* Left column — qualifier, headline, subheadline, curiosity, button, trust line */}
+        {/* Left column — eyebrow, headline, subheadline, curiosity, button */}
         <div>
-          <p className="eyebrow hero-eyebrow" style={{ marginBottom: 14 }}>
+          <p className="eyebrow hero-eyebrow">
             For business owners with Merchant Cash Advances
           </p>
           <h1
-            className="mb-6 hero-title"
+            className="hero-title"
             style={{
               fontWeight: 800,
               lineHeight: 1.1,
@@ -42,7 +42,7 @@ export default function Hero() {
           <p className="hero-sub">
             Upload the contract. The analyzer highlights hidden terms, real cost, and the parts most people miss.
           </p>
-          <p className="hero-curiosity" style={{ marginBottom: 12 }}>
+          <p className="hero-curiosity">
             Most owners miss at least one of these clauses.
           </p>
           <div className="hero-btns">
@@ -53,9 +53,6 @@ export default function Hero() {
             >
               Analyze My Contract →
             </button>
-          </div>
-          <div className="hero-trust-line">
-            Private. No signup required.
           </div>
         </div>
 
@@ -69,16 +66,18 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <button
-        type="button"
-        onClick={scrollToLearn}
-        className="hero-scroll-hint absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/60 transition-colors hover:text-white/90"
-        aria-label="Scroll to learn more"
-      >
-        <span className="text-xs">Scroll to learn more</span>
-        <ChevronDown className="h-5 w-5 animate-bounce" aria-hidden />
-      </button>
+      {/* Scroll indicator — full-width at bottom of hero */}
+      <div className="hero-scroll-wrap">
+        <button
+          type="button"
+          onClick={scrollToLearn}
+          className="hero-scroll-hint flex flex-col items-center gap-2 text-white/60 transition-colors hover:text-white/90"
+          aria-label="Scroll to learn more"
+        >
+          <span className="text-xs">Scroll to learn more</span>
+          <ChevronDown className="h-5 w-5 animate-bounce" aria-hidden />
+        </button>
+      </div>
     </section>
   );
 }

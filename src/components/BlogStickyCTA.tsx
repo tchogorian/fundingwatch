@@ -28,7 +28,7 @@ export default function BlogStickyCTA() {
         className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl py-3 text-base font-semibold text-white"
         style={{ background: "var(--accent-blue)" }}
       >
-        Analyze Contract
+        Analyze My Contract
         <ArrowRight className="h-5 w-5" aria-hidden />
       </Link>
     </div>

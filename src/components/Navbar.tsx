@@ -126,7 +126,7 @@ export default function Navbar() {
                   fontWeight: 600,
                 }}
               >
-                Analyze Contract
+                Analyze My Contract
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
             ) : (
@@ -142,7 +142,7 @@ export default function Navbar() {
                   fontWeight: 600,
                 }}
               >
-                Analyze Contract
+                Analyze My Contract
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </a>
             )}
@@ -222,7 +222,7 @@ export default function Navbar() {
               }}
               className="btn-primary mt-8 flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-[13px] font-semibold"
             >
-              Analyze Contract
+              Analyze My Contract
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           ) : (
@@ -231,7 +231,7 @@ export default function Navbar() {
               className="btn-primary mt-8 flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-[13px] font-semibold"
               onClick={() => setMobileOpen(false)}
             >
-              Analyze Contract
+              Analyze My Contract
               <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
           )}

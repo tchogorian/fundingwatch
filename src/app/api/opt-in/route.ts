@@ -168,7 +168,7 @@ function buildConfirmationEmail(data: {
               <span style="font-weight:600;color:#6b7280;">FundingWatch</span> · Miami, FL
             </p>
             <p style="margin:0;font-size:12px;color:#9ca3af;">
-              Helping small business owners understand and defend against predatory MCA agreements.
+              Helping small business owners understand their merchant cash advance agreements.
             </p>
           </td>
         </tr>
