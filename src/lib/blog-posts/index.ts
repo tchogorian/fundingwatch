@@ -15,12 +15,13 @@ import { post as lendoraMcaContractReview } from "./lendora-mca-contract-review"
 import { post as coastalCapitalMcaContractReview } from "./coastal-capital-mca-contract-review";
 import { post as mcaLawsNewYorkLawsOverview } from "./mca-laws-new-york-laws-overview";
 import { post as mcaLawsNewYorkRecentEnforcementActions } from "./mca-laws-new-york-recent-enforcement-actions";
-import { post as whatHappensIfYouStopPayingYourMca } from "./what-happens-if-you-stop-paying-your-mca";
 import { post as canMyMcaLenderFreezeMyBankAccount } from "./can-my-mca-lender-freeze-my-bank-account";
-import { post as whatIsConfessionOfJudgmentMca } from "./what-is-confession-of-judgment-mca";
-import { post as yellowstoneCapital534mSettlementExplained } from "./yellowstone-capital-534m-settlement-explained";
 import { post as mcaVsSbaLoanWhichIsRightForYourBusiness } from "./mca-vs-sba-loan-which-is-right-for-your-business";
-import { post as howToRebuildCashFlowAfterAnMca } from "./how-to-rebuild-cash-flow-after-an-mca";
+
+import { post as myMcaHas300PercentAprIsThatLegal } from "./my-mca-has-300-percent-apr-is-that-legal";
+import { post as whatIsPersonalGuaranteeMca } from "./what-is-personal-guarantee-mca";
+import { post as cfpbMerchantCashAdvanceCrackdown } from "./cfpb-merchant-cash-advance-crackdown";
+import { post as signsMcaLenderActingInBadFaith } from "./signs-mca-lender-acting-in-bad-faith";
 
 export const PILLAR_POSTS = [
   mcaDebtReliefGuide,
@@ -39,10 +40,10 @@ export const PILLAR_POSTS = [
   coastalCapitalMcaContractReview,
   mcaLawsNewYorkLawsOverview,
   mcaLawsNewYorkRecentEnforcementActions,
-  whatHappensIfYouStopPayingYourMca,
   canMyMcaLenderFreezeMyBankAccount,
-  whatIsConfessionOfJudgmentMca,
-  yellowstoneCapital534mSettlementExplained,
   mcaVsSbaLoanWhichIsRightForYourBusiness,
-  howToRebuildCashFlowAfterAnMca,
+  myMcaHas300PercentAprIsThatLegal,
+  whatIsPersonalGuaranteeMca,
+  cfpbMerchantCashAdvanceCrackdown,
+  signsMcaLenderActingInBadFaith,
 ];
