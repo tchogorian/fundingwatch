@@ -764,15 +764,15 @@ h3 {
   .hero .eyebrow.hero-eyebrow {
     font-size: 11px;
     letter-spacing: 0.1em;
-    margin-bottom: 16px !important;
+    margin-bottom: 20px !important;
   }
   .hero-title {
-    font-size: 1.75rem;
+    font-size: 2.3rem;
     font-weight: 800;
     margin-bottom: 16px;
   }
   .hero-sub {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.5;
     margin-bottom: 24px;
   }
@@ -786,7 +786,7 @@ h3 {
 
 @media (max-width: 400px) {
   .hero-title {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
   }
 }
 /* Secondary: dark fill + gradient border (yellow/orange) */
