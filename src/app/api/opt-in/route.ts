@@ -183,7 +183,7 @@ function buildConfirmationEmail(data: {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { session_id, name, email, phone, business, consent } = body;
+    const { session_id, name, email, phone, business, consent, source } = body;
 
     if (!consent) {
       return NextResponse.json({ error: "Consent required" }, { status: 400 });
@@ -208,6 +208,7 @@ export async function POST(request: NextRequest) {
           phone,
           business,
           consent: true,
+          source: source || "upload",
         }),
       });
 
