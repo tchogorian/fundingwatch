@@ -4,7 +4,7 @@ import { AUTHOR_BIO, CREDENTIALS } from "./constants";
 export const post: BlogPost = {
   slug: "cfpb-merchant-cash-advance-crackdown",
   title: "CFPB Merchant Cash Advance Crackdown: What Borrowers Need to Know",
-  excerpt: "The Consumer Financial Protection Bureau has merchant cash advance companies in its crosshairs. The agency&#39;s small business lending data rule takes full ...",
+  excerpt: "The Consumer Financial Protection Bureau has merchant cash advance companies in its crosshairs. The agency's small business lending data rule takes full ...",
   category: "industry-news",
   date: "2026-03-10",
   readTimeMinutes: 6,

@@ -4,7 +4,7 @@ import { AUTHOR_BIO, CREDENTIALS } from "./constants";
 export const post: BlogPost = {
   slug: "lendora-mca-contract-review",
   title: "Lendora MCA Contract Review: What Borrowers Need to Know (2026)",
-  excerpt: "Lendora&#39;s merchant cash advance contracts earn a severity score of 100 out of 100 in our database—the highest possible rating for predatory terms. The co...",
+  excerpt: "Lendora's merchant cash advance contracts earn a severity score of 100 out of 100 in our database—the highest possible rating for predatory terms. The co...",
   category: "lender-profiles",
   date: "2026-03-10",
   readTimeMinutes: 6,

@@ -4,7 +4,7 @@ import { AUTHOR_BIO, CREDENTIALS } from "./constants";
 export const post: BlogPost = {
   slug: "i-defaulted-on-my-mca-what-are-my-options",
   title: "I Defaulted on My MCA — What Are My Options?",
-  excerpt: "You have four realistic options when you&#39;ve defaulted on your merchant cash advance: negotiate a settlement, file for bankruptcy protection, restructure ...",
+  excerpt: "You have four realistic options when you've defaulted on your merchant cash advance: negotiate a settlement, file for bankruptcy protection, restructure ...",
   metaDescription: "defaulted on merchant cash advance options: I Defaulted on My MCA — What Are My Options?...",
   category: "borrower-rights",
   date: "2026-03-10",

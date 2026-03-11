@@ -4,7 +4,7 @@ import { AUTHOR_BIO, CREDENTIALS } from "./constants";
 export const post: BlogPost = {
   slug: "regal-capital-mca-contract-review",
   title: "Regal Capital MCA Contract Review: What Borrowers Need to Know (2026)",
-  excerpt: "Regal Capital&#39;s merchant cash advance contracts earn a perfect 100 out of 100 on our severity scale. That score reflects what we found after analyzing tw...",
+  excerpt: "Regal Capital's merchant cash advance contracts earn a perfect 100 out of 100 on our severity scale. That score reflects what we found after analyzing tw...",
   metaDescription: "Regal Capital merchant cash advance: Regal Capital MCA Contract Review: What Borrowers Need to Know (2026)...",
   category: "lender-profiles",
   date: "2026-03-10",

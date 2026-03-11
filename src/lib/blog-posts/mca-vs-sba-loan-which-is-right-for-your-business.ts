@@ -4,7 +4,7 @@ import { AUTHOR_BIO, CREDENTIALS } from "./constants";
 export const post: BlogPost = {
   slug: "mca-vs-sba-loan-which-is-right-for-your-business",
   title: "MCA vs SBA Loan: Which Is Right for Your Business?",
-  excerpt: "The difference between a merchant cash advance and an SBA loan isn&#39;t just academic when your business needs funding now. One costs roughly four times mor...",
+  excerpt: "The difference between a merchant cash advance and an SBA loan isn't just academic when your business needs funding now. One costs roughly four times mor...",
   category: "mca-basics",
   date: "2026-03-10",
   readTimeMinutes: 5,

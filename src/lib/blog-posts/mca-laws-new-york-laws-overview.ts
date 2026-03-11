@@ -4,7 +4,7 @@ import { AUTHOR_BIO, CREDENTIALS } from "./constants";
 export const post: BlogPost = {
   slug: "mca-laws-new-york-laws-overview",
   title: "MCA Laws in New York: Laws overview (2026)",
-  excerpt: "New York maintains some of the nation&#39;s strongest merchant cash advance New York laws, but enforcement remains inconsistent and many borrowers still find...",
+  excerpt: "New York maintains some of the nation's strongest merchant cash advance New York laws, but enforcement remains inconsistent and many borrowers still find...",
   category: "state-guides",
   date: "2026-03-10",
   readTimeMinutes: 5,

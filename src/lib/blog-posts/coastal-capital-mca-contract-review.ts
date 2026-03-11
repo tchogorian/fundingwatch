@@ -4,7 +4,7 @@ import { AUTHOR_BIO, CREDENTIALS } from "./constants";
 export const post: BlogPost = {
   slug: "coastal-capital-mca-contract-review",
   title: "Coastal Capital MCA Contract Review: What Borrowers Need to Know (2026)",
-  excerpt: "Coastal Capital merchant cash advance contracts score 100 out of 100 on FundingWatch&#39;s severity index—the highest possible rating for borrower risk. The ...",
+  excerpt: "Coastal Capital merchant cash advance contracts score 100 out of 100 on FundingWatch's severity index—the highest possible rating for borrower risk. The ...",
   category: "lender-profiles",
   date: "2026-03-10",
   readTimeMinutes: 7,
