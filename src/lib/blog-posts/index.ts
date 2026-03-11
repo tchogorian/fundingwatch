@@ -28,6 +28,11 @@ import { post as kapitusMcaContractReview } from "./kapitus-mca-contract-review"
 import { post as whatHappensIfYouStopPayingYourMca } from "./what-happens-if-you-stop-paying-your-mca";
 import { post as iDefaultedOnMyMcaWhatAreMyOptions } from "./i-defaulted-on-my-mca-what-are-my-options";
 
+import { post as merchantCashAdvancesSmallBusinessBankruptcies } from "./merchant-cash-advances-small-business-bankruptcies";
+import { post as mcaLegalDefensesWorking2026 } from "./mca-legal-defenses-working-2026";
+import { post as mcaLawsNewYorkBorrowerRightsAndRemedies } from "./mca-laws-new-york-borrower-rights-and-remedies";
+import { post as howToRebuildCashFlowAfterAnMca } from "./how-to-rebuild-cash-flow-after-an-mca";
+
 export const PILLAR_POSTS = [
   mcaDebtReliefGuide,
   merchantCashAdvanceDefense,
@@ -55,4 +60,8 @@ export const PILLAR_POSTS = [
   kapitusMcaContractReview,
   whatHappensIfYouStopPayingYourMca,
   iDefaultedOnMyMcaWhatAreMyOptions,
+  merchantCashAdvancesSmallBusinessBankruptcies,
+  mcaLegalDefensesWorking2026,
+  mcaLawsNewYorkBorrowerRightsAndRemedies,
+  howToRebuildCashFlowAfterAnMca,
 ];
