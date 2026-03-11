@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useState, useRef } from "react";
 import { Upload, FileText, Check } from "lucide-react";
 
@@ -180,7 +181,21 @@ export default function UploadSection({
           Private. No signup required.
         </p>
         <p
-          className="mt-5 text-center text-[var(--text-sm)]"
+          className="mt-2 text-center text-[var(--text-sm)]"
+          style={{ color: "var(--color-text-secondary)" }}
+        >
+          Don&apos;t have your contract?{" "}
+          <Link
+            href="/questionnaire"
+            className="font-medium transition hover:underline"
+            style={{ color: "var(--color-accent-primary)" }}
+          >
+            Take an assessment
+          </Link>
+          .
+        </p>
+        <p
+          className="mt-3 text-center text-[var(--text-sm)]"
           style={{ color: "var(--color-text-secondary)" }}
         >
           Accepted: PDF, JPG, PNG. Max {MAX_SIZE_MB}MB.

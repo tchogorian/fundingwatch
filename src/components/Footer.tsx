@@ -90,6 +90,15 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/questionnaire"
+                  className="text-[var(--text-sm)] transition-colors hover:underline"
+                  style={{ color: "var(--on-dark-2)" }}
+                >
+                  Assessment
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/apr-calculator"
                   className="text-[var(--text-sm)] transition-colors hover:underline"
                   style={{ color: "var(--on-dark-2)" }}
