@@ -27,7 +27,6 @@ import { post as kapitusMcaContractReview } from "./kapitus-mca-contract-review"
 import { post as iDefaultedOnMyMcaWhatAreMyOptions } from "./i-defaulted-on-my-mca-what-are-my-options";
 
 import { post as merchantCashAdvancesSmallBusinessBankruptcies } from "./merchant-cash-advances-small-business-bankruptcies";
-import { post as mcaLegalDefensesWorking2026 } from "./mca-legal-defenses-working-2026";
 import { post as mcaLawsNewYorkBorrowerRightsAndRemedies } from "./mca-laws-new-york-borrower-rights-and-remedies";
 
 export const PILLAR_POSTS = [
@@ -56,6 +55,5 @@ export const PILLAR_POSTS = [
   kapitusMcaContractReview,
   iDefaultedOnMyMcaWhatAreMyOptions,
   merchantCashAdvancesSmallBusinessBankruptcies,
-  mcaLegalDefensesWorking2026,
   mcaLawsNewYorkBorrowerRightsAndRemedies,
 ];
