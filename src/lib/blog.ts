@@ -705,7 +705,8 @@ Regards,
     `.trim(),
   },
   ...PILLAR_POSTS,
-].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+];
+BLOG_POSTS.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);
