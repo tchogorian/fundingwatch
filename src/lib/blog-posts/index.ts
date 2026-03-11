@@ -21,17 +21,14 @@ import { post as mcaVsSbaLoanWhichIsRightForYourBusiness } from "./mca-vs-sba-lo
 import { post as myMcaHas300PercentAprIsThatLegal } from "./my-mca-has-300-percent-apr-is-that-legal";
 import { post as whatIsPersonalGuaranteeMca } from "./what-is-personal-guarantee-mca";
 import { post as cfpbMerchantCashAdvanceCrackdown } from "./cfpb-merchant-cash-advance-crackdown";
-import { post as signsMcaLenderActingInBadFaith } from "./signs-mca-lender-acting-in-bad-faith";
 
 import { post as regalCapitalMcaContractReview } from "./regal-capital-mca-contract-review";
 import { post as kapitusMcaContractReview } from "./kapitus-mca-contract-review";
-import { post as whatHappensIfYouStopPayingYourMca } from "./what-happens-if-you-stop-paying-your-mca";
 import { post as iDefaultedOnMyMcaWhatAreMyOptions } from "./i-defaulted-on-my-mca-what-are-my-options";
 
 import { post as merchantCashAdvancesSmallBusinessBankruptcies } from "./merchant-cash-advances-small-business-bankruptcies";
 import { post as mcaLegalDefensesWorking2026 } from "./mca-legal-defenses-working-2026";
 import { post as mcaLawsNewYorkBorrowerRightsAndRemedies } from "./mca-laws-new-york-borrower-rights-and-remedies";
-import { post as howToRebuildCashFlowAfterAnMca } from "./how-to-rebuild-cash-flow-after-an-mca";
 
 export const PILLAR_POSTS = [
   mcaDebtReliefGuide,
@@ -55,13 +52,10 @@ export const PILLAR_POSTS = [
   myMcaHas300PercentAprIsThatLegal,
   whatIsPersonalGuaranteeMca,
   cfpbMerchantCashAdvanceCrackdown,
-  signsMcaLenderActingInBadFaith,
   regalCapitalMcaContractReview,
   kapitusMcaContractReview,
-  whatHappensIfYouStopPayingYourMca,
   iDefaultedOnMyMcaWhatAreMyOptions,
   merchantCashAdvancesSmallBusinessBankruptcies,
   mcaLegalDefensesWorking2026,
   mcaLawsNewYorkBorrowerRightsAndRemedies,
-  howToRebuildCashFlowAfterAnMca,
 ];
