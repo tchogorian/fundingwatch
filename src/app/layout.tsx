@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     google: "6XMUkiJGV7qsaORZx0us0VRKXjam4XL5pTjjRuWqD2Y",
   },
   alternates: {
-    canonical: "/",
+    canonical: "https://www.fundingwatch.org/",
   },
 };
 
