@@ -29,7 +29,6 @@ import { post as iDefaultedOnMyMcaWhatAreMyOptions } from "./i-defaulted-on-my-m
 import { post as merchantCashAdvancesSmallBusinessBankruptcies } from "./merchant-cash-advances-small-business-bankruptcies";
 import { post as mcaLawsNewYorkBorrowerRightsAndRemedies } from "./mca-laws-new-york-borrower-rights-and-remedies";
 import { post as mcaIndustry20BillionMarketBorrowers } from "./mca-industry-20-billion-market-borrowers";
-import { post as federalCourtMcaDisguisedLoanRadium2 } from "./federal-court-mca-disguised-loan-radium2";
 
 export const PILLAR_POSTS = [
   mcaDebtReliefGuide,
@@ -59,5 +58,4 @@ export const PILLAR_POSTS = [
   merchantCashAdvancesSmallBusinessBankruptcies,
   mcaLawsNewYorkBorrowerRightsAndRemedies,
   mcaIndustry20BillionMarketBorrowers,
-  federalCourtMcaDisguisedLoanRadium2,
 ];
