@@ -30,11 +30,9 @@ import { post as merchantCashAdvancesSmallBusinessBankruptcies } from "./merchan
 import { post as mcaLawsNewYorkBorrowerRightsAndRemedies } from "./mca-laws-new-york-borrower-rights-and-remedies";
 import { post as mcaIndustry20BillionMarketBorrowers } from "./mca-industry-20-billion-market-borrowers";
 import { post as beforeSigningMca10Things } from "./before-signing-mca-10-things";
-import { post as crediblyMcaLenderReview } from "./credibly-mca-lender-review";
 
 export const PILLAR_POSTS = [
   beforeSigningMca10Things,
-  crediblyMcaLenderReview,
   mcaDebtReliefGuide,
   merchantCashAdvanceDefense,
   howToAnalyzeMcaContract,
