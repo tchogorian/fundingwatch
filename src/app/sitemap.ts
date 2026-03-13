@@ -5,41 +5,46 @@ import { BLOG_POSTS } from "@/lib/blog";
  * Sitemap for Google Search Console and other crawlers.
  * All URLs use production domain only (no VERCEL_URL).
  *
- * Included: home, blog index, all blog posts, questionnaire, questionnaire/results,
- * apr-calculator, glossary, sample-report, privacy, terms.
+ * Static routes below must match actual app routes (app/**/page.tsx).
+ * Blog URLs are derived from BLOG_POSTS (same source as app/blog/[slug]/page.tsx).
  *
  * Excluded (by design):
- * - /analyze — redirects to /#upload; no need to index redirect URL
- * - /results — post-upload results (session-based); disallowed in robots.txt
- * - /api/* — API routes; disallowed in robots.txt
+ * - /analyze — redirects to /#upload
+ * - /results — session-based; disallowed in robots.txt
+ * - /api/* — disallowed in robots.txt
  */
 const SITEMAP_BASE = "https://www.fundingwatch.org";
 
+/** Static paths that have a corresponding page. Update when adding new indexable pages. */
+const STATIC_ROUTES: { path: string; changeFrequency: "weekly" | "monthly" | "yearly"; priority: number }[] = [
+  { path: "/", changeFrequency: "weekly", priority: 1 },
+  { path: "/questionnaire", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/questionnaire/results", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/apr-calculator", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/blog", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/glossary", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/sample-report", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITEMAP_BASE.replace(/\/$/, "");
+  const now = new Date();
 
-  const staticRoutes: MetadataRoute.Sitemap = [
-    // Home
-    { url: `${base}/`, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-    // Main product / flows
-    { url: `${base}/questionnaire`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/questionnaire/results`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
-    { url: `${base}/apr-calculator`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    // Content
-    { url: `${base}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/glossary`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${base}/sample-report`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    // Legal
-    { url: `${base}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${base}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-  ];
+  const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map(({ path, changeFrequency, priority }) => ({
+    url: path === "/" ? `${base}/` : `${base}${path}`,
+    lastModified: now,
+    changeFrequency,
+    priority,
+  }));
 
-  const blogPosts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+  const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${base}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...blogPosts];
+  return [...staticEntries, ...blogEntries];
 }
