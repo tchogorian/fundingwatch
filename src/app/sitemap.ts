@@ -5,13 +5,13 @@ import { BLOG_POSTS } from "@/lib/blog";
  * Sitemap for Google Search Console and other crawlers.
  * All URLs use production domain only (no VERCEL_URL).
  *
- * Static routes below must match actual app routes (app/**/page.tsx).
+ * Static routes below must match actual app routes. Update when adding new indexable pages.
  * Blog URLs are derived from BLOG_POSTS (same source as app/blog/[slug]/page.tsx).
  *
  * Excluded (by design):
  * - /analyze — redirects to /#upload
  * - /results — session-based; disallowed in robots.txt
- * - /api/* — disallowed in robots.txt
+ * - /api routes — disallowed in robots.txt
  */
 const SITEMAP_BASE = "https://www.fundingwatch.org";
 
