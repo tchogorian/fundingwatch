@@ -29,8 +29,10 @@ import { post as iDefaultedOnMyMcaWhatAreMyOptions } from "./i-defaulted-on-my-m
 import { post as merchantCashAdvancesSmallBusinessBankruptcies } from "./merchant-cash-advances-small-business-bankruptcies";
 import { post as mcaLawsNewYorkBorrowerRightsAndRemedies } from "./mca-laws-new-york-borrower-rights-and-remedies";
 import { post as mcaIndustry20BillionMarketBorrowers } from "./mca-industry-20-billion-market-borrowers";
+import { post as beforeSigningMca10Things } from "./before-signing-mca-10-things";
 
 export const PILLAR_POSTS = [
+  beforeSigningMca10Things,
   mcaDebtReliefGuide,
   merchantCashAdvanceDefense,
   howToAnalyzeMcaContract,
