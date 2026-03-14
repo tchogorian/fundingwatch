@@ -50,7 +50,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Column 2: Product */}
+          {/* Column 2: How It Works + Lender Risk Index + Analyze */}
           <div>
             <h3
               className="text-[var(--text-sm)] font-semibold uppercase tracking-wider"
@@ -70,6 +70,15 @@ export default function Footer() {
                 </button>
               </li>
               <li>
+                <Link
+                  href="/lender-risk-index"
+                  className="text-[var(--text-sm)] transition-colors hover:underline"
+                  style={{ color: "var(--on-dark-2)" }}
+                >
+                  Lender Risk Index
+                </Link>
+              </li>
+              <li>
                 <button
                   type="button"
                   onClick={() => document.getElementById("upload")?.scrollIntoView({ behavior: "smooth" })}
@@ -78,6 +87,57 @@ export default function Footer() {
                 >
                   Analyze Your Contract
                 </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => scrollTo("#faq")}
+                  className="text-left text-[var(--text-sm)] transition-colors hover:underline"
+                  style={{ color: "var(--on-dark-2)" }}
+                >
+                  FAQ
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => scrollTo("#about")}
+                  className="text-left text-[var(--text-sm)] transition-colors hover:underline"
+                  style={{ color: "var(--on-dark-2)" }}
+                >
+                  About
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Resources (matches nav dropdown) */}
+          <div>
+            <h3
+              className="text-[var(--text-sm)] font-semibold uppercase tracking-wider"
+              style={{ color: "var(--on-dark-3)" }}
+            >
+              Resources
+            </h3>
+            <ul className="mt-4 space-y-3">
+              <li>
+                <Link
+                  href="/apr-calculator"
+                  className="text-[var(--text-sm)] transition-colors hover:underline"
+                  style={{ color: "var(--on-dark-2)" }}
+                >
+                  MCA Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--on-dark-2)" }}>
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/glossary" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--on-dark-2)" }}>
+                  Glossary
+                </Link>
               </li>
               <li>
                 <Link
@@ -95,57 +155,6 @@ export default function Footer() {
                   style={{ color: "var(--on-dark-2)" }}
                 >
                   Assessment
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/apr-calculator"
-                  className="text-[var(--text-sm)] transition-colors hover:underline"
-                  style={{ color: "var(--on-dark-2)" }}
-                >
-                  APR Calculator
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Resources */}
-          <div>
-            <h3
-              className="text-[var(--text-sm)] font-semibold uppercase tracking-wider"
-              style={{ color: "var(--on-dark-3)" }}
-            >
-              Resources
-            </h3>
-            <ul className="mt-4 space-y-3">
-              <li>
-                <button
-                  type="button"
-                  onClick={() => scrollTo("#resources")}
-                  className="text-left text-[var(--text-sm)] transition-colors hover:underline"
-                  style={{ color: "var(--on-dark-2)" }}
-                >
-                  Understanding MCAs
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => scrollTo("#faq")}
-                  className="text-left text-[var(--text-sm)] transition-colors hover:underline"
-                  style={{ color: "var(--on-dark-2)" }}
-                >
-                  FAQ
-                </button>
-              </li>
-              <li>
-                <Link href="/blog" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--on-dark-2)" }}>
-                  Industry News
-                </Link>
-              </li>
-              <li>
-                <Link href="/glossary" className="text-[var(--text-sm)] transition-colors hover:underline" style={{ color: "var(--on-dark-2)" }}>
-                  MCA Glossary
                 </Link>
               </li>
             </ul>
