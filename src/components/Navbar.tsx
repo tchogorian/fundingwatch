@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Shield, ArrowRight, Menu, X, ChevronDown } from "lucide-react";
 
+// Order: How It Works | Lender Risk Index | Resources (dropdown only) | FAQ | About.
+// MCA Calculator, Blog, Glossary are inside Resources only — not top-level.
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
   { label: "Lender Risk Index", href: "/lender-risk-index" },

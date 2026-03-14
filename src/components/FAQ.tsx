@@ -23,7 +23,7 @@ const items = [
   {
     question: "Is this legal advice?",
     answer:
-      "No. FundingWatch provides factual analysis of your contract terms — things like your effective APR, payment structure, and whether specific clauses are present. We present data, not legal opinions. If your analysis reveals concerning terms, we can help you explore better financing options through our lender network. For legal questions about an existing contract or active litigation, we recommend consulting a business attorney.",
+      "No. Funding Watch provides factual analysis of your contract terms — things like your effective APR, payment structure, and whether specific clauses are present. We present data, not legal opinions. If your analysis reveals concerning terms, we can help you explore better financing options through our lender network. For legal questions about an existing contract or active litigation, we recommend consulting a business attorney.",
   },
   {
     question: "How accurate is the analysis?",
@@ -48,7 +48,7 @@ const items = [
   {
     question: "How does Funding Watch make money?",
     answer:
-      "Funding Watch is a licensed commercial financing broker. When you apply for financing through our lender network and a deal funds, the lender pays us a referral fee. This is standard in the lending industry and does not affect your cost — you receive the same terms whether you apply through us or directly. Our contract analysis tool is and will always be free. We believe that if we help you understand your contract, you'll trust us when it's time to find a better deal.",
+      "Funding Watch is a licensed commercial financing broker. When you apply for financing through our lender network and a deal funds, the lender pays us a referral fee. This is standard in the lending industry and does not affect your cost — you receive the same terms whether you apply through us or directly. Our contract analysis tool is and will always be free.",
   },
   {
     question: "What is a Certified lender?",

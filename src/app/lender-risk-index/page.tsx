@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 
 export const metadata = {
   title: "Lender Risk Index — FundingWatch",
@@ -14,7 +13,6 @@ export const metadata = {
 export default function LenderRiskIndexPage() {
   return (
     <>
-      <Navbar />
       <main className="min-h-screen px-4 py-16 sm:px-6" style={{ background: "var(--color-bg-base)" }}>
         <div className="mx-auto max-w-[720px] text-center">
           <h1 className="text-3xl font-bold sm:text-4xl" style={{ color: "var(--color-text-primary)" }}>
