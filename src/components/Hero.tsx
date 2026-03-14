@@ -1,6 +1,7 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { ChevronDown, ArrowRight } from "lucide-react";
 
 const HERO_DOCUMENT_IMAGE =
   process.env.NEXT_PUBLIC_HERO_DOCUMENT_IMAGE_URL ?? "/images/hero-contract-document.png";
@@ -20,7 +21,7 @@ export default function Hero() {
         {/* Left column */}
         <div>
           <p className="eyebrow hero-eyebrow">
-            For business owners with Merchant Cash Advances
+            MCA INTELLIGENCE FOR BUSINESS OWNERS
           </p>
 
           <h1
@@ -31,18 +32,11 @@ export default function Hero() {
               letterSpacing: "-0.04em",
             }}
           >
-            <span style={{ color: "#FFFFFF" }}>Something About</span>
-            <br />
-            <span style={{ color: "#FFFFFF" }}>Your </span>
-            <span style={{ color: "#F87171" }}>MCA</span>
-            <span style={{ color: "#FFFFFF" }}> Feels Off.</span>
-            <br />
-            <span style={{ color: "#FFFFFF" }}>You&apos;re </span>
-            <span style={{ color: "#00C170" }}>Probably Right.</span>
+            <span style={{ color: "#FFFFFF" }}>Find a Better MCA. We Did the Research.</span>
           </h1>
           <p className="hero-sub">
-            Upload the contract. The analyzer highlights hidden terms, real
-            cost, and the parts most people miss.
+            We rate every lender. We analyze every contract. And when you&apos;re ready,
+            we connect you with lenders that passed our standards — not the ones that pay the most.
           </p>
 
           <div className="hero-btns">
@@ -53,6 +47,13 @@ export default function Hero() {
             >
               Analyze My Contract →
             </button>
+            <Link
+              href="/lender-risk-index"
+              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border-2 border-white/70 bg-transparent px-6 py-3 font-semibold text-white transition hover:bg-white/10 w-full sm:w-auto"
+            >
+              Look Up a Lender →
+              <ArrowRight className="h-5 w-5" aria-hidden />
+            </Link>
           </div>
         </div>
 
