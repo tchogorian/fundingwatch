@@ -1489,6 +1489,60 @@ h3 {
   display: block;
   overflow-x: auto;
 }
+/* Lender Risk Index hero — matches blog/home hero (dark blue gradient + white text) */
+.lri-hero {
+  background: linear-gradient(135deg, #1A1A2E 0%, #2E75B6 50%, #1A8FB4 100%);
+  color: #fff;
+}
+.lri-hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+.lri-hero-sub {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+.lri-hero-stat {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+.lri-hero-search {
+  background: #fff;
+  color: #0B1F3A;
+  border-radius: 9999px;
+  padding: 14px 24px;
+  font-size: 1rem;
+  min-height: 56px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: none;
+  width: 100%;
+  max-width: 560px;
+}
+.lri-hero-search::placeholder {
+  color: #6b7280;
+}
+.lri-hero-search:focus {
+  outline: none;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+@media (min-width: 768px) {
+  .lri-hero-title {
+    font-size: 2.75rem;
+  }
+  .lri-hero-sub {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 1024px) {
+  .lri-hero-title {
+    font-size: 3.25rem;
+  }
+}
+
 @media (max-width: 767px) {
   .blog-hero {
     padding-left: 24px;
