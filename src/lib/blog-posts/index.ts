@@ -1,3 +1,4 @@
+import { post as mcaFactoringScamHistory } from "./mca-factoring-scam-history-usury-evasion";
 import { post as complaintAnalysisResponsibleVsPredatory } from "./1700-borrower-complaints-responsible-vs-predatory-mca";
 import { post as mcaDebtReliefGuide } from "./mca-debt-relief-guide";
 import { post as merchantCashAdvanceDefense } from "./merchant-cash-advance-defense";
@@ -33,6 +34,7 @@ import { post as mcaIndustry20BillionMarketBorrowers } from "./mca-industry-20-b
 import { post as beforeSigningMca10Things } from "./before-signing-mca-10-things";
 
 export const PILLAR_POSTS = [
+  mcaFactoringScamHistory,
   complaintAnalysisResponsibleVsPredatory,
   beforeSigningMca10Things,
   mcaDebtReliefGuide,
