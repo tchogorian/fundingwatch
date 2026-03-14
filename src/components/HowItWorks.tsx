@@ -36,12 +36,12 @@ export default function HowItWorks() {
             Three Steps to Contract Clarity
           </h2>
         </FadeIn>
-        <div className="mt-16 flex flex-col items-stretch gap-12 sm:flex-row sm:justify-between sm:gap-6">
+        <div className="mt-16 flex flex-col items-stretch gap-12 sm:flex-row sm:justify-between sm:gap-6 sm:items-stretch">
           {steps.map(({ number, title, description, Icon }, i) => {
             const variants = ["plaid-box--blue", "plaid-box--purple", "plaid-box--teal"];
             return (
             <FadeIn key={number} delay={i * 150}>
-              <div className="relative flex flex-1 flex-col items-center text-center">
+              <div className="relative flex flex-1 flex-col items-center text-center sm:min-h-0">
                 <div
                   className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 font-mono text-[20px] font-medium"
                   style={{
@@ -56,22 +56,24 @@ export default function HowItWorks() {
                     className="absolute -bottom-6 left-1/2 h-8 w-px border-l-2 border-dashed sm:-right-4 sm:top-9 sm:left-auto sm:h-0 sm:w-24 sm:border-t-2 sm:border-l-0 border-[var(--border-light)]"
                   />
                 )}
-                <div className={`plaid-box ${variants[i]} mt-8 w-full text-left`}>
-                  <div className="step-icon-wrap flex h-12 w-12 items-center justify-center rounded-2xl">
-                    <Icon className="h-6 w-6" aria-hidden />
+                <div className="mt-8 w-full flex-1 flex flex-col min-h-0">
+                  <div className={`plaid-box ${variants[i]} flex-1 w-full text-left flex flex-col min-h-0`}>
+                    <div className="step-icon-wrap flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl">
+                      <Icon className="h-6 w-6" aria-hidden />
+                    </div>
+                    <h3
+                      className="mt-4 text-[17px] font-semibold shrink-0"
+                      style={{ color: "var(--color-text-primary)" }}
+                    >
+                      {title}
+                    </h3>
+                    <p
+                      className="mt-2 text-[14px] leading-relaxed flex-1 min-h-0"
+                      style={{ color: "var(--color-text-secondary)" }}
+                    >
+                      {description}
+                    </p>
                   </div>
-                  <h3
-                    className="mt-4 text-[17px] font-semibold"
-                    style={{ color: "var(--color-text-primary)" }}
-                  >
-                    {title}
-                  </h3>
-                  <p
-                    className="mt-2 text-[14px] leading-relaxed"
-                    style={{ color: "var(--color-text-secondary)" }}
-                  >
-                    {description}
-                  </p>
                 </div>
               </div>
             </FadeIn>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronDown, ArrowRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const HERO_DOCUMENT_IMAGE =
   process.env.NEXT_PUBLIC_HERO_DOCUMENT_IMAGE_URL ?? "/images/hero-contract-document.png";
@@ -52,7 +52,6 @@ export default function Hero() {
               className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border-2 border-white/70 bg-transparent px-6 py-3 font-semibold text-white transition hover:bg-white/10 w-full sm:w-auto"
             >
               Look Up a Lender →
-              <ArrowRight className="h-5 w-5" aria-hidden />
             </Link>
           </div>
         </div>
