@@ -8,19 +8,19 @@ const cards = [
     icon: FileSearch,
     title: "Considering an MCA?",
     description:
-      "Before you sign, understand what you're agreeing to. Upload any offer or contract to see the true cost, hidden terms, and how it compares to fair market rates.",
+      "Before you sign, understand what you're agreeing to. Upload any offer or contract to see the true cost, hidden terms, and how it compares to lenders we've vetted.",
   },
   {
     icon: FileWarning,
     title: "Already Have an MCA?",
     description:
-      "Find out if your current terms are fair. See your real APR — not the factor rate your lender quoted — and identify contract clauses that could put your business at risk.",
+      "Find out if your current terms are fair. See your real APR — not the factor rate your lender quoted — and discover if you qualify for better terms through our lender network.",
   },
   {
     icon: Files,
     title: "Stacked Multiple MCAs?",
     description:
-      "Multiple advances compound the problem. When you're paying two or three lenders at once, the combined cost can be staggering. Upload any of your contracts to see the full picture.",
+      "Multiple advances compound the problem. Upload any of your contracts to see the full picture and explore consolidation or refinancing options through lenders we've vetted.",
   },
 ];
 

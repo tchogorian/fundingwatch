@@ -3,13 +3,19 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Shield, ArrowRight, Menu, X } from "lucide-react";
+import { Shield, ArrowRight, Menu, X, ChevronDown } from "lucide-react";
 
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Resources", href: "#resources" },
-  { label: "MCA Calculator", href: "/apr-calculator" },
-  { label: "Blog", href: "/blog" },
+  { label: "Lender Risk Index", href: "/lender-risk-index" },
+  {
+    label: "Resources",
+    dropdown: [
+      { label: "MCA Calculator", href: "/apr-calculator" },
+      { label: "Blog", href: "/blog" },
+      { label: "Glossary", href: "/glossary" },
+    ],
+  },
   { label: "FAQ", href: "#faq" },
   { label: "About", href: "#about" },
 ];
@@ -18,6 +24,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
 
   useEffect(() => {
     if (mobileOpen) document.body.style.overflow = "hidden";
@@ -68,7 +75,50 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden items-center gap-8 md:flex" aria-label="Main">
-            {navLinks.map(({ label, href }) => {
+            {navLinks.map((item) => {
+              if ("dropdown" in item && item.dropdown) {
+                return (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => setResourcesOpen(true)}
+                    onMouseLeave={() => setResourcesOpen(false)}
+                  >
+                    <button
+                      type="button"
+                      className="text-[14px] font-medium transition-colors hover:opacity-90 min-h-[48px] inline-flex items-center gap-1"
+                      style={{ color: "rgba(255, 255, 255, 0.9)" }}
+                      aria-expanded={resourcesOpen}
+                      aria-haspopup="true"
+                    >
+                      {item.label}
+                      <ChevronDown className={`h-4 w-4 transition-transform ${resourcesOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    {resourcesOpen && (
+                      <div
+                        className="absolute left-0 top-full pt-1"
+                        role="menu"
+                      >
+                        <div className="rounded-lg border border-white/20 bg-[#2E75B6] py-2 shadow-lg min-w-[180px]" style={{ background: "rgba(43, 115, 180, 0.98)" }}>
+                          {item.dropdown.map(({ label, href }) => (
+                            <Link
+                              key={href}
+                              href={href}
+                              role="menuitem"
+                              className="block px-4 py-2.5 text-[14px] font-medium transition-colors hover:bg-white/15"
+                              style={{ color: "rgba(255, 255, 255, 0.95)" }}
+                            >
+                              {label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              const href = "href" in item ? item.href : "";
+              const label = item.label;
               const isHash = href.startsWith("#");
               if (isHash && !isHome) {
                 return (
@@ -173,7 +223,29 @@ export default function Navbar() {
         aria-hidden={!mobileOpen}
       >
         <nav className="flex flex-col gap-0 px-4 pt-6 pb-8" aria-label="Mobile">
-          {navLinks.map(({ label, href }) => {
+          {navLinks.map((item) => {
+            if ("dropdown" in item && item.dropdown) {
+              return (
+                <div key={item.label} className="flex flex-col gap-0">
+                  <p className="py-3 text-[12px] font-semibold uppercase tracking-wider" style={{ color: "var(--color-text-tertiary)" }}>
+                    {item.label}
+                  </p>
+                  {item.dropdown.map(({ label, href }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      className="flex min-h-[48px] items-center pl-4 text-[16px] font-normal transition-colors hover:opacity-80 py-2"
+                      style={{ color: "#0B1F3A" }}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+              );
+            }
+            const href = "href" in item ? item.href : "";
+            const label = item.label;
             const isHash = href.startsWith("#");
             if (isHash && !isHome) {
               return (

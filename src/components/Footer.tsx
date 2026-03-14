@@ -220,7 +220,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-6 sm:flex-row" style={{ borderColor: "var(--border-dark)" }}>
+        <div className="mt-8 border-t pt-6" style={{ borderColor: "var(--border-dark)" }}>
+          <p className="text-[12px] text-center max-w-[720px] mx-auto mb-4" style={{ color: "var(--on-dark-3)" }}>
+            Funding Watch is a licensed commercial financing broker (NMLS# pending). When you apply through our lender network, we may receive compensation from the lender. This does not affect your terms.
+          </p>
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-[13px]" style={{ color: "var(--on-dark-3)" }}>
             © 2026 FundingWatch · Miami, FL
           </p>
@@ -234,6 +238,7 @@ export default function Footer() {
             <a href="mailto:hello@fundingwatch.org" className="text-[13px] transition hover:underline" style={{ color: "var(--on-dark-3)" }}>
               Contact
             </a>
+          </div>
           </div>
         </div>
       </div>

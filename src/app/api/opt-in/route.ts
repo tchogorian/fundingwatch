@@ -120,7 +120,7 @@ function buildConfirmationEmail(data: {
                     </td>
                     <td style="vertical-align:top;">
                       <p style="margin:0;font-size:14px;font-weight:600;color:#1a1a2e;">Case assigned</p>
-                      <p style="margin:4px 0 0 0;font-size:13px;color:#6b7280;">Your contract has been flagged for professional review and assigned to a licensed attorney.</p>
+                      <p style="margin:4px 0 0 0;font-size:13px;color:#6b7280;">A Funding Watch advisor will review your situation and reach out within 24 hours with options from our lender network.</p>
                     </td>
                   </tr></table>
                 </td>
@@ -134,7 +134,7 @@ function buildConfirmationEmail(data: {
                     </td>
                     <td style="vertical-align:top;">
                       <p style="margin:0;font-size:14px;font-weight:600;color:#1a1a2e;">You'll hear from us</p>
-                      <p style="margin:4px 0 0 0;font-size:13px;color:#6b7280;">Expect a call or email within 1–2 business days to discuss your options.</p>
+                      <p style="margin:4px 0 0 0;font-size:13px;color:#6b7280;">Expect a call or email within 24 hours with financing alternatives from our lender network.</p>
                     </td>
                   </tr></table>
                 </td>

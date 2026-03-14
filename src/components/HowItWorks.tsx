@@ -21,7 +21,7 @@ const steps = [
     number: 3,
     title: "See Your Report",
     description:
-      "Plain English breakdown of what's in your contract. No jargon, no cost.",
+      "Plain English breakdown of what's in your contract — plus how your lender and terms compare to better alternatives. No jargon, no cost.",
     Icon: FileCheck2,
   },
 ];

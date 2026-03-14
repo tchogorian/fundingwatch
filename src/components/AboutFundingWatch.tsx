@@ -30,6 +30,9 @@ export default function AboutFundingWatch() {
               <p>
                 FundingWatch exists to fix this. We built the FundingWatch scanner that reads your contract the way a financial analyst would — and translates the complexity into plain English. No jargon, no sales pitch, no cost. Just the facts about what you signed and what it really means for your business.
               </p>
+              <p>
+                And when we find a contract with red flags, we don&apos;t just show you the problem — we help you find a better solution through our vetted lender network.
+              </p>
             </div>
             <div className="mt-10 flex flex-wrap gap-10">
               {stats.map((s) => (

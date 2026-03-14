@@ -18,12 +18,12 @@ const items = [
   {
     question: "Who sees my analysis results?",
     answer:
-      "Only you. Your analysis is displayed directly in your browser and is not shared with anyone. If you choose to opt in for an expert review or to explore better lending options, only the specific professional you're connected with receives your information — and only after you give explicit consent.",
+      "Only you. Your analysis is displayed directly in your browser and is not shared with anyone. If you choose to explore better options through our lender network, your information is shared only with lenders you're matched with — and only after you give explicit consent.",
   },
   {
     question: "Is this legal advice?",
     answer:
-      "No. FundingWatch provides factual analysis of your contract terms — things like your effective APR, payment structure, and whether specific clauses are present. We present data, not legal opinions. If your analysis reveals concerning terms and you'd like legal guidance, we can connect you with a licensed attorney who specializes in MCA defense.",
+      "No. FundingWatch provides factual analysis of your contract terms — things like your effective APR, payment structure, and whether specific clauses are present. We present data, not legal opinions. If your analysis reveals concerning terms, we can help you explore better financing options through our lender network. For legal questions about an existing contract or active litigation, we recommend consulting a business attorney.",
   },
   {
     question: "How accurate is the analysis?",
@@ -43,7 +43,17 @@ const items = [
   {
     question: "What happens after I opt in for expert review?",
     answer:
-      "If your analysis reveals concerning terms and you opt in, a licensed professional will review your contract analysis and reach out within 24-48 hours. There's no cost or obligation — the initial review is free. They'll explain your options based on the specific issues in your contract.",
+      "If your analysis reveals concerning terms and you choose to explore better options, a Funding Watch advisor will review your situation and reach out within 24 hours with financing alternatives from our lender network. There's no cost or obligation — we get paid by lenders when a deal funds, never by you.",
+  },
+  {
+    question: "How does Funding Watch make money?",
+    answer:
+      "Funding Watch is a licensed commercial financing broker. When you apply for financing through our lender network and a deal funds, the lender pays us a referral fee. This is standard in the lending industry and does not affect your cost — you receive the same terms whether you apply through us or directly. Our contract analysis tool is and will always be free. We believe that if we help you understand your contract, you'll trust us when it's time to find a better deal.",
+  },
+  {
+    question: "What is a Certified lender?",
+    answer:
+      "Certified is the rating we give to MCA lenders that meet our standards for transparency, fair terms, and responsible lending practices. To earn Certified status, a lender must score in the top tier of our Lender Risk Index — which evaluates complaint history, regulatory record, contract terms, litigation behavior, and pricing transparency. Not every lender qualifies. See the full criteria and every rated lender on our Lender Risk Index.",
   },
 ];
 

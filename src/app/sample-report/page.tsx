@@ -96,7 +96,7 @@ const SAMPLE_RESULT: AnalysisResult = {
   overall_risk_score: 7,
   overall_risk_label: "High Risk",
   recommended_actions: [
-    "Consult a licensed attorney before signing or if you have already signed.",
+    "Explore better options through our lender network; for legal questions, consult a business attorney.",
     "Request removal or limitation of the confession of judgment if possible.",
     "Compare this offer with other funding options and calculate true cost.",
   ],

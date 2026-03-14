@@ -30,7 +30,7 @@ interface StoredResult {
 }
 
 const CONSENT_LANGUAGE =
-  "I consent to being contacted by a licensed attorney or their representative regarding my merchant cash advance agreements. I understand my information will be shared with a legal professional for the purpose of reviewing my situation. I may revoke this consent at any time.";
+  "I consent to Funding Watch sharing my information with its lender network to provide me with financing options. I understand Funding Watch may receive compensation from lenders for this service. This does not affect my cost.";
 
 export default function QuestionnaireResultsPage() {
   const router = useRouter();

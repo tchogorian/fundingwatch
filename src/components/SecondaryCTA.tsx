@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default function SecondaryCTA() {
@@ -14,9 +15,9 @@ export default function SecondaryCTA() {
           Don&apos;t Pay More Than You Have To
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed" style={{ color: "var(--on-dark-2)" }}>
-          Courts are ruling that fixed daily payments without reconciliation may make your advance a loan subject to usury limits. See if your contract has red flags.
+          Courts are ruling that fixed daily payments without reconciliation may make your advance a loan subject to usury limits. See if your contract has red flags — and what better options look like.
         </p>
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
           <button
             type="button"
             onClick={scrollToUpload}
@@ -25,6 +26,13 @@ export default function SecondaryCTA() {
             Analyze My Contract →
             <ArrowRight className="h-5 w-5" aria-hidden />
           </button>
+          <Link
+            href="/lender-risk-index"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-white/60 bg-transparent px-8 py-4 font-semibold text-white transition hover:bg-white/10"
+          >
+            Browse Lender Risk Index →
+            <ArrowRight className="h-5 w-5" aria-hidden />
+          </Link>
         </div>
       </div>
     </section>
