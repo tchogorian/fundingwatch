@@ -564,21 +564,40 @@ h3 {
 }
 
 /* ========== HERO ========== */
-/* Shared dark blue gradient for all page heroes (home, blog, LRI, APR calculator) */
+/* Shared dark blue gradient + same size for all page heroes */
 .hero,
 .blog-hero,
 .lri-hero,
 .page-hero {
   background: linear-gradient(135deg, #1A1A2E 0%, #2E75B6 50%, #1A8FB4 100%) !important;
   background-color: transparent !important;
+  padding: 4rem 1.5rem; /* py-16 px-6 */
+}
+@media (min-width: 768px) {
+  .hero,
+  .blog-hero,
+  .lri-hero,
+  .page-hero {
+    padding: 5rem 2rem; /* md:py-20 md:px-8 */
+  }
+}
+@media (min-width: 1024px) {
+  .hero,
+  .blog-hero,
+  .lri-hero,
+  .page-hero {
+    padding: 6rem 3rem; /* lg:py-24 lg:px-12 */
+  }
 }
 
+/* Homepage hero: horizontal padding from .hero-inner, so zero out section horizontal */
 .hero {
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 80px 0 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .hero::before,
@@ -730,9 +749,6 @@ h3 {
 
 /* Desktop */
 @media (min-width: 769px) {
-  .hero {
-    padding: 72px 0 0;
-  }
   .hero-title {
     font-size: 3rem;
   }
@@ -752,7 +768,6 @@ h3 {
   .hero {
     min-height: unset !important;
     height: auto !important;
-    padding: 48px 0 0;
   }
   .hero-inner {
     grid-template-columns: 1fr;
@@ -1548,10 +1563,6 @@ h3 {
 }
 
 @media (max-width: 767px) {
-  .blog-hero {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
   .blog-hero-title {
     font-size: 32px;
   }

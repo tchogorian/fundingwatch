@@ -23,7 +23,7 @@ export default function LenderRiskIndexPage() {
     <>
       {/* Hero — dark blue gradient, white text, search-first (same style as homepage/blog) */}
       <section
-        className="lri-hero relative overflow-hidden px-6 py-16 md:px-8 md:py-20 lg:px-12 lg:py-24"
+        className="lri-hero relative overflow-hidden"
         aria-label="Lender Risk Index hero"
       >
         <div className="mx-auto max-w-[720px] text-center">

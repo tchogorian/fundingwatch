@@ -42,7 +42,7 @@ function BlogIndexSkeleton() {
   return (
     <>
       <section
-        className="blog-hero relative overflow-hidden px-6 py-16 md:px-8 md:py-20 lg:px-12 lg:py-24"
+        className="blog-hero relative overflow-hidden"
         aria-label="Blog hero"
       >
         <div className="mx-auto max-w-[1180px]">
@@ -101,7 +101,7 @@ function BlogIndexContent() {
     <>
       {/* Hero — same gradient as homepage, LRI, APR calculator */}
       <section
-        className="blog-hero relative overflow-hidden px-6 py-16 md:px-8 md:py-20 lg:px-12 lg:py-24"
+        className="blog-hero relative overflow-hidden"
         aria-label="Blog hero"
       >
         <div className="mx-auto max-w-[1180px]">
