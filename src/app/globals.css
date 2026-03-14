@@ -564,10 +564,16 @@ h3 {
 }
 
 /* ========== HERO ========== */
+/* Shared dark blue gradient for all page heroes (home, blog, LRI, APR calculator) */
+.hero,
+.blog-hero,
+.lri-hero,
+.page-hero {
+  background: linear-gradient(135deg, #1A1A2E 0%, #2E75B6 50%, #1A8FB4 100%) !important;
+  background-color: transparent !important;
+}
 
 .hero {
-  background-color: #2E75B6 !important;
-  background-image: none !important;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -595,8 +601,7 @@ h3 {
   pointer-events: none !important;
 }
 
-/* Force no background image on hero children */
-.hero,
+/* Force no background image on hero children (gradient stays on .hero) */
 .hero *:not(.hero-contract-card):not(.hero-contract-card *):not(.btn-hero-primary) {
   background-image: none !important;
 }
@@ -1489,9 +1494,8 @@ h3 {
   display: block;
   overflow-x: auto;
 }
-/* Lender Risk Index hero — matches blog/home hero (dark blue gradient + white text) */
+/* Lender Risk Index hero — gradient defined in .page-hero / .lri-hero above */
 .lri-hero {
-  background: linear-gradient(135deg, #1A1A2E 0%, #2E75B6 50%, #1A8FB4 100%);
   color: #fff;
 }
 .lri-hero-title {

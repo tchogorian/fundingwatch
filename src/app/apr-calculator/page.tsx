@@ -270,10 +270,7 @@ export default function APRCalculatorPage() {
   return (
     <>
       <section
-        className="relative overflow-hidden px-4 py-12 md:py-16"
-        style={{
-          backgroundColor: "#2E75B6",
-        }}
+        className="page-hero relative overflow-hidden px-6 py-16 md:px-8 md:py-20 lg:px-12 lg:py-24"
         aria-label="Calculator header"
       >
         <div className="mx-auto max-w-[840px] text-center">
