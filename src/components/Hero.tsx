@@ -7,7 +7,7 @@ const HERO_PIGGY = "/images/hero-piggy.png";
 
 export default function Hero() {
   return (
-    <div className="relative overflow-visible" style={{ background: "#faf8f5" }}>
+    <div className="relative overflow-visible" style={{ background: "#f7f4f0" }}>
       <div
         className="flex flex-col items-center min-h-[560px] px-4 pt-[70px] pb-8 gap-8 md:flex-row md:items-end md:px-12 md:gap-8 md:min-h-[580px]"
         style={{ position: "relative", zIndex: 2 }}
@@ -56,7 +56,7 @@ export default function Hero() {
         <div
           className="flex-shrink-0 w-full max-w-[520px] min-h-[320px] md:min-h-[520px] relative flex-1 md:flex-initial"
         >
-          {/* Piggy bank image — no box; background matches hero (#faf8f5 warm cream) so image blends in */}
+          {/* Piggy bank image — no box; background matches hero (#f7f4f0 creamy beige) so image blends in */}
           <div
             className="absolute left-1/2 -translate-x-1/2 bottom-0 z-[1] w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] md:w-[500px] md:h-[500px] md:left-auto md:right-0 md:translate-x-0 bg-transparent"
             style={{ filter: "drop-shadow(0 12px 32px rgba(0,0,0,0.08))", background: "transparent" }}
