@@ -56,17 +56,18 @@ export default function Hero() {
         <div
           className="flex-shrink-0 w-full max-w-[520px] min-h-[320px] md:min-h-[520px] relative flex-1 md:flex-initial"
         >
-          {/* Piggy bank image — at least 500px tall, overflows hero at bottom, no box */}
+          {/* Piggy bank image — no box, no container bg; floats on #f8fafb with drop-shadow only */}
           <div
-            className="absolute left-1/2 -translate-x-1/2 bottom-0 z-[1] w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] md:w-[500px] md:h-[500px] md:left-auto md:right-0 md:translate-x-0"
-            style={{ filter: "drop-shadow(0 12px 32px rgba(0,0,0,0.08))" }}
+            className="absolute left-1/2 -translate-x-1/2 bottom-0 z-[1] w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] md:w-[500px] md:h-[500px] md:left-auto md:right-0 md:translate-x-0 bg-transparent"
+            style={{ filter: "drop-shadow(0 12px 32px rgba(0,0,0,0.08))", background: "transparent" }}
           >
             <Image
               src={HERO_PIGGY}
               alt="Broken piggy bank with coins"
               width={500}
               height={500}
-              className="w-full h-full object-contain object-bottom"
+              className="w-full h-full object-contain object-bottom bg-transparent"
+              style={{ background: "transparent" }}
             />
           </div>
 
