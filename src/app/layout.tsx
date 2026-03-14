@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Sora, JetBrains_Mono } from "next/font/google";
+import { Sora, JetBrains_Mono, DM_Serif_Display, DM_Sans } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import ScrollToHash from "@/components/ScrollToHash";
+import AIChatBubble from "@/components/AIChatBubble";
 import "./globals.css";
 
 const sora = Sora({
@@ -15,6 +16,20 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+const dmSerifDisplay = DM_Serif_Display({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-dm-serif",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
@@ -45,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${jetbrainsMono.variable}`}
+      className={`${sora.variable} ${jetbrainsMono.variable} ${dmSerifDisplay.variable} ${dmSans.variable}`}
     >
       <body className="font-sans antialiased">
         <a
@@ -57,6 +72,7 @@ export default function RootLayout({
         <Navbar />
         <ScrollToHash />
         <main id="main">{children}</main>
+        <AIChatBubble />
       </body>
     </html>
   );
