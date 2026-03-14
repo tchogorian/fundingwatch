@@ -12,8 +12,10 @@ import {
   Info,
   Check,
   XCircle,
+  ShieldCheck,
 } from "lucide-react";
 import type { AnalysisResult } from "@/types/analysis";
+import { getCertifiedLenders, getLenderFromIndexByName } from "@/lib/lenders";
 
 const STORAGE_KEY = "analysisResult";
 
@@ -58,10 +60,13 @@ export default function ResultsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [optInSuccess, setOptInSuccess] = useState(false);
   const [form, setForm] = useState({
-    name: "",
+    business_name: "",
+    contact_name: "",
     email: "",
     phone: "",
-    business: "",
+    monthly_revenue: "",
+    current_advance_balance: "",
+    looking_for: "" as "" | "refinance" | "new_capital" | "consolidation" | "just_comparing",
     consent: false,
   });
   const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "error">("idle");
@@ -94,28 +99,28 @@ export default function ResultsPage() {
     }
   };
 
-  const handleOptInSubmit = async (e: React.FormEvent) => {
+  const handleBrokerLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.phone.trim() || !form.business.trim() || !form.consent || !data) return;
+    if (!form.contact_name.trim() || !form.email.trim() || !form.phone.trim() || !form.business_name.trim() || !form.monthly_revenue || !form.looking_for || !form.consent || !data) return;
     setSubmitStatus("submitting");
     try {
-      const res = await fetch("/api/opt-in", {
+      const res = await fetch("/api/broker-leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: form.name.trim(),
+          business_name: form.business_name.trim(),
+          contact_name: form.contact_name.trim(),
           email: form.email.trim(),
           phone: form.phone.trim(),
-          business: form.business.trim(),
+          monthly_revenue: form.monthly_revenue,
+          current_advance_balance: form.current_advance_balance.trim() || undefined,
+          looking_for: form.looking_for,
           consent: true,
           lender_name: data.lender_name ?? null,
           risk_score: data.overall_risk_score ?? null,
-          risk_label: data.overall_risk_label ?? null,
           effective_apr: data.effective_apr ?? null,
           red_flag_count: data.red_flags?.length ?? null,
-          high_flag_count: data.red_flags?.filter((f) => f.severity === "high").length ?? null,
-          has_coj: data.confession_of_judgment?.present ?? null,
-          has_personal_guarantee: data.personal_guarantee?.present ?? null,
+          source: "results",
         }),
       });
       if (!res.ok) throw new Error("Submit failed");
@@ -157,7 +162,7 @@ export default function ResultsPage() {
               You&apos;re All Set
             </h1>
             <p className="mt-4 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
-              A licensed professional will review your contract and reach out within 1–2 business days. Check your email for a confirmation.
+              A Funding Watch advisor will review your situation and reach out within 24 hours with options from our lender network.
             </p>
             <button
               type="button"
@@ -325,35 +330,202 @@ export default function ResultsPage() {
             </section>
           )}
 
-          {/* CTA Banner */}
-          <section
-            className="mt-12 rounded-xl border p-6 sm:p-8"
-            style={{ background: "var(--bg-dark)", borderColor: "var(--border-dark)" }}
-          >
-            <h2 className="text-xl font-semibold text-white sm:text-2xl">
-              Want a Licensed Professional to Review?
+          {/* How Does Your Lender Compare? */}
+          <section className="mt-10">
+            <h2 className="text-xl font-semibold" style={{ color: "var(--color-text-primary)" }}>
+              How Does Your Lender Compare?
             </h2>
-            <p className="mt-2 text-[var(--text-base)]" style={{ color: "var(--on-dark-2)" }}>
-              Our analysis found {highRiskCount > 0 ? highRiskCount + " critical flags" : "several items to review"}. A licensed attorney can advise you on your options — no cost, no obligation.
-            </p>
-            <button
-              type="button"
-              onClick={() => setModalOpen(true)}
-              className="mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full px-6 py-3 font-semibold text-white transition hover:opacity-95"
-              style={{ background: "var(--accent-blue)" }}
-            >
-              Yes, I&apos;d Like a Free Professional Review
-            </button>
-            <p className="mt-4 text-xs" style={{ color: "var(--on-dark-3)" }}>
-              <Link href="/privacy" className="underline hover:no-underline">Privacy Policy</Link>
-              {" · "}
-              <Link href="/terms" className="underline hover:no-underline">Terms</Link>
-            </p>
+            {(() => {
+              const indexLender = getLenderFromIndexByName(data.lender_name ?? null);
+              const certified = getCertifiedLenders(2);
+              return (
+                <div className="mt-4 space-y-4">
+                  {indexLender ? (
+                    <div
+                      className="rounded-xl border p-4"
+                      style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+                    >
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="font-semibold" style={{ color: "var(--color-text-primary)" }}>{indexLender.name}</span>
+                        {indexLender.fw_rating && (
+                          <span
+                            className="rounded-full px-3 py-1 text-sm font-semibold text-white"
+                            style={{
+                              background:
+                                indexLender.fw_rating === "certified"
+                                  ? "var(--accent-green)"
+                                  : indexLender.fw_rating === "caution"
+                                    ? "var(--accent-yellow)"
+                                    : indexLender.fw_rating === "warning"
+                                      ? "var(--warning)"
+                                      : "var(--danger)",
+                            }}
+                          >
+                            {indexLender.fw_rating.charAt(0).toUpperCase() + indexLender.fw_rating.slice(1)}
+                          </span>
+                        )}
+                        <span className="text-sm" style={{ color: "var(--color-text-tertiary)" }}>
+                          Risk score: {indexLender.severity_score}/100
+                        </span>
+                      </div>
+                      {indexLender.top_red_flags && indexLender.top_red_flags.length > 0 && (
+                        <p className="mt-2 text-sm" style={{ color: "var(--color-text-secondary)" }}>
+                          Top concerns: {indexLender.top_red_flags.join("; ")}
+                        </p>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
+                      We don&apos;t have data on this lender yet. Your contract-level red flags are shown above.
+                    </p>
+                  )}
+                  {certified.length > 0 && (
+                    <div>
+                      <p className="mb-2 text-sm font-medium" style={{ color: "var(--color-text-tertiary)" }}>Certified lenders for comparison</p>
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        {certified.map((l) => (
+                          <div
+                            key={l.id}
+                            className="flex items-center gap-3 rounded-xl border p-4"
+                            style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+                          >
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--accent-green)", color: "white" }}>
+                              <ShieldCheck className="h-5 w-5" />
+                            </div>
+                            <div>
+                              <p className="font-semibold" style={{ color: "var(--color-text-primary)" }}>{l.name}</p>
+                              <p className="text-xs" style={{ color: "var(--color-text-tertiary)" }}>{l.headline_stat}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
           </section>
+
+          {/* Post-analysis fork */}
+          {(() => {
+            const riskScore = data.overall_risk_score ?? 0;
+            const redFlagCount = data.red_flags?.length ?? 0;
+            const indexLender = getLenderFromIndexByName(data.lender_name ?? null);
+            const lenderBad = indexLender && (indexLender.fw_rating === "warning" || indexLender.fw_rating === "avoid");
+            const lenderCaution = indexLender && indexLender.fw_rating === "caution";
+            const lenderCertified = indexLender && indexLender.fw_rating === "certified";
+            const aprDisplay = data.effective_apr != null ? data.effective_apr.toFixed(1) : "—";
+            const certifiedLenders = getCertifiedLenders(2);
+
+            const isForkA = riskScore >= 6 || lenderBad || redFlagCount >= 2;
+            const isForkB = !isForkA && (riskScore >= 3 || riskScore <= 5 || lenderCaution || redFlagCount === 1);
+            const isForkC = !isForkA && !isForkB;
+
+            if (isForkA) {
+              return (
+                <section
+                  className="mt-12 rounded-xl border p-6 sm:p-8"
+                  style={{ background: "var(--bg-dark)", borderColor: "var(--border-dark)" }}
+                >
+                  <h2 className="text-xl font-semibold text-white sm:text-2xl">
+                    Your contract has {redFlagCount} red flag{redFlagCount !== 1 ? "s" : ""} and an effective APR of {aprDisplay}%.
+                  </h2>
+                  <p className="mt-2 text-[var(--text-base)]" style={{ color: "var(--on-dark-2)" }}>
+                    See how your terms compare to lenders in our network — no obligation.
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setModalOpen(true)}
+                      className="inline-flex min-h-[48px] items-center justify-center rounded-full px-6 py-3 font-semibold text-white transition hover:opacity-95"
+                      style={{ background: "var(--accent-blue)" }}
+                    >
+                      See Better Options
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setModalOpen(true)}
+                      className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-white/60 bg-transparent px-6 py-3 font-semibold text-white transition hover:bg-white/10"
+                    >
+                      Talk to a Funding Watch Advisor
+                    </button>
+                  </div>
+                  {certifiedLenders.length > 0 && (
+                    <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                      {certifiedLenders.map((l) => (
+                        <div
+                          key={l.id}
+                          className="flex items-center gap-3 rounded-lg border border-white/20 p-4"
+                        >
+                          <ShieldCheck className="h-6 w-6 shrink-0 text-white" />
+                          <div>
+                            <p className="font-semibold text-white">{l.name}</p>
+                            <p className="text-sm" style={{ color: "var(--on-dark-2)" }}>{l.headline_stat}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <p className="mt-4 text-xs" style={{ color: "var(--on-dark-3)" }}>
+                    <Link href="/privacy" className="underline hover:no-underline">Privacy Policy</Link>
+                    {" · "}
+                    <Link href="/terms" className="underline hover:no-underline">Terms</Link>
+                  </p>
+                </section>
+              );
+            }
+            if (isForkB) {
+              return (
+                <section
+                  className="mt-12 rounded-xl border p-6 sm:p-8"
+                  style={{ background: "var(--bg-dark)", borderColor: "var(--border-dark)" }}
+                >
+                  <h2 className="text-xl font-semibold text-white sm:text-2xl">
+                    Your terms are within market range but there may be room for improvement.
+                  </h2>
+                  <button
+                    type="button"
+                    onClick={() => setModalOpen(true)}
+                    className="mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full px-6 py-3 font-semibold text-white transition hover:opacity-95"
+                    style={{ background: "var(--accent-blue)" }}
+                  >
+                    Compare Lenders
+                  </button>
+                  <p className="mt-4 text-xs" style={{ color: "var(--on-dark-3)" }}>
+                    <Link href="/privacy" className="underline hover:no-underline">Privacy Policy</Link>
+                    {" · "}
+                    <Link href="/terms" className="underline hover:no-underline">Terms</Link>
+                  </p>
+                </section>
+              );
+            }
+            return (
+              <section
+                className="mt-12 rounded-xl border p-6 sm:p-8"
+                style={{ background: "var(--bg-dark)", borderColor: "var(--border-dark)" }}
+              >
+                <h2 className="text-xl font-semibold text-white sm:text-2xl">
+                  Your contract terms look solid.
+                  {lenderCertified && data.lender_name && (
+                    <> {data.lender_name} is a Certified lender in our Lender Risk Index.</>
+                  )}
+                </h2>
+                <p className="mt-2 text-[var(--text-base)]" style={{ color: "var(--on-dark-2)" }}>
+                  Bookmark Funding Watch — we&apos;re here when you need us.
+                </p>
+                <Link
+                  href="/lender-risk-index"
+                  className="mt-6 inline-block text-sm font-medium text-white underline hover:no-underline"
+                >
+                  Browse Lender Risk Index →
+                </Link>
+              </section>
+            );
+          })()}
         </div>
       </main>
 
-      {/* Opt-in Modal */}
+      {/* Broker intake modal */}
       {modalOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -376,28 +548,40 @@ export default function ResultsPage() {
               <X className="h-5 w-5" />
             </button>
             <h2 id="modal-title" className="text-xl font-semibold" style={{ color: "var(--color-text-primary)" }}>
-              Get a Free Professional Review
+              Explore Better Options
             </h2>
             <p className="mt-2 text-sm" style={{ color: "var(--color-text-secondary)" }}>
-              A licensed attorney will review your contract and advise you on your options.
+              A Funding Watch advisor will reach out with options from our lender network. No cost, no obligation.
             </p>
-            <form onSubmit={handleOptInSubmit} className="mt-6 space-y-4">
+            <form onSubmit={handleBrokerLeadSubmit} className="mt-6 space-y-4">
               <div>
-                <label htmlFor="optin-name" className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>Full Name</label>
+                <label htmlFor="broker-business" className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>Business name</label>
                 <input
-                  id="optin-name"
+                  id="broker-business"
                   type="text"
-                  value={form.name}
-                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                  value={form.business_name}
+                  onChange={(e) => setForm((f) => ({ ...f, business_name: e.target.value }))}
                   className="mt-1 h-11 w-full rounded-lg border px-3 text-base"
                   style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                   required
                 />
               </div>
               <div>
-                <label htmlFor="optin-email" className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>Email</label>
+                <label htmlFor="broker-contact" className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>Contact name</label>
                 <input
-                  id="optin-email"
+                  id="broker-contact"
+                  type="text"
+                  value={form.contact_name}
+                  onChange={(e) => setForm((f) => ({ ...f, contact_name: e.target.value }))}
+                  className="mt-1 h-11 w-full rounded-lg border px-3 text-base"
+                  style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="broker-email" className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>Email</label>
+                <input
+                  id="broker-email"
                   type="email"
                   value={form.email}
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
@@ -407,9 +591,9 @@ export default function ResultsPage() {
                 />
               </div>
               <div>
-                <label htmlFor="optin-phone" className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>Phone</label>
+                <label htmlFor="broker-phone" className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>Phone</label>
                 <input
-                  id="optin-phone"
+                  id="broker-phone"
                   type="tel"
                   value={form.phone}
                   onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
@@ -419,16 +603,58 @@ export default function ResultsPage() {
                 />
               </div>
               <div>
-                <label htmlFor="optin-business" className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>Business Name</label>
-                <input
-                  id="optin-business"
-                  type="text"
-                  value={form.business}
-                  onChange={(e) => setForm((f) => ({ ...f, business: e.target.value }))}
+                <label htmlFor="broker-revenue" className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>Monthly revenue</label>
+                <select
+                  id="broker-revenue"
+                  value={form.monthly_revenue}
+                  onChange={(e) => setForm((f) => ({ ...f, monthly_revenue: e.target.value }))}
                   className="mt-1 h-11 w-full rounded-lg border px-3 text-base"
                   style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                   required
+                >
+                  <option value="">Select</option>
+                  <option value="under_15k">Under $15K</option>
+                  <option value="15_30k">$15–30K</option>
+                  <option value="30_50k">$30–50K</option>
+                  <option value="50_100k">$50–100K</option>
+                  <option value="100k_plus">$100K+</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="broker-balance" className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>Current advance balance (optional)</label>
+                <input
+                  id="broker-balance"
+                  type="text"
+                  value={form.current_advance_balance}
+                  onChange={(e) => setForm((f) => ({ ...f, current_advance_balance: e.target.value }))}
+                  className="mt-1 h-11 w-full rounded-lg border px-3 text-base"
+                  style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
+                  placeholder="e.g. $25,000"
                 />
+              </div>
+              <div>
+                <span className="block text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>What are you looking for?</span>
+                <div className="mt-2 space-y-2">
+                  {[
+                    { value: "refinance", label: "Refinance" },
+                    { value: "new_capital", label: "New capital" },
+                    { value: "consolidation", label: "Consolidation" },
+                    { value: "just_comparing", label: "Just comparing" },
+                  ].map((opt) => (
+                    <label key={opt.value} className="flex cursor-pointer items-center gap-2">
+                      <input
+                        type="radio"
+                        name="looking_for"
+                        value={opt.value}
+                        checked={form.looking_for === opt.value}
+                        onChange={(e) => setForm((f) => ({ ...f, looking_for: e.target.value as typeof form.looking_for }))}
+                        style={{ accentColor: "var(--color-accent-primary)" }}
+                        required
+                      />
+                      <span className="text-sm" style={{ color: "var(--color-text-primary)" }}>{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
               </div>
               <div>
                 <label className="flex cursor-pointer items-start gap-3">
@@ -441,7 +667,7 @@ export default function ResultsPage() {
                     required
                   />
                   <span className="text-sm" style={{ color: "var(--color-text-primary)" }}>
-                    I consent to being contacted by a licensed attorney or their representative regarding my merchant cash advance contract. I understand my information will be shared with a legal professional for the purpose of reviewing my contract. I may revoke this consent at any time.{" "}
+                    I consent to Funding Watch sharing my information with its lender network to provide me with financing options. I understand Funding Watch may receive compensation from lenders for this service. This does not affect my cost.{" "}
                     <Link href="/privacy" className="font-medium underline" style={{ color: "var(--color-accent-primary)" }}>Privacy Policy</Link>
                     {" | "}
                     <Link href="/terms" className="font-medium underline" style={{ color: "var(--color-accent-primary)" }}>Terms</Link>
@@ -453,11 +679,11 @@ export default function ResultsPage() {
               )}
               <button
                 type="submit"
-                disabled={submitStatus === "submitting" || !form.name.trim() || !form.email.trim() || !form.phone.trim() || !form.business.trim() || !form.consent}
+                disabled={submitStatus === "submitting" || !form.contact_name.trim() || !form.email.trim() || !form.phone.trim() || !form.business_name.trim() || !form.monthly_revenue || !form.looking_for || !form.consent}
                 className="mt-4 flex h-12 w-full items-center justify-center rounded-full font-semibold text-white disabled:opacity-50"
                 style={{ background: "var(--accent-blue)" }}
               >
-                {submitStatus === "submitting" ? "Submitting..." : "Submit — Get My Free Review"}
+                {submitStatus === "submitting" ? "Submitting..." : "Submit"}
               </button>
             </form>
           </div>
