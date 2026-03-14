@@ -7,18 +7,19 @@ const HERO_PIGGY = "/images/hero-piggy.png";
 
 export default function Hero() {
   return (
-    <div className="relative overflow-hidden" style={{ background: "#f8fafb" }}>
+    <div className="relative overflow-visible" style={{ background: "#f8fafb" }}>
       <div
-        className="flex flex-col items-center min-h-[520px] px-4 pt-[70px] pb-5 gap-8 md:flex-row md:items-center md:px-12 md:gap-5 md:min-h-[520px]"
+        className="flex flex-col items-center min-h-[560px] px-4 pt-[70px] pb-8 gap-8 md:flex-row md:items-end md:px-12 md:gap-8 md:min-h-[580px]"
         style={{ position: "relative", zIndex: 2 }}
       >
-        {/* LEFT: Headline + CTAs */}
-        <div className="flex-1 min-w-0 w-full md:min-w-[320px]">
+        {/* LEFT: Headline + CTA */}
+        <div className="flex-1 min-w-0 w-full md:min-w-[320px] md:pb-4">
           <h1
-            className="text-[36px] leading-[1.08] mb-6 md:text-[54px]"
+            className="text-[36px] leading-[1.08] mb-6 md:text-[54px] font-normal"
             style={{
               fontFamily: "var(--font-dm-serif), Georgia, serif",
               color: "#0f172a",
+              fontWeight: 400,
             }}
           >
             Funding, with
@@ -36,62 +37,36 @@ export default function Hero() {
           </p>
           <div className="flex flex-wrap gap-3 items-center">
             <Link
-              href="#upload"
-              className="inline-flex items-center gap-2 rounded-xl px-8 py-[15px] font-semibold text-sm text-white no-underline transition hover:opacity-95"
+              href="#"
+              className="inline-flex items-center rounded-[12px] text-white no-underline transition hover:opacity-95"
               style={{
                 background: "#1e5a8a",
                 fontFamily: "var(--font-dm-sans), sans-serif",
+                fontWeight: 600,
+                fontSize: 14,
+                padding: "16px 40px",
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-                <path d="M2 13V3h12v7H5l-3 3z" stroke="#fff" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="5.5" cy="6.5" r="0.8" fill="#fff" />
-                <circle cx="8" cy="6.5" r="0.8" fill="#fff" />
-                <circle cx="10.5" cy="6.5" r="0.8" fill="#fff" />
-              </svg>
-              <span>Analyze My Contract</span>
-            </Link>
-            <Link
-              href="/lender-risk-index"
-              className="inline-flex items-center gap-2 rounded-xl px-8 py-[15px] font-semibold text-sm no-underline transition hover:opacity-95 border-[1.5px] border-[#e2e8f0] bg-white"
-              style={{
-                color: "#0f172a",
-                fontFamily: "var(--font-dm-sans), sans-serif",
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-                <circle cx="7" cy="7" r="5" stroke="#1e5a8a" strokeWidth="1.3" />
-                <path d="M11 11l3 3" stroke="#1e5a8a" strokeWidth="1.3" strokeLinecap="round" />
-              </svg>
-              <span>Look Up a Lender</span>
+              Get Approved in as Soon as 2 Hours
             </Link>
           </div>
         </div>
 
-        {/* RIGHT: Piggy bank + floating cards — stacked on mobile, full on desktop */}
+        {/* RIGHT: Piggy bank + floating cards — image dominates, overflows at bottom */}
         <div
-          className="flex-shrink-0 w-full max-w-[400px] h-[280px] sm:h-[340px] md:h-[440px] relative"
+          className="flex-shrink-0 w-full max-w-[520px] min-h-[320px] md:min-h-[520px] relative flex-1 md:flex-initial"
         >
-          {/* Soft glow behind image */}
+          {/* Piggy bank image — at least 500px tall, overflows hero at bottom, no box */}
           <div
-            className="absolute rounded-full opacity-50 blur-[40px]"
-            style={{
-              top: 40,
-              left: 20,
-              right: 20,
-              bottom: 40,
-              background: "#fff",
-            }}
-          />
-          {/* Piggy bank image */}
-          <div className="absolute top-5 left-0 right-0 w-[280px] h-[280px] mx-auto md:w-[360px] md:h-[360px] md:top-5 z-[1]">
+            className="absolute left-1/2 -translate-x-1/2 bottom-0 z-[1] w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] md:w-[500px] md:h-[500px] md:left-auto md:right-0 md:translate-x-0"
+            style={{ filter: "drop-shadow(0 12px 32px rgba(0,0,0,0.08))" }}
+          >
             <Image
               src={HERO_PIGGY}
               alt="Broken piggy bank with coins"
-              width={360}
-              height={360}
-              className="w-full h-full object-contain"
-              style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }}
+              width={500}
+              height={500}
+              className="w-full h-full object-contain object-bottom"
             />
           </div>
 

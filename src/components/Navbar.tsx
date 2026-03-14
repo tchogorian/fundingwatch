@@ -3,13 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Shield, ArrowRight, Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
-// Order: How It Works | Lender Risk Index | Resources (dropdown only) | FAQ | About.
-// MCA Calculator, Blog, Glossary are inside Resources only — not top-level.
+// Order: How It Works | Lender Risk Index | Resources (dropdown) | FAQ | About.
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Lender Risk Index", href: "/lender-risk-index" },
+  { label: "Lender Risk Index", href: "/lender-risk-index", highlight: true },
   {
     label: "Resources",
     dropdown: [
@@ -42,175 +41,108 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
-  const scrollToUpload = () => {
-    document.getElementById("upload")?.scrollIntoView({ behavior: "smooth" });
-    setMobileOpen(false);
+  const headerStyle = {
+    background: "linear-gradient(135deg, #1a3a5c 0%, #1e5a8a 50%, #2a6a9e 100%)",
+    padding: "14px 32px",
   };
 
   return (
     <>
-      <div
-        className="sticky top-0 z-[100] w-full px-4 py-3 sm:px-6"
-        style={{ background: "#2E75B6" }}
+      <header
+        className="sticky top-0 z-[100] w-full flex items-center justify-between px-4 py-3.5 sm:px-8"
+        style={headerStyle}
       >
-        <nav
-          className="mx-auto flex h-[60px] max-w-[1180px] items-center justify-between rounded-full px-7"
-          style={{
-            background: "#2E75B6",
-            boxShadow: "0 4px 24px rgba(0, 0, 0, 0.15)",
-            border: "1px solid rgba(255, 255, 255, 0.12)",
-          }}
+        <Link
+          href="/"
+          className="text-[22px] text-white lowercase tracking-tight"
+          style={{ fontFamily: "var(--font-dm-serif), Georgia, serif", letterSpacing: "-0.5px" }}
         >
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-[17px] font-extrabold tracking-tight"
-            style={{ color: "#FFFFFF", letterSpacing: "-0.03em" }}
-          >
-            <Shield
-              className="h-5 w-5 shrink-0"
-              style={{ color: "rgba(255,255,255,0.9)" }}
-              aria-hidden
-            />
-            <span>
-              Funding<span style={{ color: "#4AE8A4" }}>Watch</span>
-            </span>
-          </Link>
+          debtura
+        </Link>
 
-          <div className="hidden items-center gap-8 md:flex" aria-label="Main">
-            {navLinks.map((item) => {
-              if ("dropdown" in item && item.dropdown) {
-                return (
-                  <div
-                    key={item.label}
-                    className="relative"
-                    onMouseEnter={() => setResourcesOpen(true)}
-                    onMouseLeave={() => setResourcesOpen(false)}
-                  >
-                    <button
-                      type="button"
-                      className="text-[14px] font-medium transition-colors hover:opacity-90 min-h-[48px] inline-flex items-center gap-1"
-                      style={{ color: "rgba(255, 255, 255, 0.9)" }}
-                      aria-expanded={resourcesOpen}
-                      aria-haspopup="true"
-                    >
-                      {item.label}
-                      <ChevronDown className={`h-4 w-4 transition-transform ${resourcesOpen ? "rotate-180" : ""}`} />
-                    </button>
-                    {resourcesOpen && (
-                      <div
-                        className="absolute left-0 top-full pt-1"
-                        role="menu"
-                      >
-                        <div className="rounded-lg border border-white/20 bg-[#2E75B6] py-2 shadow-lg min-w-[180px]" style={{ background: "rgba(43, 115, 180, 0.98)" }}>
-                          {item.dropdown.map(({ label, href }) => (
-                            <Link
-                              key={href}
-                              href={href}
-                              role="menuitem"
-                              className="block px-4 py-2.5 text-[14px] font-medium transition-colors hover:bg-white/15"
-                              style={{ color: "rgba(255, 255, 255, 0.95)" }}
-                            >
-                              {label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-              const href = "href" in item ? item.href : "";
-              const label = item.label;
-              const isHash = href.startsWith("#");
-              if (isHash && !isHome) {
-                return (
-                  <a
-                    key={href}
-                    href={`/#${href.slice(1)}`}
-                    className="text-[14px] font-medium transition-colors hover:opacity-90 min-h-[48px] min-w-[48px] inline-flex items-center"
-                    style={{ color: "rgba(255, 255, 255, 0.9)" }}
-                  >
-                    {label}
-                  </a>
-                );
-              }
-              if (isHash) {
-                return (
-                  <button
-                    key={href}
-                    type="button"
-                    onClick={() => scrollTo(href)}
-                    className="text-[14px] font-medium transition-colors hover:opacity-90 min-h-[48px] min-w-[48px] flex items-center"
-                    style={{ color: "rgba(255, 255, 255, 0.9)" }}
-                  >
-                    {label}
-                  </button>
-                );
-              }
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Main" style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
+          {navLinks.map((item) => {
+            if ("dropdown" in item && item.dropdown) {
               return (
-                <Link
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => setResourcesOpen(true)}
+                  onMouseLeave={() => setResourcesOpen(false)}
+                >
+                  <button
+                    type="button"
+                    className="text-inherit transition-colors hover:opacity-90 min-h-[48px] inline-flex items-center gap-1 bg-transparent border-0 cursor-pointer"
+                    aria-expanded={resourcesOpen}
+                    aria-haspopup="true"
+                  >
+                    {item.label} <span className="opacity-80">▾</span>
+                  </button>
+                  {resourcesOpen && (
+                    <div className="absolute left-0 top-full pt-1" role="menu">
+                      <div className="rounded-lg border border-white/20 py-2 shadow-lg min-w-[180px]" style={{ background: "rgba(42, 106, 158, 0.98)" }}>
+                        {item.dropdown.map(({ label, href }) => (
+                          <Link
+                            key={href}
+                            href={href}
+                            role="menuitem"
+                            className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-white/15 text-white"
+                          >
+                            {label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            const href = "href" in item ? item.href : "";
+            const label = item.label;
+            const highlight = "highlight" in item && item.highlight;
+            const isHash = href.startsWith("#");
+            const linkClass = "min-h-[48px] inline-flex items-center transition-colors hover:opacity-90 text-inherit no-underline bg-transparent border-0 cursor-pointer";
+            const linkStyle = highlight ? { color: "#fff", fontWeight: 600 } : {};
+            if (isHash && !isHome) {
+              return (
+                <a key={href} href={`/#${href.slice(1)}`} className={linkClass} style={linkStyle}>
+                  {label}
+                </a>
+              );
+            }
+            if (isHash) {
+              return (
+                <button
                   key={href}
-                  href={href}
-                  className="text-[14px] font-medium transition-colors hover:opacity-90 min-h-[48px] min-w-[48px] inline-flex items-center"
-                  style={{ color: "rgba(255, 255, 255, 0.9)" }}
+                  type="button"
+                  onClick={() => scrollTo(href)}
+                  className={linkClass}
+                  style={linkStyle}
                 >
                   {label}
-                </Link>
+                </button>
               );
-            })}
-          </div>
-
-          <div className="flex items-center gap-3">
-            {isHome ? (
-              <Link
-                href="#upload"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToUpload();
-                }}
-                className="hidden items-center gap-2 md:inline-flex nav-cta min-h-[48px]"
-                style={{
-                  background: "#FFFFFF",
-                  color: "#0B1F3A",
-                  borderRadius: "9999px",
-                  padding: "10px 22px",
-                  fontSize: "13px",
-                  fontWeight: 600,
-                }}
-              >
-                Analyze My Contract
-                <ArrowRight className="h-4 w-4" aria-hidden />
+            }
+            return (
+              <Link key={href} href={href} className={linkClass} style={linkStyle}>
+                {label}
               </Link>
-            ) : (
-              <a
-                href="/#upload"
-                className="hidden items-center gap-2 md:inline-flex nav-cta min-h-[48px]"
-                style={{
-                  background: "#FFFFFF",
-                  color: "#0B1F3A",
-                  borderRadius: "9999px",
-                  padding: "10px 22px",
-                  fontSize: "13px",
-                  fontWeight: 600,
-                }}
-              >
-                Analyze My Contract
-                <ArrowRight className="h-4 w-4" aria-hidden />
-              </a>
-            )}
-            <button
-              type="button"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="flex h-12 w-12 min-h-[48px] min-w-[48px] cursor-pointer items-center justify-center md:hidden"
-              style={{ color: "#FFFFFF" }}
-              aria-expanded={mobileOpen}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+            );
+          })}
         </nav>
-      </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex h-12 w-12 min-h-[48px] min-w-[48px] cursor-pointer items-center justify-center md:hidden text-white bg-transparent border-0"
+            aria-expanded={mobileOpen}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+      </header>
 
       {/* Mobile drawer */}
       <div
@@ -287,28 +219,6 @@ export default function Navbar() {
               </Link>
             );
           })}
-          {isHome ? (
-            <Link
-              href="#upload"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToUpload();
-              }}
-              className="btn-primary mt-8 flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-[13px] font-semibold"
-            >
-              Analyze My Contract
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
-          ) : (
-            <a
-              href="/#upload"
-              className="btn-primary mt-8 flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-[13px] font-semibold"
-              onClick={() => setMobileOpen(false)}
-            >
-              Analyze My Contract
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </a>
-          )}
         </nav>
       </div>
 
