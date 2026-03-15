@@ -11,7 +11,7 @@ export const post: BlogPost = {
   category: "contract-analysis",
   date: "2026-03-13",
   readTimeMinutes: 7,
-  author: "Alex Tchogorian",
+  author: "Debtura Intelligence Team",
   authorBio: AUTHOR_BIO,
   credentials: CREDENTIALS,
   headings: [
@@ -74,5 +74,5 @@ export const post: BlogPost = {
 
 <p>Court records are public. Use them. Search the funder's name in New York State court records, federal PACER filings, and your own state's court database. If a funder has dozens or hundreds of suits against small businesses, that is not a lender — it is a collection operation that happens to provide capital first. Multiple COJ filings, asset freezes, and aggressive judgments tell you exactly how that company treats borrowers who stumble. Past behavior predicts future behavior. This research takes thirty minutes. Skipping it can cost you everything.</p>
 
-<p>Every clause in these contracts was drafted by attorneys working for the funder. None of them were written with your survival in mind. If you have an MCA contract in hand — signed or unsigned — upload it for a free confidential analysis at FundingWatch.org. The tool breaks down the true APR, flags predatory clauses, and identifies your risks in plain language.</p>`,
+<p>Every clause in these contracts was drafted by attorneys working for the funder. None of them were written with your survival in mind. If you have an MCA contract in hand — signed or unsigned — upload it for a free confidential analysis at Debtura. The tool breaks down the true APR, flags predatory clauses, and identifies your risks in plain language.</p>`,
 };

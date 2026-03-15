@@ -9,7 +9,7 @@ export const post: BlogPost = {
   category: "state-guides",
   date: "2025-03-01",
   readTimeMinutes: 12,
-  author: "Alex Tchogorian",
+  author: "Debtura Intelligence Team",
   authorBio: AUTHOR_BIO,
   credentials: CREDENTIALS,
   headings: [
@@ -39,6 +39,6 @@ export const post: BlogPost = {
 <p><strong>Does it matter which state law governs my MCA contract?</strong> Yes, significantly. The governing law specified in your contract determines which usury statutes, disclosure requirements, and case law precedents apply.</p>
 <p><strong>Are there any federal protections for MCA borrowers?</strong> Federal protection is limited for commercial borrowers. State laws are the primary protection mechanism for most MCA borrowers.</p>
 <p><em>This article is for educational purposes only and does not constitute legal or financial advice. Consult a licensed attorney in your jurisdiction for advice current to your situation.</em></p>
-<p><em>Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch to give small business owners the same contract intelligence that lenders have.</em></p>
+<p><em>Independent research and analysis from Debtura&apos;s team of commercial lending analysts.</em></p>
 `.trim(),
 };

@@ -73,7 +73,7 @@ export default function TermsPage() {
               <p className="mt-2 leading-relaxed">
                 For support or questions, contact us at{" "}
                 <a
-                  href="mailto:hello@fundingwatch.org"
+                  href="mailto:hello@debtura.com"
                   className="font-medium transition hover:underline"
                   style={{ color: "var(--color-accent-primary)" }}
                 >

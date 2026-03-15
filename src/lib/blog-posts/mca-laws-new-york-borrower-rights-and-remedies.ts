@@ -9,7 +9,7 @@ export const post: BlogPost = {
   category: "state-guides",
   date: "2026-03-11",
   readTimeMinutes: 7,
-  author: "Alex Tchogorian",
+  author: "Debtura Intelligence Team",
   authorBio: AUTHOR_BIO,
   credentials: CREDENTIALS,
   headings: [

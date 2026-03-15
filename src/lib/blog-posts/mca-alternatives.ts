@@ -9,7 +9,7 @@ export const post: BlogPost = {
   category: "mca-basics",
   date: "2025-03-01",
   readTimeMinutes: 10,
-  author: "Alex Tchogorian",
+  author: "Debtura Intelligence Team",
   authorBio: AUTHOR_BIO,
   credentials: CREDENTIALS,
   headings: [
@@ -41,6 +41,6 @@ export const post: BlogPost = {
 <h2 id="faq">Frequently Asked Questions</h2>
 <p><strong>Can I use alternative financing to pay off an existing MCA?</strong> Yes. Using an SBA loan, business line of credit, or CDFI loan to pay off an MCA at a lower interest rate is MCA refinancing. Review your contract for provisions restricting the use of proceeds from other financing without lender consent.</p>
 <p><em>This article is for educational purposes only and does not constitute legal or financial advice. Consult with a licensed financial advisor for advice specific to your business situation.</em></p>
-<p><em>Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch to give small business owners the same contract intelligence that lenders have.</em></p>
+<p><em>Independent research and analysis from Debtura&apos;s team of commercial lending analysts.</em></p>
 `.trim(),
 };

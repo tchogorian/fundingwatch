@@ -9,7 +9,7 @@ export const post: BlogPost = {
   category: "mca-basics",
   date: "2025-03-01",
   readTimeMinutes: 14,
-  author: "Alex Tchogorian",
+  author: "Debtura Intelligence Team",
   authorBio: AUTHOR_BIO,
   credentials: CREDENTIALS,
   headings: [

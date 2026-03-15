@@ -4,15 +4,15 @@ export const post: BlogPost = {
   slug: "1700-borrower-complaints-responsible-vs-predatory-mca",
   title: "We Analyzed 1,700+ Borrower Complaints. Here's What Separates a Responsible MCA Lender from a Predatory One.",
   excerpt:
-    "FundingWatch crawled and analyzed over 1,700 borrower complaints across Reddit, DailyFunder, court filings, and consumer forums. The patterns are stark. Here is what the data shows.",
+    "Debtura analyzed over 1,700 borrower complaints across Reddit, DailyFunder, court filings, and consumer forums. The patterns are stark. Here is what the data shows.",
   metaDescription:
-    "After analyzing 1,700+ MCA borrower complaints, FundingWatch identified 5 predatory patterns and a data-driven checklist to separate responsible MCA lenders from predatory ones.",
+    "After analyzing 1,700+ MCA borrower complaints, Debtura identified 5 predatory patterns and a data-driven checklist to separate responsible MCA lenders from predatory ones.",
   category: "lender-profiles",
   date: "2026-03-13",
   readTimeMinutes: 10,
-  author: "FundingWatch Intelligence Team",
+  author: "Debtura Intelligence Team",
   authorBio:
-    "FundingWatch is a free contract analysis platform for MCA borrowers. Our intelligence team analyzes court filings, borrower complaints, and lender practices to give small business owners the information they need before they sign.",
+    "Independent research and analysis from Debtura's team of commercial lending analysts.",
   credentials: "Based on analysis of 1,700+ borrower complaints across Reddit, DailyFunder, court filings, and consumer forums",
   headings: [
     { id: "what-1700-complaints-taught-us", text: "What 1,700 Complaints Taught Us About Bad Lenders", level: 2 },
@@ -24,7 +24,7 @@ export const post: BlogPost = {
   ],
   body: `<p>Merchant cash advances get a bad reputation. Some of it is earned. Some of it isn't.</p>
 
-<p>Over the past several months, FundingWatch has crawled and analyzed over 1,700 borrower complaints across Reddit, DailyFunder, court filings, and consumer forums. We tagged every mention of a specific lender by name, scored surrounding language for predatory context, and cataloged nearly 1,000 distinct questions borrowers ask when they're in trouble.</p>
+<p>Over the past several months, Debtura has analyzed over 1,700 borrower complaints across Reddit, DailyFunder, court filings, and consumer forums. We tagged every mention of a specific lender by name, scored surrounding language for predatory context, and cataloged nearly 1,000 distinct questions borrowers ask when they're in trouble.</p>
 
 <p>The patterns are stark. Certain lenders appear dozens or hundreds of times in negative contexts — paired with words like "scam," "nightmare," "trap," and "destroyed my business." Others barely appear at all.</p>
 
@@ -111,5 +111,5 @@ export const post: BlogPost = {
 
 <hr />
 
-<p><em>FundingWatch has no financial relationship with Credibly or any lender mentioned in this article. Our analysis is based on publicly available complaint data, court filings, and third-party reviews.</em></p>`,
+<p><em>Debtura has no financial relationship with Credibly or any lender mentioned in this article. Our analysis is based on publicly available complaint data, court filings, and third-party reviews.</em></p>`,
 };

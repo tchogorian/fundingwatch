@@ -11,7 +11,7 @@ export const post: BlogPost = {
   category: "industry-news",
   date: "2026-03-13",
   readTimeMinutes: 12,
-  author: "Alex Tchogorian",
+  author: "Debtura Intelligence Team",
   authorBio: AUTHOR_BIO,
   credentials: CREDENTIALS,
   headings: [

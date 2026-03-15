@@ -1,4 +1,4 @@
 export const AUTHOR_BIO =
-  "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded Debtura to give small business owners the same contract intelligence that lenders have.";
-export const CREDENTIALS =
-  "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring";
+  "Independent research and analysis from Debtura's team of commercial lending analysts.";
+export const AUTHOR_NAME = "Debtura Intelligence Team";
+export const CREDENTIALS = AUTHOR_BIO;

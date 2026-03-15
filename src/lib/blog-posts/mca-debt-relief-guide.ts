@@ -9,7 +9,7 @@ export const post: BlogPost = {
   category: "mca-basics",
   date: "2025-03-01",
   readTimeMinutes: 14,
-  author: "Alex Tchogorian",
+  author: "Debtura Intelligence Team",
   authorBio: AUTHOR_BIO,
   credentials: CREDENTIALS,
   headings: [
@@ -62,6 +62,6 @@ export const post: BlogPost = {
 <p><strong>What percentage of MCA debt can typically be settled?</strong> Settlement at 40% to 70% of the remaining balance is common in situations where the borrower has genuine financial hardship and the lender has some legal exposure.</p>
 
 <p><em>This article is for educational purposes only and does not constitute legal or financial advice. Consult a licensed attorney before taking any action regarding your MCA obligations.</em></p>
-<p><em>Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch to give small business owners the same contract intelligence that lenders have.</em></p>
+<p><em>Independent research and analysis from Debtura&apos;s team of commercial lending analysts.</em></p>
 `.trim(),
 };

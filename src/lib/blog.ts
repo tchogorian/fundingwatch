@@ -58,9 +58,9 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2026-03-06",
     readTimeMinutes: 14,
     readCount: 0,
-    author: "FundingWatch Editorial Team",
+    author: "Debtura Intelligence Team",
     authorBio:
-      "FundingWatch analyzes MCA contracts, court rulings, and borrower rights so small business owners have the facts they need to exercise their rights and make informed decisions.",
+      "Independent research and analysis from Debtura's team of commercial lending analysts.",
     credentials: "Original legal education content with primary source citations",
     headings: [
       { id: "what-reconciliation-is", text: "What Reconciliation Actually Is", level: 2 },
@@ -160,7 +160,7 @@ Regards,
 <p>Reconciliation is not a mystery. It is not a specialized service. It is a provision in a contract you signed, grounded in the legal definition of what an MCA is supposed to be: a revenue-contingent receivables purchase, not a fixed-payment loan.</p>
 <p>Courts at every level, from New York trial courts to the Second Circuit Court of Appeals, have validated the reconciliation right and penalized funders who treat it as a sham. The legal record supports you. The contractual language supports you. The documentation process is straightforward.</p>
 <p>If your revenue is down, send the email. Do it in writing. Attach your bank statements. Keep the confirmation. And if your funder ignores a documented, legitimate reconciliation request, that is not your problem. Under the case law developed over the last five years, it is theirs.</p>
-<p>Upload your MCA contract at fundingwatch.org for a free analysis that identifies your reconciliation clause, flags your lender's enforcement history, and tells you exactly where you stand before you make another payment.</p>
+<p>Upload your MCA contract at Debtura for a free analysis that identifies your reconciliation clause, flags your lender's enforcement history, and tells you exactly where you stand before you make another payment.</p>
 
 <h2 id="primary-sources">Primary Sources</h2>
 <ul>
@@ -184,9 +184,9 @@ Regards,
     date: "2025-02-15",
     readTimeMinutes: 9,
     readCount: 12400,
-    author: "Alex Tchogorian",
+    author: "Debtura Intelligence Team",
     authorBio:
-      "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+      "Independent research and analysis from Debtura's team of commercial lending analysts.",
     credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "what-factor-rate-is", text: "What a Factor Rate Actually Is", level: 2 },
@@ -250,7 +250,7 @@ Regards,
 <h2 id="what-to-do-have-mca">What to Do If You Already Have an MCA</h2>
 <p>If you have an existing MCA and you are not sure what your effective APR is, the first step is to gather your contract and your last 30 days of bank statements showing the daily debit amounts.</p>
 <p>Calculate your total repayment obligation by multiplying the advance amount by the factor rate. Then divide that fee by the advance amount to get the percentage cost. Divide 365 by your total repayment term in days to annualize it. Multiply the two numbers together.</p>
-<p>If the number surprises you, you are not alone. Many business owners who used FundingWatch's contract analyzer discovered their effective APR was significantly higher than what they had mentally calculated from the factor rate alone.</p>
+<p>If the number surprises you, you are not alone. Many business owners who used Debtura's contract analyzer discovered their effective APR was significantly higher than what they had mentally calculated from the factor rate alone.</p>
 
 <h2 id="state-disclosure-laws">State Disclosure Laws and Your Rights</h2>
 <p>Beyond California and New York, Virginia, Utah, and several other states have introduced or passed commercial financing disclosure laws that apply to MCAs. Texas HB 700, which took effect in September 2025, expanded disclosure requirements for Texas-based borrowers.</p>
@@ -281,9 +281,9 @@ Regards,
     date: "2025-02-10",
     readTimeMinutes: 10,
     readCount: 18900,
-    author: "Alex Tchogorian",
+    author: "Debtura Intelligence Team",
     authorBio:
-      "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+      "Independent research and analysis from Debtura's team of commercial lending analysts.",
     credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "what-is-coj", text: "What Is a Confession of Judgment?", level: 2 },
@@ -374,9 +374,9 @@ Regards,
     date: "2025-02-05",
     readTimeMinutes: 9,
     readCount: 8200,
-    author: "Alex Tchogorian",
+    author: "Debtura Intelligence Team",
     authorBio:
-      "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+      "Independent research and analysis from Debtura's team of commercial lending analysts.",
     credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "what-reconciliation-means", text: "What Reconciliation Means in an MCA Context", level: 2 },
@@ -462,9 +462,9 @@ Regards,
     date: "2025-01-28",
     readTimeMinutes: 8,
     readCount: 22100,
-    author: "Alex Tchogorian",
+    author: "Debtura Intelligence Team",
     authorBio:
-      "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+      "Independent research and analysis from Debtura's team of commercial lending analysts.",
     credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "who-yellowstone", text: "Who Is Yellowstone Capital?", level: 2 },
@@ -532,9 +532,9 @@ Regards,
     date: "2025-01-20",
     readTimeMinutes: 9,
     readCount: 9500,
-    author: "Alex Tchogorian",
+    author: "Debtura Intelligence Team",
     authorBio:
-      "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+      "Independent research and analysis from Debtura's team of commercial lending analysts.",
     credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "how-stacking-happens", text: "How MCA Stacking Happens", level: 2 },
@@ -625,9 +625,9 @@ Regards,
     date: "2025-01-12",
     readTimeMinutes: 8,
     readCount: 6100,
-    author: "Alex Tchogorian",
+    author: "Debtura Intelligence Team",
     authorBio:
-      "Alex Tchogorian holds a Bachelor of Science in Finance and has spent more than five years analyzing distressed debt, predatory lending structures, and business restructuring. He founded FundingWatch after seeing how many small business owners signed MCA contracts without understanding what they were actually agreeing to pay.",
+      "Independent research and analysis from Debtura's team of commercial lending analysts.",
     credentials: "Bachelor of Science in Finance • 5+ years analyzing distressed debt, predatory lending, and business restructuring",
     headings: [
       { id: "what-sb1235-requires", text: "What SB 1235 Actually Requires", level: 2 },
