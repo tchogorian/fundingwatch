@@ -94,7 +94,7 @@ export default async function BlogArticlePage({
           >
             <Link href="/" className="transition hover:underline min-h-[48px] min-w-[48px] inline-flex items-center">Home</Link>
             <span className="mx-2">/</span>
-            <Link href="/blog" className="transition hover:underline min-h-[48px] min-w-[48px] inline-flex items-center">Blog</Link>
+            <Link href="/intelligence" className="transition hover:underline min-h-[48px] min-w-[48px] inline-flex items-center">Intelligence</Link>
             <span className="mx-2">/</span>
             <span style={{ color: "var(--color-text-primary)" }}>
               {CATEGORY_LABELS[post.category]}

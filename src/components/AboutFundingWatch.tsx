@@ -11,7 +11,7 @@ const stats = [
 
 export default function AboutFundingWatch() {
   return (
-    <section id="about" className="section-card" aria-label="About FundingWatch">
+    <section id="about" className="section-card" aria-label="About Debtura">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           <FadeIn className="lg:order-1">
@@ -28,7 +28,7 @@ export default function AboutFundingWatch() {
                 Factor rates sound simple. A rate of 1.3 doesn&apos;t sound alarming. But when you convert that to an annual percentage rate, the number can be shocking — 80%, 150%, sometimes over 300%. And buried in the fine print are clauses that can freeze your bank account, seize your assets, and leave you with no legal recourse.
               </p>
               <p>
-                FundingWatch exists to fix this. We built the FundingWatch scanner that reads your contract the way a financial analyst would — and translates the complexity into plain English. No jargon, no sales pitch, no cost. Just the facts about what you signed and what it really means for your business.
+                Debtura exists to fix this. We built the Debtura contract analyzer that reads your contract the way a financial analyst would — and translates the complexity into plain English. No jargon, no sales pitch, no cost. Just the facts about what you signed and what it really means for your business.
               </p>
               <p>
                 And when we find a contract with red flags, we don&apos;t just show you the problem — we help you find a better solution through our vetted lender network.

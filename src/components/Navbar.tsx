@@ -3,20 +3,52 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Search, Globe, HelpCircle, User } from "lucide-react";
+import { Menu, X, Search, Globe, HelpCircle, User, ChevronDown, ChevronRight } from "lucide-react";
 
-const subnavLinks = [
-  { label: "Ratings", href: "/lender-risk-index" },
-  { label: "Products", href: "#how-it-works", dropdown: true },
-  { label: "Research", href: "/intelligence", dropdown: true },
-  { label: "Events", href: "#", dropdown: true },
-  { label: "Regulatory", href: "#", dropdown: true },
+type DropdownItem = { label: string; href: string } | { label: string; disabled: true };
+
+const productsItems: DropdownItem[] = [
+  { label: "Merchant Cash Advance", href: "/products/merchant-cash-advance" },
+  { label: "Mortgage", href: "/products/mortgage" },
+  { label: "SBA Loans", href: "/products/sba-loans" },
+];
+
+const toolsItems: DropdownItem[] = [
+  { label: "Contract Intelligence Tool", href: "/tools/contract-analyzer" },
+  { label: "Lender Matching AI", href: "/tools/lender-matching" },
+  { label: "MCA Calculator", href: "/tools/mca-calculator" },
+  { label: "Quick Assessment", href: "/tools/quick-assessment" },
+];
+
+const researchItems: DropdownItem[] = [
+  { label: "Industry Insights", href: "/intelligence" },
+  { label: "Lender Risk Index", href: "/lender-risk-index" },
+];
+
+const comingSoonItem: DropdownItem[] = [{ label: "Coming Soon", disabled: true }];
+
+const SUBNAV_DROPDOWN_BG = "#1a1a1a";
+
+type SubnavEntry =
+  | { label: string; href: string; dropdown?: false }
+  | { label: string; dropdown: true; items: DropdownItem[] };
+
+const subnavEntries: SubnavEntry[] = [
+  { label: "Products", dropdown: true, items: productsItems },
+  { label: "Tools", dropdown: true, items: toolsItems },
+  { label: "Research", dropdown: true, items: researchItems },
+  { label: "Events", dropdown: true, items: comingSoonItem },
+  { label: "Regulatory", dropdown: true, items: comingSoonItem },
+  { label: "Ratings", href: "/lender-risk-index", dropdown: false },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const isLRI = pathname?.startsWith("/lender-risk-index");
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+
+  const isActive = (href: string) => pathname === href || (href !== "/" && pathname?.startsWith(href));
 
   return (
     <>
@@ -84,44 +116,81 @@ export default function Navbar() {
         </button>
       </header>
 
-      {/* Sub nav — black bar, 46px */}
+      {/* Sub nav — black bar, real dropdowns (hover), no scroll anchors */}
       <nav
         className="sticky top-[52px] z-[99] flex h-[46px] items-center px-6 md:px-8"
-        style={{ background: "#1a1a1a", fontFamily: "var(--font-sans)" }}
+        style={{ background: SUBNAV_DROPDOWN_BG, fontFamily: "var(--font-sans)" }}
         aria-label="Section"
       >
-        <div className="flex h-full">
-          {subnavLinks.map((item) => {
-            const isActive = item.href === "/lender-risk-index" && isLRI;
-            const style = {
-              color: isActive ? "white" : "rgba(255,255,255,0.8)",
-              borderBottomColor: isActive ? "var(--red)" : "transparent",
-              background: "none",
-              borderLeft: "none",
-              borderRight: "none",
-              borderTop: "none",
-              cursor: "pointer",
-              textDecoration: "none",
-            };
-            const className = "flex h-[46px] items-center border-b-2 px-4 text-[13px] font-medium transition-colors";
-            if (item.href.startsWith("#")) {
+        <div className="relative flex h-full items-center gap-0">
+          {subnavEntries.map((entry) => {
+            const isDropdownOpen = openDropdown === entry.label;
+
+            if (entry.dropdown && entry.items) {
               return (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => document.querySelector(item.href)?.scrollIntoView({ behavior: "smooth" })}
-                  className={className}
-                  style={style}
+                <div
+                  key={entry.label}
+                  className="relative"
+                  onMouseEnter={() => setOpenDropdown(entry.label)}
+                  onMouseLeave={() => setOpenDropdown(null)}
                 >
-                  {item.label}
-                  {item.dropdown ? " ▾" : ""}
-                </button>
+                  <button
+                    type="button"
+                    className="relative flex h-[46px] items-center border-b-2 border-transparent px-4 text-[13px] font-medium text-white/90 transition-colors hover:text-white"
+                    style={{ borderBottomColor: isActive(entry.label) ? "var(--red)" : "transparent" }}
+                    onClick={() => setOpenDropdown(isDropdownOpen ? null : entry.label)}
+                    aria-expanded={isDropdownOpen}
+                    aria-haspopup="true"
+                  >
+                    {entry.label}
+                    <ChevronDown className="ml-1 h-3 w-3" strokeWidth={2} />
+                  </button>
+                  {isDropdownOpen && (
+                    <div
+                      className="absolute left-0 top-[46px] z-[100] min-w-[220px] py-1 shadow-xl"
+                      style={{ background: SUBNAV_DROPDOWN_BG, fontFamily: "var(--font-sans)" }}
+                    >
+                      {entry.items.map((sub) => {
+                        if ("disabled" in sub && sub.disabled) {
+                          return (
+                            <div
+                              key={sub.label}
+                              className="cursor-not-allowed px-4 py-2.5 text-[13px] font-medium text-white/50"
+                            >
+                              {sub.label}
+                            </div>
+                          );
+                        }
+                        return (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            className="block px-4 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-white/10"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            {sub.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               );
             }
+
+            const href = entry.href!;
+            const active = isActive(href);
             return (
-              <Link key={item.label} href={item.href} className={className} style={style}>
-                {item.label}
-                {item.dropdown ? " ▾" : ""}
+              <Link
+                key={entry.label}
+                href={href}
+                className="relative flex h-[46px] items-center border-b-2 px-4 text-[13px] font-medium text-white/90 transition-colors hover:text-white"
+                style={{
+                  borderBottomColor: active ? "var(--red)" : "transparent",
+                  textDecoration: "none",
+                }}
+              >
+                {entry.label}
               </Link>
             );
           })}
@@ -141,19 +210,60 @@ export default function Navbar() {
         aria-hidden={!mobileOpen}
       >
         <nav className="flex flex-col py-4" style={{ fontFamily: "var(--font-sans)" }}>
-          {subnavLinks.map((item) => {
-            const Comp = item.href.startsWith("#") ? "a" : Link;
-            const href = item.href.startsWith("#") ? `/${item.href}` : item.href;
+          {subnavEntries.map((entry) => {
+            if (entry.dropdown && entry.items) {
+              const expanded = mobileExpanded === entry.label;
+              return (
+                <div key={entry.label}>
+                  <button
+                    type="button"
+                    onClick={() => setMobileExpanded(expanded ? null : entry.label)}
+                    className="flex w-full items-center justify-between px-6 py-3 text-left text-[14px] font-medium"
+                    style={{ color: "var(--body)" }}
+                  >
+                    {entry.label}
+                    <ChevronRight className={`h-4 w-4 transition-transform ${expanded ? "rotate-90" : ""}`} />
+                  </button>
+                  {expanded && (
+                    <div className="border-t border-[var(--line)] bg-[var(--bg)]">
+                      {entry.items.map((sub) => {
+                        if ("disabled" in sub && sub.disabled) {
+                          return (
+                            <div
+                              key={sub.label}
+                              className="px-6 py-2.5 pl-10 text-[13px] text-[var(--muted)]"
+                            >
+                              {sub.label}
+                            </div>
+                          );
+                        }
+                        return (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            className="block px-6 py-2.5 pl-10 text-[13px] font-medium"
+                            style={{ color: "var(--body)" }}
+                            onClick={() => { setMobileOpen(false); setMobileExpanded(null); }}
+                          >
+                            {sub.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            }
             return (
-              <Comp
-                key={item.label}
-                href={href}
+              <Link
+                key={entry.label}
+                href={entry.href!}
                 className="px-6 py-3 text-[14px] font-medium"
                 style={{ color: "var(--body)" }}
                 onClick={() => setMobileOpen(false)}
               >
-                {item.label}
-              </Comp>
+                {entry.label}
+              </Link>
             );
           })}
           <Link href="/#application" className="mt-2 px-6 py-3 text-[13px] font-semibold" style={{ color: "var(--red)" }} onClick={() => setMobileOpen(false)}>

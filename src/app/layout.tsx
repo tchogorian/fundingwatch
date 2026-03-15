@@ -39,6 +39,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.debtura.com/",
   },
+  openGraph: {
+    title: "Debtura — Funding, with confidence.",
+    description:
+      "Our analyst-driven lender ratings, contract analysis, and AI-powered matching provide critical intelligence — translating complexity into clarity so businesses can fund with conviction.",
+    type: "website",
+    url: "https://www.debtura.com",
+    siteName: "Debtura",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Debtura — Funding, with confidence.",
+    description:
+      "Our analyst-driven lender ratings, contract analysis, and AI-powered matching provide critical intelligence — translating complexity into clarity so businesses can fund with conviction.",
+  },
 };
 
 export const viewport = {

@@ -22,11 +22,19 @@ const STATIC_ROUTES: { path: string; changeFrequency: "weekly" | "monthly" | "ye
   { path: "/intelligence", changeFrequency: "weekly", priority: 0.8 },
   { path: "/questionnaire", changeFrequency: "monthly", priority: 0.8 },
   { path: "/apr-calculator", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/blog", changeFrequency: "weekly", priority: 0.9 },
   { path: "/glossary", changeFrequency: "monthly", priority: 0.7 },
   { path: "/sample-report", changeFrequency: "monthly", priority: 0.7 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
+  // Products
+  { path: "/products/merchant-cash-advance", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/products/mortgage", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/products/sba-loans", changeFrequency: "monthly", priority: 0.6 },
+  // Tools
+  { path: "/tools/contract-analyzer", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/tools/lender-matching", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/tools/mca-calculator", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/tools/quick-assessment", changeFrequency: "monthly", priority: 0.8 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -41,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
-    url: `${base}/blog/${post.slug}`,
+    url: `${base}/intelligence/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,

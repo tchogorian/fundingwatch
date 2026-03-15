@@ -20,7 +20,7 @@ export default function Footer() {
           {footerLinks.map((col, ci) => (
             <div key={ci} className="flex flex-col gap-0.5">
               {col.map((label) => {
-                const href = label === "Lender Risk Index" ? "/lender-risk-index" : label === "Contract Analyzer" ? "/analyze" : label === "MCA Calculator" ? "/apr-calculator" : label === "News & Research" ? "/intelligence" : label === "Glossary" ? "/glossary" : label === "Privacy Policy" ? "/privacy" : label === "Terms of Use" ? "/terms" : "#";
+                const href = label === "Lender Risk Index" ? "/lender-risk-index" : label === "Contract Analyzer" ? "/tools/contract-analyzer" : label === "MCA Calculator" ? "/tools/mca-calculator" : label === "News & Research" ? "/intelligence" : label === "Glossary" ? "/glossary" : label === "Privacy Policy" ? "/privacy" : label === "Terms of Use" ? "/terms" : "#";
                 return (
                   <Link key={label} href={href} className="py-0.5 text-[13px] no-underline hover:text-[var(--red)] transition-colors" style={{ color: "var(--body)" }}>
                     {label}

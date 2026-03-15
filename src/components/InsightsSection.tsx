@@ -4,11 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 const latestInsights = [
-  { date: "13 Mar 2026", title: "MCA Lender Risk: North America Outlook Q1 2026", href: "/blog" },
-  { date: "10 Mar 2026", title: "Yellowstone Capital Downgraded to C Following Consent Order", href: "/blog" },
-  { date: "5 Mar 2026", title: "Trucking Sector Alert: Predatory Stacking Patterns in 14 States", href: "/blog" },
-  { date: "28 Feb 2026", title: "TX HB 700 Implementation: What Borrowers Need to Know", href: "/blog" },
-  { date: "20 Feb 2026", title: "Reconciliation Failure as Legal Hook: 2025 Review", href: "/blog" },
+  { date: "13 Mar 2026", title: "MCA Lender Risk: North America Outlook Q1 2026", href: "/intelligence" },
+  { date: "10 Mar 2026", title: "Yellowstone Capital Downgraded to C Following Consent Order", href: "/intelligence" },
+  { date: "5 Mar 2026", title: "Trucking Sector Alert: Predatory Stacking Patterns in 14 States", href: "/intelligence" },
+  { date: "28 Feb 2026", title: "TX HB 700 Implementation: What Borrowers Need to Know", href: "/intelligence" },
+  { date: "20 Feb 2026", title: "Reconciliation Failure as Legal Hook: 2025 Review", href: "/intelligence" },
 ];
 
 export default function InsightsSection() {

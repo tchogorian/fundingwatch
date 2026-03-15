@@ -21,9 +21,10 @@ export default function Hero() {
         }}
       />
       <div
-        className="relative z-10 max-w-[620px] px-6 md:px-10"
+        className="relative z-10 mx-auto max-w-[1160px] px-6 md:px-8"
         style={{ fontFamily: "var(--font-sans)" }}
       >
+        <div className="max-w-[620px]">
         <h1
           className="mb-3.5 text-[40px] font-semibold leading-tight tracking-tight text-white"
           style={{ fontFamily: "var(--font-serif)", letterSpacing: "-0.3px" }}
@@ -36,6 +37,7 @@ export default function Hero() {
         >
           Our analyst-driven lender ratings, contract analysis, and AI-powered matching provide critical intelligence — translating complexity into clarity so businesses can fund with conviction.
         </p>
+        </div>
       </div>
     </section>
   );
