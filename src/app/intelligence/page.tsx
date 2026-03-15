@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { BLOG_POSTS, CATEGORY_LABELS, CATEGORY_COLORS } from "@/lib/blog";
 
+export const revalidate = 0;
+
 export default function IntelligencePage() {
-  // BLOG_POSTS is already sorted newest first in blog.ts
   const articles = BLOG_POSTS;
 
   return (

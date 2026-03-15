@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import InnerPageHeader from "@/components/InnerPageHeader";
 
-const OPS_API = "https://ops.fundingwatch.org/api/lenders";
+/** Use our API route to avoid CORS; it proxies to ops.fundingwatch.org */
+const LENDERS_API = "/api/lenders";
 
 interface Lender {
   slug: string;
@@ -54,10 +55,12 @@ export default function LenderRiskIndex() {
   const [activeTab, setActiveTab] = useState<string>("all");
 
   useEffect(() => {
-    fetch(OPS_API, { headers: { Accept: "application/json" } })
-      .then((r) => r.json())
-      .then((data: { lenders?: unknown[] }) => {
-        const list = Array.isArray(data?.lenders) ? data.lenders : [];
+    fetch(LENDERS_API, { headers: { Accept: "application/json" } })
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(r.statusText))))
+      .then((data: unknown) => {
+        const list = Array.isArray(data)
+          ? data
+          : (data as { lenders?: unknown[] })?.lenders ?? [];
         const normalized = list.map((l) => normalizeLender(l as Record<string, unknown>));
         const sorted = normalized.sort((a: Lender, b: Lender) => (a.fw_risk_score ?? 999) - (b.fw_risk_score ?? 999));
         setLenders(sorted);

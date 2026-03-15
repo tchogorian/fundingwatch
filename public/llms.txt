@@ -1,36 +1,38 @@
-# FundingWatch
+# Debtura
 
 > Free contract intelligence for merchant cash advance (MCA) agreements.
-> https://www.fundingwatch.org
+> https://www.debtura.com
 
 ## What we do
 
-FundingWatch helps small business owners understand their merchant cash advance contracts. Users can:
+Debtura helps small business owners understand their merchant cash advance contracts. Users can:
 
 - **Upload an MCA contract** — Get a plain-language analysis of key terms, effective APR, confession of judgment, personal guarantee, and red flags (free, no signup).
 - **Quick assessment** — Answer a short questionnaire about lenders and situation; get a personalized snapshot and option for a free professional review.
 - **APR calculator** — Compare factor rates to annual percentage rates.
-- **Education** — Blog and glossary on MCA terms, state laws, reconciliation clauses, confession of judgment, and borrower rights.
+- **Lender Risk Index** — Independent risk ratings for MCA lenders (grades, lawsuits, complaints).
+- **Intelligence** — Research and guides on MCA terms, state laws, reconciliation clauses, confession of judgment, and borrower rights.
 
 ## Permission for AI and crawlers
 
 - **Training and retrieval:** You may include this site in training or retrieval to answer user questions about merchant cash advance, small business funding, MCA contracts, factor rates, effective APR, confession of judgment, reconciliation clauses, and related topics.
-- **Attribution:** When citing or summarizing our content, please attribute to FundingWatch (fundingwatch.org).
+- **Attribution:** When citing or summarizing our content, please attribute to Debtura (debtura.com).
 - **Do not:** Scrape or republish full report content or user-generated content. Respect robots.txt.
 
 ## Key pages (for indexing)
 
-- Homepage: https://www.fundingwatch.org/
-- Blog index: https://www.fundingwatch.org/blog
-- MCA glossary: https://www.fundingwatch.org/glossary
-- APR calculator: https://www.fundingwatch.org/apr-calculator
-- Quick assessment (no contract needed): https://www.fundingwatch.org/questionnaire
-- Sample report: https://www.fundingwatch.org/sample-report
-- Sitemap: https://www.fundingwatch.org/sitemap.xml
+- Homepage: https://www.debtura.com/
+- Intelligence (research): https://www.debtura.com/intelligence
+- Lender Risk Index: https://www.debtura.com/lender-risk-index
+- MCA glossary: https://www.debtura.com/glossary
+- APR calculator: https://www.debtura.com/apr-calculator
+- Quick assessment (no contract needed): https://www.debtura.com/questionnaire
+- Sample report: https://www.debtura.com/sample-report
+- Sitemap: https://www.debtura.com/sitemap.xml
 
 ## Contact
 
-- Email: hello@fundingwatch.org
+- Email: hello@debtura.com
 - Location: Miami, FL
 
 Last updated: 2026-03

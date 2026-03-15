@@ -6,10 +6,11 @@ import { BLOG_POSTS } from "@/lib/blog";
  * All URLs use production domain only (no VERCEL_URL).
  *
  * Static routes below must match actual app routes. Update when adding new indexable pages.
- * Blog URLs are derived from BLOG_POSTS (same source as app/blog/[slug]/page.tsx).
+ * Intelligence article URLs are derived from BLOG_POSTS (canonical route: /intelligence/[slug]).
  *
  * Excluded (by design):
  * - /analyze — redirects to /#upload
+ * - /blog, /blog/[slug] — 301 to /intelligence and /intelligence/[slug]
  * - /results — session-based; disallowed in robots.txt
  * - /api routes — disallowed in robots.txt
  */
@@ -19,6 +20,7 @@ const SITEMAP_BASE = "https://www.debtura.com";
 const STATIC_ROUTES: { path: string; changeFrequency: "weekly" | "monthly" | "yearly"; priority: number }[] = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/lender-risk-index", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/lender-risk-index/methodology", changeFrequency: "monthly", priority: 0.7 },
   { path: "/intelligence", changeFrequency: "weekly", priority: 0.8 },
   { path: "/questionnaire", changeFrequency: "monthly", priority: 0.8 },
   { path: "/apr-calculator", changeFrequency: "monthly", priority: 0.8 },
@@ -48,12 +50,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   }));
 
-  const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+  const intelligenceEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${base}/intelligence/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...blogEntries];
+  return [...staticEntries, ...intelligenceEntries];
 }
