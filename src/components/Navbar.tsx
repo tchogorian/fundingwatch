@@ -153,25 +153,25 @@ export default function Navbar() {
                       style={{ background: SUBNAV_DROPDOWN_BG, fontFamily: "var(--font-sans)", border: "1px solid rgba(255,255,255,0.08)", borderTop: "none" }}
                     >
                       {entry.items.map((sub) => {
-                        if ("disabled" in sub && sub.disabled) {
+                        if ("href" in sub) {
                           return (
-                            <div
+                            <Link
                               key={sub.label}
-                              className="cursor-not-allowed px-4 py-2.5 text-[13px] font-medium text-white/50"
-                            >
-                              {sub.label}
-                            </div>
-                          );
-                        }
-                        return (
-                          <Link
-                            key={sub.label}
-                            href={sub.href}
+                              href={sub.href}
                             className="block px-4 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-white/10"
                             onClick={() => setOpenDropdown(null)}
                           >
+                              {sub.label}
+                            </Link>
+                          );
+                        }
+                        return (
+                          <div
+                            key={sub.label}
+                            className="cursor-not-allowed px-4 py-2.5 text-[13px] font-medium text-white/50"
+                          >
                             {sub.label}
-                          </Link>
+                          </div>
                         );
                       })}
                     </div>
@@ -180,7 +180,8 @@ export default function Navbar() {
               );
             }
 
-            const href = entry.href!;
+            if (!("href" in entry)) return null;
+            const href = entry.href;
             const active = isActive(href);
             return (
               <Link
@@ -229,26 +230,26 @@ export default function Navbar() {
                   {expanded && (
                     <div className="border-t border-[var(--line)] bg-[var(--bg)]">
                       {entry.items.map((sub) => {
-                        if ("disabled" in sub && sub.disabled) {
+                        if ("href" in sub) {
                           return (
-                            <div
+                            <Link
                               key={sub.label}
-                              className="px-6 py-2.5 pl-10 text-[13px] text-[var(--muted)]"
+                              href={sub.href}
+                              className="block px-6 py-2.5 pl-10 text-[13px] font-medium"
+                              style={{ color: "var(--body)" }}
+                              onClick={() => { setMobileOpen(false); setMobileExpanded(null); }}
                             >
                               {sub.label}
-                            </div>
+                            </Link>
                           );
                         }
                         return (
-                          <Link
+                          <div
                             key={sub.label}
-                            href={sub.href}
-                            className="block px-6 py-2.5 pl-10 text-[13px] font-medium"
-                            style={{ color: "var(--body)" }}
-                            onClick={() => { setMobileOpen(false); setMobileExpanded(null); }}
+                            className="px-6 py-2.5 pl-10 text-[13px] text-[var(--muted)]"
                           >
                             {sub.label}
-                          </Link>
+                          </div>
                         );
                       })}
                     </div>
@@ -256,17 +257,20 @@ export default function Navbar() {
                 </div>
               );
             }
-            return (
-              <Link
-                key={entry.label}
-                href={entry.href!}
-                className="px-6 py-3 text-[14px] font-medium"
-                style={{ color: "var(--body)" }}
-                onClick={() => setMobileOpen(false)}
-              >
-                {entry.label}
-              </Link>
-            );
+            if ("href" in entry) {
+              return (
+                <Link
+                  key={entry.label}
+                  href={entry.href}
+                  className="px-6 py-3 text-[14px] font-medium"
+                  style={{ color: "var(--body)" }}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {entry.label}
+                </Link>
+              );
+            }
+            return null;
           })}
           <Link href="/#application" className="mt-2 px-6 py-3 text-[13px] font-semibold" style={{ color: "var(--red)" }} onClick={() => setMobileOpen(false)}>
             Apply / Login
