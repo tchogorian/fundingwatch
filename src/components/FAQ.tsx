@@ -12,9 +12,6 @@ const items: [string, string][] = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const half = Math.ceil(items.length / 2);
-  const col1 = items.slice(0, half);
-  const col2 = items.slice(half);
 
   return (
     <section id="faq" className="border-b border-[var(--line)] py-11 px-6 md:px-8" style={{ background: "var(--white)", fontFamily: "var(--font-sans)" }} aria-label="FAQ">
@@ -26,46 +23,23 @@ export default function FAQ() {
         <h2 className="mb-5 text-[22px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
           Common Questions
         </h2>
-        <div className="mt-5 grid border border-[var(--line)] md:grid-cols-2">
-          <div className="border-b border-[var(--line)] md:border-b-0 md:border-r border-[var(--line)]">
-            {col1.map(([q, a], i) => (
-              <div key={q} className="border-b border-[var(--line)] last:border-b-0">
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className="flex w-full items-center justify-between gap-2 border-none bg-transparent px-4 py-3.5 text-left text-[12.5px] font-medium cursor-pointer"
-                  style={{ color: "var(--body)" }}
-                >
-                  {q}
-                  <span className="shrink-0 text-[13px]" style={{ color: "var(--blue)" }}>{openIndex === i ? "−" : "+"}</span>
-                </button>
-                <div className={openIndex === i ? "block px-4 pb-3" : "hidden"} style={{ fontFamily: "var(--font-sans)" }}>
-                  <p className="text-[12px] font-light leading-[1.75]" style={{ color: "var(--muted)" }}>{a}</p>
-                </div>
+        <div className="mt-5 border border-[var(--line)]">
+          {items.map(([q, a], i) => (
+            <div key={q} className="border-b border-[var(--line)] last:border-b-0">
+              <button
+                type="button"
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="flex w-full items-center justify-between gap-2 border-none bg-transparent px-4 py-3.5 text-left text-[12.5px] font-medium cursor-pointer"
+                style={{ color: "var(--body)" }}
+              >
+                <span>{q}</span>
+                <span className="shrink-0 text-[13px]" style={{ color: "var(--blue)" }}>{openIndex === i ? "−" : "+"}</span>
+              </button>
+              <div className={openIndex === i ? "block px-4 pb-3" : "hidden"} style={{ fontFamily: "var(--font-sans)" }}>
+                <p className="text-[12px] font-light leading-[1.75]" style={{ color: "var(--muted)" }}>{a}</p>
               </div>
-            ))}
-          </div>
-          <div>
-            {col2.map(([q, a], j) => {
-              const i = half + j;
-              return (
-                <div key={q} className="border-b border-[var(--line)] last:border-b-0">
-                  <button
-                    type="button"
-                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                    className="flex w-full items-center justify-between gap-2 border-none bg-transparent px-4 py-3.5 text-left text-[12.5px] font-medium cursor-pointer"
-                    style={{ color: "var(--body)" }}
-                  >
-                    {q}
-                    <span className="shrink-0 text-[13px]" style={{ color: "var(--blue)" }}>{openIndex === i ? "−" : "+"}</span>
-                  </button>
-                  <div className={openIndex === i ? "block px-4 pb-3" : "hidden"}>
-                    <p className="text-[12px] font-light leading-[1.75]" style={{ color: "var(--muted)" }}>{a}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
