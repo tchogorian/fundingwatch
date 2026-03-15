@@ -42,7 +42,7 @@ function normalizeLender(raw: Record<string, unknown>): Lender {
     slug: String(raw.slug ?? raw.id ?? ""),
     name: String(raw.name ?? ""),
     fw_risk_score: score,
-    fw_rating: String(raw.fw_rating ?? "").toLowerCase() || "avoid",
+    fw_rating: raw.fw_rating != null && String(raw.fw_rating).toLowerCase() !== "unrated" ? String(raw.fw_rating).toLowerCase() : "unrated",
     lawsuit_count_verified: typeof raw.lawsuit_count_verified === "number" ? raw.lawsuit_count_verified : null,
     complaint_count: typeof raw.complaint_count === "number" ? raw.complaint_count : null,
   };
@@ -62,7 +62,12 @@ export default function LenderRiskIndex() {
           ? data
           : (data as { lenders?: unknown[] })?.lenders ?? [];
         const normalized = list.map((l) => normalizeLender(l as Record<string, unknown>));
-        const sorted = normalized.sort((a: Lender, b: Lender) => (a.fw_risk_score ?? 999) - (b.fw_risk_score ?? 999));
+        const sorted = normalized.sort((a: Lender, b: Lender) => {
+          if (a.fw_risk_score === null && b.fw_risk_score === null) return 0;
+          if (a.fw_risk_score === null) return 1;
+          if (b.fw_risk_score === null) return -1;
+          return b.fw_risk_score - a.fw_risk_score;
+        });
         setLenders(sorted);
       })
       .catch(() => setLenders([]))
@@ -174,8 +179,7 @@ export default function LenderRiskIndex() {
               </thead>
               <tbody>
                 {filtered.map((l, i) => {
-                  const score = l.fw_risk_score ?? 100;
-                  const gradeInfo = scoreToGrade(score);
+                  const gradeInfo = l.fw_risk_score !== null ? scoreToGrade(l.fw_risk_score) : null;
                   const isCertified = l.fw_rating === "certified";
                   return (
                     <tr
@@ -199,13 +203,13 @@ export default function LenderRiskIndex() {
                       <td className="px-4 py-4">
                         <span
                           className="inline-block text-[14px] font-bold w-8"
-                          style={{ color: gradeInfo.text }}
+                          style={{ color: gradeInfo ? gradeInfo.text : "var(--muted)" }}
                         >
-                          {gradeInfo.letter}
+                          {gradeInfo ? gradeInfo.letter : "—"}
                         </span>
                       </td>
                       <td className="px-4 py-4">
-                        <span className="text-[18px] font-bold tabular-nums" style={{ color: gradeInfo.text }}>
+                        <span className="text-[18px] font-bold tabular-nums" style={{ color: gradeInfo ? gradeInfo.text : "var(--muted)" }}>
                           {l.fw_risk_score ?? "—"}
                         </span>
                         {l.fw_risk_score != null && (
@@ -219,12 +223,16 @@ export default function LenderRiskIndex() {
                         {l.complaint_count ?? "—"}
                       </td>
                       <td className="px-4 py-4">
-                        <span
-                          className="inline-block text-[10px] font-semibold uppercase tracking-wider px-3 py-1"
-                          style={{ background: gradeInfo.bg, color: gradeInfo.text }}
-                        >
-                          {gradeInfo.tier}
-                        </span>
+                        {gradeInfo ? (
+                          <span
+                            className="inline-block text-[10px] font-semibold uppercase tracking-wider px-3 py-1"
+                            style={{ background: gradeInfo.bg, color: gradeInfo.text }}
+                          >
+                            {gradeInfo.tier}
+                          </span>
+                        ) : (
+                          <span className="text-[11px]" style={{ color: "var(--muted)" }}>Unrated</span>
+                        )}
                       </td>
                       <td className="px-4 py-4">
                         <Link
