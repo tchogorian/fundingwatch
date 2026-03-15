@@ -30,7 +30,7 @@ interface StoredResult {
 }
 
 const CONSENT_LANGUAGE =
-  "I consent to Funding Watch sharing my information with its lender network to provide me with financing options. I understand Funding Watch may receive compensation from lenders for this service. This does not affect my cost.";
+  "I consent to Debtura sharing my information with its lender network to provide me with financing options. I understand Debtura may receive compensation from lenders for this service. This does not affect my cost.";
 
 export default function QuestionnaireResultsPage() {
   const router = useRouter();
@@ -120,7 +120,7 @@ export default function QuestionnaireResultsPage() {
               href="/"
               className="btn-primary mt-10 inline-flex min-h-[48px] items-center justify-center px-8 py-3"
             >
-              Back to FundingWatch
+              Back to Debtura
             </Link>
           </div>
         </main>

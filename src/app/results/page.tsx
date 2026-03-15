@@ -162,7 +162,7 @@ export default function ResultsPage() {
               You&apos;re All Set
             </h1>
             <p className="mt-4 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
-              A Funding Watch advisor will review your situation and reach out within 24 hours with options from our lender network.
+              A Debtura advisor will review your situation and reach out within 24 hours with options from our lender network.
             </p>
             <button
               type="button"
@@ -447,7 +447,7 @@ export default function ResultsPage() {
                       onClick={() => setModalOpen(true)}
                       className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-white/60 bg-transparent px-6 py-3 font-semibold text-white transition hover:bg-white/10"
                     >
-                      Talk to a Funding Watch Advisor
+                      Talk to a Debtura Advisor
                     </button>
                   </div>
                   {certifiedLenders.length > 0 && (
@@ -511,7 +511,7 @@ export default function ResultsPage() {
                   )}
                 </h2>
                 <p className="mt-2 text-[var(--text-base)]" style={{ color: "var(--on-dark-2)" }}>
-                  Bookmark Funding Watch — we&apos;re here when you need us.
+                  Bookmark Debtura — we&apos;re here when you need us.
                 </p>
                 <Link
                   href="/lender-risk-index"
@@ -551,7 +551,7 @@ export default function ResultsPage() {
               Explore Better Options
             </h2>
             <p className="mt-2 text-sm" style={{ color: "var(--color-text-secondary)" }}>
-              A Funding Watch advisor will reach out with options from our lender network. No cost, no obligation.
+              A Debtura advisor will reach out with options from our lender network. No cost, no obligation.
             </p>
             <form onSubmit={handleBrokerLeadSubmit} className="mt-6 space-y-4">
               <div>
@@ -667,7 +667,7 @@ export default function ResultsPage() {
                     required
                   />
                   <span className="text-sm" style={{ color: "var(--color-text-primary)" }}>
-                    I consent to Funding Watch sharing my information with its lender network to provide me with financing options. I understand Funding Watch may receive compensation from lenders for this service. This does not affect my cost.{" "}
+                    I consent to Debtura sharing my information with its lender network to provide me with financing options. I understand Debtura may receive compensation from lenders for this service. This does not affect my cost.{" "}
                     <Link href="/privacy" className="font-medium underline" style={{ color: "var(--color-accent-primary)" }}>Privacy Policy</Link>
                     {" | "}
                     <Link href="/terms" className="font-medium underline" style={{ color: "var(--color-accent-primary)" }}>Terms</Link>

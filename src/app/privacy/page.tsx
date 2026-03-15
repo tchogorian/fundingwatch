@@ -2,11 +2,11 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Privacy Policy — FundingWatch",
+  title: "Privacy Policy — Debtura",
   description:
-    "Privacy policy for FundingWatch (fundingwatch.org). How we collect, use, and protect your information. 250 Sunny Isles LLC.",
+    "Privacy policy for Debtura (debtura.com). How we collect, use, and protect your information. 250 Sunny Isles LLC.",
   alternates: {
-    canonical: "https://www.fundingwatch.org/privacy",
+    canonical: "https://www.debtura.com/privacy",
   },
 };
 
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
             className="text-sm font-medium transition hover:underline"
             style={{ color: "var(--color-accent-primary)" }}
           >
-            ← Back to FundingWatch
+            ← Back to Debtura
           </Link>
           <h1
             className="mt-8 text-3xl font-bold tracking-tight sm:text-4xl"
@@ -96,7 +96,7 @@ export default function PrivacyPage() {
               </h2>
               <p className="mt-2 leading-relaxed">
                 If you provide your phone number, you consent to receive text
-                messages from FundingWatch. Message and data rates may apply.
+                messages from Debtura. Message and data rates may apply.
                 You may opt out at any time by replying <strong>STOP</strong>.
                 For help, reply <strong>HELP</strong>.
               </p>
@@ -126,11 +126,11 @@ export default function PrivacyPage() {
               <p className="mt-2 leading-relaxed">
                 For privacy-related questions or requests, contact us at{" "}
                 <a
-                  href="mailto:hello@fundingwatch.org"
+                  href="mailto:hello@debtura.com"
                   className="font-medium transition hover:underline"
                   style={{ color: "var(--color-accent-primary)" }}
                 >
-                  hello@fundingwatch.org
+                  hello@debtura.com
                 </a>
                 .
               </p>

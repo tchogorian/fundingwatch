@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: "https://www.fundingwatch.org/blog",
+    canonical: "https://www.debtura.com/blog",
   },
 };
 

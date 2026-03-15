@@ -58,7 +58,7 @@ function buildConfirmationEmail(data: {
               </td>
               <td style="vertical-align:middle;">
                 <span style="font-size:22px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">
-                  <span style="color:#2e75b6;">Funding</span>Watch
+                  <span style="font-family:Georgia,serif;color:#ffffff;">debtura</span>
                 </span>
               </td>
             </tr></table>
@@ -120,7 +120,7 @@ function buildConfirmationEmail(data: {
                     </td>
                     <td style="vertical-align:top;">
                       <p style="margin:0;font-size:14px;font-weight:600;color:#1a1a2e;">Case assigned</p>
-                      <p style="margin:4px 0 0 0;font-size:13px;color:#6b7280;">A Funding Watch advisor will review your situation and reach out within 24 hours with options from our lender network.</p>
+                      <p style="margin:4px 0 0 0;font-size:13px;color:#6b7280;">A Debtura advisor will review your situation and reach out within 24 hours with options from our lender network.</p>
                     </td>
                   </tr></table>
                 </td>
@@ -165,10 +165,10 @@ function buildConfirmationEmail(data: {
         <tr>
           <td style="padding:24px 40px;border-top:1px solid #e5e7eb;">
             <p style="margin:0 0 4px 0;font-size:12px;color:#9ca3af;">
-              <span style="font-weight:600;color:#6b7280;">FundingWatch</span> · Miami, FL
+              <span style="font-weight:600;color:#6b7280;">Debtura</span> · Miami, FL
             </p>
             <p style="margin:0;font-size:12px;color:#9ca3af;">
-              Helping small business owners understand their merchant cash advance agreements.
+              Helping small businesses understand their merchant cash advance agreements.
             </p>
           </td>
         </tr>
@@ -226,7 +226,7 @@ export async function POST(request: NextRequest) {
           ? `Your ${body.lender_name} contract — case review started`
           : "We received your contract — case review started";
         await resend.emails.send({
-          from: "FundingWatch <hello@fundingwatch.org>",
+          from: "Debtura <hello@debtura.com>",
           to: email,
           subject,
           html: buildConfirmationEmail({

@@ -13,13 +13,14 @@ import { BLOG_POSTS } from "@/lib/blog";
  * - /results — session-based; disallowed in robots.txt
  * - /api routes — disallowed in robots.txt
  */
-const SITEMAP_BASE = "https://www.fundingwatch.org";
+const SITEMAP_BASE = "https://www.debtura.com";
 
 /** Static paths that have a corresponding page. Update when adding new indexable pages. */
 const STATIC_ROUTES: { path: string; changeFrequency: "weekly" | "monthly" | "yearly"; priority: number }[] = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
+  { path: "/lender-risk-index", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/intelligence", changeFrequency: "weekly", priority: 0.8 },
   { path: "/questionnaire", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/questionnaire/results", changeFrequency: "monthly", priority: 0.5 },
   { path: "/apr-calculator", changeFrequency: "monthly", priority: 0.8 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.9 },
   { path: "/glossary", changeFrequency: "monthly", priority: 0.7 },

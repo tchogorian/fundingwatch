@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Lender Risk Index — FundingWatch",
+  title: "Lender Risk Index — Debtura",
   description:
-    "See how MCA lenders compare: our ratings for transparency, fair terms, and responsible lending practices.",
+    "Independent risk ratings for MCA lenders. Scored on complaints, litigation, contract terms, regulatory exposure, transparency, and stacking behavior.",
   alternates: {
-    canonical: "https://www.fundingwatch.org/lender-risk-index",
+    canonical: "https://www.debtura.com/lender-risk-index",
   },
 };
 

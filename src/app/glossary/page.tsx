@@ -2,11 +2,11 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "MCA Glossary — FundingWatch",
+  title: "MCA Glossary — Debtura",
   description:
     "Definitions of common merchant cash advance (MCA) terms: factor rate, holdback, effective APR, confession of judgment, and more.",
   alternates: {
-    canonical: "https://www.fundingwatch.org/glossary",
+    canonical: "https://www.debtura.com/glossary",
   },
 };
 
@@ -76,7 +76,7 @@ export default function GlossaryPage() {
             className="text-sm font-medium transition hover:underline"
             style={{ color: "var(--color-accent-primary)" }}
           >
-            ← Back to FundingWatch
+            ← Back to Debtura
           </Link>
           <h1
             className="mt-8 text-3xl font-bold tracking-tight sm:text-4xl"

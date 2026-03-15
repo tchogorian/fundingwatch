@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Assessment Results — FundingWatch",
+  title: "Assessment Results — Debtura",
   description:
     "Your quick MCA assessment results. Option to request a free professional review.",
   alternates: {
-    canonical: "https://www.fundingwatch.org/questionnaire/results",
+    canonical: "https://www.debtura.com/questionnaire/results",
   },
   robots: {
     index: true,

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITEMAP_BASE = "https://www.fundingwatch.org";
+const SITEMAP_BASE = "https://www.debtura.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const BLUE_API_URL = "https://ops.fundingwatch.org";
-const CONSENT_VERSION = "v1-broker-2026";
+const CONSENT_VERSION = "v1-debtura-broker-2026";
 
 export interface BrokerLeadPayload {
   business_name: string;

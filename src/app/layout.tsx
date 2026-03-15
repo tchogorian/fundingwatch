@@ -34,15 +34,15 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.fundingwatch.org"),
-  title: "FundingWatch — Free MCA Contract Intelligence",
+  metadataBase: new URL("https://www.debtura.com"),
+  title: "Debtura — MCA Intelligence & Brokerage",
   description:
-    "Upload your merchant cash advance contract. Our system reveals your true APR, hidden terms, and red flags — free, in under 30 seconds.",
+    "Debtura analyzes lender risk, uncovers hidden terms, and connects businesses with better funding partners.",
   verification: {
     google: "6XMUkiJGV7qsaORZx0us0VRKXjam4XL5pTjjRuWqD2Y",
   },
   alternates: {
-    canonical: "https://www.fundingwatch.org/",
+    canonical: "https://www.debtura.com/",
   },
 };
 
@@ -65,7 +65,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[var(--accent-teal)] focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-[var(--accent-teal)] focus:ring-offset-2 focus:ring-offset-[var(--bg-light)]"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[#1e5a8a] focus:px-4 focus:py-2 focus:text-white focus:outline-none"
         >
           Skip to content
         </a>

@@ -2,11 +2,11 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Terms and Conditions — FundingWatch",
+  title: "Terms and Conditions — Debtura",
   description:
-    "Terms and conditions for the FundingWatch free MCA contract review tool. Informational use only. Message and data rates may apply for SMS.",
+    "Terms and conditions for the Debtura free MCA contract review tool. Informational use only. Message and data rates may apply for SMS.",
   alternates: {
-    canonical: "https://www.fundingwatch.org/terms",
+    canonical: "https://www.debtura.com/terms",
   },
 };
 
@@ -23,7 +23,7 @@ export default function TermsPage() {
             className="text-sm font-medium transition hover:underline"
             style={{ color: "var(--color-accent-primary)" }}
           >
-            ← Back to FundingWatch
+            ← Back to Debtura
           </Link>
           <h1
             className="mt-8 text-3xl font-bold tracking-tight sm:text-4xl"
@@ -50,8 +50,8 @@ export default function TermsPage() {
                 Program and service
               </h2>
               <p className="mt-2 leading-relaxed">
-                FundingWatch provides a free MCA contract review tool. By using
-                fundingwatch.org, you agree to these terms. The service is
+                Debtura provides a free MCA contract review tool. By using
+                debtura.com, you agree to these terms. The service is
                 provided for informational purposes only and does not
                 constitute legal, financial, or professional advice. You should
                 consult a licensed attorney or other qualified professional for
@@ -68,7 +68,7 @@ export default function TermsPage() {
               </h2>
               <p className="mt-2 leading-relaxed">
                 If you provide your phone number, you may receive text
-                messages from FundingWatch. Message and data rates may apply.
+                messages from Debtura. Message and data rates may apply.
                 Message frequency varies. To opt out of SMS, reply{" "}
                 <strong>STOP</strong>. For help, reply <strong>HELP</strong>.
               </p>
@@ -88,9 +88,9 @@ export default function TermsPage() {
                   className="font-medium transition hover:underline"
                   style={{ color: "var(--color-accent-primary)" }}
                 >
-                  hello@fundingwatch.org
+                  hello@debtura.com
                 </a>{" "}
-                or visit fundingwatch.org and use the contact options provided.
+                or visit debtura.com and use the contact options provided.
               </p>
             </div>
 
@@ -103,7 +103,7 @@ export default function TermsPage() {
               </h2>
               <p className="mt-2 leading-relaxed">
                 We reserve the right to modify, suspend, or discontinue the
-                FundingWatch service or any part of it at any time, with or
+                Debtura service or any part of it at any time, with or
                 without notice. Continued use of the site after changes
                 constitutes acceptance of the updated terms.
               </p>

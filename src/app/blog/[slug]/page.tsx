@@ -42,9 +42,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return { title: "Not Found" };
-  const title = `${post.title} — FundingWatch Blog`;
+  const title = `${post.title} — Debtura Blog`;
   const description = post.metaDescription || post.excerpt;
-  const url = `https://www.fundingwatch.org/blog/${slug}`;
+  const url = `https://www.debtura.com/blog/${slug}`;
   return {
     title,
     description,
@@ -54,7 +54,7 @@ export async function generateMetadata({
       description,
       type: "article",
       url,
-      siteName: "FundingWatch",
+      siteName: "Debtura",
       authors: post.author ? [post.author] : undefined,
       publishedTime: post.date,
     },
