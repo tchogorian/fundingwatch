@@ -39,7 +39,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
 
   return (
     <Link
-      href={`/blog/${post.slug}`}
+      href={`/intelligence/${post.slug}`}
       className="card group flex min-h-[220px] flex-col rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-accent-border)] hover:shadow-[var(--shadow-md)]"
       style={{ background: "#FFFFFF" }}
     >

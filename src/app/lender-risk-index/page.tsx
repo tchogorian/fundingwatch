@@ -21,7 +21,7 @@ function scoreToGrade(score: number): { letter: string; tier: string; bg: string
   if (score <= 25) return { letter: "B+", tier: "Standard", bg: "#dbeafe", text: "#1e40af" };
   if (score <= 35) return { letter: "B", tier: "Standard", bg: "#dbeafe", text: "#1e40af" };
   if (score <= 50) return { letter: "C+", tier: "Caution", bg: "#fef3c7", text: "#92400e" };
-  if (score <= 65) return { letter: "C", tier: "Caution", bg: "#fef3c7", text: "#92400e" };
+  if (score <= 65) return { letter: "C", tier: "Warning", bg: "#ffedd5", text: "#9a3412" };
   if (score <= 80) return { letter: "D", tier: "Warning", bg: "#ffedd5", text: "#9a3412" };
   return { letter: "F", tier: "Avoid", bg: "#fef2f2", text: "#991b1b" };
 }

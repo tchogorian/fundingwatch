@@ -7,18 +7,18 @@ const GRADE_SCALE = [
   { range: "16–25", letter: "B+", tier: "Standard", color: "#1e40af", bg: "#dbeafe" },
   { range: "26–35", letter: "B", tier: "Standard", color: "#1e40af", bg: "#dbeafe" },
   { range: "36–50", letter: "C+", tier: "Caution", color: "#92400e", bg: "#fef3c7" },
-  { range: "51–65", letter: "C", tier: "Caution", color: "#92400e", bg: "#fef3c7" },
+  { range: "51–65", letter: "C", tier: "Warning", color: "#9a3412", bg: "#ffedd5" },
   { range: "66–80", letter: "D", tier: "Warning", color: "#9a3412", bg: "#ffedd5" },
   { range: "81–100", letter: "F", tier: "Avoid", color: "#991b1b", bg: "#fef2f2" },
 ];
 
 const DIMENSIONS = [
-  { name: "Complaint Density (25%)", desc: "CFPB and state AG complaints relative to filing volume." },
-  { name: "Regulatory Exposure (25%)", desc: "AG actions, consent orders, state investigations." },
-  { name: "Contract Risk Signals (20%)", desc: "COJ clauses, reconciliation terms, hidden fees, factor rate transparency." },
-  { name: "Litigation Aggressiveness (15%)", desc: "Frequency of lawsuits against borrowers, default judgment rate." },
-  { name: "Transparency (10%)", desc: "APR disclosure, clear terms, responsiveness to disputes." },
-  { name: "Stacking Behavior (5%)", desc: "Pattern of funding on top of existing MCAs." },
+  { name: "Complaint Density (25%)", desc: "CFPB and state AG complaints relative to filing volume" },
+  { name: "Regulatory Exposure (25%)", desc: "AG actions, consent orders, state investigations" },
+  { name: "Contract Risk Signals (20%)", desc: "COJ clauses, reconciliation terms, hidden fees, factor rate transparency" },
+  { name: "Litigation Aggressiveness (15%)", desc: "Frequency of lawsuits against borrowers, default judgment rate" },
+  { name: "Transparency (10%)", desc: "APR disclosure, clear terms, responsiveness to disputes" },
+  { name: "Stacking Behavior (5%)", desc: "Pattern of funding on top of existing MCAs" },
 ];
 
 export const metadata = {
@@ -86,7 +86,7 @@ export default function MethodologyPage() {
           Data sources
         </h2>
         <p className="text-[14px] leading-[1.65]" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>
-          CourtListener federal dockets, state AG databases, CFPB complaint database, UCC filing records, and direct contract analysis.
+          CourtListener federal dockets, state AG databases, CFPB complaint database, UCC filing records, direct contract analysis.
         </p>
 
         <div className="mt-10 p-6 border border-[var(--line)] rounded" style={{ background: "var(--bg)" }}>

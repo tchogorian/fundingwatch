@@ -45,6 +45,26 @@ export default function QuickAssessmentPage() {
         </div>
       </section>
 
+      {/* Start assessment CTA — links to full questionnaire form */}
+      <section className="border-b border-[var(--line)] bg-white py-11 px-6 md:px-8">
+        <div className="mx-auto max-w-[720px] text-center">
+          <h2 className="mb-4 text-[22px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
+            Start your assessment
+          </h2>
+          <p className="mb-8 text-[14px] font-light" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>
+            No contract needed. Answer a few questions and we&apos;ll give you a personalized snapshot based on your lenders and situation.
+          </p>
+          <Link
+            href="/questionnaire"
+            className="inline-flex items-center gap-2 px-6 py-3.5 text-[13px] font-semibold rounded transition-opacity hover:opacity-90"
+            style={{ background: "var(--blue)", color: "var(--white)", fontFamily: "var(--font-sans)" }}
+          >
+            Start assessment
+            <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+          </Link>
+        </div>
+      </section>
+
       {/* What you get */}
       <section className="border-b border-[var(--line)] bg-[var(--bg)] py-11 px-6 md:px-8">
         <div className="mx-auto max-w-[1160px]">

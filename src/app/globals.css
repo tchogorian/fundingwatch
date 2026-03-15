@@ -38,7 +38,7 @@
   50% { box-shadow: 0 8px 32px rgba(30,90,138,0.5), 0 0 0 8px rgba(30,90,138,0.08); }
 }
 
-/* ========== DESIGN TOKENS — FundingWatch (README guidelines) ========== */
+/* ========== DESIGN TOKENS — Debtura (README guidelines) ========== */
 :root {
   /* Backgrounds — README: Navy primary dark, White alternate */
   --bg-hero:        #2E75B6;

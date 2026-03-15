@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import InnerPageHeader from "@/components/InnerPageHeader";
+import ApplicationForm from "@/components/ApplicationForm";
 
 export const metadata = {
   title: "Lender Matching AI — Debtura",
@@ -44,6 +45,9 @@ export default function LenderMatchingPage() {
         </div>
       </section>
 
+      {/* Application form */}
+      <ApplicationForm />
+
       {/* Benefits */}
       <section className="border-b border-[var(--line)] bg-[var(--bg)] py-11 px-6 md:px-8">
         <div className="mx-auto max-w-[1160px]">
@@ -65,26 +69,6 @@ export default function LenderMatchingPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="border-b border-[var(--line)] bg-white py-11 px-6 md:px-8">
-        <div className="mx-auto max-w-[1160px] text-center">
-          <h2 className="mb-4 text-[22px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
-            Ready to get matched?
-          </h2>
-          <p className="mb-8 text-[13px] font-light max-w-[560px] mx-auto" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>
-            No obligation. No hard credit check. Takes 2 minutes.
-          </p>
-          <Link
-            href="/questionnaire"
-            className="inline-flex items-center gap-2 px-6 py-3 text-[10.5px] font-bold uppercase tracking-wider rounded"
-            style={{ background: "var(--blue)", color: "var(--white)", fontFamily: "var(--font-sans)" }}
-          >
-            Get Matched
-            <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
-          </Link>
         </div>
       </section>
     </main>

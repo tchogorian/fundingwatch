@@ -125,7 +125,7 @@ export default function IndustryInfoSection() {
           >
             <ChevronUp className="h-8 w-8 transition-transform duration-200 group-hover:-translate-y-0.5" />
             <span className="text-center text-[16px] leading-relaxed">
-              FundingWatch analyzes your contract against these legal standards
+              Debtura analyzes your contract against these legal standards
               automatically.
             </span>
           </button>

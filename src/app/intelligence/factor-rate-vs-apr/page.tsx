@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function Page() {
-  redirect("/blog/what-is-factor-rate");
+  redirect("/intelligence/before-signing-mca-10-things");
 }

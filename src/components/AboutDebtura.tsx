@@ -9,7 +9,7 @@ const stats = [
   { value: "40-350%", label: "Typical APR Range" },
 ];
 
-export default function AboutFundingWatch() {
+export default function AboutDebtura() {
   return (
     <section id="about" className="section-card" aria-label="About Debtura">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6">

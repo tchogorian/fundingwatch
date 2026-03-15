@@ -132,7 +132,7 @@ export default async function BlogArticlePage({
               className="text-[var(--text-base)] font-medium"
               style={{ color: "var(--color-text-primary)" }}
             >
-              {post.author ?? "Debtura Research Team"}
+              {post.author ?? "Debtura Intelligence Team"}
             </span>
             <span
               className="font-mono text-[var(--text-sm)]"
@@ -265,7 +265,7 @@ export default async function BlogArticlePage({
                   className="text-base font-semibold md:text-[var(--text-base)]"
                   style={{ color: "var(--color-text-primary)" }}
                 >
-                  {post.author ?? "Debtura Research Team"}
+                  {post.author ?? "Debtura Intelligence Team"}
                 </p>
                 {post.credentials && (
                   <p
@@ -279,7 +279,7 @@ export default async function BlogArticlePage({
                   className="mt-1 text-sm leading-relaxed md:text-[var(--text-sm)]"
                   style={{ color: "var(--color-text-secondary)" }}
                 >
-                  {post.authorBio ?? "Our team analyzes MCA contracts, regulatory actions, and borrower rights so small business owners have the facts they need to make informed decisions."}
+                  {post.authorBio ?? "Independent research and analysis from Debtura's team of commercial lending analysts."}
                 </p>
               </div>
             </div>

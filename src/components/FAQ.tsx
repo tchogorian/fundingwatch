@@ -48,14 +48,14 @@ export default function FAQ() {
               <button
                 type="button"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="flex w-full items-center justify-between gap-2 border-none bg-transparent px-4 py-3.5 text-left text-[12.5px] font-medium cursor-pointer transition-colors hover:text-[var(--blue)]"
+                className="flex w-full items-center justify-between gap-2 border-none bg-transparent px-4 py-3.5 text-left text-[14px] font-medium cursor-pointer transition-colors hover:text-[var(--blue)]"
                 style={{ color: "var(--body)" }}
               >
                 <span>{q}</span>
                 <span className="shrink-0 text-[13px]" style={{ color: "var(--blue)" }}>{openIndex === i ? "−" : "+"}</span>
               </button>
               <div className={openIndex === i ? "block px-4 pb-3" : "hidden"} style={{ fontFamily: "var(--font-sans)" }}>
-                <p className="text-[12px] font-light leading-[1.75]" style={{ color: "var(--muted)" }}>{a}</p>
+                <p className="text-[14px] font-light leading-[1.75]" style={{ color: "var(--muted)" }}>{a}</p>
               </div>
             </div>
           ))}

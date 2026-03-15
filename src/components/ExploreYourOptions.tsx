@@ -210,7 +210,7 @@ export default function ExploreYourOptions({ data }: { data: AnalysisResult }) {
             Ready to Explore Better Terms?
           </h3>
           <p className="mx-auto mt-4 max-w-[560px] text-[16px] text-muted">
-            FundingWatch partners with vetted lenders who meet our transparency standards. See if you qualify for better rates with no obligation and no cost.
+            Debtura partners with vetted lenders who meet our transparency standards. See if you qualify for better rates with no obligation and no cost.
           </p>
           {!showForm ? (
             <button
@@ -350,7 +350,7 @@ function ExploreForm({ onSuccess }: { onSuccess: () => void }) {
             />
             <span className="flex items-start gap-2 text-small text-dark-text">
               <Lock className="h-3.5 w-3.5 shrink-0 text-muted" />
-              I consent to being contacted by a FundingWatch lending partner about refinancing options for my MCA.
+              I consent to being contacted by a Debtura lending partner about refinancing options for my MCA.
             </span>
           </label>
         </div>
