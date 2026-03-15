@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const latestInsights = [
   { date: "13 Mar 2026", title: "MCA Lender Risk: North America Outlook Q1 2026", href: "/blog" },
@@ -43,8 +44,14 @@ export default function InsightsSection() {
             href="/intelligence"
             className="group flex flex-col border-r border-[var(--line)]"
           >
-            <div className="h-[340px] shrink-0 bg-[#dde3e9] border-b border-[var(--line)] relative">
-              <span className="absolute bottom-3.5 left-4 text-[9px] font-bold uppercase tracking-[0.14em]" style={{ color: "#8899aa", fontFamily: "var(--font-sans)" }}>Featured image</span>
+            <div className="h-[340px] shrink-0 relative overflow-hidden border-b border-[var(--line)]">
+              <Image
+                src="/images/insights-featured.png"
+                alt="Shipping container port — global commerce and industry"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
             <div className="flex flex-col p-5 pt-5 pb-6" style={{ fontFamily: "var(--font-sans)" }}>
               <div className="text-[9px] font-bold uppercase tracking-[0.18em]" style={{ color: "var(--red)", marginBottom: 8 }}>Research &amp; Analysis</div>
