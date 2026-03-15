@@ -88,8 +88,8 @@ export default function QuestionnaireResultsPage() {
 
   if (data === null) {
     return (
-      <div className="flex min-h-screen items-center justify-center" style={{ background: "var(--color-bg-base)" }}>
-        <p style={{ color: "var(--color-text-secondary)" }}>Loading…</p>
+      <div className="flex min-h-screen items-center justify-center" style={{ background: "var(--bg)" }}>
+        <p style={{ color: "var(--muted)" }}>Loading…</p>
       </div>
     );
   }
@@ -99,11 +99,11 @@ export default function QuestionnaireResultsPage() {
   if (optInSuccess) {
     return (
       <>
-        <main className="min-h-screen px-4 py-16" style={{ background: "var(--color-bg-base)" }}>
+        <main className="min-h-screen px-4 py-16" style={{ background: "var(--bg)" }}>
           <div className="mx-auto max-w-[560px] text-center">
             <div className="flex justify-center">
               <div
-                className="flex h-20 w-20 items-center justify-center rounded-full"
+                className="flex h-20 w-20 items-center justify-center border border-[var(--line)]"
                 style={{ background: "var(--color-accent-muted)" }}
               >
                 <CheckCircle className="h-12 w-12" style={{ color: "var(--accent-green)" }} aria-hidden />
@@ -112,7 +112,7 @@ export default function QuestionnaireResultsPage() {
             <h1 className="mt-6 text-3xl font-semibold" style={{ color: "var(--color-text-primary)" }}>
               You&apos;re All Set
             </h1>
-            <p className="mt-4 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
+            <p className="mt-4 text-[var(--text-base)]" style={{ color: "var(--muted)" }}>
               A licensed professional will review your situation and reach out within 1–2 business days. Check your email for a confirmation.
             </p>
             <Link
@@ -129,63 +129,67 @@ export default function QuestionnaireResultsPage() {
 
   return (
     <>
-      <main className="min-h-screen px-4 py-10 sm:px-6 sm:py-12" style={{ background: "var(--color-bg-base)" }}>
+      <main className="min-h-screen px-6 md:px-8 py-10 sm:py-12" style={{ background: "var(--bg)" }}>
         <div className="mx-auto max-w-[720px]">
-          <h1 className="text-2xl font-bold sm:text-3xl" style={{ color: "var(--color-text-primary)" }}>
+          <div className="mb-2 flex items-center gap-2">
+            <span className="h-0.5 w-5 shrink-0" style={{ background: "var(--red)" }} />
+            <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Assessment</span>
+          </div>
+          <h1 className="text-2xl font-semibold sm:text-3xl" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
             Your MCA Assessment
           </h1>
-          <p className="mt-2 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
+          <p className="mt-2 text-base" style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}>
             Based on what you shared, here&apos;s what we found. This is not legal advice — only a licensed professional can review your actual agreements.
           </p>
 
           <div
-            className="mt-8 space-y-6 rounded-xl border p-6 sm:p-8"
-            style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+            className="mt-8 space-y-6 border border-[var(--line)] p-6 sm:p-8"
+            style={{ background: "var(--white)" }}
           >
-            <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--color-text-primary)" }}>
+            <p className="text-base leading-relaxed" style={{ fontFamily: "var(--font-sans)", color: "var(--body)" }}>
               Hi {a.firstName},
             </p>
-            <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+            <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--muted)" }}>
               Based on what you&apos;ve shared, here&apos;s what we found:
             </p>
 
             {a.lenderSection && (
-              <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+              <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--muted)" }}>
                 {a.lenderSection}
               </p>
             )}
             {!a.lenderSection && (
-              <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+              <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--muted)" }}>
                 {NO_LENDER_MATCH_MESSAGE}
               </p>
             )}
 
             {a.stackingSection && (
-              <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+              <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--muted)" }}>
                 {a.stackingSection}
               </p>
             )}
 
             {a.stateSection && (
-              <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+              <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--muted)" }}>
                 {a.stateSection}
               </p>
             )}
 
-            <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+            <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--muted)" }}>
               {a.paymentStressSection}
             </p>
 
             <hr style={{ borderColor: "var(--color-border-default)" }} />
 
-            <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+            <p className="text-[var(--text-base)] leading-relaxed" style={{ color: "var(--muted)" }}>
               We can&apos;t tell you whether your specific agreements have legal issues — that requires a licensed professional reviewing your actual terms. But based on what you&apos;ve described, a review would be worth your time.
             </p>
           </div>
 
           {/* Opt-in CTA */}
           <section
-            className="mt-10 rounded-xl border p-6 sm:p-8"
+            className="mt-10 border border-[var(--line)] p-6 sm:p-8"
             style={{ background: "var(--bg-dark)", borderColor: "var(--border-dark)" }}
           >
             <h2 className="text-xl font-semibold text-white sm:text-2xl">
@@ -204,7 +208,7 @@ export default function QuestionnaireResultsPage() {
                   required
                   value={form.name}
                   onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                  className="mt-1 h-11 w-full rounded-lg border border-white/20 bg-white/10 px-3 text-white placeholder:text-white/50"
+                  className="mt-1 h-11 w-full border border-white/20 bg-white/10 px-3 text-white placeholder:text-white/50"
                   placeholder="First and last"
                 />
               </div>
@@ -217,7 +221,7 @@ export default function QuestionnaireResultsPage() {
                     required
                     value={form.email}
                     onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                    className="mt-1 h-11 w-full rounded-lg border border-white/20 bg-white/10 px-3 text-white placeholder:text-white/50"
+                    className="mt-1 h-11 w-full border border-white/20 bg-white/10 px-3 text-white placeholder:text-white/50"
                   />
                 </div>
                 <div>
@@ -228,7 +232,7 @@ export default function QuestionnaireResultsPage() {
                     required
                     value={form.phone}
                     onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                    className="mt-1 h-11 w-full rounded-lg border border-white/20 bg-white/10 px-3 text-white placeholder:text-white/50"
+                    className="mt-1 h-11 w-full border border-white/20 bg-white/10 px-3 text-white placeholder:text-white/50"
                   />
                 </div>
               </div>
@@ -240,7 +244,7 @@ export default function QuestionnaireResultsPage() {
                   required
                   value={form.business}
                   onChange={(e) => setForm((f) => ({ ...f, business: e.target.value }))}
-                  className="mt-1 h-11 w-full rounded-lg border border-white/20 bg-white/10 px-3 text-white placeholder:text-white/50"
+                  className="mt-1 h-11 w-full border border-white/20 bg-white/10 px-3 text-white placeholder:text-white/50"
                 />
               </div>
               <div>
@@ -267,7 +271,7 @@ export default function QuestionnaireResultsPage() {
               <button
                 type="submit"
                 disabled={submitStatus === "submitting" || !form.consent}
-                className="mt-4 flex h-12 w-full items-center justify-center rounded-full font-semibold text-white transition hover:opacity-95 disabled:opacity-70"
+                className="mt-4 flex h-12 w-full items-center justify-center font-semibold text-white border-0 transition hover:opacity-95 disabled:opacity-70"
                 style={{ background: "var(--accent-blue)" }}
               >
                 {submitStatus === "submitting" ? "Submitting…" : "Yes, have someone call me"}

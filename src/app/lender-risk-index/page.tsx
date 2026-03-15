@@ -133,7 +133,7 @@ export default function LenderRiskIndex() {
               placeholder="Search by lender name..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full h-[52px] pl-12 pr-4 text-[15px] outline-none transition-shadow focus:ring-2 focus:ring-white/30 border-0"
+              className="w-full h-[52px] pl-12 pr-4 text-[15px] outline-none transition-shadow focus:ring-2 focus:ring-white/30 border-0 rounded-none"
               style={{
                 fontFamily: "var(--font-sans)",
                 background: "rgba(255,255,255,0.12)",
@@ -146,6 +146,14 @@ export default function LenderRiskIndex() {
       </section>
 
       <div className="max-w-[1100px] mx-auto px-6 md:px-8 py-10">
+        {/* Section pattern */}
+        <div className="mb-2 flex items-center gap-2">
+          <span className="h-0.5 w-5 shrink-0 rounded-none" style={{ background: "var(--red)" }} />
+          <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Ratings</span>
+        </div>
+        <h2 className="mb-6 text-[22px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
+          Indexed lenders
+        </h2>
         {/* Stats strip */}
         <div
           className="py-3 px-6 mb-6 flex items-center gap-4 text-[13px] border border-[var(--line)]"
@@ -228,14 +236,14 @@ export default function LenderRiskIndex() {
                 {filtered.map((l, i) => {
                   const rs = RATING_STYLES[l.rating || ""] || {
                     bg: "#f0f4f8",
-                    text: "#64748b",
+                    text: "var(--muted)",
                     label: "—",
                   };
                   const isCertified = l.rating === "certified";
                   return (
                     <tr
                       key={l.slug}
-                      className="transition-colors hover:bg-[#f8fafb]"
+                      className="transition-colors hover:bg-[var(--bg)]"
                       style={{
                         borderBottom: "1px solid var(--line)",
                         background: isCertified ? "#f9fefb" : i % 2 === 1 ? "var(--bg)" : "var(--white)",
@@ -264,7 +272,7 @@ export default function LenderRiskIndex() {
                       </td>
                       <td className="px-4 py-4">
                         <span
-                          className="inline-block text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full"
+                          className="inline-block text-[10px] font-semibold uppercase tracking-wider px-3 py-1"
                           style={{ background: rs.bg, color: rs.text }}
                         >
                           {rs.label}
@@ -301,7 +309,7 @@ export default function LenderRiskIndex() {
                             l.red_flags.slice(0, 3).map((flag) => (
                               <span
                                 key={flag}
-                                className="text-[10px] font-medium px-2 py-0.5 rounded"
+                                className="text-[10px] font-medium px-2 py-0.5"
                                 style={{ background: "#fef2f2", color: "#991b1b" }}
                               >
                                 {flag.length > 20 ? flag.slice(0, 18) + "…" : flag}

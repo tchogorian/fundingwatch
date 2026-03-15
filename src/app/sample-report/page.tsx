@@ -29,20 +29,20 @@ function riskScoreColor(score: number): string {
   if (score >= 8) return "var(--danger)";
   if (score >= 6) return "var(--warning)";
   if (score >= 4) return "var(--accent-yellow)";
-  return "var(--accent-green)";
+  return "var(--green)";
 }
 
 function riskLabelBg(label: AnalysisResult["overall_risk_label"]): string {
   if (label === "Very High Risk") return "var(--danger)";
   if (label === "High Risk") return "var(--danger)";
   if (label === "Moderate Risk") return "var(--warning)";
-  return "var(--accent-green)";
+  return "var(--green)";
 }
 
 const severityConfig = {
   high: { color: "var(--danger)", Icon: AlertCircle, label: "High" },
   medium: { color: "var(--warning)", Icon: AlertTriangle, label: "Medium" },
-  low: { color: "var(--accent-blue)", Icon: Info, label: "Low" },
+  low: { color: "var(--blue)", Icon: Info, label: "Low" },
 } as const;
 
 const SAMPLE_RESULT: AnalysisResult = {
@@ -110,66 +110,65 @@ export default function SampleReportPage() {
 
   return (
     <>
-      <main className="min-h-screen px-4 py-10 sm:px-6 sm:py-12" style={{ background: "var(--color-bg-base)" }}>
+      <main className="min-h-screen px-6 md:px-8 py-10 sm:py-12" style={{ background: "var(--bg)" }}>
         <div className="mx-auto max-w-[900px]">
-          <Link
-            href="/"
-            className="text-sm font-medium transition hover:underline"
-            style={{ color: "var(--color-accent-primary)" }}
-          >
-            ← Back to FundingWatch
+          <Link href="/" className="text-sm font-medium transition hover:underline" style={{ color: "var(--blue)" }}>
+            ← Back to Debtura
           </Link>
-
+          <div className="mt-6 mb-2 flex items-center gap-2">
+            <span className="h-0.5 w-5 shrink-0" style={{ background: "var(--red)" }} />
+            <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Sample Report</span>
+          </div>
+          <h2 className="mb-6 text-[22px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
+            Sample analysis
+          </h2>
           <div
-            className="mt-4 rounded-xl border p-4"
-            style={{ background: "var(--color-accent-muted)", borderColor: "var(--color-border-default)" }}
+            className="mt-4 border border-[var(--line)] p-4"
+            style={{ background: "var(--white)" }}
           >
-            <p className="text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>
+            <p className="text-sm font-medium" style={{ color: "var(--body)" }}>
               This is a sample report. Upload your own MCA contract to get a personalized analysis.
             </p>
-            <Link
-              href="/#upload"
-              className="mt-2 inline-block text-sm font-semibold transition hover:underline"
-              style={{ color: "var(--color-accent-primary)" }}
-            >
+            <Link href="/#check-contract" className="mt-2 inline-block text-sm font-semibold transition hover:underline" style={{ color: "var(--blue)" }}>
               Analyze your contract →
             </Link>
           </div>
 
           {/* Risk Score Header */}
           <section
-            className="mt-8 rounded-xl border p-6 sm:p-8"
-            style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+            className="mt-8 border border-[var(--line)] p-6 sm:p-8 relative"
+            style={{ background: "var(--white)" }}
           >
+            <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: riskScoreColor(data.overall_risk_score ?? 0) }} />
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div
-                  className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full text-2xl font-bold text-white"
+                  className="flex h-16 w-16 shrink-0 items-center justify-center text-2xl font-bold text-white"
                   style={{ background: riskScoreColor(data.overall_risk_score ?? 0) }}
                 >
                   {data.overall_risk_score ?? "—"}
                 </div>
                 <div>
                   <span
-                    className="inline-block rounded-full px-4 py-1.5 text-sm font-semibold text-white"
+                    className="inline-block px-4 py-1.5 text-sm font-semibold text-white"
                     style={{ background: riskLabelBg(data.overall_risk_label ?? "Moderate Risk") }}
                   >
                     {data.overall_risk_label ?? "Moderate Risk"}
                   </span>
-                  <p className="mt-2 text-2xl font-bold" style={{ color: data.effective_apr != null && data.effective_apr > 100 ? "var(--danger)" : "var(--color-text-primary)" }}>
+                  <p className="mt-2 text-2xl font-bold" style={{ fontFamily: "var(--font-sans)", color: data.effective_apr != null && data.effective_apr > 100 ? "var(--red)" : "var(--body)" }}>
                     Effective APR: {formatPct(data.effective_apr)}
                   </p>
                 </div>
               </div>
             </div>
-            <p className="mt-4 text-[var(--text-base)] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+            <p className="mt-4 text-base leading-relaxed" style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}>
               {data.summary || "No summary available."}
             </p>
           </section>
 
           {/* Key Financial Terms */}
           <section className="mt-10">
-            <h2 className="text-xl font-semibold" style={{ color: "var(--color-text-primary)" }}>
+            <h2 className="text-xl font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
               Key Financial Terms
             </h2>
             <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -183,11 +182,11 @@ export default function SampleReportPage() {
               ].map((row) => (
                 <div
                   key={row.label}
-                  className="rounded-xl border p-4"
-                  style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+                  className="border border-[var(--line)] p-4"
+                  style={{ background: "var(--white)" }}
                 >
-                  <p className="text-sm font-medium" style={{ color: "var(--color-text-tertiary)" }}>{row.label}</p>
-                  <p className="mt-1 font-semibold" style={{ color: "var(--color-text-primary)" }}>{row.value}</p>
+                  <p className="text-sm font-medium" style={{ color: "var(--muted)" }}>{row.label}</p>
+                  <p className="mt-1 font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>{row.value}</p>
                 </div>
               ))}
             </div>
@@ -195,7 +194,7 @@ export default function SampleReportPage() {
 
           {/* Contract Clauses */}
           <section className="mt-10">
-            <h2 className="text-xl font-semibold" style={{ color: "var(--color-text-primary)" }}>
+            <h2 className="text-xl font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
               Contract Clauses
             </h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -210,19 +209,19 @@ export default function SampleReportPage() {
                 return (
                   <div
                     key={key}
-                    className="rounded-xl border p-4"
-                    style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+                    className="border border-[var(--line)] p-4"
+                    style={{ background: "var(--white)" }}
                   >
                     <div className="flex items-center gap-3">
                       {present ? (
                         <XCircle className="h-6 w-6 shrink-0" style={{ color: "var(--danger)" }} aria-hidden />
                       ) : (
-                        <Check className="h-6 w-6 shrink-0" style={{ color: "var(--accent-green)" }} aria-hidden />
+                        <Check className="h-6 w-6 shrink-0" style={{ color: "var(--green)" }} aria-hidden />
                       )}
-                      <span className="font-semibold" style={{ color: "var(--color-text-primary)" }}>{label}</span>
+                      <span className="font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>{label}</span>
                     </div>
                     {clause?.explanation && (
-                      <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+                      <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
                         {clause.explanation}
                       </p>
                     )}
@@ -235,7 +234,7 @@ export default function SampleReportPage() {
           {/* Red Flags */}
           {sortedFlags.length > 0 && (
             <section className="mt-10">
-              <h2 className="text-xl font-semibold" style={{ color: "var(--color-text-primary)" }}>
+              <h2 className="text-xl font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
                 Red Flags ({sortedFlags.length})
               </h2>
               <div className="mt-4 space-y-3">
@@ -258,9 +257,9 @@ export default function SampleReportPage() {
                         <span className="rounded px-2 py-0.5 text-xs font-semibold text-white" style={{ background: config.color }}>
                           {config.label}
                         </span>
-                        <p className="mt-1 font-semibold" style={{ color: "var(--color-text-primary)" }}>{flag.flag}</p>
+                        <p className="mt-1 font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>{flag.flag}</p>
                         {flag.description && (
-                          <p className="mt-1 text-sm" style={{ color: "var(--color-text-secondary)" }}>{flag.description}</p>
+                          <p className="mt-1 text-sm" style={{ color: "var(--muted)" }}>{flag.description}</p>
                         )}
                       </div>
                     </div>
@@ -273,10 +272,10 @@ export default function SampleReportPage() {
           {/* Recommended Actions */}
           {data.recommended_actions?.length > 0 && (
             <section className="mt-10">
-              <h2 className="text-xl font-semibold" style={{ color: "var(--color-text-primary)" }}>
+              <h2 className="text-xl font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
                 Recommended Actions
               </h2>
-              <ol className="mt-4 list-inside list-decimal space-y-2 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
+              <ol className="mt-4 list-inside list-decimal space-y-2 text-[var(--text-base)]" style={{ color: "var(--muted)" }}>
                 {data.recommended_actions.map((action, i) => (
                   <li key={i}>{action}</li>
                 ))}
@@ -285,7 +284,7 @@ export default function SampleReportPage() {
           )}
 
           <section
-            className="mt-12 rounded-xl border p-6 sm:p-8"
+            className="mt-12 border border-[var(--line)] p-6 sm:p-8"
             style={{ background: "var(--bg-dark)", borderColor: "var(--border-dark)" }}
           >
             <h2 className="text-xl font-semibold text-white sm:text-2xl">
@@ -296,7 +295,7 @@ export default function SampleReportPage() {
             </p>
             <Link
               href="/#upload"
-              className="mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full px-6 py-3 font-semibold text-white transition hover:opacity-95"
+              className="mt-6 inline-flex min-h-[48px] items-center justify-center px-6 py-3 font-semibold text-white transition hover:opacity-95 border-0"
               style={{ background: "var(--accent-blue)" }}
             >
               Analyze your contract

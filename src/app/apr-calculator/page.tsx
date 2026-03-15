@@ -255,46 +255,48 @@ export default function APRCalculatorPage() {
   const displayApr = activeTab === 1 && tab1Result ? tab1Result.aprWithFees : activeTab === 2 && tab2Results[0] ? tab2Results[0]!.impliedApr : 0;
 
   const inputCls =
-    "mt-1.5 w-full min-w-0 rounded-lg border bg-white px-4 py-3 text-base outline-none focus:ring-2 min-h-[48px]";
+    "mt-1.5 w-full min-w-0 border border-[var(--line)] bg-white px-4 py-3 text-base outline-none focus:ring-2 min-h-[48px]";
   const labelCls = "block text-sm font-medium min-h-[48px] flex items-center";
-  const cardStyle = {
-    background: "var(--color-bg-base)",
-    borderColor: "var(--color-border-default)",
-    boxShadow: "var(--shadow-md)",
-  };
-  const textSecondary = { color: "var(--color-text-secondary)" };
-  const textPrimary = { color: "var(--color-text-primary)" };
-  const textTertiary = { color: "var(--color-text-tertiary)" };
+  const textSecondary = { color: "var(--muted)" };
+  const textPrimary = { color: "var(--body)" };
+  const textTertiary = { color: "var(--faint)" };
 
   return (
     <>
       <section
-        className="page-hero relative overflow-hidden"
+        className="page-hero relative overflow-hidden px-6 md:px-8"
         aria-label="Calculator header"
       >
         <div className="mx-auto max-w-[840px] text-center">
           <h1
-            className="font-display text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl"
-            style={{ letterSpacing: "-0.04em" }}
+            className="text-3xl font-semibold leading-tight text-white md:text-4xl lg:text-5xl"
+            style={{ fontFamily: "var(--font-serif)", letterSpacing: "-0.04em" }}
           >
             MCA Calculator
           </h1>
-          <p className="mt-3 text-base text-white/90 md:text-lg">
+          <p className="mt-3 text-base text-white/90 md:text-lg" style={{ fontFamily: "var(--font-sans)" }}>
             True APR, daily payment, and cash flow impact. Add multiple positions to see stacked MCA cost.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[840px] px-4 py-8 pb-24 sm:px-6 text-[14px]">
-        {/* Tabs — full width, 48px min height */}
-        <div className="mb-6 flex w-full min-h-[48px] rounded-xl border overflow-hidden" style={{ borderColor: "var(--color-border-default)" }}>
+      <section className="mx-auto max-w-[840px] px-6 md:px-8 py-8 pb-24 text-[14px]" style={{ background: "var(--bg)" }}>
+        <div className="mb-2 flex items-center gap-2">
+          <span className="h-0.5 w-5 shrink-0" style={{ background: "var(--red)" }} />
+          <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Tools</span>
+        </div>
+        <h2 className="mb-6 text-[22px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
+          Calculate true cost
+        </h2>
+        {/* Tabs */}
+        <div className="mb-6 flex w-full min-h-[48px] border border-[var(--line)] overflow-hidden" style={{ background: "var(--white)" }}>
           <button
             type="button"
             onClick={() => setActiveTab(1)}
-            className="flex-1 min-h-[48px] py-3 px-4 text-sm font-semibold transition md:text-base"
+            className="flex-1 min-h-[48px] py-3 px-4 text-sm font-semibold transition md:text-base border-0"
             style={{
-              background: activeTab === 1 ? "var(--color-accent-primary)" : "var(--color-bg-surface)",
-              color: activeTab === 1 ? "#fff" : "var(--color-text-secondary)",
+              background: activeTab === 1 ? "var(--blue)" : "var(--bg)",
+              color: activeTab === 1 ? "#fff" : "var(--muted)",
             }}
           >
             Evaluating an Offer
@@ -302,17 +304,17 @@ export default function APRCalculatorPage() {
           <button
             type="button"
             onClick={() => setActiveTab(2)}
-            className="flex-1 min-h-[48px] py-3 px-4 text-sm font-semibold transition md:text-base"
+            className="flex-1 min-h-[48px] py-3 px-4 text-sm font-semibold transition md:text-base border-0"
             style={{
-              background: activeTab === 2 ? "var(--color-accent-primary)" : "var(--color-bg-surface)",
-              color: activeTab === 2 ? "#fff" : "var(--color-text-secondary)",
+              background: activeTab === 2 ? "var(--blue)" : "var(--bg)",
+              color: activeTab === 2 ? "#fff" : "var(--muted)",
             }}
           >
             I Already Have an MCA
           </button>
         </div>
 
-        <div className="rounded-2xl border p-4 sm:p-6 md:p-8" style={cardStyle}>
+        <div className="border border-[var(--line)] p-4 sm:p-6 md:p-8" style={{ background: "var(--white)" }}>
           {activeTab === 1 && (
             <>
               <div className="space-y-6">
@@ -339,11 +341,11 @@ export default function APRCalculatorPage() {
                     <button
                       type="button"
                       onClick={() => updateTab1(0, { useFactorRate: true })}
-                      className="flex-1 min-h-[48px] rounded-lg border px-4 py-2 text-sm font-medium"
+                      className="flex-1 min-h-[48px] border border-[var(--line)] px-4 py-2 text-sm font-medium"
                       style={{
-                        borderColor: "var(--color-border-default)",
-                        background: tab1First?.useFactorRate ? "var(--color-accent-primary)" : "transparent",
-                        color: tab1First?.useFactorRate ? "#fff" : "var(--color-text-primary)",
+                        borderColor: "var(--line)",
+                        background: tab1First?.useFactorRate ? "var(--blue)" : "transparent",
+                        color: tab1First?.useFactorRate ? "#fff" : "var(--body)",
                       }}
                     >
                       Factor Rate
@@ -351,11 +353,11 @@ export default function APRCalculatorPage() {
                     <button
                       type="button"
                       onClick={() => updateTab1(0, { useFactorRate: false })}
-                      className="flex-1 min-h-[48px] rounded-lg border px-4 py-2 text-sm font-medium"
+                      className="flex-1 min-h-[48px] border border-[var(--line)] px-4 py-2 text-sm font-medium"
                       style={{
-                        borderColor: "var(--color-border-default)",
-                        background: !tab1First?.useFactorRate ? "var(--color-accent-primary)" : "transparent",
-                        color: !tab1First?.useFactorRate ? "#fff" : "var(--color-text-primary)",
+                        borderColor: "var(--line)",
+                        background: !tab1First?.useFactorRate ? "var(--blue)" : "transparent",
+                        color: !tab1First?.useFactorRate ? "#fff" : "var(--body)",
                       }}
                     >
                       Total Payback Amount
@@ -415,11 +417,11 @@ export default function APRCalculatorPage() {
                     <button
                       type="button"
                       onClick={() => updateTab1(0, { frequencyDaily: true })}
-                      className="flex-1 min-h-[48px] rounded-lg border px-4 py-2 text-sm font-medium"
+                      className="flex-1 min-h-[48px] border border-[var(--line)] px-4 py-2 text-sm font-medium"
                       style={{
-                        borderColor: "var(--color-border-default)",
-                        background: tab1First?.frequencyDaily ? "var(--color-accent-primary)" : "transparent",
-                        color: tab1First?.frequencyDaily ? "#fff" : "var(--color-text-primary)",
+                        borderColor: "var(--line)",
+                        background: tab1First?.frequencyDaily ? "var(--blue)" : "transparent",
+                        color: tab1First?.frequencyDaily ? "#fff" : "var(--body)",
                       }}
                     >
                       Daily
@@ -427,11 +429,11 @@ export default function APRCalculatorPage() {
                     <button
                       type="button"
                       onClick={() => updateTab1(0, { frequencyDaily: false })}
-                      className="flex-1 min-h-[48px] rounded-lg border px-4 py-2 text-sm font-medium"
+                      className="flex-1 min-h-[48px] border border-[var(--line)] px-4 py-2 text-sm font-medium"
                       style={{
-                        borderColor: "var(--color-border-default)",
-                        background: !tab1First?.frequencyDaily ? "var(--color-accent-primary)" : "transparent",
-                        color: !tab1First?.frequencyDaily ? "#fff" : "var(--color-text-primary)",
+                        borderColor: "var(--line)",
+                        background: !tab1First?.frequencyDaily ? "var(--blue)" : "transparent",
+                        color: !tab1First?.frequencyDaily ? "#fff" : "var(--body)",
                       }}
                     >
                       Weekly
@@ -478,7 +480,7 @@ export default function APRCalculatorPage() {
 
               {tab1Result && (
                 <>
-                  <div className="mt-8 rounded-xl border p-6" style={{ background: "var(--color-bg-surface)", borderColor: "var(--color-border-default)" }}>
+                  <div className="mt-8 border border-[var(--line)] p-6" style={{ background: "var(--white)", borderColor: "var(--line)" }}>
                     <p className="text-xs font-semibold uppercase tracking-wider" style={textTertiary}>
                       Results
                     </p>
@@ -495,7 +497,7 @@ export default function APRCalculatorPage() {
                             color:
                               tab1Result.aprWithFees > 100
                                 ? "var(--color-danger)"
-                                : "var(--color-text-primary)",
+                                : "var(--body)",
                           }}
                         >
                           {formatApr(tab1Result.aprWithFees)}
@@ -525,7 +527,7 @@ export default function APRCalculatorPage() {
                   </div>
 
                   {revenueNumTab1 > 0 && (
-                    <div className="mt-6 rounded-xl border p-6" style={{ background: "var(--color-bg-surface)", borderColor: "var(--color-border-default)" }}>
+                    <div className="mt-6 border border-[var(--line)] p-6" style={{ background: "var(--white)", borderColor: "var(--line)" }}>
                       <p className="text-xs font-semibold uppercase tracking-wider" style={textTertiary}>
                         Cash Flow Impact
                       </p>
@@ -578,7 +580,7 @@ export default function APRCalculatorPage() {
               </div>
 
               {tab2Positions.map((pos, idx) => (
-                <div key={idx} className="mb-6 rounded-xl border p-4 flex flex-col gap-4" style={{ borderColor: "var(--color-border-default)" }}>
+                <div key={idx} className="mb-6 border border-[var(--line)] p-4 flex flex-col gap-4" style={{ borderColor: "var(--line)" }}>
                   <span className="text-sm font-medium" style={textTertiary}>
                     MCA position {idx + 1}
                   </span>
@@ -680,8 +682,8 @@ export default function APRCalculatorPage() {
                 <button
                   type="button"
                   onClick={addTab2Position}
-                  className="mb-6 w-full min-h-[48px] rounded-lg border border-dashed py-3 text-sm font-medium sm:w-auto sm:px-6"
-                  style={{ borderColor: "var(--color-border-default)", ...textSecondary }}
+                  className="mb-6 w-full min-h-[48px] border border-dashed border-[var(--line)] py-3 text-sm font-medium sm:w-auto sm:px-6"
+                  style={{ borderColor: "var(--line)", ...textSecondary }}
                 >
                   + Add Another MCA
                 </button>
@@ -689,7 +691,7 @@ export default function APRCalculatorPage() {
 
               {/* Tab 2 prominent summary when multiple positions */}
               {tab2Combined.totalDaily > 0 && tab2Positions.length >= 1 && (
-                <div className="rounded-xl border p-6 mb-6" style={{ background: "var(--color-bg-surface)", borderColor: "var(--color-border-default)" }}>
+                <div className="border border-[var(--line)] p-6 mb-6" style={{ background: "var(--white)", borderColor: "var(--line)" }}>
                   <p className="text-base sm:text-lg md:text-xl font-bold leading-snug" style={textPrimary}>
                     You are paying ${tab2Combined.totalDaily.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} per day
                     {tab2Positions.length > 1 ? ` across ${tab2Positions.length} MCA positions` : ""}.
@@ -700,7 +702,7 @@ export default function APRCalculatorPage() {
 
               {/* Tab 2 single-position results */}
               {tab2Results[0] && tab2Results[0].dailyDebit > 0 && tab2Results[0].originalAdvance > 0 && (
-                <div className="rounded-xl border p-6 mb-6" style={{ background: "var(--color-bg-surface)", borderColor: "var(--color-border-default)" }}>
+                <div className="border border-[var(--line)] p-6 mb-6" style={{ background: "var(--white)", borderColor: "var(--line)" }}>
                   <p className="text-xs font-semibold uppercase tracking-wider mb-4" style={textTertiary}>
                     Position 1 results
                   </p>
@@ -738,7 +740,7 @@ export default function APRCalculatorPage() {
                                 ? "#8B0000"
                                 : tab2Results[0].impliedApr > 50
                                   ? "var(--color-danger)"
-                                  : "var(--color-text-primary)",
+                                  : "var(--body)",
                           }}
                         >
                           {formatApr(tab2Results[0].impliedApr)}
@@ -754,7 +756,7 @@ export default function APRCalculatorPage() {
                   </dl>
                   {revenueNumTab2 > 0 && (
                     <>
-                      <div className="mt-4 pt-4 border-t" style={{ borderColor: "var(--color-border-default)" }}>
+                      <div className="mt-4 pt-4 border-t" style={{ borderColor: "var(--line)" }}>
                         <dt className="text-sm" style={textSecondary}>Daily revenue (est.)</dt>
                         <dd className="font-mono font-bold" style={textPrimary}>
                           ${dailyRevenueTab2.toLocaleString("en-US", { maximumFractionDigits: 2 })}
@@ -775,7 +777,7 @@ export default function APRCalculatorPage() {
 
               {/* Tab 2 combined stacking */}
               {tab2Positions.length > 1 && tab2Combined.totalDaily > 0 && (
-                <div className="rounded-xl border p-6 mb-6" style={{ background: "var(--color-bg-surface)", borderColor: "var(--color-border-default)" }}>
+                <div className="border border-[var(--line)] p-6 mb-6" style={{ background: "var(--white)", borderColor: "var(--line)" }}>
                   <p className="text-xs font-semibold uppercase tracking-wider mb-4" style={textTertiary}>
                     Combined results
                   </p>
@@ -817,7 +819,7 @@ export default function APRCalculatorPage() {
                       {stressTab2 === "unsustainable" && (
                         <p className="mt-3 text-sm" style={textSecondary}>
                           Your combined MCA payments are consuming {tab2Combined.pctRevenue.toFixed(0)}% of daily revenue. At this level most businesses cannot sustain operations.{" "}
-                          <Link href="/blog/mca-debt-relief-guide" className="font-medium underline" style={{ color: "var(--color-accent-primary)" }}>
+                          <Link href="/blog/mca-debt-relief-guide" className="font-medium underline" style={{ color: "var(--blue)" }}>
                             See your options →
                           </Link>
                         </p>
@@ -840,7 +842,7 @@ export default function APRCalculatorPage() {
             <Link
               href="/analyze"
               className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:opacity-95"
-              style={{ background: "var(--color-accent-primary)" }}
+              style={{ background: "var(--blue)" }}
             >
               Seeing numbers that concern you? Upload your contract for a full clause-by-clause analysis →
             </Link>
@@ -876,7 +878,7 @@ function StressBar({
           : "Unsustainable";
   return (
     <div className="mt-4">
-      <div className="h-3 w-full overflow-hidden rounded-full bg-[var(--color-border-default)]">
+      <div className="h-3 w-full overflow-hidden rounded-full bg-[var(--line)]">
         <div
           className="h-full rounded-full transition-all"
           style={{ width: `${Math.min(100, (pct / 40) * 100)}%`, background: colors }}
@@ -888,7 +890,7 @@ function StressBar({
       {status === "unsustainable" && (
         <p className="mt-2 text-sm" style={{ color: "var(--color-text-secondary)" }}>
           At this payment level most businesses cannot cover operating expenses.{" "}
-          <Link href="/blog/mca-debt-relief-guide" className="font-medium underline" style={{ color: "var(--color-accent-primary)" }}>
+          <Link href="/blog/mca-debt-relief-guide" className="font-medium underline" style={{ color: "var(--blue)" }}>
             Review your options
           </Link>
           .
@@ -919,7 +921,7 @@ function ComparisonBars({ apr }: { apr: number }) {
               {bar.label}
               {i === 0 && overflow ? " " + COMPARISON_MAX_APR + "%+" : ""}
             </span>
-            <div className="relative h-8 min-w-[80px] flex-1 overflow-hidden rounded-md bg-[var(--color-border-default)]">
+            <div className="relative h-8 min-w-[80px] flex-1 overflow-hidden rounded-md bg-[var(--line)]">
               <div
                 className="absolute left-0 top-0 h-full rounded-md"
                 style={{
@@ -933,7 +935,7 @@ function ComparisonBars({ apr }: { apr: number }) {
                 </span>
               )}
             </div>
-            <span className="w-16 shrink-0 text-right font-mono text-sm font-bold" style={{ color: "var(--color-text-primary)" }}>
+            <span className="w-16 shrink-0 text-right font-mono text-sm font-bold" style={{ color: "var(--body)" }}>
               {i === 0 && overflow ? `${COMPARISON_MAX_APR}%+` : `${bar.value}%`}
             </span>
           </div>

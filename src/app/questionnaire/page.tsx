@@ -146,18 +146,22 @@ export default function QuestionnairePage() {
           >
             ← Back to Debtura
           </Link>
-          <h1 className="mt-6 text-2xl font-bold sm:text-3xl" style={{ color: "var(--color-text-primary)" }}>
+          <div className="mt-6 mb-2 flex items-center gap-2">
+            <span className="h-0.5 w-5 shrink-0" style={{ background: "var(--red)" }} />
+            <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Assessment</span>
+          </div>
+          <h1 className="text-2xl font-semibold sm:text-3xl" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
             Quick MCA Assessment
           </h1>
-          <p className="mt-2 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
+          <p className="mt-2 text-base" style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}>
             No contract needed. Answer a few questions and we&apos;ll give you a personalized snapshot based on what we know about your lenders and situation.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-10 space-y-8">
             {section === 1 && (
               <section
-                className="rounded-xl border p-6 sm:p-8"
-                style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+                className="border border-[var(--line)] p-6 sm:p-8"
+                style={{ background: "var(--white)" }}
               >
                 <h2 className="text-lg font-semibold" style={{ color: "var(--color-text-primary)" }}>
                   About you
@@ -173,7 +177,7 @@ export default function QuestionnairePage() {
                       required
                       value={form.name}
                       onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                      className="mt-1.5 h-11 w-full rounded-lg border px-3"
+                      className="mt-1.5 h-11 w-full border border-[var(--line)] px-3"
                       style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                       placeholder="First and last"
                     />
@@ -188,7 +192,7 @@ export default function QuestionnairePage() {
                       required
                       value={form.businessName}
                       onChange={(e) => setForm((f) => ({ ...f, businessName: e.target.value }))}
-                      className="mt-1.5 h-11 w-full rounded-lg border px-3"
+                      className="mt-1.5 h-11 w-full border border-[var(--line)] px-3"
                       style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                     />
                   </div>
@@ -202,7 +206,7 @@ export default function QuestionnairePage() {
                       rows={3}
                       value={form.businessDescription}
                       onChange={(e) => setForm((f) => ({ ...f, businessDescription: e.target.value }))}
-                      className="mt-1.5 w-full rounded-lg border px-3 py-2"
+                      className="mt-1.5 w-full border border-[var(--line)] px-3 py-2"
                       style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                       placeholder="1–2 sentences"
                     />
@@ -216,7 +220,7 @@ export default function QuestionnairePage() {
                       required
                       value={form.state}
                       onChange={(e) => setForm((f) => ({ ...f, state: e.target.value }))}
-                      className="mt-1.5 h-11 w-full rounded-lg border px-3"
+                      className="mt-1.5 h-11 w-full border border-[var(--line)] px-3"
                       style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                     >
                       <option value="">Select state</option>
@@ -236,7 +240,7 @@ export default function QuestionnairePage() {
                         required
                         value={form.phone}
                         onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                        className="mt-1.5 h-11 w-full rounded-lg border px-3"
+                        className="mt-1.5 h-11 w-full border border-[var(--line)] px-3"
                         style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                       />
                     </div>
@@ -250,7 +254,7 @@ export default function QuestionnairePage() {
                         required
                         value={form.email}
                         onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                        className="mt-1.5 h-11 w-full rounded-lg border px-3"
+                        className="mt-1.5 h-11 w-full border border-[var(--line)] px-3"
                         style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                       />
                     </div>
@@ -261,8 +265,8 @@ export default function QuestionnairePage() {
 
             {section === 2 && (
               <section
-                className="rounded-xl border p-6 sm:p-8"
-                style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+                className="border border-[var(--line)] p-6 sm:p-8"
+                style={{ background: "var(--white)" }}
               >
                 <h2 className="text-lg font-semibold" style={{ color: "var(--color-text-primary)" }}>
                   Your MCA situation
@@ -278,7 +282,7 @@ export default function QuestionnairePage() {
                       rows={2}
                       value={form.lenderNames}
                       onChange={(e) => setForm((f) => ({ ...f, lenderNames: e.target.value }))}
-                      className="mt-1.5 w-full rounded-lg border px-3 py-2"
+                      className="mt-1.5 w-full border border-[var(--line)] px-3 py-2"
                       style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                       placeholder="e.g. Yellowstone Capital, Pearl Capital"
                     />
@@ -295,7 +299,7 @@ export default function QuestionnairePage() {
                       required
                       value={form.lenderCount}
                       onChange={(e) => setForm((f) => ({ ...f, lenderCount: e.target.value === "5+" ? "5+" : Number(e.target.value) }))}
-                      className="mt-1.5 h-11 w-full rounded-lg border px-3"
+                      className="mt-1.5 h-11 w-full border border-[var(--line)] px-3"
                       style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                     >
                       {LENDER_COUNT_OPTIONS.map((n) => (
@@ -316,7 +320,7 @@ export default function QuestionnairePage() {
                         required
                         value={form.totalPayment}
                         onChange={(e) => setForm((f) => ({ ...f, totalPayment: e.target.value }))}
-                        className="h-11 w-32 rounded-lg border px-3"
+                        className="h-11 w-32 border border-[var(--line)] px-3"
                         style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                       />
                       <label className="flex items-center gap-2">
@@ -352,7 +356,7 @@ export default function QuestionnairePage() {
                       required
                       value={form.totalOwedRange}
                       onChange={(e) => setForm((f) => ({ ...f, totalOwedRange: e.target.value }))}
-                      className="mt-1.5 h-11 w-full rounded-lg border px-3"
+                      className="mt-1.5 h-11 w-full border border-[var(--line)] px-3"
                       style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                     >
                       <option value="">Select range</option>
@@ -412,7 +416,7 @@ export default function QuestionnairePage() {
                       id="cardPaymentPercentage"
                       value={form.cardPaymentPercentage}
                       onChange={(e) => setForm((f) => ({ ...f, cardPaymentPercentage: e.target.value }))}
-                      className="mt-1.5 h-11 w-full rounded-lg border px-3"
+                      className="mt-1.5 h-11 w-full border border-[var(--line)] px-3"
                       style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                     >
                       <option value="">Select</option>

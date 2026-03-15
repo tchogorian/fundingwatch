@@ -132,8 +132,8 @@ export default function ResultsPage() {
 
   if (data === null) {
     return (
-      <div className="flex min-h-screen items-center justify-center" style={{ background: "var(--color-bg-base)" }}>
-        <p style={{ color: "var(--color-text-secondary)" }}>Loading...</p>
+      <div className="flex min-h-screen items-center justify-center" style={{ background: "var(--bg)" }}>
+        <p style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>Loading...</p>
       </div>
     );
   }
@@ -147,20 +147,20 @@ export default function ResultsPage() {
   if (optInSuccess) {
     return (
       <>
-        <main className="min-h-screen px-4 py-16" style={{ background: "var(--color-bg-base)" }}>
+        <main className="min-h-screen px-6 md:px-8 py-16" style={{ background: "var(--bg)" }}>
           <div ref={successRef} className="mx-auto max-w-[560px] text-center">
             <div className="flex justify-center">
               <div
-                className="flex h-20 w-20 items-center justify-center rounded-full"
-                style={{ background: "var(--color-accent-muted)" }}
+                className="flex h-20 w-20 items-center justify-center border border-[var(--line)]"
+                style={{ background: "var(--white)" }}
               >
-                <CheckCircle className="h-12 w-12" style={{ color: "var(--accent-green)" }} aria-hidden />
+                <CheckCircle className="h-12 w-12" style={{ color: "var(--green)" }} aria-hidden />
               </div>
             </div>
-            <h1 className="mt-6 text-3xl font-semibold" style={{ color: "var(--color-text-primary)" }}>
+            <h1 className="mt-6 text-3xl font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
               You&apos;re All Set
             </h1>
-            <p className="mt-4 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
+            <p className="mt-4 text-base" style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}>
               A Debtura advisor will review your situation and reach out within 24 hours with options from our lender network.
             </p>
             <button
@@ -178,42 +178,50 @@ export default function ResultsPage() {
 
   return (
     <>
-      <main className="min-h-screen px-4 py-10 sm:px-6 sm:py-12" style={{ background: "var(--color-bg-base)" }}>
+      <main className="min-h-screen px-6 md:px-8 py-10 sm:py-12" style={{ background: "var(--bg)" }}>
         <div className="mx-auto max-w-[900px]">
+          <div className="mb-2 flex items-center gap-2">
+            <span className="h-0.5 w-5 shrink-0" style={{ background: "var(--red)" }} />
+            <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Analysis</span>
+          </div>
+          <h2 className="mb-6 text-[22px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
+            Contract analysis results
+          </h2>
           {/* Risk Score Header */}
           <section
-            className="rounded-xl border p-6 sm:p-8"
-            style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+            className="border border-[var(--line)] p-6 sm:p-8 relative"
+            style={{ background: "var(--white)" }}
           >
+            <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: riskScoreColor(data.overall_risk_score ?? 0) }} />
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div
-                  className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full text-2xl font-bold text-white"
+                  className="flex h-16 w-16 shrink-0 items-center justify-center text-2xl font-bold text-white border-0"
                   style={{ background: riskScoreColor(data.overall_risk_score ?? 0) }}
                 >
                   {data.overall_risk_score ?? "—"}
                 </div>
                 <div>
                   <span
-                    className="inline-block rounded-full px-4 py-1.5 text-sm font-semibold text-white"
+                    className="inline-block px-4 py-1.5 text-sm font-semibold text-white"
                     style={{ background: riskLabelBg(data.overall_risk_label ?? "Moderate Risk") }}
                   >
                     {data.overall_risk_label ?? "Moderate Risk"}
                   </span>
-                  <p className="mt-2 text-2xl font-bold" style={{ color: data.effective_apr != null && data.effective_apr > 100 ? "var(--danger)" : "var(--color-text-primary)" }}>
+                  <p className="mt-2 text-2xl font-bold" style={{ fontFamily: "var(--font-sans)", color: data.effective_apr != null && data.effective_apr > 100 ? "var(--red)" : "var(--body)" }}>
                     Effective APR: {formatPct(data.effective_apr)}
                   </p>
                 </div>
               </div>
             </div>
-            <p className="mt-4 text-[var(--text-base)] leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+            <p className="mt-4 text-base leading-relaxed" style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}>
               {data.summary || "No summary available."}
             </p>
           </section>
 
           {/* Key Financial Terms */}
           <section className="mt-10">
-            <h2 className="text-xl font-semibold" style={{ color: "var(--color-text-primary)" }}>
+            <h2 className="text-lg font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
               Key Financial Terms
             </h2>
             <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -227,11 +235,11 @@ export default function ResultsPage() {
               ].map((row) => (
                 <div
                   key={row.label}
-                  className="rounded-xl border p-4"
-                  style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+                  className="border border-[var(--line)] p-4"
+                  style={{ background: "var(--white)" }}
                 >
-                  <p className="text-sm font-medium" style={{ color: "var(--color-text-tertiary)" }}>{row.label}</p>
-                  <p className="mt-1 font-semibold" style={{ color: "var(--color-text-primary)" }}>{row.value}</p>
+                  <p className="text-sm font-medium" style={{ color: "var(--muted)" }}>{row.label}</p>
+                  <p className="mt-1 font-semibold" style={{ color: "var(--body)" }}>{row.value}</p>
                 </div>
               ))}
             </div>
@@ -239,7 +247,7 @@ export default function ResultsPage() {
 
           {/* Contract Clauses */}
           <section className="mt-10">
-            <h2 className="text-xl font-semibold" style={{ color: "var(--color-text-primary)" }}>
+            <h2 className="text-lg font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
               Contract Clauses
             </h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -254,14 +262,14 @@ export default function ResultsPage() {
                 return (
                   <div
                     key={key}
-                    className="rounded-xl border p-4"
-                    style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
+                    className="border border-[var(--line)] p-4"
+                    style={{ background: "var(--white)" }}
                   >
                     <div className="flex items-center gap-3">
                       {present ? (
                         <XCircle className="h-6 w-6 shrink-0" style={{ color: "var(--danger)" }} aria-hidden />
                       ) : (
-                        <Check className="h-6 w-6 shrink-0" style={{ color: "var(--accent-green)" }} aria-hidden />
+                        <Check className="h-6 w-6 shrink-0" style={{ color: "var(--green)" }} aria-hidden />
                       )}
                       <span className="font-semibold" style={{ color: "var(--color-text-primary)" }}>{label}</span>
                     </div>
@@ -289,7 +297,7 @@ export default function ResultsPage() {
                   return (
                     <div
                       key={i}
-                      className="flex gap-4 rounded-xl border p-4"
+                      className="flex gap-4 border border-[var(--line)] p-4"
                       style={{
                         background: "var(--bg-light)",
                         borderColor: "var(--color-border-default)",
@@ -340,14 +348,14 @@ export default function ResultsPage() {
                 <div className="mt-4 space-y-4">
                   {indexLender ? (
                     <div
-                      className="rounded-xl border p-4"
+                      className="border border-[var(--line)] p-4"
                       style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
                     >
                       <div className="flex flex-wrap items-center gap-3">
                         <span className="font-semibold" style={{ color: "var(--color-text-primary)" }}>{indexLender.name}</span>
                         {indexLender.fw_rating && (
                           <span
-                            className="rounded-full px-3 py-1 text-sm font-semibold text-white"
+                            className="px-3 py-1 text-sm font-semibold text-white"
                             style={{
                               background:
                                 indexLender.fw_rating === "certified"
@@ -384,10 +392,10 @@ export default function ResultsPage() {
                         {certified.map((l) => (
                           <div
                             key={l.id}
-                            className="flex items-center gap-3 rounded-xl border p-4"
+                            className="flex items-center gap-3 border border-[var(--line)] p-4"
                             style={{ background: "var(--bg-light)", borderColor: "var(--color-border-default)" }}
                           >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ background: "var(--accent-green)", color: "white" }}>
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center" style={{ background: "var(--green)", color: "white" }}>
                               <ShieldCheck className="h-5 w-5" />
                             </div>
                             <div>
@@ -422,7 +430,7 @@ export default function ResultsPage() {
             if (isForkA) {
               return (
                 <section
-                  className="mt-12 rounded-xl border p-6 sm:p-8"
+                  className="mt-12 border border-[var(--line)] p-6 sm:p-8"
                   style={{ background: "var(--bg-dark)", borderColor: "var(--border-dark)" }}
                 >
                   <h2 className="text-xl font-semibold text-white sm:text-2xl">
@@ -435,7 +443,7 @@ export default function ResultsPage() {
                     <button
                       type="button"
                       onClick={() => setModalOpen(true)}
-                      className="inline-flex min-h-[48px] items-center justify-center rounded-full px-6 py-3 font-semibold text-white transition hover:opacity-95"
+                      className="inline-flex min-h-[48px] items-center justify-center px-6 py-3 font-semibold text-white border-0 transition hover:opacity-95"
                       style={{ background: "var(--accent-blue)" }}
                     >
                       See Better Options
@@ -443,7 +451,7 @@ export default function ResultsPage() {
                     <button
                       type="button"
                       onClick={() => setModalOpen(true)}
-                      className="inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-white/60 bg-transparent px-6 py-3 font-semibold text-white transition hover:bg-white/10"
+                      className="inline-flex min-h-[48px] items-center justify-center border-2 border-white/60 bg-transparent px-6 py-3 font-semibold text-white transition hover:bg-white/10"
                     >
                       Talk to a Debtura Advisor
                     </button>
@@ -453,7 +461,7 @@ export default function ResultsPage() {
                       {certifiedLenders.map((l) => (
                         <div
                           key={l.id}
-                          className="flex items-center gap-3 rounded-lg border border-white/20 p-4"
+                          className="flex items-center gap-3 border border-white/20 p-4"
                         >
                           <ShieldCheck className="h-6 w-6 shrink-0 text-white" />
                           <div>
@@ -475,7 +483,7 @@ export default function ResultsPage() {
             if (isForkB) {
               return (
                 <section
-                  className="mt-12 rounded-xl border p-6 sm:p-8"
+                  className="mt-12 border border-[var(--line)] p-6 sm:p-8"
                   style={{ background: "var(--bg-dark)", borderColor: "var(--border-dark)" }}
                 >
                   <h2 className="text-xl font-semibold text-white sm:text-2xl">
@@ -484,7 +492,7 @@ export default function ResultsPage() {
                   <button
                     type="button"
                     onClick={() => setModalOpen(true)}
-                    className="mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full px-6 py-3 font-semibold text-white transition hover:opacity-95"
+                    className="mt-6 inline-flex min-h-[48px] items-center justify-center px-6 py-3 font-semibold text-white border-0 transition hover:opacity-95"
                     style={{ background: "var(--accent-blue)" }}
                   >
                     Compare Lenders
@@ -499,7 +507,7 @@ export default function ResultsPage() {
             }
             return (
               <section
-                className="mt-12 rounded-xl border p-6 sm:p-8"
+                className="mt-12 border border-[var(--line)] p-6 sm:p-8"
                 style={{ background: "var(--bg-dark)", borderColor: "var(--border-dark)" }}
               >
                 <h2 className="text-xl font-semibold text-white sm:text-2xl">
@@ -533,7 +541,7 @@ export default function ResultsPage() {
           aria-labelledby="modal-title"
         >
           <div
-            className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border p-6 sm:p-8"
+            className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto border border-[var(--line)] p-6 sm:p-8"
             style={{ background: "var(--bg-white)", borderColor: "var(--color-border-default)" }}
           >
             <button
@@ -559,7 +567,7 @@ export default function ResultsPage() {
                   type="text"
                   value={form.business_name}
                   onChange={(e) => setForm((f) => ({ ...f, business_name: e.target.value }))}
-                  className="mt-1 h-11 w-full rounded-lg border px-3 text-base"
+                  className="mt-1 h-11 w-full border border-[var(--line)] px-3 text-base"
                   style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                   required
                 />
@@ -571,7 +579,7 @@ export default function ResultsPage() {
                   type="text"
                   value={form.contact_name}
                   onChange={(e) => setForm((f) => ({ ...f, contact_name: e.target.value }))}
-                  className="mt-1 h-11 w-full rounded-lg border px-3 text-base"
+                  className="mt-1 h-11 w-full border border-[var(--line)] px-3 text-base"
                   style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                   required
                 />
@@ -583,7 +591,7 @@ export default function ResultsPage() {
                   type="email"
                   value={form.email}
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                  className="mt-1 h-11 w-full rounded-lg border px-3 text-base"
+                  className="mt-1 h-11 w-full border border-[var(--line)] px-3 text-base"
                   style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                   required
                 />
@@ -595,7 +603,7 @@ export default function ResultsPage() {
                   type="tel"
                   value={form.phone}
                   onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                  className="mt-1 h-11 w-full rounded-lg border px-3 text-base"
+                  className="mt-1 h-11 w-full border border-[var(--line)] px-3 text-base"
                   style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                   required
                 />
@@ -606,7 +614,7 @@ export default function ResultsPage() {
                   id="broker-revenue"
                   value={form.monthly_revenue}
                   onChange={(e) => setForm((f) => ({ ...f, monthly_revenue: e.target.value }))}
-                  className="mt-1 h-11 w-full rounded-lg border px-3 text-base"
+                  className="mt-1 h-11 w-full border border-[var(--line)] px-3 text-base"
                   style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                   required
                 >
@@ -625,7 +633,7 @@ export default function ResultsPage() {
                   type="text"
                   value={form.current_advance_balance}
                   onChange={(e) => setForm((f) => ({ ...f, current_advance_balance: e.target.value }))}
-                  className="mt-1 h-11 w-full rounded-lg border px-3 text-base"
+                  className="mt-1 h-11 w-full border border-[var(--line)] px-3 text-base"
                   style={{ borderColor: "var(--color-border-default)", color: "var(--color-text-primary)", background: "var(--color-bg-base)" }}
                   placeholder="e.g. $25,000"
                 />
@@ -678,7 +686,7 @@ export default function ResultsPage() {
               <button
                 type="submit"
                 disabled={submitStatus === "submitting" || !form.contact_name.trim() || !form.email.trim() || !form.phone.trim() || !form.business_name.trim() || !form.monthly_revenue || !form.looking_for || !form.consent}
-                className="mt-4 flex h-12 w-full items-center justify-center rounded-full font-semibold text-white disabled:opacity-50"
+                className="mt-4 flex h-12 w-full items-center justify-center font-semibold text-white disabled:opacity-50 border-0"
                 style={{ background: "var(--accent-blue)" }}
               >
                 {submitStatus === "submitting" ? "Submitting..." : "Submit"}
