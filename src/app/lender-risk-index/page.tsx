@@ -179,7 +179,13 @@ export default function LenderRiskIndex() {
               </thead>
               <tbody>
                 {filtered.map((l, i) => {
-                  const gradeInfo = l.fw_risk_score !== null ? scoreToGrade(l.fw_risk_score) : null;
+                  const gradeInfo = l.fw_risk_score !== null
+                    ? scoreToGrade(l.fw_risk_score)
+                    : l.fw_rating === "certified" ? { letter: "✓", tier: "Certified", bg: "#dcfce7", text: "#166534" }
+                    : l.fw_rating === "caution"   ? { letter: "C", tier: "Caution",   bg: "#fef3c7", text: "#92400e" }
+                    : l.fw_rating === "warning"   ? { letter: "D", tier: "Warning",   bg: "#ffedd5", text: "#9a3412" }
+                    : l.fw_rating === "avoid"     ? { letter: "F", tier: "Avoid",     bg: "#fef2f2", text: "#991b1b" }
+                    : null;
                   const isCertified = l.fw_rating === "certified";
                   return (
                     <tr
