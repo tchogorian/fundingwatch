@@ -31,31 +31,36 @@ const articles = [
 
 export default function IntelligencePage() {
   return (
-    <main className="min-h-screen py-16 px-4" style={{ background: "#f8fafb" }}>
+    <main className="min-h-screen py-16 px-6 md:px-8" style={{ background: "var(--bg)" }}>
       <div className="mx-auto max-w-[720px]">
-        <Link href="/" className="text-[13px] font-medium no-underline hover:opacity-80" style={{ color: "#2a6a9e", fontFamily: "var(--font-dm-sans)" }}>
+        <Link href="/" className="text-[13px] font-medium no-underline hover:opacity-80" style={{ color: "var(--blue)", fontFamily: "var(--font-sans)" }}>
           ← Back to Debtura
         </Link>
-        <h1 className="mt-8 text-[32px] md:text-[40px]" style={{ fontFamily: "var(--font-dm-serif), Georgia, serif", color: "#0f172a", fontWeight: 400 }}>
+        <div className="mt-8 mb-2 flex items-center gap-2">
+          <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
+          <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Research</span>
+        </div>
+        <h1 className="text-[32px] md:text-[40px]" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)", fontWeight: 600 }}>
           Debtura Intelligence
         </h1>
-        <p className="mt-3 text-[16px]" style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "#64748b" }}>
+        <p className="mt-3 text-[16px]" style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}>
           Independent research on MCA lending — lender behavior, borrower outcomes, contract trends, and regulatory shifts.
         </p>
-        <div className="mt-12 space-y-6">
-          {articles.map(({ tag, tagColor, tagBg, title, href, date }) => (
+        <div className="mt-12 space-y-0 border border-[var(--line)]">
+          {articles.map(({ tag, tagColor, tagBg, title, href, date }, i) => (
             <Link
               key={href}
               href={href}
-              className="block p-6 rounded-xl no-underline transition-shadow hover:shadow-md bg-white border border-[#f0f4f8]"
+              className="block p-6 no-underline transition-colors hover:bg-[var(--bg)] border-b border-[var(--line)] last:border-b-0 relative bg-white"
             >
-              <span className="text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full" style={{ color: tagColor, background: tagBg }}>
+              <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: tagColor }} />
+              <span className="text-[9px] font-bold uppercase tracking-[0.18em]" style={{ color: "var(--red)" }}>
                 {tag}
               </span>
-              <h2 className="mt-3 text-[18px] font-semibold" style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "#0f172a" }}>
+              <h2 className="mt-2 text-[18px] font-semibold" style={{ fontFamily: "var(--font-sans)", color: "var(--body)" }}>
                 {title}
               </h2>
-              <span className="text-[13px]" style={{ color: "#94a3b8" }}>{date}</span>
+              <span className="text-[13px]" style={{ color: "var(--muted)" }}>{date}</span>
             </Link>
           ))}
         </div>

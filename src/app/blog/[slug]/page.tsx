@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Shield, ArrowRight } from "lucide-react";
-import Footer from "@/components/Footer";
 import BlogCard from "@/components/BlogCard";
 import BlogStickyCTA from "@/components/BlogStickyCTA";
 import {
@@ -84,7 +83,7 @@ export default async function BlogArticlePage({
 
   return (
     <>
-      <article className="mx-auto max-w-[1080px] px-5 py-12 sm:px-6 lg:flex lg:gap-10 pb-24 md:pb-12">
+      <article className="mx-auto max-w-[1080px] px-6 md:px-8 py-12 lg:flex lg:gap-10 pb-24 md:pb-12" style={{ background: "var(--bg)" }}>
         {/* Main column — priority width for reading */}
         <div className="min-w-0 flex-1 lg:min-w-[min(100%,var(--max-width-text))] lg:max-w-[var(--max-width-text)]">
           {/* Breadcrumb */}
@@ -324,7 +323,6 @@ export default async function BlogArticlePage({
         )}
       </article>
       <BlogStickyCTA />
-      <Footer />
     </>
   );
 }

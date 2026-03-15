@@ -241,7 +241,7 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "Privacy Policy — FundingWatch",
   description:
-    "Privacy policy for FundingWatch (fundingwatch.org). How we collect, use, and protect your information. 250 Sunny Isles LLC.",
+    "Privacy policy for FundingWatch (fundingwatch.org). How we collect, use, and protect your information.",
   alternates: { canonical: "https://www.fundingwatch.org/privacy" },
 };
 
@@ -261,7 +261,7 @@ export default function PrivacyPage() {
             <div>
               <h2 className="text-lg font-semibold" style={{ color: "var(--color-text-primary)" }}>Who we are</h2>
               <p className="mt-2 leading-relaxed">
-                250 Sunny Isles LLC operates FundingWatch (fundingwatch.org), a free MCA contract review tool for small business owners.
+                Debtura (debtura.com) is a free MCA contract review tool for small business owners.
               </p>
             </div>
             <div>

@@ -10,7 +10,6 @@ import LoadingState from "@/components/LoadingState";
 import ApplicationForm from "@/components/ApplicationForm";
 import FAQ from "@/components/FAQ";
 import FollowBar from "@/components/FollowBar";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -85,7 +84,6 @@ export default function Home() {
       <ApplicationForm />
       <FAQ />
       <FollowBar />
-      <Footer />
     </>
   );
 }

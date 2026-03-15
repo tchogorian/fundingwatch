@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import Footer from "@/components/Footer";
 
 const BUSINESS_DAYS_PER_MONTH = 21.75;
 const BUSINESS_DAYS_PER_YEAR = 261;
@@ -848,7 +847,6 @@ export default function APRCalculatorPage() {
           </p>
         </div>
       </section>
-      <Footer />
     </>
   );
 }

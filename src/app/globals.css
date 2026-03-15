@@ -98,34 +98,50 @@
   --pattern-waves-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 60' width='240' height='60'%3E%3Cpath fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='.6' d='M0 15 Q60 5 120 15 T240 15'/%3E%3Cpath fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='.5' d='M0 30 Q60 20 120 30 T240 30'/%3E%3C/svg%3E");
 }
 
-/* Backward-compat: components still using old names */
+/* Backward-compat: map old names to Debtura design system */
 :root {
-  --font-dm-serif: var(--font-playfair), Georgia, serif;
-  --font-dm-sans: var(--font-ibm), -apple-system, sans-serif;
-  --font-body: var(--font-ibm), -apple-system, sans-serif;
-  --font: var(--font-ibm), -apple-system, sans-serif;
+  --font-dm-serif: var(--font-serif);
+  --font-dm-sans: var(--font-sans);
+  --font-body: var(--font-sans);
+  --font: var(--font-sans);
   --danger-bg: #FFEBEE;
   --danger-border: #EF9A9A;
   --warning-bg: #FFF3E0;
   --font-mono: var(--mono);
   --shadow-card: var(--shadow-md);
   --shadow-float: var(--shadow-lg);
-  --bg-card: var(--bg-white);
-  --text-dark-1: var(--on-light-1);
-  --text-dark-2: var(--on-light-2);
-  --text-dark-3: var(--on-light-3);
-  --hero-mid: var(--accent-blue);
-  --color-bg-base: var(--bg-white);
-  --color-bg-surface: var(--bg-light);
-  --color-accent-primary: var(--accent-blue);
-  --color-text-primary: var(--on-light-1);
-  --color-text-secondary: var(--on-light-2);
-  --color-text-tertiary: var(--on-light-3);
-  --color-border-default: var(--border-light);
-  --color-danger: var(--danger);
-  /* Blog article layout: article column vs TOC sidebar */
+  --bg-card: var(--white);
+  --text-dark-1: var(--body);
+  --text-dark-2: var(--muted);
+  --text-dark-3: var(--faint);
+  --hero-mid: var(--blue);
+  --color-bg-base: var(--white);
+  --color-bg-surface: var(--bg);
+  --color-accent-primary: var(--blue);
+  --color-text-primary: var(--body);
+  --color-text-secondary: var(--muted);
+  --color-text-tertiary: var(--faint);
+  --color-border-default: var(--line);
+  --color-danger: var(--red);
+  --color-accent-muted: rgba(0, 83, 160, 0.12);
+  --on-light-1: var(--body);
+  --on-light-2: var(--muted);
+  --on-light-3: var(--faint);
+  --border-light: var(--line);
+  --bg-light: var(--bg);
+  --bg-white: var(--white);
+  --accent-blue: var(--blue);
+  /* Blog article layout */
   --max-width-text: 720px;
   --sidebar-width: 200px;
+}
+
+/* Inner-page heroes: Debtura navy/blue gradient (institutional) */
+.blog-hero,
+.lri-hero,
+.page-hero {
+  background: linear-gradient(180deg, var(--navy) 0%, #001a33 50%, var(--blue) 100%) !important;
+  background-color: transparent !important;
 }
 
 /* ========== SECTION LAYOUT — dark/light alternation (Plaid) ========== */
@@ -602,14 +618,15 @@ h3 {
 }
 
 /* ========== HERO ========== */
-/* Shared dark blue gradient + same size for all page heroes */
-.hero,
+/* Inner-page heroes use .blog-hero / .lri-hero / .page-hero (navy/blue gradient above). Homepage .hero uses its own bg image. */
 .blog-hero,
 .lri-hero,
 .page-hero {
-  background: linear-gradient(135deg, #1A1A2E 0%, #2E75B6 50%, #1A8FB4 100%) !important;
-  background-color: transparent !important;
   padding: 4rem 1.5rem; /* py-16 px-6 */
+}
+.hero {
+  /* Homepage hero: background set by Hero.tsx (image + overlay) */
+  padding: 0;
 }
 @media (min-width: 768px) {
   .hero,

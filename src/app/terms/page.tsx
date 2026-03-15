@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Terms and Conditions — Debtura",
@@ -12,29 +11,19 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <>
-      <section
-        className="px-4 py-12 sm:px-6 sm:py-16"
-        style={{ background: "var(--color-bg-base)" }}
-      >
-        <div className="mx-auto max-w-[720px]">
-          <Link
-            href="/"
-            className="text-sm font-medium transition hover:underline"
-            style={{ color: "var(--color-accent-primary)" }}
-          >
-            ← Back to Debtura
-          </Link>
-          <h1
-            className="mt-8 text-3xl font-bold tracking-tight sm:text-4xl"
-            style={{ color: "var(--color-text-primary)" }}
-          >
-            Terms and Conditions
-          </h1>
-          <p
-            className="mt-2 text-sm"
-            style={{ color: "var(--color-text-tertiary)" }}
-          >
+    <main className="min-h-screen py-12 px-6 md:px-8 sm:py-16" style={{ background: "var(--bg)" }}>
+      <div className="mx-auto max-w-[720px]">
+        <Link href="/" className="text-sm font-medium transition hover:underline" style={{ color: "var(--blue)" }}>
+          ← Back to Debtura
+        </Link>
+        <div className="mt-8 mb-2 flex items-center gap-2">
+          <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
+          <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Legal</span>
+        </div>
+        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
+          Terms and Conditions
+        </h1>
+        <p className="mt-2 text-sm" style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}>
             Last updated: March 2026
           </p>
 
@@ -110,8 +99,6 @@ export default function TermsPage() {
             </div>
           </div>
         </div>
-      </section>
-      <Footer />
-    </>
+    </main>
   );
 }

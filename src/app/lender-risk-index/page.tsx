@@ -24,11 +24,11 @@ const RATING_STYLES: Record<string, { bg: string; text: string; label: string }>
 
 const TABS = ["all", "certified", "caution", "warning", "avoid"];
 const TAB_BORDER_COLORS: Record<string, string> = {
-  all: "#1e5a8a",
+  all: "var(--blue)",
   certified: "#22c55e",
   caution: "#f59e0b",
   warning: "#f97316",
-  avoid: "#ef4444",
+  avoid: "var(--red)",
 };
 
 function scoreColor(score: number | null): string {
@@ -98,22 +98,19 @@ export default function LenderRiskIndex() {
   };
 
   return (
-    <main className="min-h-screen" style={{ background: "#f8fafb" }}>
-      {/* Hero — dark gradient matching all other pages */}
-      <section
-        className="px-4 py-16 md:py-20 lg:py-24"
-        style={{ background: "linear-gradient(135deg, #1a3a5c 0%, #1e5a8a 50%, #2a6a9e 100%)" }}
-      >
+    <main className="min-h-screen" style={{ background: "var(--bg)" }}>
+      {/* Hero — Debtura navy/blue gradient */}
+      <section className="lri-hero px-4 py-16 md:py-20 lg:py-24">
         <div className="mx-auto max-w-[1100px] text-center">
           <h1
             className="text-[32px] md:text-[40px] lg:text-[48px] text-white"
-            style={{ fontFamily: "var(--font-dm-serif), Georgia, serif", fontWeight: 400 }}
+            style={{ fontFamily: "var(--font-serif)", fontWeight: 600 }}
           >
             Lender Risk Index
           </h1>
           <p
             className="mt-4 text-[16px] md:text-[18px] max-w-[600px] mx-auto"
-            style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "rgba(255,255,255,0.8)" }}
+            style={{ fontFamily: "var(--font-sans)", color: "rgba(255,255,255,0.85)" }}
           >
             Independent risk ratings for MCA lenders. Scored on complaints, litigation,
             contract terms, regulatory exposure, transparency, and stacking behavior.
@@ -136,9 +133,9 @@ export default function LenderRiskIndex() {
               placeholder="Search by lender name..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full h-[52px] pl-12 pr-4 rounded-xl text-[15px] outline-none transition-shadow focus:ring-2 focus:ring-white/30"
+              className="w-full h-[52px] pl-12 pr-4 text-[15px] outline-none transition-shadow focus:ring-2 focus:ring-white/30 border-0"
               style={{
-                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontFamily: "var(--font-sans)",
                 background: "rgba(255,255,255,0.12)",
                 border: "1px solid rgba(255,255,255,0.2)",
                 color: "#fff",
@@ -148,35 +145,35 @@ export default function LenderRiskIndex() {
         </div>
       </section>
 
-      <div className="max-w-[1100px] mx-auto px-4 py-10">
+      <div className="max-w-[1100px] mx-auto px-6 md:px-8 py-10">
         {/* Stats strip */}
         <div
-          className="rounded-xl py-3 px-6 mb-6 flex items-center gap-4 text-[13px]"
-          style={{ background: "#f0f4f8", fontFamily: "var(--font-dm-sans), sans-serif", color: "#64748b" }}
+          className="py-3 px-6 mb-6 flex items-center gap-4 text-[13px] border border-[var(--line)]"
+          style={{ background: "var(--white)", fontFamily: "var(--font-sans)", color: "var(--muted)" }}
         >
           <span>
-            <strong className="text-[#0f172a]">{counts.total}</strong> Lenders Indexed
+            <strong style={{ color: "var(--body)" }}>{counts.total}</strong> Lenders Indexed
           </span>
           <span>·</span>
           <span>
-            <strong className="text-[#0f172a]">{counts.certified}</strong> Certified
+            <strong style={{ color: "var(--body)" }}>{counts.certified}</strong> Certified
           </span>
           <span>·</span>
           <span>
-            <strong className="text-[#0f172a]">{counts.flagged}</strong> Flagged
+            <strong style={{ color: "var(--body)" }}>{counts.flagged}</strong> Flagged
           </span>
         </div>
 
         {/* Filter tabs */}
-        <div className="flex gap-0 border-b border-[#e2e8f0] mb-8">
+        <div className="flex gap-0 border-b border-[var(--line)] mb-8">
           {TABS.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className="px-5 py-3 text-[13px] font-medium capitalize transition-colors cursor-pointer bg-transparent"
+              className="px-5 py-3 text-[13px] font-medium capitalize transition-colors cursor-pointer bg-transparent border-0"
               style={{
-                fontFamily: "var(--font-dm-sans), sans-serif",
-                color: activeTab === tab ? "#0f172a" : "#94a3b8",
+                fontFamily: "var(--font-sans)",
+                color: activeTab === tab ? "var(--body)" : "var(--faint)",
                 fontWeight: activeTab === tab ? 600 : 400,
                 borderBottom:
                   activeTab === tab
@@ -191,37 +188,37 @@ export default function LenderRiskIndex() {
 
         {/* Table */}
         {loading ? (
-          <div className="text-center py-20 text-[15px]" style={{ color: "#94a3b8" }}>
+          <div className="text-center py-20 text-[15px]" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>
             Loading...
           </div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-20 text-[15px]" style={{ color: "#94a3b8" }}>
+          <div className="text-center py-20 text-[15px]" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>
             No lenders found.
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-xl border border-[#e2e8f0] bg-white">
-            <table className="w-full text-left" style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}>
+          <div className="overflow-x-auto border border-[var(--line)] bg-white">
+            <table className="w-full text-left" style={{ fontFamily: "var(--font-sans)" }}>
               <thead>
-                <tr style={{ background: "#f8fafb" }}>
-                  <th className="px-5 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8]">
+                <tr style={{ background: "var(--bg)" }}>
+                  <th className="px-5 py-4 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">
                     Lender
                   </th>
-                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8] hidden md:table-cell">
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)] hidden md:table-cell">
                     Location
                   </th>
-                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8]">
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">
                     Rating
                   </th>
-                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8]">
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">
                     Score
                   </th>
-                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8] hidden lg:table-cell">
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)] hidden lg:table-cell">
                     Complaints
                   </th>
-                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8] hidden lg:table-cell">
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)] hidden lg:table-cell">
                     UCC Filings
                   </th>
-                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8] hidden xl:table-cell">
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)] hidden xl:table-cell">
                     Red Flags
                   </th>
                   <th className="px-4 py-4"></th>
@@ -240,8 +237,8 @@ export default function LenderRiskIndex() {
                       key={l.slug}
                       className="transition-colors hover:bg-[#f8fafb]"
                       style={{
-                        borderBottom: "1px solid #f0f4f8",
-                        background: isCertified ? "#f9fefb" : i % 2 === 1 ? "#fafbfc" : "#fff",
+                        borderBottom: "1px solid var(--line)",
+                        background: isCertified ? "#f9fefb" : i % 2 === 1 ? "var(--bg)" : "var(--white)",
                         borderLeft: isCertified
                           ? "3px solid #22c55e"
                           : "3px solid transparent",
@@ -251,17 +248,17 @@ export default function LenderRiskIndex() {
                         <Link
                           href={`/lender-risk-index/${l.slug}`}
                           className="text-[15px] font-semibold no-underline hover:opacity-70 transition-opacity"
-                          style={{ color: "#0f172a" }}
+                          style={{ color: "var(--body)" }}
                         >
                           {l.name}
                         </Link>
-                        <div className="text-[12px] mt-0.5 md:hidden" style={{ color: "#94a3b8" }}>
+                        <div className="text-[12px] mt-0.5 md:hidden" style={{ color: "var(--muted)" }}>
                           {l.location || "—"}
                         </div>
                       </td>
                       <td
                         className="px-4 py-4 text-[13px] hidden md:table-cell"
-                        style={{ color: "#94a3b8" }}
+                        style={{ color: "var(--muted)" }}
                       >
                         {l.location || "—"}
                       </td>
@@ -281,20 +278,20 @@ export default function LenderRiskIndex() {
                           {l.risk_score ?? "—"}
                         </span>
                         {l.risk_score !== null && (
-                          <span className="text-[12px] ml-0.5" style={{ color: "#94a3b8" }}>
+                          <span className="text-[12px] ml-0.5" style={{ color: "var(--muted)" }}>
                             /100
                           </span>
                         )}
                       </td>
                       <td
                         className="px-4 py-4 text-[14px] hidden lg:table-cell"
-                        style={{ color: "#0f172a" }}
+                        style={{ color: "var(--body)" }}
                       >
                         {l.complaint_count ?? "—"}
                       </td>
                       <td
                         className="px-4 py-4 text-[14px] hidden lg:table-cell"
-                        style={{ color: "#0f172a" }}
+                        style={{ color: "var(--body)" }}
                       >
                         {l.ucc_count ?? "—"}
                       </td>
@@ -311,7 +308,7 @@ export default function LenderRiskIndex() {
                               </span>
                             ))
                           ) : (
-                            <span className="text-[12px]" style={{ color: "#c8cfd8" }}>
+                            <span className="text-[12px]" style={{ color: "var(--faint)" }}>
                               —
                             </span>
                           )}
@@ -321,7 +318,7 @@ export default function LenderRiskIndex() {
                         <Link
                           href={`/lender-risk-index/${l.slug}`}
                           className="text-[13px] font-semibold no-underline hover:opacity-70 transition-opacity"
-                          style={{ color: "#2a6a9e" }}
+                          style={{ color: "var(--blue)" }}
                         >
                           View →
                         </Link>
@@ -335,18 +332,23 @@ export default function LenderRiskIndex() {
         )}
 
         {/* Methodology */}
-        <div className="mt-12 text-center">
-          <div className="inline-block rounded-xl py-6 px-8" style={{ background: "#f0f4f8" }}>
-            <p
-              className="text-[14px] leading-[1.6] max-w-[600px]"
-              style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "#64748b" }}
-            >
-              Every lender is scored 0–100 across six dimensions: complaint density (25%),
-              regulatory exposure (25%), contract risk signals (20%), litigation
-              aggressiveness (15%), transparency (10%), and stacking behavior (5%). Lower
-              is better.
-            </p>
+        <div className="mt-12 pt-10 border-t border-[var(--line)]">
+          <div className="mb-2 flex items-center gap-2">
+            <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
+            <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Methodology</span>
           </div>
+          <h2 className="mb-4 text-[18px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
+            How we score lenders
+          </h2>
+          <p
+            className="text-[14px] leading-[1.65] max-w-[640px]"
+            style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}
+          >
+            Every lender is scored 0–100 across six dimensions: complaint density (25%),
+            regulatory exposure (25%), contract risk signals (20%), litigation
+            aggressiveness (15%), transparency (10%), and stacking behavior (5%). Lower
+            is better.
+          </p>
         </div>
       </div>
     </main>

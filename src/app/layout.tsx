@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import ScrollToHash from "@/components/ScrollToHash";
 import AIChatBubble from "@/components/AIChatBubble";
 import "./globals.css";
@@ -66,6 +67,7 @@ export default function RootLayout({
         <Navbar />
         <ScrollToHash />
         <main id="main">{children}</main>
+        <Footer />
         <AIChatBubble />
       </body>
     </html>

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Footer from "@/components/Footer";
 import {
   AlertTriangle,
   AlertCircle,
@@ -305,7 +304,6 @@ export default function SampleReportPage() {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Footer from "@/components/Footer";
 
 const US_STATES = [
   "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
@@ -138,14 +137,14 @@ export default function QuestionnairePage() {
 
   return (
     <>
-      <main className="min-h-screen px-4 py-10 sm:px-6 sm:py-12" style={{ background: "var(--color-bg-base)" }}>
+      <main className="min-h-screen px-6 md:px-8 py-10 sm:py-12" style={{ background: "var(--bg)" }}>
         <div className="mx-auto max-w-[640px]">
           <Link
             href="/"
             className="text-sm font-medium transition hover:underline"
             style={{ color: "var(--color-accent-primary)" }}
           >
-            ← Back to FundingWatch
+            ← Back to Debtura
           </Link>
           <h1 className="mt-6 text-2xl font-bold sm:text-3xl" style={{ color: "var(--color-text-primary)" }}>
             Quick MCA Assessment
@@ -454,7 +453,6 @@ export default function QuestionnairePage() {
           </form>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

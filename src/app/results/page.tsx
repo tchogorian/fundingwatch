@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Footer from "@/components/Footer";
 import {
   CheckCircle,
   X,
@@ -173,7 +172,6 @@ export default function ResultsPage() {
             </button>
           </div>
         </main>
-        <Footer />
       </>
     );
   }
@@ -689,8 +687,6 @@ export default function ResultsPage() {
           </div>
         </div>
       )}
-
-      <Footer />
     </>
   );
 }

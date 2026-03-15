@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "MCA Glossary — Debtura",
@@ -65,60 +64,42 @@ const TERMS: { term: string; definition: string }[] = [
 
 export default function GlossaryPage() {
   return (
-    <>
-      <section
-        className="px-4 py-12 sm:px-6 sm:py-16"
-        style={{ background: "var(--color-bg-base)" }}
-      >
-        <div className="mx-auto max-w-[720px]">
-          <Link
-            href="/"
-            className="text-sm font-medium transition hover:underline"
-            style={{ color: "var(--color-accent-primary)" }}
-          >
-            ← Back to Debtura
-          </Link>
-          <h1
-            className="mt-8 text-3xl font-bold tracking-tight sm:text-4xl"
-            style={{ color: "var(--color-text-primary)" }}
-          >
-            MCA Glossary
-          </h1>
-          <p
-            className="mt-2 text-[var(--text-base)]"
-            style={{ color: "var(--color-text-secondary)" }}
-          >
-            Common terms you may see in a merchant cash advance contract.
-          </p>
-
-          <dl className="mt-10 space-y-8">
-            {TERMS.map(({ term, definition }) => (
-              <div key={term}>
-                <dt
-                  className="text-lg font-semibold"
-                  style={{ color: "var(--color-text-primary)" }}
-                >
-                  {term}
-                </dt>
-                <dd
-                  className="mt-2 leading-relaxed"
-                  style={{ color: "var(--color-text-secondary)" }}
-                >
-                  {definition}
-                </dd>
-              </div>
-            ))}
-          </dl>
-
-          <p className="mt-12 text-[var(--text-base)]" style={{ color: "var(--color-text-secondary)" }}>
-            <Link href="/" className="font-medium transition hover:underline" style={{ color: "var(--color-accent-primary)" }}>
-              Upload your contract
-            </Link>
-            {" "}for a free analysis of your specific terms and risk flags.
-          </p>
+    <main className="min-h-screen py-12 px-6 md:px-8 sm:py-16" style={{ background: "var(--bg)" }}>
+      <div className="mx-auto max-w-[720px]">
+        <Link href="/" className="text-sm font-medium transition hover:underline" style={{ color: "var(--blue)" }}>
+          ← Back to Debtura
+        </Link>
+        <div className="mt-8 mb-2 flex items-center gap-2">
+          <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
+          <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Reference</span>
         </div>
-      </section>
-      <Footer />
-    </>
+        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
+          MCA Glossary
+        </h1>
+        <p className="mt-2 text-base" style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}>
+          Common terms you may see in a merchant cash advance contract.
+        </p>
+
+        <dl className="mt-10 space-y-8 border-t border-[var(--line)] pt-10">
+          {TERMS.map(({ term, definition }) => (
+            <div key={term} className="border-b border-[var(--line)] pb-8 last:border-b-0">
+              <dt className="text-lg font-semibold" style={{ fontFamily: "var(--font-sans)", color: "var(--body)" }}>
+                {term}
+              </dt>
+              <dd className="mt-2 leading-relaxed" style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}>
+                {definition}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <p className="mt-12 text-base" style={{ color: "var(--muted)" }}>
+          <Link href="/analyze" className="font-medium transition hover:underline" style={{ color: "var(--blue)" }}>
+            Upload your contract
+          </Link>
+          {" "}for a free analysis of your specific terms and risk flags.
+        </p>
+      </div>
+    </main>
   );
 }

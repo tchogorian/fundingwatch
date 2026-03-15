@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Footer from "@/components/Footer";
 import { CheckCircle } from "lucide-react";
 import { NO_LENDER_MATCH_MESSAGE } from "@/lib/questionnaire-assessment";
 
@@ -124,7 +123,6 @@ export default function QuestionnaireResultsPage() {
             </Link>
           </div>
         </main>
-        <Footer />
       </>
     );
   }
@@ -282,7 +280,6 @@ export default function QuestionnaireResultsPage() {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

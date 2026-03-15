@@ -71,34 +71,34 @@ export default function LenderDetailPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen flex items-center justify-center" style={{ background: "#f8fafb" }}>
-        <p className="text-[15px]" style={{ color: "#94a3b8", fontFamily: "var(--font-dm-sans)" }}>Loading...</p>
+      <main className="min-h-screen flex items-center justify-center" style={{ background: "var(--bg)" }}>
+        <p className="text-[15px]" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>Loading...</p>
       </main>
     );
   }
 
   if (error || !lender) {
     return (
-      <main className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "#f8fafb" }}>
-        <p className="text-[18px] font-semibold" style={{ color: "#0f172a", fontFamily: "var(--font-dm-sans)" }}>
+      <main className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "var(--bg)" }}>
+        <p className="text-[18px] font-semibold" style={{ color: "var(--body)", fontFamily: "var(--font-sans)" }}>
           Lender not found
         </p>
-        <Link href="/lender-risk-index" className="text-[14px] no-underline" style={{ color: "#2a6a9e" }}>
+        <Link href="/lender-risk-index" className="text-[14px] no-underline hover:opacity-80" style={{ color: "var(--blue)" }}>
           ← Back to Lender Risk Index
         </Link>
       </main>
     );
   }
 
-  const rs = RATING_STYLES[lender.rating || ""] || { bg: "#f0f4f8", text: "#64748b", label: "UNRATED", border: "#d1d5db" };
+  const rs = RATING_STYLES[lender.rating || ""] || { bg: "#f0f4f8", text: "#687788", label: "UNRATED", border: "#cdd6df" };
 
   return (
-    <main className="min-h-screen" style={{ background: "#f8fafb" }}>
-      <div className="max-w-[900px] mx-auto px-4 pt-10 pb-20">
+    <main className="min-h-screen" style={{ background: "var(--bg)" }}>
+      <div className="max-w-[900px] mx-auto px-6 md:px-8 pt-10 pb-20">
 
         {/* Breadcrumb */}
-        <Link href="/lender-risk-index" className="text-[13px] no-underline hover:opacity-70 transition-opacity"
-          style={{ color: "#94a3b8", fontFamily: "var(--font-dm-sans)" }}>
+        <Link href="/lender-risk-index" className="text-[13px] no-underline hover:opacity-80 transition-opacity"
+          style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>
           ← Back to Lender Risk Index
         </Link>
 
@@ -107,27 +107,27 @@ export default function LenderDetailPage() {
           <div>
             <div className="flex items-center gap-4 flex-wrap">
               <h1 className="text-[32px]"
-                style={{ fontFamily: "var(--font-dm-serif), Georgia, serif", color: "#0f172a", fontWeight: 400 }}>
+                style={{ fontFamily: "var(--font-serif)", color: "var(--navy)", fontWeight: 600 }}>
                 {lender.name}
               </h1>
-              <span className="text-[11px] font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full"
+              <span className="text-[11px] font-semibold uppercase tracking-wider px-4 py-1.5 border-0"
                 style={{ background: rs.bg, color: rs.text }}>
                 {rs.label}
               </span>
             </div>
-            <p className="mt-2 text-[14px]" style={{ color: "#94a3b8", fontFamily: "var(--font-dm-sans)" }}>
+            <p className="mt-2 text-[14px]" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>
               {[lender.location, lender.type ? `${lender.type} lender` : null].filter(Boolean).join(" · ") || "—"}
             </p>
           </div>
 
           {/* Score display */}
-          <div className="flex flex-col items-center px-8 py-5 rounded-2xl" style={{ background: "#fff", border: "1px solid #f0f4f8" }}>
-            <span className="text-[11px] uppercase tracking-wider font-medium" style={{ color: "#94a3b8" }}>Risk Score</span>
-            <span className="text-[48px] font-bold tabular-nums leading-none mt-1" style={{ color: scoreColor(lender.risk_score), fontFamily: "var(--font-dm-sans)" }}>
+          <div className="flex flex-col items-center px-8 py-5 border border-[var(--line)]" style={{ background: "var(--white)" }}>
+            <span className="text-[11px] uppercase tracking-wider font-medium" style={{ color: "var(--muted)" }}>Risk Score</span>
+            <span className="text-[48px] font-bold tabular-nums leading-none mt-1" style={{ color: scoreColor(lender.risk_score), fontFamily: "var(--font-sans)" }}>
               {lender.risk_score ?? "—"}
             </span>
             {lender.risk_score !== null && (
-              <span className="text-[13px] mt-1" style={{ color: "#c8cfd8" }}>/100</span>
+              <span className="text-[13px] mt-1" style={{ color: "var(--faint)" }}>/100</span>
             )}
             {lender.risk_score === null && lender.rating === "certified" && (
               <span className="text-[12px] mt-1" style={{ color: "#166534" }}>Meets all criteria</span>
@@ -136,7 +136,7 @@ export default function LenderDetailPage() {
         </div>
 
         {/* Divider */}
-        <div className="my-8 h-px" style={{ background: "#e2e8f0" }} />
+        <div className="my-8 h-px" style={{ background: "var(--line)" }} />
 
         {/* Key metrics row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
@@ -146,11 +146,11 @@ export default function LenderDetailPage() {
             { label: "Red Flags", value: lender.red_flags?.length ?? 0 },
             { label: "Rating", value: rs.label },
           ].map(({ label, value }) => (
-            <div key={label} className="rounded-xl py-4 px-5" style={{ background: "#fff", border: "1px solid #f0f4f8" }}>
-              <div className="text-[11px] uppercase tracking-wider font-medium" style={{ color: "#94a3b8", fontFamily: "var(--font-dm-sans)" }}>
+            <div key={label} className="py-4 px-5 border border-[var(--line)]" style={{ background: "var(--white)" }}>
+              <div className="text-[11px] uppercase tracking-wider font-medium" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>
                 {label}
               </div>
-              <div className="text-[22px] font-bold mt-1 tabular-nums" style={{ color: "#0f172a", fontFamily: "var(--font-dm-sans)" }}>
+              <div className="text-[22px] font-bold mt-1 tabular-nums" style={{ color: "var(--body)", fontFamily: "var(--font-sans)" }}>
                 {value}
               </div>
             </div>
@@ -159,15 +159,16 @@ export default function LenderDetailPage() {
 
         {/* Red Flags */}
         {lender.red_flags && lender.red_flags.length > 0 && (
-          <div className="mb-8 rounded-xl p-6" style={{ background: "#fff", border: "1px solid #fef2f2" }}>
-            <h3 className="text-[14px] font-semibold uppercase tracking-wider mb-4"
-              style={{ color: "#991b1b", fontFamily: "var(--font-dm-sans)" }}>
-              Red Flags
-            </h3>
+          <div className="mb-8 p-6 border border-[var(--line)] relative" style={{ background: "var(--white)" }}>
+            <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: "var(--red)" }} />
+            <div className="mb-2 flex items-center gap-2">
+              <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
+              <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Red Flags</span>
+            </div>
+            <h3 className="mb-4 text-[14px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>Red Flags</h3>
             <div className="flex flex-wrap gap-2">
               {lender.red_flags.map((flag) => (
-                <span key={flag} className="text-[13px] font-medium px-3 py-1.5 rounded-lg"
-                  style={{ background: "#fef2f2", color: "#991b1b" }}>
+                <span key={flag} className="text-[13px] font-medium px-3 py-1.5 border-0" style={{ background: "#fef2f2", color: "var(--red)" }}>
                   {flag}
                 </span>
               ))}
@@ -177,15 +178,16 @@ export default function LenderDetailPage() {
 
         {/* Positive Signals */}
         {lender.positive_signals && lender.positive_signals.length > 0 && (
-          <div className="mb-8 rounded-xl p-6" style={{ background: "#fff", border: "1px solid #dcfce7" }}>
-            <h3 className="text-[14px] font-semibold uppercase tracking-wider mb-4"
-              style={{ color: "#166534", fontFamily: "var(--font-dm-sans)" }}>
-              Positive Signals
-            </h3>
+          <div className="mb-8 p-6 border border-[var(--line)] relative" style={{ background: "var(--white)" }}>
+            <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: "var(--green)" }} />
+            <div className="mb-2 flex items-center gap-2">
+              <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--green)" }} />
+              <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--green)" }}>Positive Signals</span>
+            </div>
+            <h3 className="mb-4 text-[14px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>Positive Signals</h3>
             <div className="flex flex-wrap gap-2">
               {lender.positive_signals.map((signal) => (
-                <span key={signal} className="text-[13px] font-medium px-3 py-1.5 rounded-lg"
-                  style={{ background: "#dcfce7", color: "#166534" }}>
+                <span key={signal} className="text-[13px] font-medium px-3 py-1.5 border-0" style={{ background: "#dcfce7", color: "#166534" }}>
                   {signal}
                 </span>
               ))}
@@ -195,24 +197,25 @@ export default function LenderDetailPage() {
 
         {/* Court Opinions */}
         {lender.messaging_kit?.state_opinions && lender.messaging_kit.state_opinions.length > 0 && (
-          <div className="mb-8 rounded-xl p-6" style={{ background: "#fff", border: "1px solid #f0f4f8" }}>
-            <h3 className="text-[14px] font-semibold uppercase tracking-wider mb-4"
-              style={{ color: "#0f172a", fontFamily: "var(--font-dm-sans)" }}>
-              Legal & Regulatory
-            </h3>
+          <div className="mb-8 p-6 border border-[var(--line)] relative" style={{ background: "var(--white)" }}>
+            <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: "var(--blue)" }} />
+            <div className="mb-2 flex items-center gap-2">
+              <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--blue)" }} />
+              <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--blue)" }}>Legal & Regulatory</span>
+            </div>
+            <h3 className="mb-4 text-[14px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>Legal & Regulatory</h3>
             {lender.messaging_kit.state_opinion_summary && (
-              <p className="text-[14px] leading-[1.6] mb-4"
-                style={{ color: "#64748b", fontFamily: "var(--font-dm-sans)" }}>
+              <p className="text-[14px] leading-[1.6] mb-4" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>
                 {lender.messaging_kit.state_opinion_summary}
               </p>
             )}
             <div className="space-y-3">
               {lender.messaging_kit.state_opinions.map((op, i) => (
-                <div key={i} className="py-3 border-t border-[#f0f4f8]">
-                  <span className="text-[12px] font-semibold uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                <div key={i} className="py-3 border-t border-[var(--line)]">
+                  <span className="text-[12px] font-semibold uppercase tracking-wider" style={{ color: "var(--muted)" }}>
                     {op.state}
                   </span>
-                  <p className="mt-1 text-[14px] leading-[1.5]" style={{ color: "#64748b", fontFamily: "var(--font-dm-sans)" }}>
+                  <p className="mt-1 text-[14px] leading-[1.5]" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>
                     {op.summary}
                   </p>
                 </div>
@@ -222,17 +225,16 @@ export default function LenderDetailPage() {
         )}
 
         {/* CTA */}
-        <div className="mt-12 rounded-2xl py-8 px-8 text-center"
-          style={{ background: "linear-gradient(135deg, #1a3a5c, #1e5a8a, #2a6a9e)" }}>
-          <p className="text-[20px]" style={{ fontFamily: "var(--font-dm-serif), Georgia, serif", color: "#fff" }}>
+        <div className="mt-12 py-8 px-8 text-center border border-[var(--line)]" style={{ background: "var(--navy)" }}>
+          <p className="text-[20px]" style={{ fontFamily: "var(--font-serif)", color: "var(--white)" }}>
             Want better terms?
           </p>
-          <p className="mt-2 text-[14px]" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "var(--font-dm-sans)" }}>
+          <p className="mt-2 text-[14px]" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-sans)" }}>
             Apply through Debtura and get matched with vetted lenders.
           </p>
           <Link href="/#application"
-            className="inline-block mt-5 px-8 py-3 rounded-xl text-[14px] font-semibold no-underline transition-opacity hover:opacity-90"
-            style={{ background: "#fff", color: "#0f172a", fontFamily: "var(--font-dm-sans)" }}>
+            className="inline-block mt-5 px-8 py-3 text-[14px] font-semibold no-underline transition-opacity hover:opacity-90 border-0"
+            style={{ background: "var(--white)", color: "var(--body)", fontFamily: "var(--font-sans)" }}>
             Apply Now →
           </Link>
         </div>
