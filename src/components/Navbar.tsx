@@ -49,6 +49,8 @@ export default function Navbar() {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
   const isActive = (href: string) => pathname === href || (href !== "/" && pathname?.startsWith(href));
+  const isDropdownActive = (items: DropdownItem[]) =>
+    items.some((sub) => "href" in sub && isActive(sub.href));
 
   return (
     <>
@@ -137,7 +139,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     className="relative flex h-[46px] items-center border-b-2 border-transparent px-4 text-[13px] font-medium text-white/90 transition-colors hover:text-white"
-                    style={{ borderBottomColor: isActive(entry.label) ? "var(--red)" : "transparent" }}
+                    style={{ borderBottomColor: isDropdownActive(entry.items) ? "var(--red)" : "transparent" }}
                     onClick={() => setOpenDropdown(isDropdownOpen ? null : entry.label)}
                     aria-expanded={isDropdownOpen}
                     aria-haspopup="true"
