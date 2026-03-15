@@ -202,7 +202,7 @@ export default async function IntelligenceArticlePage({
               </h2>
               <div className="mt-6 grid gap-6 sm:grid-cols-3">
                 {related.map((p) => (
-                  <div key={p.slug}>
+                  <div key={p.slug} className="min-w-0">
                     <BlogCard post={p} />
                   </div>
                 ))}

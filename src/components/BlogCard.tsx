@@ -34,16 +34,15 @@ export default function BlogCard({ post }: { post: BlogPost }) {
   const badgeStyle = isRedFlag ? {} : getCategoryBadgeStyle(post.category);
   const dateObj = new Date(post.date);
   const shortDate = dateObj.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  const longDate = dateObj.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   const fullDateTitle = dateObj.toLocaleDateString("en-US", { dateStyle: "full" });
 
   return (
     <Link
       href={`/intelligence/${post.slug}`}
-      className="card group flex min-h-[220px] flex-col rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-accent-border)] hover:shadow-[var(--shadow-md)]"
+      className="card group flex min-h-[220px] min-w-0 flex-col rounded-[var(--radius-lg)] border border-[var(--color-border-default)] p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-accent-border)] hover:shadow-[var(--shadow-md)]"
       style={{ background: "#FFFFFF" }}
     >
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex min-w-0 items-center justify-between gap-3">
         <span
           className={`shrink-0 ${badgeClass}`}
           style={badgeStyle}
@@ -51,12 +50,11 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           {CATEGORY_LABELS[post.category]}
         </span>
         <span
-          className="shrink-0 font-mono text-[var(--text-xs)] whitespace-nowrap"
+          className="min-w-0 truncate text-right font-mono text-[var(--text-xs)]"
           style={{ color: "var(--color-text-tertiary)" }}
           title={fullDateTitle}
         >
-          <span className="sm:hidden">{shortDate}</span>
-          <span className="hidden sm:inline">{longDate}</span>
+          {shortDate}
         </span>
       </div>
       <h3
