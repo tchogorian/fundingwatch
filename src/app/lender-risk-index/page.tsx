@@ -62,11 +62,15 @@ export default function LenderRiskIndex() {
           ? data
           : (data as { lenders?: unknown[] })?.lenders ?? [];
         const normalized = list.map((l) => normalizeLender(l as Record<string, unknown>));
+        const RATING_ORDER: Record<string, number> = { certified: 0, caution: 1, warning: 2, avoid: 3 };
         const sorted = normalized.sort((a: Lender, b: Lender) => {
+          const ra = RATING_ORDER[a.fw_rating] ?? 99;
+          const rb = RATING_ORDER[b.fw_rating] ?? 99;
+          if (ra !== rb) return ra - rb;
           if (a.fw_risk_score === null && b.fw_risk_score === null) return 0;
           if (a.fw_risk_score === null) return 1;
           if (b.fw_risk_score === null) return -1;
-          return b.fw_risk_score - a.fw_risk_score;
+          return a.fw_risk_score - b.fw_risk_score;
         });
         setLenders(sorted);
       })
