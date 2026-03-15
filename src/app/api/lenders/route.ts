@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 const OPS_API = "https://ops.fundingwatch.org/api/lenders";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
+    const searchParams = request.nextUrl.searchParams;
     const params = new URLSearchParams();
     if (searchParams.get("rating")) params.set("rating", searchParams.get("rating")!);
     if (searchParams.get("type"))   params.set("type",   searchParams.get("type")!);
