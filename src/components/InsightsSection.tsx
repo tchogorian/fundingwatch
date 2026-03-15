@@ -2,14 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { BLOG_POSTS } from "@/lib/blog";
 
-const latestInsights = [
-  { date: "13 Mar 2026", title: "MCA Lender Risk: North America Outlook Q1 2026", href: "/intelligence" },
-  { date: "10 Mar 2026", title: "Yellowstone Capital Downgraded to C Following Consent Order", href: "/intelligence" },
-  { date: "5 Mar 2026", title: "Trucking Sector Alert: Predatory Stacking Patterns in 14 States", href: "/intelligence" },
-  { date: "28 Feb 2026", title: "TX HB 700 Implementation: What Borrowers Need to Know", href: "/intelligence" },
-  { date: "20 Feb 2026", title: "Reconciliation Failure as Legal Hook: 2025 Review", href: "/intelligence" },
-];
+const latestInsights = BLOG_POSTS.slice(0, 5).map((post) => ({
+  date: new Date(post.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }).replace(/ /g, " "),
+  title: post.title,
+  href: `/intelligence/${post.slug}`,
+}));
 
 export default function InsightsSection() {
   return (
@@ -39,9 +38,9 @@ export default function InsightsSection() {
             </div>
           </div>
 
-          {/* Center: large featured image card */}
+          {/* Center: large featured image card — links to top article */}
           <Link
-            href="/intelligence"
+            href={latestInsights[0] ? latestInsights[0].href : "/intelligence"}
             className="group flex flex-col border-r border-[var(--line)]"
           >
             <div className="h-[340px] shrink-0 relative overflow-hidden border-b border-[var(--line)]">
@@ -55,7 +54,9 @@ export default function InsightsSection() {
             </div>
             <div className="flex flex-col p-5 pt-5 pb-6" style={{ fontFamily: "var(--font-sans)" }}>
               <div className="text-[9px] font-bold uppercase tracking-[0.18em]" style={{ color: "var(--red)", marginBottom: 8 }}>Research &amp; Analysis</div>
-              <div className="text-[18px] font-semibold leading-snug group-hover:text-[var(--red)] transition-colors" style={{ color: "var(--body)", marginBottom: 10 }}>MCA Industry Report: The True Cost of Merchant Cash Advances in 2026</div>
+              <div className="text-[18px] font-semibold leading-snug group-hover:text-[var(--red)] transition-colors" style={{ color: "var(--body)", marginBottom: 10 }}>
+                {latestInsights[0]?.title ?? "MCA Industry Report: The True Cost of Merchant Cash Advances in 2026"}
+              </div>
               <div className="text-[13px] font-light leading-[1.65] flex-1" style={{ color: "var(--muted)", marginBottom: 12 }}>Our comprehensive analysis of 500+ MCA contracts reveals the hidden terms borrowers miss — and the lenders who exploit them.</div>
               <span className="text-[20px]" style={{ color: "var(--mid)" }}>→</span>
             </div>
@@ -75,7 +76,7 @@ export default function InsightsSection() {
               </div>
             </Link>
             <Link
-              href="/intelligence"
+              href="/intelligence/merchant-cash-advance-defense"
               className="group flex flex-col justify-center overflow-hidden"
             >
               <div className="flex flex-col px-5 py-6" style={{ fontFamily: "var(--font-sans)" }}>

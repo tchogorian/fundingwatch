@@ -9,7 +9,7 @@ const articles = [
     tagBg: "#e8f0f8",
     title: "We Analyzed 1,700+ Borrower Complaints. Here's What Separates a Responsible Lender from a Predatory One.",
     excerpt: "Brokers — not lenders — are the #1 source of borrower frustration. Trucking, restaurants, and construction are the most affected industries.",
-    href: "/intelligence/borrower-complaints-analysis",
+    href: "/intelligence/1700-borrower-complaints-responsible-vs-predatory-mca",
     date: "March 2026",
   },
   {
@@ -18,7 +18,7 @@ const articles = [
     tagBg: "#fef3c7",
     title: "What 2,400+ UCC Filings Reveal About Who's Lending and Who's Getting Funded",
     excerpt: "A state-by-state breakdown of MCA filing volume, top filers, and what filing patterns tell us about lender behavior.",
-    href: "/intelligence/ucc-filing-analysis",
+    href: "/intelligence/mca-lender-profiles-overview",
     date: "March 2026",
   },
   {
@@ -27,7 +27,7 @@ const articles = [
     tagBg: "#dcfce7",
     title: "What Is a Factor Rate — And Why It's Not Your APR",
     excerpt: "The number your broker quoted you isn't what you think. Here's how to calculate what you're actually paying.",
-    href: "/intelligence/factor-rate-vs-apr",
+    href: "/intelligence/before-signing-mca-10-things",
     date: "March 2026",
   },
 ];
