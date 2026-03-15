@@ -108,8 +108,9 @@ export default function CheckYourContract({
               onDragOver={(e) => { e.preventDefault(); setDragActive(true); }}
               onDragLeave={(e) => { e.preventDefault(); setDragActive(false); }}
               className={`min-h-[220px] rounded-xl border-2 border-dashed flex flex-col items-center justify-center p-8 transition ${
-                selectedFile ? "" : dragActive ? "border-[#1e5a8a] bg-[#f0f7ff]" : "border-[#cbd5e1] bg-[#f8fafb]"
+                selectedFile ? "" : dragActive ? "border-[#1e5a8a]" : "border-[#cbd5e1]"
               }`}
+              style={{ background: "#f8fafb" }}
             >
               {selectedFile ? (
                 <>

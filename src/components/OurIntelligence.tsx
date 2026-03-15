@@ -39,6 +39,8 @@ export default function OurIntelligence() {
   return (
     <section id="how-it-works" className="py-20 px-4 sm:px-6 bg-[#f8fafb]" aria-label="Our intelligence">
       <div className="mx-auto max-w-[1100px]">
+        {/* Subtle section transition line above content */}
+        <div className="h-px mb-16 opacity-50" style={{ background: "linear-gradient(to right, transparent, #1e5a8a, #2a6a9e, transparent)" }} />
         <p
           className="text-xs font-semibold uppercase tracking-wider text-center"
           style={{ color: "#2a6a9e", fontFamily: "var(--font-dm-sans), sans-serif" }}

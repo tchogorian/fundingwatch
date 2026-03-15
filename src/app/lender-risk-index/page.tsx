@@ -1,342 +1,270 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import Footer from "@/components/Footer";
-import { Search, AlertTriangle, Loader2, ArrowRight } from "lucide-react";
-import type { LenderListItem, LendersResponse } from "@/types/lenders";
 
-const HERO_STAT = "Every MCA lender rated on the same scale. Data from 1,700+ borrower complaints, 10,000+ UCC filings, and 500+ court records.";
+interface Lender {
+  slug: string;
+  name: string;
+  location: string | null;
+  type: string | null;
+  rating: string | null;
+  risk_score: number | null;
+  complaint_count: number | null;
+  ucc_count: number | null;
+  red_flags: string[] | null;
+}
 
-const RATING_ORDER: string[] = ["certified", "caution", "warning", "avoid"];
-const RATING_LABELS: Record<string, string> = {
-  certified: "Certified",
-  caution: "Caution",
-  warning: "Warning",
-  avoid: "Avoid",
+const RATING_STYLES: Record<string, { bg: string; text: string; label: string }> = {
+  certified: { bg: "#dcfce7", text: "#166534", label: "CERTIFIED" },
+  caution: { bg: "#fef3c7", text: "#92400e", label: "CAUTION" },
+  warning: { bg: "#ffedd5", text: "#9a3412", label: "WARNING" },
+  avoid: { bg: "#fef2f2", text: "#991b1b", label: "AVOID" },
 };
 
-function normalizeList(res: LendersResponse | LenderListItem[]): LenderListItem[] {
-  if (Array.isArray(res)) return res;
-  if (res?.lenders && Array.isArray(res.lenders)) return res.lenders;
-  if (res?.data && Array.isArray(res.data)) return res.data;
-  return [];
+const TABS = ["all", "certified", "caution", "warning", "avoid"];
+const TAB_BORDER_COLORS: Record<string, string> = {
+  all: "#1e5a8a",
+  certified: "#22c55e",
+  caution: "#f59e0b",
+  warning: "#f97316",
+  avoid: "#ef4444",
+};
+
+function scoreColor(score: number | null): string {
+  if (score === null) return "#94a3b8";
+  if (score <= 20) return "#22c55e";
+  if (score <= 45) return "#f59e0b";
+  if (score <= 70) return "#f97316";
+  return "#ef4444";
 }
 
-function getRating(l: LenderListItem): string {
-  const r = (l.rating ?? l.fw_rating ?? "").toString().toLowerCase().trim();
-  return r || "unrated";
+const SORT_ORDER: Record<string, number> = { certified: 0, caution: 1, warning: 2, avoid: 3 };
+
+function normalizeLender(raw: Record<string, unknown>): Lender {
+  return {
+    slug: String(raw.slug ?? raw.id ?? ""),
+    name: String(raw.name ?? ""),
+    location: raw.location != null ? String(raw.location) : null,
+    type: raw.type != null ? String(raw.type) : null,
+    rating: raw.rating != null ? String(raw.rating) : null,
+    risk_score: typeof raw.risk_score === "number" ? raw.risk_score : null,
+    complaint_count: typeof raw.complaint_count === "number" ? raw.complaint_count : null,
+    ucc_count: typeof raw.ucc_count === "number" ? raw.ucc_count : null,
+    red_flags: Array.isArray(raw.red_flags) ? raw.red_flags.map(String) : null,
+  };
 }
 
-function sortLenders(list: LenderListItem[]): LenderListItem[] {
-  return [...list].sort((a, b) => {
-    const ra = getRating(a);
-    const rb = getRating(b);
-    const ia = RATING_ORDER.indexOf(ra);
-    const ib = RATING_ORDER.indexOf(rb);
-    if (ia === -1 && ib === -1) return 0;
-    if (ia === -1) return 1;
-    if (ib === -1) return -1;
-    return ia - ib;
-  });
-}
-
-function ratingStyle(rating: string) {
-  const r = rating.toLowerCase();
-  if (r === "certified") return { bg: "var(--accent-green)", border: "var(--accent-green)" };
-  if (r === "caution") return { bg: "#f59e0b", border: "#f59e0b" };
-  if (r === "warning") return { bg: "#ea580c", border: "#ea580c" };
-  if (r === "avoid") return { bg: "var(--danger)", border: "var(--danger)" };
-  return { bg: "var(--color-bg-elevated)", border: "var(--color-border-default)" };
-}
-
-const DEBOUNCE_MS = 300;
-
-export default function LenderRiskIndexPage() {
-  const [query, setQuery] = useState("");
-  const [searchInput, setSearchInput] = useState("");
-  const [allLenders, setAllLenders] = useState<LenderListItem[] | null>(null);
-  const [searchResults, setSearchResults] = useState<LenderListItem[] | null>(null);
-  const [filterRating, setFilterRating] = useState<string>("all");
+export default function LenderRiskIndex() {
+  const [lenders, setLenders] = useState<Lender[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searching, setSearching] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
+  const [activeTab, setActiveTab] = useState("all");
 
-  // Load all lenders on mount
   useEffect(() => {
-    let cancelled = false;
-    setLoading(true);
-    setError(null);
     fetch("/api/lenders")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load lenders");
-        return res.json();
-      })
+      .then((r) => r.json())
       .then((data) => {
-        if (cancelled) return;
-        setAllLenders(normalizeList(data));
+        const list = Array.isArray(data)
+          ? data
+          : Array.isArray((data as { lenders?: unknown[] }).lenders)
+            ? (data as { lenders: unknown[] }).lenders
+            : Array.isArray((data as { data?: unknown[] }).data)
+              ? (data as { data: unknown[] }).data
+              : [];
+        const normalized = list.map((l: Record<string, unknown>) => normalizeLender(l));
+        const sorted = normalized.sort((a: Lender, b: Lender) => {
+          const ra = SORT_ORDER[a.rating || ""] ?? 99;
+          const rb = SORT_ORDER[b.rating || ""] ?? 99;
+          if (ra !== rb) return ra - rb;
+          return (a.risk_score ?? 999) - (b.risk_score ?? 999);
+        });
+        setLenders(sorted);
       })
-      .catch((e) => {
-        if (!cancelled) {
-          setError(e?.message ?? "Failed to load lenders");
-          setAllLenders([]);
-        }
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-    return () => { cancelled = true; };
+      .catch(() => setLenders([]))
+      .finally(() => setLoading(false));
   }, []);
 
-  // Debounced search
-  useEffect(() => {
-    if (!searchInput.trim()) {
-      setSearchResults(null);
-      setQuery("");
-      return;
-    }
-    const t = setTimeout(() => {
-      setQuery(searchInput.trim());
-      setSearching(true);
-      fetch(`/api/lenders/search?q=${encodeURIComponent(searchInput.trim())}`)
-        .then((res) => {
-          if (!res.ok) throw new Error("Search failed");
-          return res.json();
-        })
-        .then((data) => setSearchResults(normalizeList(data)))
-        .catch(() => setSearchResults([]))
-        .finally(() => setSearching(false));
-    }, DEBOUNCE_MS);
-    return () => clearTimeout(t);
-  }, [searchInput]);
+  const filtered = lenders.filter((l) => {
+    const matchesTab = activeTab === "all" || l.rating === activeTab;
+    const matchesSearch = !search || l.name.toLowerCase().includes(search.toLowerCase());
+    return matchesTab && matchesSearch;
+  });
 
-  const dataSource = searchResults !== null ? searchResults : allLenders ?? [];
-  const filtered = useMemo(() => {
-    if (filterRating === "all") return dataSource;
-    return dataSource.filter((l) => getRating(l) === filterRating);
-  }, [dataSource, filterRating]);
-  const sorted = useMemo(() => sortLenders(filtered), [filtered]);
-
-  const certifiedCount = useMemo(() => filtered.filter((l) => getRating(l) === "certified").length, [filtered]);
-  const flaggedCount = useMemo(
-    () => filtered.filter((l) => ["caution", "warning", "avoid"].includes(getRating(l))).length,
-    [filtered]
-  );
-
-  const ratingsWithLenders = useMemo(() => {
-    const set = new Set<string>();
-    dataSource.forEach((l) => {
-      const r = getRating(l);
-      if (r !== "unrated") set.add(r);
-    });
-    return RATING_ORDER.filter((r) => set.has(r));
-  }, [dataSource]);
+  const counts = {
+    total: lenders.length,
+    certified: lenders.filter((l) => l.rating === "certified").length,
+    flagged: lenders.filter((l) => l.rating && l.rating !== "certified").length,
+  };
 
   return (
-    <>
-      <section
-        className="lri-hero relative overflow-hidden"
-        aria-label="Lender Risk Index hero"
-      >
-        <div className="mx-auto max-w-[720px] text-center">
-          <h1 className="lri-hero-title text-white">
-            Lender Risk Index
-          </h1>
-          <p className="lri-hero-sub mt-4">
-            Before you sign, look them up.
-          </p>
+    <main className="min-h-screen" style={{ background: "#f8fafb" }}>
+      {/* Hero */}
+      <section className="pt-16 pb-10 px-4 text-center">
+        <h1 className="text-[36px] md:text-[40px]"
+          style={{ fontFamily: "var(--font-dm-serif), Georgia, serif", color: "#0f172a", fontWeight: 400 }}>
+          Lender Risk Index
+        </h1>
+        <p className="mt-3 text-[16px] max-w-[560px] mx-auto"
+          style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "#64748b" }}>
+          Independent risk ratings for MCA lenders. Scored on complaints, litigation,
+          contract terms, regulatory exposure, transparency, and stacking behavior.
+        </p>
 
-          <div className="mt-8 flex flex-col items-center">
-            <div className="relative w-full max-w-[560px]">
-              <Search
-                className="absolute left-6 top-1/2 h-5 w-5 -translate-y-1/2 pointer-events-none"
-                style={{ color: "#6b7280" }}
-                aria-hidden
-              />
-              <input
-                type="search"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="Search by lender name..."
-                className="lri-hero-search pl-14 pr-6"
-                aria-label="Search lenders by name"
-                autoComplete="off"
-              />
-              {searching && (
-                <Loader2
-                  className="absolute right-6 top-1/2 h-5 w-5 -translate-y-1/2 animate-spin"
-                  style={{ color: "#6b7280" }}
-                  aria-hidden
-                />
-              )}
-            </div>
-          </div>
-
-          <p className="lri-hero-stat mt-8 max-w-[640px] mx-auto">
-            {HERO_STAT}
-          </p>
+        {/* Search */}
+        <div className="mt-8 max-w-[560px] mx-auto relative">
+          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#94a3b8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.35-4.35" strokeLinecap="round" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search by lender name..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full h-[52px] pl-12 pr-4 rounded-xl text-[15px] outline-none transition-shadow focus:ring-2 focus:ring-[#2a6a9e]/20"
+            style={{ fontFamily: "var(--font-dm-sans), sans-serif", background: "#fff", border: "1px solid #e2e8f0", color: "#0f172a" }}
+          />
         </div>
       </section>
 
-      <main
-        id="lender-results"
-        className="min-h-screen px-4 py-10 sm:px-6"
-        style={{ background: "var(--color-bg-base)" }}
-      >
-        <div className="mx-auto max-w-[1200px]">
-          {error && (
-            <div
-              className="mb-8 flex items-center gap-3 rounded-xl border px-4 py-3"
-              style={{ borderColor: "var(--danger)", background: "var(--color-bg-surface)" }}
+      <div className="max-w-[1100px] mx-auto px-4 pb-20">
+        {/* Stats strip */}
+        <div className="rounded-xl py-3 px-6 mb-6 flex items-center gap-4 text-[13px]"
+          style={{ background: "#f0f4f8", fontFamily: "var(--font-dm-sans), sans-serif", color: "#64748b" }}>
+          <span><strong className="text-[#0f172a]">{counts.total}</strong> Lenders Indexed</span>
+          <span>·</span>
+          <span><strong className="text-[#0f172a]">{counts.certified}</strong> Certified</span>
+          <span>·</span>
+          <span><strong className="text-[#0f172a]">{counts.flagged}</strong> Flagged</span>
+        </div>
+
+        {/* Filter tabs */}
+        <div className="flex gap-0 border-b border-[#e2e8f0] mb-8">
+          {TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className="px-5 py-3 text-[13px] font-medium capitalize transition-colors cursor-pointer bg-transparent"
+              style={{
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                color: activeTab === tab ? "#0f172a" : "#94a3b8",
+                fontWeight: activeTab === tab ? 600 : 400,
+                borderBottom: activeTab === tab ? `3px solid ${TAB_BORDER_COLORS[tab]}` : "3px solid transparent",
+              }}
             >
-              <AlertTriangle className="h-5 w-5 shrink-0" style={{ color: "var(--danger)" }} aria-hidden />
-              <p className="text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>{error}</p>
-            </div>
-          )}
+              {tab}
+            </button>
+          ))}
+        </div>
 
-          {loading ? (
-            <div className="flex justify-center py-20">
-              <Loader2 className="h-10 w-10 animate-spin" style={{ color: "var(--accent-blue)" }} aria-hidden />
-            </div>
-          ) : (
-            <>
-              {/* Filter pills */}
-              <div className="flex flex-wrap items-center gap-2 mb-6">
-                <button
-                  type="button"
-                  onClick={() => setFilterRating("all")}
-                  className="rounded-full border px-4 py-2 text-sm font-medium transition min-h-[40px]"
-                  style={
-                    filterRating === "all"
-                      ? { background: "var(--accent-blue)", color: "#fff", borderColor: "var(--accent-blue)" }
-                      : { background: "var(--color-bg-base)", color: "var(--color-text-secondary)", borderColor: "var(--color-border-default)" }
-                  }
-                >
-                  All
-                </button>
-                {ratingsWithLenders.map((r) => (
-                  <button
-                    key={r}
-                    type="button"
-                    onClick={() => setFilterRating(r)}
-                    className="rounded-full border px-4 py-2 text-sm font-medium transition min-h-[40px]"
-                    style={
-                      filterRating === r
-                        ? { background: ratingStyle(r).bg, color: r === "caution" ? "#000" : "#fff", borderColor: ratingStyle(r).border }
-                        : { background: "var(--color-bg-base)", color: "var(--color-text-secondary)", borderColor: "var(--color-border-default)" }
-                    }
-                  >
-                    {RATING_LABELS[r] ?? r}
-                  </button>
-                ))}
-              </div>
-
-              {/* Stats bar */}
-              <div
-                className="mb-8 rounded-xl border px-4 py-3 flex flex-wrap items-center gap-x-6 gap-y-1 text-sm"
-                style={{ borderColor: "var(--color-border-default)", background: "var(--bg-light)" }}
-              >
-                <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>
-                  {sorted.length} Lenders Indexed
-                </span>
-                <span className="font-mono" style={{ color: "var(--color-text-secondary)" }}>
-                  {certifiedCount} Certified
-                </span>
-                <span className="font-mono" style={{ color: "var(--color-text-secondary)" }}>
-                  {flaggedCount} Flagged
-                </span>
-              </div>
-
-              {/* Lender grid */}
-              <section aria-label="Lender index" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {sorted.map((lender) => {
-                  const rating = getRating(lender);
-                  const style = ratingStyle(rating);
-                  const riskScore = lender.fw_risk_score ?? lender.risk_score ?? lender.severity_score;
-                  const complaints = lender.complaint_count ?? 0;
-                  const ucc = lender.ucc_filing_count ?? 0;
-                  const flags = Array.isArray(lender.red_flags) ? lender.red_flags.slice(0, 2) : [];
-                  const location = lender.headquarters ?? "";
-                  const type = lender.lender_type ?? "";
-                  const sub = [location, type].filter(Boolean).join(" · ");
+        {/* Table */}
+        {loading ? (
+          <div className="text-center py-20 text-[15px]" style={{ color: "#94a3b8" }}>Loading...</div>
+        ) : filtered.length === 0 ? (
+          <div className="text-center py-20 text-[15px]" style={{ color: "#94a3b8" }}>No lenders found.</div>
+        ) : (
+          <div className="overflow-x-auto rounded-xl border border-[#e2e8f0] bg-white">
+            <table className="w-full text-left" style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              <thead>
+                <tr style={{ background: "#f8fafb" }}>
+                  <th className="px-5 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8]">Lender</th>
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8] hidden md:table-cell">Location</th>
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8]">Rating</th>
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8]">Score</th>
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8] hidden lg:table-cell">Complaints</th>
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8] hidden lg:table-cell">UCC Filings</th>
+                  <th className="px-4 py-4 text-[11px] font-semibold uppercase tracking-wider text-[#94a3b8] hidden xl:table-cell">Red Flags</th>
+                  <th className="px-4 py-4"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map((l, i) => {
+                  const rs = RATING_STYLES[l.rating || ""] || { bg: "#f0f4f8", text: "#64748b", label: "—" };
+                  const isCertified = l.rating === "certified";
                   return (
-                    <article
-                      key={lender.slug}
-                      className="rounded-xl border bg-white overflow-hidden flex flex-col"
+                    <tr
+                      key={l.slug}
+                      className="transition-colors hover:bg-[#f8fafb]"
                       style={{
-                        borderColor: "var(--color-border-default)",
-                        borderLeftWidth: "4px",
-                        borderLeftColor: style.border,
+                        borderBottom: "1px solid #f0f4f8",
+                        background: isCertified ? "#f9fefb" : i % 2 === 1 ? "#fafbfc" : "#fff",
+                        borderLeft: isCertified ? "3px solid #22c55e" : "3px solid transparent",
                       }}
                     >
-                      <div className="p-5 flex-1 flex flex-col">
-                        <h2 className="text-lg font-bold leading-tight" style={{ color: "var(--color-text-primary)" }}>
-                          {lender.name}
-                        </h2>
-                        {sub && (
-                          <p className="text-xs mt-1" style={{ color: "var(--color-text-tertiary)" }}>
-                            {sub}
-                          </p>
-                        )}
-                        {rating !== "unrated" && (
-                          <span
-                            className="inline-block mt-3 rounded-full px-3 py-1 text-xs font-semibold w-fit"
-                            style={{ background: style.bg, color: rating === "caution" ? "#000" : "#fff" }}
-                          >
-                            {RATING_LABELS[rating] ?? rating.toUpperCase()}
-                          </span>
-                        )}
-                        <div className="mt-4">
-                          <span className="font-mono text-2xl font-bold" style={{ color: "var(--color-text-primary)" }}>
-                            {riskScore != null ? riskScore : "Unrated"}
-                          </span>
-                          <span className="text-sm ml-1" style={{ color: "var(--color-text-tertiary)" }}>
-                            risk score
-                          </span>
-                        </div>
-                        <div className="mt-2 flex gap-4 text-xs font-mono" style={{ color: "var(--color-text-tertiary)" }}>
-                          <span>{complaints} complaints</span>
-                          <span>{ucc} UCC filings</span>
-                        </div>
-                        {flags.length > 0 && (
-                          <div className="mt-3 flex flex-wrap gap-1.5">
-                            {flags.map((f, i) => (
-                              <span
-                                key={i}
-                                className="rounded px-2 py-0.5 text-xs"
-                                style={{ background: "var(--color-bg-elevated)", color: "var(--color-text-secondary)" }}
-                              >
-                                {f}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                        <Link
-                          href={`/lender-risk-index/${lender.slug}`}
-                          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold w-fit"
-                          style={{ color: "var(--accent-blue)" }}
-                        >
-                          View Report
-                          <ArrowRight className="h-4 w-4" aria-hidden />
+                      <td className="px-5 py-4">
+                        <Link href={`/lender-risk-index/${l.slug}`}
+                          className="text-[15px] font-semibold no-underline hover:opacity-70 transition-opacity"
+                          style={{ color: "#0f172a" }}>
+                          {l.name}
                         </Link>
-                      </div>
-                    </article>
+                        <div className="text-[12px] mt-0.5 md:hidden" style={{ color: "#94a3b8" }}>
+                          {l.location || "—"} · {l.type || "—"}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-[13px] hidden md:table-cell" style={{ color: "#94a3b8" }}>
+                        {l.location || "—"}
+                      </td>
+                      <td className="px-4 py-4">
+                        <span className="inline-block text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full"
+                          style={{ background: rs.bg, color: rs.text }}>
+                          {rs.label}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4">
+                        <span className="text-[18px] font-bold tabular-nums" style={{ color: scoreColor(l.risk_score) }}>
+                          {l.risk_score ?? "—"}
+                        </span>
+                        {l.risk_score !== null && (
+                          <span className="text-[12px] ml-0.5" style={{ color: "#94a3b8" }}>/100</span>
+                        )}
+                      </td>
+                      <td className="px-4 py-4 text-[14px] hidden lg:table-cell" style={{ color: "#0f172a" }}>
+                        {l.complaint_count ?? "—"}
+                      </td>
+                      <td className="px-4 py-4 text-[14px] hidden lg:table-cell" style={{ color: "#0f172a" }}>
+                        {l.ucc_count ?? "—"}
+                      </td>
+                      <td className="px-4 py-4 hidden xl:table-cell">
+                        <div className="flex flex-wrap gap-1.5">
+                          {l.red_flags && l.red_flags.length > 0 ? (
+                            l.red_flags.slice(0, 3).map((flag) => (
+                              <span key={flag} className="text-[10px] font-medium px-2 py-0.5 rounded"
+                                style={{ background: "#fef2f2", color: "#991b1b" }}>
+                                {flag.length > 20 ? flag.slice(0, 18) + "…" : flag}
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-[12px]" style={{ color: "#c8cfd8" }}>—</span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <Link href={`/lender-risk-index/${l.slug}`}
+                          className="text-[13px] font-semibold no-underline hover:opacity-70 transition-opacity"
+                          style={{ color: "#2a6a9e" }}>
+                          View →
+                        </Link>
+                      </td>
+                    </tr>
                   );
                 })}
-              </section>
+              </tbody>
+            </table>
+          </div>
+        )}
 
-              {sorted.length === 0 && (
-                <p className="text-center py-12" style={{ color: "var(--color-text-secondary)" }}>
-                  {searchInput.trim()
-                    ? `No lenders match “${searchInput.trim()}”.`
-                    : "No lenders match this filter."}
-                </p>
-              )}
-            </>
-          )}
+        {/* Methodology link */}
+        <div className="mt-12 text-center">
+          <div className="inline-block rounded-xl py-6 px-8" style={{ background: "#f0f4f8" }}>
+            <p className="text-[14px] leading-[1.6] max-w-[600px]"
+              style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "#64748b" }}>
+              Every lender is scored 0–100 across six dimensions: complaint density (25%),
+              regulatory exposure (25%), contract risk signals (20%), litigation aggressiveness (15%),
+              transparency (10%), and stacking behavior (5%). Lower is better.
+            </p>
+          </div>
         </div>
-      </main>
-      <Footer />
-    </>
+      </div>
+    </main>
   );
 }

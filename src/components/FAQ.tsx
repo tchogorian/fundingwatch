@@ -43,7 +43,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="section-card" aria-label="FAQ">
+    <section id="faq" className="section-card py-20 bg-white" aria-label="FAQ">
       <div className="mx-auto max-w-[800px] px-4 sm:px-6">
         <FadeIn>
           <p className="eyebrow text-center" style={{ color: "#2a6a9e" }}>FAQ</p>

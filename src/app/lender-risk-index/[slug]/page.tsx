@@ -1,173 +1,242 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link";
-import Footer from "@/components/Footer";
-import { Loader2, ArrowLeft, AlertTriangle } from "lucide-react";
-import type { LenderDetail } from "@/types/lenders";
 
-function ratingStyle(rating: string | undefined) {
-  if (!rating) return { bg: "var(--color-bg-elevated)", color: "var(--color-text-secondary)" };
-  const r = (rating || "").toLowerCase();
-  if (r === "certified") return { bg: "var(--accent-green)", color: "#fff" };
-  if (r === "caution") return { bg: "var(--accent-yellow)", color: "#000" };
-  if (r === "warning") return { bg: "var(--warning)", color: "#fff" };
-  if (r === "avoid") return { bg: "var(--danger)", color: "#fff" };
-  return { bg: "var(--color-bg-elevated)", color: "var(--color-text-secondary)" };
+interface LenderDetail {
+  slug: string;
+  name: string;
+  location: string | null;
+  type: string | null;
+  rating: string | null;
+  risk_score: number | null;
+  complaint_count: number | null;
+  ucc_count: number | null;
+  red_flags: string[] | null;
+  positive_signals: string[] | null;
+  messaging_kit: {
+    state_opinions?: Array<{ state: string; summary: string }>;
+    state_opinion_summary?: string;
+  } | null;
 }
 
-export default function LenderDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const [slug, setSlug] = useState<string | null>(null);
+const RATING_STYLES: Record<string, { bg: string; text: string; label: string; border: string }> = {
+  certified: { bg: "#dcfce7", text: "#166534", label: "CERTIFIED", border: "#22c55e" },
+  caution: { bg: "#fef3c7", text: "#92400e", label: "CAUTION", border: "#f59e0b" },
+  warning: { bg: "#ffedd5", text: "#9a3412", label: "WARNING", border: "#f97316" },
+  avoid: { bg: "#fef2f2", text: "#991b1b", label: "AVOID", border: "#ef4444" },
+};
+
+function scoreColor(score: number | null): string {
+  if (score === null) return "#94a3b8";
+  if (score <= 20) return "#22c55e";
+  if (score <= 45) return "#f59e0b";
+  if (score <= 70) return "#f97316";
+  return "#ef4444";
+}
+
+export default function LenderDetailPage() {
+  const params = useParams();
+  const slug = params?.slug as string;
   const [lender, setLender] = useState<LenderDetail | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    let cancelled = false;
-    params.then((p) => {
-      if (cancelled) return;
-      setSlug(p.slug);
-      setLoading(true);
-      setError(null);
-      fetch(`/api/lenders/${encodeURIComponent(p.slug)}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (cancelled) return;
-          if (!data?.slug) {
-            setError("Lender not found");
-            setLender(null);
-          } else {
-            setLender(data as LenderDetail);
-            setError(null);
-          }
-        })
-        .catch((e) => {
-          if (!cancelled) {
-            setError(e?.message || "Failed to load lender");
-            setLender(null);
-          }
-        })
-        .finally(() => {
-          if (!cancelled) setLoading(false);
+    if (!slug) return;
+    fetch(`/api/lenders/${slug}`)
+      .then((r) => {
+        if (!r.ok) throw new Error("Not found");
+        return r.json();
+      })
+      .then((data) => {
+        setLender({
+          slug: data.slug ?? data.id ?? slug,
+          name: data.name ?? "",
+          location: data.location ?? null,
+          type: data.type ?? null,
+          rating: data.rating ?? null,
+          risk_score: typeof data.risk_score === "number" ? data.risk_score : null,
+          complaint_count: typeof data.complaint_count === "number" ? data.complaint_count : null,
+          ucc_count: typeof data.ucc_count === "number" ? data.ucc_count : null,
+          red_flags: Array.isArray(data.red_flags) ? data.red_flags : null,
+          positive_signals: Array.isArray(data.positive_signals) ? data.positive_signals : null,
+          messaging_kit: data.messaging_kit ?? null,
         });
-    });
-    return () => { cancelled = true; };
-  }, [params]);
+      })
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
+  }, [slug]);
 
-  if (loading || !slug) {
+  if (loading) {
     return (
-      <>
-        <main className="min-h-screen px-4 py-16 flex items-center justify-center" style={{ background: "var(--color-bg-base)" }}>
-          <Loader2 className="h-10 w-10 animate-spin" style={{ color: "var(--accent-blue)" }} aria-hidden />
-        </main>
-        <Footer />
-      </>
+      <main className="min-h-screen flex items-center justify-center" style={{ background: "#f8fafb" }}>
+        <p className="text-[15px]" style={{ color: "#94a3b8", fontFamily: "var(--font-dm-sans)" }}>Loading...</p>
+      </main>
     );
   }
 
   if (error || !lender) {
     return (
-      <>
-        <main className="min-h-screen px-4 py-16" style={{ background: "var(--color-bg-base)" }}>
-          <div className="mx-auto max-w-[720px] text-center">
-            <p className="text-lg" style={{ color: "var(--color-text-secondary)" }}>{error || "Lender not found."}</p>
-            <Link
-              href="/lender-risk-index"
-              className="mt-6 inline-flex items-center gap-2 font-semibold"
-              style={{ color: "var(--accent-blue)" }}
-            >
-              <ArrowLeft className="h-4 w-4" aria-hidden /> Back to Lender Risk Index
-            </Link>
-          </div>
-        </main>
-        <Footer />
-      </>
+      <main className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "#f8fafb" }}>
+        <p className="text-[18px] font-semibold" style={{ color: "#0f172a", fontFamily: "var(--font-dm-sans)" }}>
+          Lender not found
+        </p>
+        <Link href="/lender-risk-index" className="text-[14px] no-underline" style={{ color: "#2a6a9e" }}>
+          ← Back to Lender Risk Index
+        </Link>
+      </main>
     );
   }
 
-  const rating = lender.rating ?? lender.fw_rating;
-  const style = ratingStyle(rating);
-  const redFlags = lender.top_red_flags ?? (lender as { top_red_flags?: string[] }).top_red_flags ?? [];
+  const rs = RATING_STYLES[lender.rating || ""] || { bg: "#f0f4f8", text: "#64748b", label: "UNRATED", border: "#d1d5db" };
 
   return (
-    <>
-      <main className="min-h-screen px-4 py-16 sm:px-6" style={{ background: "var(--color-bg-base)" }}>
-        <div className="mx-auto max-w-[840px]">
-          <Link
-            href="/lender-risk-index"
-            className="inline-flex items-center gap-2 text-sm font-medium mb-8"
-            style={{ color: "var(--accent-blue)" }}
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden /> Lender Risk Index
-          </Link>
+    <main className="min-h-screen" style={{ background: "#f8fafb" }}>
+      <div className="max-w-[900px] mx-auto px-4 pt-10 pb-20">
 
-          <header className="mb-10">
-            <div className="flex flex-wrap items-center gap-3">
-              <h1 className="text-3xl font-bold" style={{ color: "var(--color-text-primary)" }}>
+        {/* Breadcrumb */}
+        <Link href="/lender-risk-index" className="text-[13px] no-underline hover:opacity-70 transition-opacity"
+          style={{ color: "#94a3b8", fontFamily: "var(--font-dm-sans)" }}>
+          ← Back to Lender Risk Index
+        </Link>
+
+        {/* Header */}
+        <div className="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-4 flex-wrap">
+              <h1 className="text-[32px]"
+                style={{ fontFamily: "var(--font-dm-serif), Georgia, serif", color: "#0f172a", fontWeight: 400 }}>
                 {lender.name}
               </h1>
-              {rating && (
-                <span
-                  className="rounded-full px-4 py-1.5 text-sm font-semibold"
-                  style={{ background: style.bg, color: style.color }}
-                >
-                  {rating}
-                </span>
-              )}
+              <span className="text-[11px] font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full"
+                style={{ background: rs.bg, color: rs.text }}>
+                {rs.label}
+              </span>
             </div>
-            {lender.headline_stat && (
-              <p className="mt-2 text-base" style={{ color: "var(--color-text-secondary)" }}>
-                {lender.headline_stat}
-              </p>
+            <p className="mt-2 text-[14px]" style={{ color: "#94a3b8", fontFamily: "var(--font-dm-sans)" }}>
+              {[lender.location, lender.type ? `${lender.type} lender` : null].filter(Boolean).join(" · ") || "—"}
+            </p>
+          </div>
+
+          {/* Score display */}
+          <div className="flex flex-col items-center px-8 py-5 rounded-2xl" style={{ background: "#fff", border: "1px solid #f0f4f8" }}>
+            <span className="text-[11px] uppercase tracking-wider font-medium" style={{ color: "#94a3b8" }}>Risk Score</span>
+            <span className="text-[48px] font-bold tabular-nums leading-none mt-1" style={{ color: scoreColor(lender.risk_score), fontFamily: "var(--font-dm-sans)" }}>
+              {lender.risk_score ?? "—"}
+            </span>
+            {lender.risk_score !== null && (
+              <span className="text-[13px] mt-1" style={{ color: "#c8cfd8" }}>/100</span>
             )}
-          </header>
-
-          {lender.description && (
-            <section className="mb-10">
-              <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--color-text-primary)" }}>Overview</h2>
-              <p className="leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>{lender.description}</p>
-            </section>
-          )}
-
-          {lender.primary_violation && (
-            <section className="mb-10">
-              <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--color-text-primary)" }}>Primary concerns</h2>
-              <p className="leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>{lender.primary_violation}</p>
-            </section>
-          )}
-
-          {redFlags.length > 0 && (
-            <section className="mb-10">
-              <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--color-text-primary)" }}>Top red flags</h2>
-              <ul className="list-disc list-inside space-y-1" style={{ color: "var(--color-text-secondary)" }}>
-                {redFlags.map((flag, i) => (
-                  <li key={i}>{flag}</li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {(lender.risk_score != null || lender.severity_score != null) && (
-            <section className="mb-10">
-              <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--color-text-primary)" }}>Risk score</h2>
-              <p style={{ color: "var(--color-text-secondary)" }}>
-                {(lender.risk_score ?? lender.severity_score) ?? "—"} / 100
-              </p>
-            </section>
-          )}
-
-          <div className="pt-8 border-t" style={{ borderColor: "var(--color-border-default)" }}>
-            <Link
-              href="/#upload"
-              className="inline-flex min-h-[48px] items-center justify-center rounded-full px-6 py-3 font-semibold text-white transition hover:opacity-95"
-              style={{ background: "var(--accent-blue)" }}
-            >
-              Analyze My Contract
-            </Link>
+            {lender.risk_score === null && lender.rating === "certified" && (
+              <span className="text-[12px] mt-1" style={{ color: "#166534" }}>Meets all criteria</span>
+            )}
           </div>
         </div>
-      </main>
-      <Footer />
-    </>
+
+        {/* Divider */}
+        <div className="my-8 h-px" style={{ background: "#e2e8f0" }} />
+
+        {/* Key metrics row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          {[
+            { label: "Complaints", value: lender.complaint_count ?? "—" },
+            { label: "UCC Filings", value: lender.ucc_count ?? "—" },
+            { label: "Red Flags", value: lender.red_flags?.length ?? 0 },
+            { label: "Rating", value: rs.label },
+          ].map(({ label, value }) => (
+            <div key={label} className="rounded-xl py-4 px-5" style={{ background: "#fff", border: "1px solid #f0f4f8" }}>
+              <div className="text-[11px] uppercase tracking-wider font-medium" style={{ color: "#94a3b8", fontFamily: "var(--font-dm-sans)" }}>
+                {label}
+              </div>
+              <div className="text-[22px] font-bold mt-1 tabular-nums" style={{ color: "#0f172a", fontFamily: "var(--font-dm-sans)" }}>
+                {value}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Red Flags */}
+        {lender.red_flags && lender.red_flags.length > 0 && (
+          <div className="mb-8 rounded-xl p-6" style={{ background: "#fff", border: "1px solid #fef2f2" }}>
+            <h3 className="text-[14px] font-semibold uppercase tracking-wider mb-4"
+              style={{ color: "#991b1b", fontFamily: "var(--font-dm-sans)" }}>
+              Red Flags
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {lender.red_flags.map((flag) => (
+                <span key={flag} className="text-[13px] font-medium px-3 py-1.5 rounded-lg"
+                  style={{ background: "#fef2f2", color: "#991b1b" }}>
+                  {flag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Positive Signals */}
+        {lender.positive_signals && lender.positive_signals.length > 0 && (
+          <div className="mb-8 rounded-xl p-6" style={{ background: "#fff", border: "1px solid #dcfce7" }}>
+            <h3 className="text-[14px] font-semibold uppercase tracking-wider mb-4"
+              style={{ color: "#166534", fontFamily: "var(--font-dm-sans)" }}>
+              Positive Signals
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {lender.positive_signals.map((signal) => (
+                <span key={signal} className="text-[13px] font-medium px-3 py-1.5 rounded-lg"
+                  style={{ background: "#dcfce7", color: "#166534" }}>
+                  {signal}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Court Opinions */}
+        {lender.messaging_kit?.state_opinions && lender.messaging_kit.state_opinions.length > 0 && (
+          <div className="mb-8 rounded-xl p-6" style={{ background: "#fff", border: "1px solid #f0f4f8" }}>
+            <h3 className="text-[14px] font-semibold uppercase tracking-wider mb-4"
+              style={{ color: "#0f172a", fontFamily: "var(--font-dm-sans)" }}>
+              Legal & Regulatory
+            </h3>
+            {lender.messaging_kit.state_opinion_summary && (
+              <p className="text-[14px] leading-[1.6] mb-4"
+                style={{ color: "#64748b", fontFamily: "var(--font-dm-sans)" }}>
+                {lender.messaging_kit.state_opinion_summary}
+              </p>
+            )}
+            <div className="space-y-3">
+              {lender.messaging_kit.state_opinions.map((op, i) => (
+                <div key={i} className="py-3 border-t border-[#f0f4f8]">
+                  <span className="text-[12px] font-semibold uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                    {op.state}
+                  </span>
+                  <p className="mt-1 text-[14px] leading-[1.5]" style={{ color: "#64748b", fontFamily: "var(--font-dm-sans)" }}>
+                    {op.summary}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* CTA */}
+        <div className="mt-12 rounded-2xl py-8 px-8 text-center"
+          style={{ background: "linear-gradient(135deg, #1a3a5c, #1e5a8a, #2a6a9e)" }}>
+          <p className="text-[20px]" style={{ fontFamily: "var(--font-dm-serif), Georgia, serif", color: "#fff" }}>
+            Want better terms?
+          </p>
+          <p className="mt-2 text-[14px]" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "var(--font-dm-sans)" }}>
+            Apply through Debtura and get matched with vetted lenders.
+          </p>
+          <Link href="/#application"
+            className="inline-block mt-5 px-8 py-3 rounded-xl text-[14px] font-semibold no-underline transition-opacity hover:opacity-90"
+            style={{ background: "#fff", color: "#0f172a", fontFamily: "var(--font-dm-sans)" }}>
+            Apply Now →
+          </Link>
+        </div>
+      </div>
+    </main>
   );
 }
