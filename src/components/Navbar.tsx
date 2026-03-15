@@ -120,11 +120,11 @@ export default function Navbar() {
 
       {/* Sub nav — black bar, real dropdowns (hover), no scroll anchors */}
       <nav
-        className="sticky top-[52px] z-[99] flex h-[46px] items-center px-6 md:px-8"
+        className="sticky top-[52px] z-[200] flex h-[46px] items-center overflow-visible px-6 md:px-8"
         style={{ background: SUBNAV_DROPDOWN_BG, fontFamily: "var(--font-sans)" }}
         aria-label="Section"
       >
-        <div className="relative flex h-full items-center gap-0">
+        <div className="relative flex h-full items-center gap-0 overflow-visible">
           {subnavEntries.map((entry) => {
             const isDropdownOpen = openDropdown === entry.label;
 
@@ -132,7 +132,7 @@ export default function Navbar() {
               return (
                 <div
                   key={entry.label}
-                  className="relative"
+                  className="relative flex"
                   onMouseEnter={() => setOpenDropdown(entry.label)}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
@@ -149,8 +149,8 @@ export default function Navbar() {
                   </button>
                   {isDropdownOpen && (
                     <div
-                      className="absolute left-0 top-[46px] z-[100] min-w-[220px] py-1 shadow-xl"
-                      style={{ background: SUBNAV_DROPDOWN_BG, fontFamily: "var(--font-sans)" }}
+                      className="absolute left-0 top-[42px] z-[9999] min-w-[220px] rounded-b py-1 shadow-2xl"
+                      style={{ background: SUBNAV_DROPDOWN_BG, fontFamily: "var(--font-sans)", border: "1px solid rgba(255,255,255,0.08)", borderTop: "none" }}
                     >
                       {entry.items.map((sub) => {
                         if ("disabled" in sub && sub.disabled) {
