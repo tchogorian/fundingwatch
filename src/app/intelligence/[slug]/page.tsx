@@ -104,8 +104,6 @@ export default async function IntelligenceArticlePage({
               className="mt-3 text-[14px]"
               style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}
             >
-              {post.author ?? "Debtura Intelligence Team"}
-              <span className="mx-2">·</span>
               {dateFormatted}
               <span className="mx-2">·</span>
               {post.readTimeMinutes} min read
@@ -212,38 +210,6 @@ export default async function IntelligenceArticlePage({
             </section>
           )}
 
-          <div
-            className="mt-12 rounded-lg border border-[var(--line)] p-6"
-            style={{ background: "var(--bg)" }}
-            aria-label="About the author"
-          >
-            <p
-              className="text-[9px] font-bold uppercase tracking-[0.22em] mb-3"
-              style={{ color: "var(--red)", fontFamily: "var(--font-sans)" }}
-            >
-              About the author
-            </p>
-            <p
-              className="text-[16px] font-semibold"
-              style={{ fontFamily: "var(--font-sans)", color: "var(--navy)" }}
-            >
-              {post.author ?? "Debtura Intelligence Team"}
-            </p>
-            {post.credentials && (
-              <p
-                className="mt-1 text-[13px] font-medium"
-                style={{ color: "var(--red)", fontFamily: "var(--font-sans)" }}
-              >
-                {post.credentials}
-              </p>
-            )}
-            <p
-              className="mt-2 text-[14px] leading-[1.6]"
-              style={{ fontFamily: "var(--font-sans)", color: "var(--muted)" }}
-            >
-              {post.authorBio ?? "Independent research and analysis from Debtura's team of commercial lending analysts."}
-            </p>
-          </div>
         </div>
       </main>
       <BlogStickyCTA />

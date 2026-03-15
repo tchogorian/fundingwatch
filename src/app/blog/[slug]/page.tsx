@@ -119,21 +119,6 @@ export default async function BlogArticlePage({
 
           {/* Byline */}
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <div
-              className="flex h-8 w-8 items-center justify-center rounded-full font-mono text-sm font-medium"
-              style={{
-                background: "var(--color-accent-muted)",
-                color: "var(--color-accent-primary)",
-              }}
-            >
-              {post.author ? post.author.charAt(0) : "F"}
-            </div>
-            <span
-              className="text-[var(--text-base)] font-medium"
-              style={{ color: "var(--color-text-primary)" }}
-            >
-              {post.author ?? "Debtura Intelligence Team"}
-            </span>
             <span
               className="font-mono text-[var(--text-sm)]"
               style={{ color: "var(--color-text-tertiary)" }}
@@ -241,49 +226,6 @@ export default async function BlogArticlePage({
             </section>
           )}
 
-          {/* Author bio — stack on mobile */}
-          <div
-            className="mt-12 rounded-xl border border-[var(--color-border-default)] p-5 md:p-6"
-            style={{ background: "var(--color-bg-surface)" }}
-            aria-label="About the author"
-          >
-            <h2 className="text-sm font-semibold uppercase tracking-wider mb-4" style={{ color: "var(--color-accent-primary)" }}>
-              About the author
-            </h2>
-            <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:text-left">
-              <div
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-mono text-xl font-medium"
-                style={{
-                  background: "var(--color-accent-muted)",
-                  color: "var(--color-accent-primary)",
-                }}
-              >
-                {post.author ? post.author.charAt(0) : "F"}
-              </div>
-              <div className="min-w-0">
-                <p
-                  className="text-base font-semibold md:text-[var(--text-base)]"
-                  style={{ color: "var(--color-text-primary)" }}
-                >
-                  {post.author ?? "Debtura Intelligence Team"}
-                </p>
-                {post.credentials && (
-                  <p
-                    className="mt-1 text-sm font-medium"
-                    style={{ color: "var(--color-accent-primary)" }}
-                  >
-                    {post.credentials}
-                  </p>
-                )}
-                <p
-                  className="mt-1 text-sm leading-relaxed md:text-[var(--text-sm)]"
-                  style={{ color: "var(--color-text-secondary)" }}
-                >
-                  {post.authorBio ?? "Independent research and analysis from Debtura's team of commercial lending analysts."}
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Sidebar ToC — sticky on desktop (only when we have headings) */}
