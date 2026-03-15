@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import InnerPageHeader from "@/components/InnerPageHeader";
 
 interface Lender {
   slug: string;
@@ -99,58 +100,42 @@ export default function LenderRiskIndex() {
 
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)" }}>
-      {/* Hero — Debtura navy/blue gradient */}
-      <section className="lri-hero px-4 py-16 md:py-20 lg:py-24">
-        <div className="mx-auto max-w-[1100px] text-center">
-          <h1
-            className="text-[32px] md:text-[40px] lg:text-[48px] text-white"
-            style={{ fontFamily: "var(--font-serif)", fontWeight: 600 }}
-          >
-            Lender Risk Index
-          </h1>
-          <p
-            className="mt-4 text-[16px] md:text-[18px] max-w-[600px] mx-auto"
-            style={{ fontFamily: "var(--font-sans)", color: "rgba(255,255,255,0.85)" }}
-          >
-            Independent risk ratings for MCA lenders. Scored on complaints, litigation,
-            contract terms, regulatory exposure, transparency, and stacking behavior.
-          </p>
-
-          {/* Search */}
-          <div className="mt-8 max-w-[560px] mx-auto relative">
-            <svg
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="rgba(255,255,255,0.5)"
-              strokeWidth={1.5}
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="M21 21l-4.35-4.35" strokeLinecap="round" />
-            </svg>
-            <input
-              type="text"
-              placeholder="Search by lender name..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full h-[52px] pl-12 pr-4 text-[15px] outline-none transition-shadow focus:ring-2 focus:ring-white/30 border-0 rounded-none"
-              style={{
-                fontFamily: "var(--font-sans)",
-                background: "rgba(255,255,255,0.12)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                color: "#fff",
-              }}
-            />
-          </div>
-        </div>
+      <section className="border-b border-[var(--line)] bg-white">
+        <InnerPageHeader
+          eyebrow="Ratings"
+          title="Lender Risk Index"
+          description="Independent risk ratings for MCA lenders. Scored on complaints, litigation, contract terms, regulatory exposure, transparency, and stacking behavior."
+        />
       </section>
 
       <div className="max-w-[1100px] mx-auto px-6 md:px-8 py-10">
-        {/* Section pattern */}
-        <div className="mb-2 flex items-center gap-2">
-          <span className="h-0.5 w-5 shrink-0 rounded-none" style={{ background: "var(--red)" }} />
-          <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Ratings</span>
+        {/* Search */}
+        <div className="mb-6 max-w-[560px] relative">
+          <svg
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="var(--muted)"
+            strokeWidth={1.5}
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="M21 21l-4.35-4.35" strokeLinecap="round" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search by lender name..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full h-[52px] pl-12 pr-4 text-[15px] outline-none border rounded"
+            style={{
+              fontFamily: "var(--font-sans)",
+              background: "var(--white)",
+              borderColor: "var(--line)",
+              color: "var(--body)",
+            }}
+          />
         </div>
+
         <h2 className="mb-6 text-[22px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
           Indexed lenders
         </h2>

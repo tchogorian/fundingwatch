@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import InnerPageHeader from "@/components/InnerPageHeader";
 
 const BUSINESS_DAYS_PER_MONTH = 21.75;
 const BUSINESS_DAYS_PER_YEAR = 261;
@@ -263,28 +264,15 @@ export default function APRCalculatorPage() {
 
   return (
     <>
-      <section
-        className="page-hero relative overflow-hidden px-6 md:px-8"
-        aria-label="Calculator header"
-      >
-        <div className="mx-auto max-w-[840px] text-center">
-          <h1
-            className="text-3xl font-semibold leading-tight text-white md:text-4xl lg:text-5xl"
-            style={{ fontFamily: "var(--font-serif)", letterSpacing: "-0.04em" }}
-          >
-            MCA Calculator
-          </h1>
-          <p className="mt-3 text-base text-white/90 md:text-lg" style={{ fontFamily: "var(--font-sans)" }}>
-            True APR, daily payment, and cash flow impact. Add multiple positions to see stacked MCA cost.
-          </p>
-        </div>
+      <section className="border-b border-[var(--line)] bg-white">
+        <InnerPageHeader
+          eyebrow="Tools"
+          title="MCA Calculator"
+          description="True APR, daily payment, and cash flow impact. Add multiple positions to see stacked MCA cost."
+        />
       </section>
 
       <section className="mx-auto max-w-[840px] px-6 md:px-8 py-8 pb-24 text-[14px]" style={{ background: "var(--bg)" }}>
-        <div className="mb-2 flex items-center gap-2">
-          <span className="h-0.5 w-5 shrink-0" style={{ background: "var(--red)" }} />
-          <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Tools</span>
-        </div>
         <h2 className="mb-6 text-[22px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
           Calculate true cost
         </h2>

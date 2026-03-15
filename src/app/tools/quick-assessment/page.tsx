@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import InnerPageHeader from "@/components/InnerPageHeader";
 
 export const metadata = {
   title: "Quick Assessment — Debtura",
@@ -9,20 +10,12 @@ export const metadata = {
 export default function QuickAssessmentPage() {
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)" }}>
-      {/* Hero */}
-      <section className="lri-hero relative overflow-hidden border-b border-[var(--line)]">
-        <div className="mx-auto max-w-[1160px] px-6 md:px-8 py-16 md:py-20">
-          <div className="mb-2 flex items-center gap-2">
-            <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
-            <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Tools</span>
-          </div>
-          <h1 className="lri-hero-title mb-4" style={{ fontFamily: "var(--font-serif)", color: "white" }}>
-            Quick Assessment
-          </h1>
-          <p className="lri-hero-sub max-w-[640px]" style={{ fontFamily: "var(--font-sans)" }}>
-            Don&apos;t have a contract? Answer a few questions about your MCA situation and we&apos;ll help you understand your options.
-          </p>
-        </div>
+      <section className="border-b border-[var(--line)] bg-white">
+        <InnerPageHeader
+          eyebrow="Tools"
+          title="Quick Assessment"
+          description="Don&apos;t have a contract? Answer a few questions about your MCA situation and we&apos;ll help you understand your options."
+        />
       </section>
 
       {/* What to expect */}

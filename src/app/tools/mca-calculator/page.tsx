@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import InnerPageHeader from "@/components/InnerPageHeader";
 
 export default function MCACalculatorPage() {
   const [advanceAmount, setAdvanceAmount] = useState("");
@@ -32,20 +33,12 @@ export default function MCACalculatorPage() {
 
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)" }}>
-      {/* Hero */}
-      <section className="lri-hero relative overflow-hidden border-b border-[var(--line)]">
-        <div className="mx-auto max-w-[1160px] px-6 md:px-8 py-16 md:py-20">
-          <div className="mb-2 flex items-center gap-2">
-            <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
-            <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Tools</span>
-          </div>
-          <h1 className="lri-hero-title mb-4" style={{ fontFamily: "var(--font-serif)", color: "white" }}>
-            MCA Calculator
-          </h1>
-          <p className="lri-hero-sub max-w-[640px]" style={{ fontFamily: "var(--font-sans)" }}>
-            Convert factor rates to annual percentage rates (APR) to understand the true cost of your merchant cash advance.
-          </p>
-        </div>
+      <section className="border-b border-[var(--line)] bg-white">
+        <InnerPageHeader
+          eyebrow="Tools"
+          title="MCA Calculator"
+          description="Convert factor rates to annual percentage rates (APR) to understand the true cost of your merchant cash advance."
+        />
       </section>
 
       {/* Calculator */}

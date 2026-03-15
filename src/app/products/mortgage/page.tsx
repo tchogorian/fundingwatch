@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import InnerPageHeader from "@/components/InnerPageHeader";
 
 export const metadata = {
   title: "Mortgage — Debtura",
@@ -9,19 +10,12 @@ export const metadata = {
 export default function MortgageProductPage() {
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)" }}>
-      <section className="lri-hero relative overflow-hidden border-b border-[var(--line)]">
-        <div className="mx-auto max-w-[1160px] px-6 md:px-8 py-16 md:py-20">
-          <div className="mb-2 flex items-center gap-2">
-            <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
-            <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Products</span>
-          </div>
-          <h1 className="lri-hero-title mb-4" style={{ fontFamily: "var(--font-serif)", color: "white" }}>
-            Mortgage
-          </h1>
-          <p className="lri-hero-sub max-w-[640px]" style={{ fontFamily: "var(--font-sans)" }}>
-            Coming soon. Debtura is expanding to mortgage lending solutions.
-          </p>
-        </div>
+      <section className="border-b border-[var(--line)] bg-white">
+        <InnerPageHeader
+          eyebrow="Products"
+          title="Mortgage"
+          description="Coming soon. Debtura is expanding to mortgage lending solutions."
+        />
       </section>
 
       <section className="border-b border-[var(--line)] bg-white py-11 px-6 md:px-8">
@@ -33,7 +27,7 @@ export default function MortgageProductPage() {
             We&apos;re building mortgage solutions with the same transparency and independent rating system that powers our MCA platform.
           </p>
           <Link
-            href="/#application"
+            href="/questionnaire"
             className="inline-flex items-center gap-2 px-6 py-3 text-[10.5px] font-bold uppercase tracking-wider rounded"
             style={{ background: "var(--blue)", color: "var(--white)", fontFamily: "var(--font-sans)" }}
           >

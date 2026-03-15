@@ -2,16 +2,23 @@
 
 import { useState, useCallback, useRef } from "react";
 import Link from "next/link";
-import { Upload, FileText, ArrowRight } from "lucide-react";
+import { Upload, FileText } from "lucide-react";
+import type { AnalysisResult } from "@/types/analysis";
+import InnerPageHeader from "@/components/InnerPageHeader";
+import LoadingState from "@/components/LoadingState";
 
 const ACCEPTED_TYPES = ["application/pdf", "image/jpeg", "image/png"];
 const MAX_SIZE_MB = 20;
 const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+const MIN_LOADING_MS = 16000;
 
 export default function ContractAnalyzerPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysisSuccess, setAnalysisSuccess] = useState(false);
+  const analysisResultRef = useRef<AnalysisResult | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const validateFile = useCallback((file: File): string | null => {
@@ -46,27 +53,59 @@ export default function ContractAnalyzerPage() {
     [validateFile]
   );
 
-  const handleAnalyze = () => {
+  const handleAnalyze = useCallback(async () => {
     if (!selectedFile) return;
-    window.location.href = "/#check-contract";
-  };
+    setIsAnalyzing(true);
+    setError(null);
+    setAnalysisSuccess(false);
+    analysisResultRef.current = null;
+
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+
+    try {
+      const [data] = await Promise.all([
+        fetch("/api/analyze", { method: "POST", body: formData }).then(async (res) => {
+          if (!res.ok) throw new Error("Analysis failed");
+          return res.json();
+        }),
+        new Promise((r) => setTimeout(r, MIN_LOADING_MS)),
+      ]);
+      analysisResultRef.current = data as AnalysisResult;
+      setAnalysisSuccess(true);
+    } catch {
+      setError("Analysis failed. Please try again.");
+      setIsAnalyzing(false);
+    }
+  }, [selectedFile]);
+
+  const handleAnimationComplete = useCallback(() => {
+    const result = analysisResultRef.current;
+    if (result && typeof window !== "undefined") {
+      sessionStorage.setItem("analysisResult", JSON.stringify(result));
+      window.location.href = "/results";
+    }
+  }, []);
+
+  if (isAnalyzing) {
+    return (
+      <main className="min-h-screen" style={{ background: "var(--bg)" }}>
+        <LoadingState
+          apiComplete={analysisSuccess}
+          onAnimationComplete={handleAnimationComplete}
+        />
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)" }}>
-      {/* Hero */}
-      <section className="lri-hero relative overflow-hidden border-b border-[var(--line)]">
-        <div className="mx-auto max-w-[1160px] px-6 md:px-8 py-16 md:py-20">
-          <div className="mb-2 flex items-center gap-2">
-            <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
-            <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Tools</span>
-          </div>
-          <h1 className="lri-hero-title mb-4" style={{ fontFamily: "var(--font-serif)", color: "white" }}>
-            Contract Intelligence Tool
-          </h1>
-          <p className="lri-hero-sub max-w-[640px]" style={{ fontFamily: "var(--font-sans)" }}>
-            Upload any MCA contract. Our AI extracts the real APR, flags hidden terms, and scores your lender in seconds — free.
-          </p>
-        </div>
+      <section className="border-b border-[var(--line)] bg-white">
+        <InnerPageHeader
+          eyebrow="Tools"
+          title="Contract Intelligence Tool"
+          description="Upload any MCA contract. Our AI extracts the real APR, flags hidden terms, and scores your lender in seconds — free."
+        />
       </section>
 
       {/* Upload Section */}
@@ -124,7 +163,8 @@ export default function ContractAnalyzerPage() {
                     </button>
                     <button
                       onClick={handleAnalyze}
-                      className="mt-2 px-6 py-2 text-[10.5px] font-bold uppercase tracking-wider rounded"
+                      type="button"
+                      className="mt-2 px-6 py-2 text-[10.5px] font-bold uppercase tracking-wider rounded cursor-pointer"
                       style={{ background: "var(--blue)", color: "var(--white)" }}
                     >
                       Analyze Contract
