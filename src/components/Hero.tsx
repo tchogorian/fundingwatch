@@ -10,7 +10,7 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: "url(/images/hero-bg.jpg)",
-          backgroundPosition: "70% 60%",
+          backgroundPosition: "center center",
           backgroundColor: "#0a0e14",
         }}
       />
