@@ -3,20 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
-// Order: How It Works | Lender Risk Index | Resources (dropdown) | FAQ | About.
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Lender Risk Index", href: "/lender-risk-index", highlight: true },
-  {
-    label: "Resources",
-    dropdown: [
-      { label: "MCA Calculator", href: "/apr-calculator" },
-      { label: "Blog", href: "/blog" },
-      { label: "Glossary", href: "/glossary" },
-    ],
-  },
+  { label: "Lender Risk Index", href: "/lender-risk-index" },
+  { label: "Contract Analyzer", href: "/analyze" },
   { label: "FAQ", href: "#faq" },
   { label: "About", href: "#about" },
 ];
@@ -25,14 +17,11 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [resourcesOpen, setResourcesOpen] = useState(false);
 
   useEffect(() => {
     if (mobileOpen) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
   const scrollTo = (id: string) => {
@@ -60,95 +49,52 @@ export default function Navbar() {
           debtura
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Main" style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>
+        <nav
+          className="hidden items-center gap-7 md:flex"
+          aria-label="Main"
+          style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.9)" }}
+        >
           {navLinks.map((item) => {
-            if ("dropdown" in item && item.dropdown) {
-              return (
-                <div
-                  key={item.label}
-                  className="relative"
-                  onMouseEnter={() => setResourcesOpen(true)}
-                  onMouseLeave={() => setResourcesOpen(false)}
-                >
-                  <button
-                    type="button"
-                    className="text-inherit transition-colors hover:opacity-90 min-h-[48px] inline-flex items-center gap-1 bg-transparent border-0 cursor-pointer"
-                    aria-expanded={resourcesOpen}
-                    aria-haspopup="true"
-                  >
-                    {item.label} <span className="opacity-80">▾</span>
-                  </button>
-                  {resourcesOpen && (
-                    <div className="absolute left-0 top-full pt-1" role="menu">
-                      <div className="rounded-lg border border-white/20 py-2 shadow-lg min-w-[180px]" style={{ background: "rgba(42, 106, 158, 0.98)" }}>
-                        {item.dropdown.map(({ label, href }) => (
-                          <Link
-                            key={href}
-                            href={href}
-                            role="menuitem"
-                            className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-white/15 text-white"
-                          >
-                            {label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            }
-            const href = "href" in item ? item.href : "";
-            const label = item.label;
-            const highlight = "highlight" in item && item.highlight;
+            const href = item.href;
             const isHash = href.startsWith("#");
             const linkClass = "min-h-[48px] inline-flex items-center transition-colors hover:opacity-90 text-inherit no-underline bg-transparent border-0 cursor-pointer";
-            const linkStyle = highlight ? { color: "#fff", fontWeight: 600 } : {};
             if (isHash && !isHome) {
               return (
-                <a key={href} href={`/#${href.slice(1)}`} className={linkClass} style={linkStyle}>
-                  {label}
+                <a key={href} href={`/#${href.slice(1)}`} className={linkClass}>
+                  {item.label}
                 </a>
               );
             }
             if (isHash) {
               return (
-                <button
-                  key={href}
-                  type="button"
-                  onClick={() => scrollTo(href)}
-                  className={linkClass}
-                  style={linkStyle}
-                >
-                  {label}
+                <button key={href} type="button" onClick={() => scrollTo(href)} className={linkClass}>
+                  {item.label}
                 </button>
               );
             }
             return (
-              <Link key={href} href={href} className={linkClass} style={linkStyle}>
-                {label}
+              <Link key={href} href={href} className={linkClass}>
+                {item.label}
               </Link>
             );
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-12 w-12 min-h-[48px] min-w-[48px] cursor-pointer items-center justify-center md:hidden text-white bg-transparent border-0"
-            aria-expanded={mobileOpen}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="flex h-12 w-12 min-h-[48px] min-w-[48px] cursor-pointer items-center justify-center md:hidden text-white bg-transparent border-0"
+          aria-expanded={mobileOpen}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </header>
 
-      {/* Mobile drawer */}
       <div
-        className="fixed inset-y-0 right-0 z-[90] w-[300px] transform border-l border-[#E5E7EB] transition-transform duration-300 md:hidden"
+        className="fixed inset-y-0 right-0 z-[90] w-[300px] transform border-l border-[#e2e8f0] transition-transform duration-300 md:hidden"
         style={{
-          background: "#FFFFFF",
+          background: "#fff",
           transform: mobileOpen ? "translateX(0)" : "translateX(100%)",
           top: "84px",
           height: "calc(100vh - 84px)",
@@ -158,64 +104,26 @@ export default function Navbar() {
       >
         <nav className="flex flex-col gap-0 px-4 pt-6 pb-8" aria-label="Mobile">
           {navLinks.map((item) => {
-            if ("dropdown" in item && item.dropdown) {
-              return (
-                <div key={item.label} className="flex flex-col gap-0">
-                  <p className="py-3 text-[12px] font-semibold uppercase tracking-wider" style={{ color: "var(--color-text-tertiary)" }}>
-                    {item.label}
-                  </p>
-                  {item.dropdown.map(({ label, href }) => (
-                    <Link
-                      key={href}
-                      href={href}
-                      className="flex min-h-[48px] items-center pl-4 text-[16px] font-normal transition-colors hover:opacity-80 py-2"
-                      style={{ color: "#0B1F3A" }}
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {label}
-                    </Link>
-                  ))}
-                </div>
-              );
-            }
-            const href = "href" in item ? item.href : "";
-            const label = item.label;
+            const href = item.href;
             const isHash = href.startsWith("#");
+            const style = { color: "#0f172a", fontFamily: "var(--font-dm-sans), sans-serif" };
             if (isHash && !isHome) {
               return (
-                <a
-                  key={href}
-                  href={`/#${href.slice(1)}`}
-                  className="flex min-h-[56px] min-w-[48px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80 py-3"
-                  style={{ color: "#0B1F3A" }}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {label}
+                <a key={href} href={`/#${href.slice(1)}`} className="flex min-h-[56px] items-center py-3 text-[16px] transition-colors hover:opacity-80" style={style} onClick={() => setMobileOpen(false)}>
+                  {item.label}
                 </a>
               );
             }
             if (isHash) {
               return (
-                <button
-                  key={href}
-                  type="button"
-                  onClick={() => scrollTo(href)}
-                  className="flex min-h-[56px] min-w-[48px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80 py-3 text-left w-full"
-                  style={{ color: "#0B1F3A" }}
-                >
-                  {label}
+                <button key={href} type="button" onClick={() => scrollTo(href)} className="flex min-h-[56px] w-full items-center py-3 text-left text-[16px] transition-colors hover:opacity-80 bg-transparent border-0 cursor-pointer" style={style}>
+                  {item.label}
                 </button>
               );
             }
             return (
-              <Link
-                key={href}
-                href={href}
-                className="flex min-h-[56px] min-w-[48px] cursor-pointer items-center text-[20px] font-normal transition-colors hover:opacity-80 py-3"
-                style={{ color: "#0B1F3A" }}
-                onClick={() => setMobileOpen(false)}
-              >
-                {label}
+              <Link key={href} href={href} className="flex min-h-[56px] items-center py-3 text-[16px] transition-colors hover:opacity-80 no-underline" style={style} onClick={() => setMobileOpen(false)}>
+                {item.label}
               </Link>
             );
           })}
@@ -224,11 +132,7 @@ export default function Navbar() {
 
       <div
         className="fixed inset-0 z-[80] bg-black/10 transition-opacity duration-300 md:hidden"
-        style={{
-          top: "84px",
-          opacity: mobileOpen ? 1 : 0,
-          pointerEvents: mobileOpen ? "auto" : "none",
-        }}
+        style={{ top: "84px", opacity: mobileOpen ? 1 : 0, pointerEvents: mobileOpen ? "auto" : "none" }}
         onClick={() => setMobileOpen(false)}
         aria-hidden
       />
