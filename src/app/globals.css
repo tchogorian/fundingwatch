@@ -3,6 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========== DEBTURA WIREFRAME — Design system (single source of truth) ========== */
+:root {
+  --red: #c8102e;
+  --navy: #001328;
+  --blue: #0053a0;
+  --green: #0a6e47;
+  --body: #1c2b3a;
+  --mid: #445566;
+  --muted: #687788;
+  --faint: #95a5b5;
+  --line: #cdd6df;
+  --bg: #f3f5f8;
+  --white: #fff;
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-ibm), -apple-system, sans-serif;
+}
+
 /* Hero floating cards + AI bubble animations */
 @keyframes hero-fc1 {
   0%, 100% { transform: translateY(0); }
@@ -83,10 +100,13 @@
 
 /* Backward-compat: components still using old names */
 :root {
+  --font-dm-serif: var(--font-playfair), Georgia, serif;
+  --font-dm-sans: var(--font-ibm), -apple-system, sans-serif;
+  --font-body: var(--font-ibm), -apple-system, sans-serif;
+  --font: var(--font-ibm), -apple-system, sans-serif;
   --danger-bg: #FFEBEE;
   --danger-border: #EF9A9A;
   --warning-bg: #FFF3E0;
-  --font-body: var(--font);
   --font-mono: var(--mono);
   --shadow-card: var(--shadow-md);
   --shadow-float: var(--shadow-lg);

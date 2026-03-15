@@ -1,0 +1,73 @@
+"use client";
+
+import Link from "next/link";
+
+const latestInsights = [
+  { date: "13 Mar 2026", title: "MCA Lender Risk: North America Outlook Q1 2026", href: "/blog" },
+  { date: "10 Mar 2026", title: "Yellowstone Capital Downgraded to C Following Consent Order", href: "/blog" },
+  { date: "5 Mar 2026", title: "Trucking Sector Alert: Predatory Stacking Patterns in 14 States", href: "/blog" },
+  { date: "28 Feb 2026", title: "TX HB 700 Implementation: What Borrowers Need to Know", href: "/blog" },
+  { date: "20 Feb 2026", title: "Reconciliation Failure as Legal Hook: 2025 Review", href: "/blog" },
+];
+
+export default function InsightsSection() {
+  return (
+    <section className="border-b border-[var(--line)] bg-white px-6 md:px-8" aria-label="Latest insights">
+      <div className="mx-auto max-w-[1160px]">
+        <div className="grid border border-[var(--line)] md:grid-cols-[260px_1fr]">
+          <div className="border-b border-[var(--line)] p-5 pr-4 md:border-b-0 md:border-r">
+            <h2 className="border-b border-[var(--line)] pb-2 text-[14px] font-bold" style={{ color: "var(--body)", fontFamily: "var(--font-sans)" }}>
+              Latest Insights
+            </h2>
+            <div className="flex flex-col">
+              {latestInsights.map((item) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="group flex items-start justify-between gap-2 border-b border-[var(--line)] py-2.5 last:border-0"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  <div>
+                    <div className="text-[10.5px] font-light" style={{ color: "var(--faint)", marginBottom: 2 }}>{item.date}</div>
+                    <div className="text-[12px] font-semibold leading-snug group-hover:text-[var(--red)] transition-colors" style={{ color: "var(--body)" }}>{item.title}</div>
+                  </div>
+                  <span className="shrink-0 text-[13px]" style={{ color: "var(--faint)" }}>›</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="grid border-t border-[var(--line)] md:grid-cols-2 md:border-t-0">
+            <Link
+              href="/lender-risk-index"
+              className="group flex flex-col border-b border-[var(--line)] md:border-b-0 md:border-l border-[var(--line)]"
+            >
+              <div className="h-[200px] shrink-0 bg-[#eef1f4] border-b border-[var(--line)] relative">
+                <span className="absolute bottom-2.5 left-3 text-[9px] font-bold uppercase tracking-widest" style={{ color: "#aab8c2", fontFamily: "var(--font-sans)" }}>Image placeholder</span>
+              </div>
+              <div className="flex flex-col p-4 pt-4 pb-5" style={{ fontFamily: "var(--font-sans)" }}>
+                <div className="text-[9px] font-bold uppercase tracking-[0.18em]" style={{ color: "var(--red)", marginBottom: 8 }}>Products &amp; Services</div>
+                <div className="text-[14px] font-semibold leading-snug group-hover:text-[var(--red)] transition-colors" style={{ color: "var(--body)", marginBottom: 10 }}>Lender Risk Index</div>
+                <div className="text-[12px] font-light leading-[1.65] flex-1" style={{ color: "var(--muted)", marginBottom: 12 }}>Our analyst-scored database of active MCA lenders. Search by state, score, and complaint history.</div>
+                <span className="text-[18px]" style={{ color: "var(--mid)" }}>→</span>
+              </div>
+            </Link>
+            <Link
+              href="/intelligence"
+              className="group flex flex-col border-l border-[var(--line)]"
+            >
+              <div className="h-[200px] shrink-0 bg-[#eef1f4] border-b border-[var(--line)] relative">
+                <span className="absolute bottom-2.5 left-3 text-[9px] font-bold uppercase tracking-widest" style={{ color: "#aab8c2", fontFamily: "var(--font-sans)" }}>Image placeholder</span>
+              </div>
+              <div className="flex flex-col p-4 pt-4 pb-5" style={{ fontFamily: "var(--font-sans)" }}>
+                <div className="text-[9px] font-bold uppercase tracking-[0.18em]" style={{ color: "var(--red)", marginBottom: 8 }}>Featured Topic</div>
+                <div className="text-[14px] font-semibold leading-snug group-hover:text-[var(--red)] transition-colors" style={{ color: "var(--body)", marginBottom: 10 }}>MCA Borrower Defense</div>
+                <div className="text-[12px] font-light leading-[1.65] flex-1" style={{ color: "var(--muted)", marginBottom: 12 }}>How distressed borrowers are fighting back — and winning — against predatory MCA lenders.</div>
+                <span className="text-[18px]" style={{ color: "var(--mid)" }}>→</span>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

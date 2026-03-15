@@ -2,121 +2,44 @@
 
 import Link from "next/link";
 
+const footerLinks = [
+  ["About Debtura", "Investor Relations", "Contact Us", "Careers"],
+  ["Lender Risk Index", "News & Research", "Support by Division", "Corporate Responsibility"],
+  ["Contract Analyzer", "MCA Calculator", "Report an Ethics Concern", "Leadership"],
+  ["Press Center", "Glossary", "Office Locations", "ESG & Regulatory Statements"],
+];
+
 export default function Footer() {
-  const scrollTo = (id: string) => {
-    const el = document.querySelector(id);
-    el?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <footer className="py-12 px-4 sm:px-6" style={{ background: "#0f172a" }} aria-label="Footer">
-      <div className="mx-auto max-w-[1200px]">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Link
-              href="/"
-              className="text-[20px] font-normal lowercase tracking-tight text-white no-underline"
-              style={{ fontFamily: "var(--font-dm-serif), Georgia, serif", letterSpacing: "-0.5px" }}
-            >
-              debtura
-            </Link>
-          </div>
-          <div>
-            <h3
-              className="text-xs font-semibold uppercase tracking-wider"
-              style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-dm-sans), sans-serif" }}
-            >
-              Platform
-            </h3>
-            <ul className="mt-4 space-y-3">
-              <li>
-                <button type="button" onClick={() => scrollTo("#how-it-works")} className="text-left text-sm transition hover:underline bg-transparent border-0 cursor-pointer" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  How It Works
-                </button>
-              </li>
-              <li>
-                <Link href="/lender-risk-index" className="text-sm transition hover:underline" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  Lender Risk Index
-                </Link>
-              </li>
-              <li>
-                <Link href="/analyze" className="text-sm transition hover:underline" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  Contract Analyzer
-                </Link>
-              </li>
-              <li>
-                <button type="button" onClick={() => scrollTo("#application")} className="text-left text-sm transition hover:underline bg-transparent border-0 cursor-pointer" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  Apply for Funding
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => scrollTo("#faq")} className="text-left text-sm transition hover:underline bg-transparent border-0 cursor-pointer" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  FAQ
-                </button>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3
-              className="text-xs font-semibold uppercase tracking-wider"
-              style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-dm-sans), sans-serif" }}
-            >
-              Resources
-            </h3>
-            <ul className="mt-4 space-y-3">
-              <li>
-                <Link href="/blog" className="text-sm transition hover:underline" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/apr-calculator" className="text-sm transition hover:underline" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  MCA Calculator
-                </Link>
-              </li>
-              <li>
-                <Link href="/glossary" className="text-sm transition hover:underline" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  Glossary
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3
-              className="text-xs font-semibold uppercase tracking-wider"
-              style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-dm-sans), sans-serif" }}
-            >
-              Company
-            </h3>
-            <ul className="mt-4 space-y-3">
-              <li>
-                <button type="button" onClick={() => scrollTo("#about")} className="text-left text-sm transition hover:underline bg-transparent border-0 cursor-pointer" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  About
-                </button>
-              </li>
-              <li>
-                <Link href="/privacy" className="text-sm transition hover:underline" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-sm transition hover:underline" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <a href="mailto:hello@debtura.com" className="text-sm transition hover:underline" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
+    <footer className="pt-11 pb-0 px-6 md:px-8" style={{ background: "#e8eaec", fontFamily: "var(--font-sans)" }} aria-label="Footer">
+      <div className="mx-auto max-w-[1160px]">
+        <div className="pb-2.5 mb-2.5 border-b text-[11px] font-bold uppercase tracking-wider" style={{ color: "var(--body)", borderColor: "#c5cacf", letterSpacing: "0.12em" }}>
+          Debtura
         </div>
-
-        <div className="mt-10 pt-8 border-t border-white/10">
-          <p className="text-[12px] text-center" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-            © 2026 Debtura. All rights reserved.
-          </p>
+        <div className="mb-8 grid grid-cols-2 gap-x-4 gap-y-1 md:grid-cols-4">
+          {footerLinks.map((col, ci) => (
+            <div key={ci} className="flex flex-col gap-0.5">
+              {col.map((label) => {
+                const href = label === "Lender Risk Index" ? "/lender-risk-index" : label === "Contract Analyzer" ? "/analyze" : label === "MCA Calculator" ? "/apr-calculator" : label === "News & Research" ? "/intelligence" : label === "Glossary" ? "/glossary" : label === "Privacy Policy" ? "/privacy" : label === "Terms of Use" ? "/terms" : "#";
+                return (
+                  <Link key={label} href={href} className="py-0.5 text-[13px] no-underline hover:text-[var(--red)] transition-colors" style={{ color: "var(--body)" }}>
+                    {label}
+                  </Link>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+        <hr className="border-none border-t mb-5" style={{ borderColor: "#c5cacf" }} />
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-6 pt-3">
+          <p className="text-[11.5px]" style={{ color: "var(--muted)" }}>© 2026 Debtura · Licensed commercial financing broker · NMLS# pending</p>
+          <div className="flex flex-wrap gap-5">
+            <Link href="/terms" className="text-[11.5px] no-underline hover:text-[var(--body)] transition-colors" style={{ color: "var(--muted)" }}>Legal Disclaimers</Link>
+            <Link href="/terms" className="text-[11.5px] no-underline hover:text-[var(--body)] transition-colors" style={{ color: "var(--muted)" }}>Terms of Use</Link>
+            <Link href="/privacy" className="text-[11.5px] no-underline hover:text-[var(--body)] transition-colors" style={{ color: "var(--muted)" }}>Privacy Policy</Link>
+            <a href="#" className="text-[11.5px] no-underline hover:text-[var(--body)] transition-colors" style={{ color: "var(--muted)" }}>Cookie Notice</a>
+            <a href="#" className="text-[11.5px] no-underline hover:text-[var(--body)] transition-colors" style={{ color: "var(--muted)" }}>Do Not Sell My Information</a>
+          </div>
         </div>
       </div>
     </footer>

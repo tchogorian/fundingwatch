@@ -1,92 +1,65 @@
 "use client";
 
 import Link from "next/link";
-import { Shield, FileSearch, Handshake } from "lucide-react";
 
 const cards = [
   {
+    barColor: "var(--blue)",
+    catColor: "var(--blue)",
+    category: "Lender Risk Index",
     title: "Lender Risk Index",
-    icon: Shield,
-    borderColor: "#1e5a8a",
-    body: "Every MCA lender scored on six dimensions: complaint density, regulatory exposure, contract risk signals, litigation aggressiveness, transparency, and stacking behavior. Exposed in a public database anyone can search.",
+    body: "We rate every MCA lender on complaints, contract terms, litigation history, and transparency.",
     cta: "Browse the Index →",
     href: "/lender-risk-index",
   },
   {
+    barColor: "var(--navy)",
+    catColor: "var(--navy)",
+    category: "Contract Analyzer",
     title: "Contract Analyzer",
-    icon: FileSearch,
-    borderColor: "#2a6a9e",
-    body: "Upload any MCA contract or offer letter. Our system extracts the factor rate, calculates the real APR, flags missing reconciliation clauses, identifies confession of judgment language, and scores the lender — in seconds.",
-    cta: "Analyze a Contract →",
+    body: "Upload any MCA contract. Our AI extracts the real APR, flags hidden terms, and scores your lender in seconds — free.",
+    cta: "Try It Free →",
     href: "/analyze",
   },
   {
+    barColor: "var(--green)",
+    catColor: "var(--green)",
+    category: "Vetted Matching",
     title: "Vetted Lender Matching",
-    icon: Handshake,
-    borderColor: "#22c55e",
-    body: "Tell us about your business and we do the rest. We only route applications to lenders that passed our independent review — filtered by your revenue, industry, and funding needs.",
-    cta: "Apply Now →",
+    body: "We match you with certified lenders based on your profile and the terms you deserve.",
+    cta: "Get Matched →",
     href: "#application",
     scroll: true,
   },
 ];
 
 export default function OurIntelligence() {
-  const scrollToApplication = () => {
-    document.getElementById("application")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const scrollToApplication = () => document.getElementById("application")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section id="how-it-works" className="py-20 px-4 sm:px-6 bg-[#f8fafb]" aria-label="Our intelligence">
-      <div className="mx-auto max-w-[1100px]">
-        {/* Subtle section transition line above content */}
-        <div className="h-px mb-16 opacity-50" style={{ background: "linear-gradient(to right, transparent, #1e5a8a, #2a6a9e, transparent)" }} />
-        <p
-          className="text-xs font-semibold uppercase tracking-wider text-center"
-          style={{ color: "#2a6a9e", fontFamily: "var(--font-dm-sans), sans-serif" }}
-        >
-          OUR INTELLIGENCE
-        </p>
-        <h2
-          className="text-2xl md:text-3xl text-center mt-2"
-          style={{ fontFamily: "var(--font-dm-serif), Georgia, serif", color: "#0f172a", fontWeight: 400 }}
-        >
+    <section id="how-it-works" className="border-b border-[var(--line)] py-11 px-6 md:px-8" style={{ background: "var(--bg)", fontFamily: "var(--font-sans)" }} aria-label="Our intelligence">
+      <div className="mx-auto max-w-[1160px]">
+        <div className="mb-2 flex items-center gap-2">
+          <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
+          <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>Our Intelligence</span>
+        </div>
+        <h2 className="mb-5 text-[22px] font-semibold" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)" }}>
           The engine behind every match
         </h2>
-
-        <div className="mt-16 grid md:grid-cols-3 gap-8">
-          {cards.map(({ title, icon: Icon, borderColor, body, cta, href, scroll }) => (
+        <div className="grid border border-[var(--line)] md:grid-cols-3">
+          {cards.map((c) => (
             <div
-              key={title}
-              className="bg-white rounded-2xl p-8 shadow-sm flex flex-col"
-              style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06)", borderTop: `3px solid ${borderColor}` }}
+              key={c.title}
+              className="relative flex flex-col border-r border-[var(--line)] bg-white p-6 last:border-r-0"
             >
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ background: "#f0f7ff", color: borderColor }}>
-                <Icon className="w-6 h-6" aria-hidden />
-              </div>
-              <h3 className="text-lg font-semibold" style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "#0f172a" }}>
-                {title}
-              </h3>
-              <p className="mt-4 text-[15px] leading-[1.65] flex-1" style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "#64748b" }}>
-                {body}
-              </p>
-              {scroll ? (
-                <button
-                  type="button"
-                  onClick={scrollToApplication}
-                  className="mt-6 text-[14px] font-semibold text-left transition hover:opacity-80 bg-transparent border-0 cursor-pointer"
-                  style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "#1e5a8a" }}
-                >
-                  {cta}
-                </button>
+              <div className="absolute left-0 right-0 top-0 h-0.5" style={{ background: c.barColor }} />
+              <div className="mt-3.5 mb-2 text-[9px] font-bold uppercase tracking-[0.16em]" style={{ color: c.catColor }}>{c.category}</div>
+              <h3 className="mb-2 text-[14px] font-semibold leading-snug" style={{ color: "var(--navy)" }}>{c.title}</h3>
+              <p className="mb-3.5 flex-1 text-[12.5px] font-light leading-[1.65]" style={{ color: "var(--muted)" }}>{c.body}</p>
+              {c.scroll ? (
+                <button type="button" onClick={scrollToApplication} className="text-[11.5px] font-semibold bg-transparent border-none cursor-pointer p-0 text-left" style={{ color: c.catColor }}>{c.cta}</button>
               ) : (
-                <Link
-                  href={href}
-                  className="mt-6 text-[14px] font-semibold inline-block transition hover:opacity-80 no-underline"
-                  style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "#1e5a8a" }}
-                >
-                  {cta}
-                </Link>
+                <Link href={c.href} className="text-[11.5px] font-semibold no-underline" style={{ color: c.catColor }}>{c.cta}</Link>
               )}
             </div>
           ))}

@@ -3,16 +3,14 @@
 import { useState, useCallback, useRef } from "react";
 import type { AnalysisResult } from "@/types/analysis";
 import Hero from "@/components/Hero";
-import TrustBar from "@/components/TrustBar";
+import InsightsSection from "@/components/InsightsSection";
 import OurIntelligence from "@/components/OurIntelligence";
-import FeaturedInsight from "@/components/FeaturedInsight";
 import CheckYourContract from "@/components/CheckYourContract";
 import LoadingState from "@/components/LoadingState";
 import ApplicationForm from "@/components/ApplicationForm";
 import FAQ from "@/components/FAQ";
-import SecondaryCTA from "@/components/SecondaryCTA";
+import FollowBar from "@/components/FollowBar";
 import Footer from "@/components/Footer";
-import RevealOnScrollProvider from "@/components/RevealOnScroll";
 
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -67,37 +65,27 @@ export default function Home() {
   }, []);
 
   return (
-    <RevealOnScrollProvider>
-      <>
-        <Hero />
-        <TrustBar />
-        <OurIntelligence />
-        <FeaturedInsight />
-        <CheckYourContract
-          selectedFile={selectedFile}
-          onFileSelect={handleFileSelect}
-          onStartAnalysis={handleStartAnalysis}
-          isAnalyzing={isAnalyzing}
-          analysisError={analysisError}
+    <>
+      <Hero />
+      <InsightsSection />
+      <OurIntelligence />
+      <CheckYourContract
+        selectedFile={selectedFile}
+        onFileSelect={handleFileSelect}
+        onStartAnalysis={handleStartAnalysis}
+        isAnalyzing={isAnalyzing}
+        analysisError={analysisError}
+      />
+      {isAnalyzing && (
+        <LoadingState
+          apiComplete={analysisSuccess}
+          onAnimationComplete={handleAnimationComplete}
         />
-        {isAnalyzing && (
-          <LoadingState
-            apiComplete={analysisSuccess}
-            onAnimationComplete={handleAnimationComplete}
-          />
-        )}
-        <ApplicationForm />
-        <FAQ />
-        <section id="about" className="py-12 px-4 bg-white">
-          <div className="mx-auto max-w-[640px] text-center">
-            <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", color: "#64748b", fontSize: 15 }}>
-              Debtura is a licensed commercial financing broker. We match businesses with vetted MCA lenders and help you understand your contract terms.
-            </p>
-          </div>
-        </section>
-        <SecondaryCTA />
-        <Footer />
-      </>
-    </RevealOnScrollProvider>
+      )}
+      <ApplicationForm />
+      <FAQ />
+      <FollowBar />
+      <Footer />
+    </>
   );
 }

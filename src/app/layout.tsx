@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
-import { Sora, JetBrains_Mono, DM_Serif_Display, DM_Sans } from "next/font/google";
+import { Playfair_Display, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import ScrollToHash from "@/components/ScrollToHash";
 import AIChatBubble from "@/components/AIChatBubble";
 import "./globals.css";
 
-const sora = Sora({
-  weight: ["300", "400", "500", "600", "700", "800"],
+const playfair = Playfair_Display({
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const ibmPlexSans = IBM_Plex_Sans({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-ibm",
   display: "swap",
 });
 
@@ -19,25 +27,11 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const dmSerifDisplay = DM_Serif_Display({
-  weight: ["400"],
-  subsets: ["latin"],
-  variable: "--font-dm-serif",
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.debtura.com"),
-  title: "Debtura — MCA Intelligence & Brokerage",
+  title: "Debtura — Funding, with confidence.",
   description:
-    "Debtura analyzes lender risk, uncovers hidden terms, and connects businesses with better funding partners.",
+    "Our analyst-driven lender ratings, contract analysis, and AI-powered matching provide critical intelligence — translating complexity into clarity so businesses can fund with conviction.",
   verification: {
     google: "6XMUkiJGV7qsaORZx0us0VRKXjam4XL5pTjjRuWqD2Y",
   },
@@ -60,12 +54,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${jetbrainsMono.variable} ${dmSerifDisplay.variable} ${dmSans.variable}`}
+      className={`${playfair.variable} ${ibmPlexSans.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" style={{ fontFamily: "var(--font-ibm), -apple-system, sans-serif" }}>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[#1e5a8a] focus:px-4 focus:py-2 focus:text-white focus:outline-none"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[#c8102e] focus:px-4 focus:py-2 focus:text-white focus:outline-none"
         >
           Skip to content
         </a>
