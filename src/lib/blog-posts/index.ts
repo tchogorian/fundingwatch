@@ -33,9 +33,6 @@ import { post as mcaLawsNewYorkBorrowerRightsAndRemedies } from "./mca-laws-new-
 import { post as mcaIndustry20BillionMarketBorrowers } from "./mca-industry-20-billion-market-borrowers";
 import { post as beforeSigningMca10Things } from "./before-signing-mca-10-things";
 
-import { post as whatIsConfessionOfJudgmentMca } from "./what-is-confession-of-judgment-mca";
-import { post as _5SignsYourMcaLenderIsActingInBadFaith } from "./5-signs-your-mca-lender-is-acting-in-bad-faith";
-
 export const PILLAR_POSTS = [
   mcaFactoringScamHistory,
   complaintAnalysisResponsibleVsPredatory,
@@ -67,6 +64,4 @@ export const PILLAR_POSTS = [
   merchantCashAdvancesSmallBusinessBankruptcies,
   mcaLawsNewYorkBorrowerRightsAndRemedies,
   mcaIndustry20BillionMarketBorrowers,
-  whatIsConfessionOfJudgmentMca,
-  _5SignsYourMcaLenderIsActingInBadFaith,
 ];
