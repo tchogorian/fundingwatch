@@ -53,14 +53,14 @@ export default function IntelligencePage() {
         <div className="mb-2 flex items-center gap-2">
           <span className="h-0.5 w-5 shrink-0 rounded" style={{ background: "var(--red)" }} />
           <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: "var(--red)" }}>
-            Research
+            DEBTURA INTELLIGENCE — BORROWER RESEARCH
           </span>
         </div>
         <h1 className="text-[28px] md:text-[34px]" style={{ fontFamily: "var(--font-serif)", color: "var(--navy)", fontWeight: 600 }}>
-          Debtura Intelligence
+          Intelligence
         </h1>
         <p className="mt-2 text-[15px]" style={{ color: "var(--muted)" }}>
-          Independent research on MCA lending — lender behavior, borrower outcomes, contract trends, and regulatory shifts.
+          Independent analysis of MCA lenders, contracts, and borrower rights. No paid placements. No sponsored content.
         </p>
 
         {/* Featured article hero — newest */}
@@ -139,6 +139,8 @@ export default function IntelligencePage() {
                 </h3>
                 <span className="mt-2 block text-[12px]" style={{ color: "var(--muted)" }}>
                   {dateFormatted}
+                  <span className="mx-1.5">·</span>
+                  {post.readTimeMinutes} min read
                 </span>
               </Link>
             );
