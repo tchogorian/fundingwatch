@@ -110,7 +110,7 @@ export default function LenderRiskIndexPage() {
   const [search, setSearch] = useState("");
   const [gradeFilter, setGradeFilter] = useState("ALL");
   const [sortCol, setSortCol] = useState<SortCol>("safety_score");
-  const [sortDir, setSortDir] = useState<SortDir>("asc");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
 
   useEffect(() => {
     fetch("/api/lenders")
@@ -157,7 +157,7 @@ export default function LenderRiskIndexPage() {
       setSortDir((d) => (d === "asc" ? "desc" : "asc"));
     } else {
       setSortCol(col);
-      setSortDir(col === "safety_score" ? "asc" : "desc");
+      setSortDir("desc");
     }
   }
 
