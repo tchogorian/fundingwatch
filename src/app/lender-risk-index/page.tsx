@@ -323,7 +323,7 @@ export default function LenderRiskIndexPage() {
                     >
                       <td className="px-4 py-4">
                         <div className="text-[14px] font-semibold" style={{ color: "var(--body)", fontFamily: "var(--font-sans)" }}>
-                          {l.name.replace(/\w+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase())}
+                          {l.name.replace(/\s*\(formerly[^)]*\)/gi, "").trim().replace(/\w+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase())}
                         </div>
                         {l.overall_assessment && (
                           <div className="text-[12px] mt-0.5 line-clamp-1" style={{ color: "var(--muted)", fontFamily: "var(--font-sans)" }}>

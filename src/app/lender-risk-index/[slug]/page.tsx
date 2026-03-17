@@ -134,7 +134,7 @@ export default function LenderDetailPage() {
   const gs = GRADE_STYLES[lender.grade] || GRADE_STYLES.NR;
   const safetyScore = lender.safety_score !== null ? parseFloat(lender.safety_score) : null;
   const cases = lender.courtlistener_cases ?? lender.lawsuit_count;
-  const displayName = lender.name.replace(/\w+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase());
+  const displayName = lender.name.replace(/\s*\(formerly[^)]*\)/gi, "").trim().replace(/\w+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase());
 
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)" }}>
