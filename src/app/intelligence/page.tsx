@@ -18,6 +18,21 @@ const CATEGORY_TO_FILTER: Record<BlogCategory, FilterTab> = {
   "state-guides": "REGULATORY",
 };
 
+// Educational content first, lender exposés / red flags last
+const CATEGORY_GRID_PRIORITY: Record<BlogCategory, number> = {
+  "mca-basics":       1,
+  "tools-resources":  2,
+  "borrower-rights":  3,
+  "case-studies":     4,
+  "industry-news":    5,
+  "state-guides":     6,
+  "contract-analysis": 7,
+  "lender-profiles":  8,
+};
+
+// Pinned hero slug — balanced awareness piece, not an alarm article
+const PINNED_FEATURED_SLUG = "1700-borrower-complaints-responsible-vs-predatory-mca";
+
 const FILTER_BAR_COLOR: Record<FilterTab, string> = {
   ALL: "var(--red)",
   "LENDER REVIEW": "var(--blue)",
@@ -34,11 +49,16 @@ export default function IntelligencePage() {
   const [activeTab, setActiveTab] = useState<FilterTab>("ALL");
 
   const { featured, gridArticles } = useMemo(() => {
-    const sorted = [...BLOG_POSTS].sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
-    const [first, ...rest] = sorted;
-    return { featured: first ?? null, gridArticles: rest };
+    const pinned = BLOG_POSTS.find((p) => p.slug === PINNED_FEATURED_SLUG) ?? null;
+    const rest = BLOG_POSTS.filter((p) => p.slug !== PINNED_FEATURED_SLUG);
+    // Sort grid: educational categories first, then by date descending within each tier
+    const sorted = [...rest].sort((a, b) => {
+      const pa = CATEGORY_GRID_PRIORITY[a.category] ?? 9;
+      const pb = CATEGORY_GRID_PRIORITY[b.category] ?? 9;
+      if (pa !== pb) return pa - pb;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+    return { featured: pinned ?? sorted[0] ?? null, gridArticles: pinned ? sorted : sorted.slice(1) };
   }, []);
 
   const filteredGrid = useMemo(() => {
@@ -60,7 +80,7 @@ export default function IntelligencePage() {
           Intelligence
         </h1>
         <p className="mt-2 text-[15px]" style={{ color: "var(--muted)" }}>
-          Independent analysis of MCA lenders, contracts, and borrower rights. No paid placements. No sponsored content.
+          Independent research to help business owners understand MCA contracts, know their rights, and make informed decisions.
         </p>
 
         {/* Featured article hero — newest */}
