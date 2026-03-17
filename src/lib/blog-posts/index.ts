@@ -33,6 +33,11 @@ import { post as mcaLawsNewYorkBorrowerRightsAndRemedies } from "./mca-laws-new-
 import { post as mcaIndustry20BillionMarketBorrowers } from "./mca-industry-20-billion-market-borrowers";
 import { post as beforeSigningMca10Things } from "./before-signing-mca-10-things";
 
+import { post as bestMerchantCashAdvanceCompaniesOf2026RankedByCostAndComplaints } from "./best-merchant-cash-advance-companies-of-2026-ranked-by-cost-and-complaints";
+import { post as canINegotiateMyMcaPayoffAmount } from "./can-i-negotiate-my-mca-payoff-amount";
+import { post as factorRateVsInterestRateWhatsTheDifference } from "./factor-rate-vs-interest-rate-whats-the-difference";
+import { post as whatYourAccountantShouldKnowAboutYourMca } from "./what-your-accountant-should-know-about-your-mca";
+
 export const PILLAR_POSTS = [
   mcaFactoringScamHistory,
   complaintAnalysisResponsibleVsPredatory,
@@ -64,4 +69,8 @@ export const PILLAR_POSTS = [
   merchantCashAdvancesSmallBusinessBankruptcies,
   mcaLawsNewYorkBorrowerRightsAndRemedies,
   mcaIndustry20BillionMarketBorrowers,
+  bestMerchantCashAdvanceCompaniesOf2026RankedByCostAndComplaints,
+  canINegotiateMyMcaPayoffAmount,
+  factorRateVsInterestRateWhatsTheDifference,
+  whatYourAccountantShouldKnowAboutYourMca,
 ];
