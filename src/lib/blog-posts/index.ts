@@ -32,8 +32,10 @@ import { post as merchantCashAdvancesSmallBusinessBankruptcies } from "./merchan
 import { post as mcaLawsNewYorkBorrowerRightsAndRemedies } from "./mca-laws-new-york-borrower-rights-and-remedies";
 import { post as mcaIndustry20BillionMarketBorrowers } from "./mca-industry-20-billion-market-borrowers";
 import { post as beforeSigningMca10Things } from "./before-signing-mca-10-things";
+import { post as cheapestMerchantCashAdvanceRates } from "./cheapest-merchant-cash-advance-rates";
 
 export const PILLAR_POSTS = [
+  cheapestMerchantCashAdvanceRates,
   mcaFactoringScamHistory,
   complaintAnalysisResponsibleVsPredatory,
   beforeSigningMca10Things,
