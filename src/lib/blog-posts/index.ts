@@ -33,9 +33,17 @@ import { post as mcaLawsNewYorkBorrowerRightsAndRemedies } from "./mca-laws-new-
 import { post as mcaIndustry20BillionMarketBorrowers } from "./mca-industry-20-billion-market-borrowers";
 import { post as beforeSigningMca10Things } from "./before-signing-mca-10-things";
 import { post as cheapestMerchantCashAdvanceRates } from "./cheapest-merchant-cash-advance-rates";
+import { post as ucc1FilingWhatItMeans } from "./ucc-1-filing-what-it-means-for-your-business";
+import { post as mcaRenewalOffersWhenToAccept } from "./mca-renewal-offers-when-to-accept";
+import { post as howMcaAffectsBankLoan } from "./how-mca-affects-bank-loan";
+import { post as restaurantMerchantCashAdvance } from "./restaurant-merchant-cash-advance";
 
 export const PILLAR_POSTS = [
   cheapestMerchantCashAdvanceRates,
+  ucc1FilingWhatItMeans,
+  mcaRenewalOffersWhenToAccept,
+  howMcaAffectsBankLoan,
+  restaurantMerchantCashAdvance,
   mcaFactoringScamHistory,
   complaintAnalysisResponsibleVsPredatory,
   beforeSigningMca10Things,
