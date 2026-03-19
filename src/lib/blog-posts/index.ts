@@ -40,6 +40,11 @@ import { post as restaurantMerchantCashAdvance } from "./restaurant-merchant-cas
 
 import { post as revenueBasedFinancingVsMcaWhatBorrowersNeedToKnow } from "./revenue-based-financing-vs-mca-what-borrowers-need-to-know";
 
+import { post as merchantCashAdvanceProsAndConsAnHonestAssessment } from "./merchant-cash-advance-pros-and-cons-an-honest-assessment";
+import { post as primoMcaContractReview } from "./primo-mca-contract-review";
+import { post as voxFundingMcaContractReview } from "./vox-funding-mca-contract-review";
+import { post as infinityMcaContractReview } from "./infinity-mca-contract-review";
+
 export const PILLAR_POSTS = [
   cheapestMerchantCashAdvanceRates,
   ucc1FilingWhatItMeans,
@@ -80,4 +85,8 @@ export const PILLAR_POSTS = [
   itriaMcaContractReview,
   tvtMcaContractReview,
   revenueBasedFinancingVsMcaWhatBorrowersNeedToKnow,
+  merchantCashAdvanceProsAndConsAnHonestAssessment,
+  primoMcaContractReview,
+  voxFundingMcaContractReview,
+  infinityMcaContractReview,
 ];
