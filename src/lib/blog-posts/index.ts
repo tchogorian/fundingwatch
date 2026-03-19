@@ -38,9 +38,6 @@ import { post as mcaRenewalOffersWhenToAccept } from "./mca-renewal-offers-when-
 import { post as howMcaAffectsBankLoan } from "./how-mca-affects-bank-loan";
 import { post as restaurantMerchantCashAdvance } from "./restaurant-merchant-cash-advance";
 
-import { post as freshFundingMcaContractReview } from "./fresh-funding-mca-contract-review";
-import { post as itriaMcaContractReview } from "./itria-mca-contract-review";
-import { post as tvtMcaContractReview } from "./tvt-mca-contract-review";
 import { post as revenueBasedFinancingVsMcaWhatBorrowersNeedToKnow } from "./revenue-based-financing-vs-mca-what-borrowers-need-to-know";
 
 export const PILLAR_POSTS = [
