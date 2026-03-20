@@ -45,10 +45,6 @@ import { post as primoMcaContractReview } from "./primo-mca-contract-review";
 import { post as voxFundingMcaContractReview } from "./vox-funding-mca-contract-review";
 import { post as infinityMcaContractReview } from "./infinity-mca-contract-review";
 
-import { post as freshFundingWhatTheLawsuitsActuallyShow } from "./fresh-funding-what-the-lawsuits-actually-show";
-import { post as itriaWhatTheLawsuitsActuallyShow } from "./itria-what-the-lawsuits-actually-show";
-import { post as tvtWhatTheLawsuitsActuallyShow } from "./tvt-what-the-lawsuits-actually-show";
-import { post as whatIsReconciliationClauseMca } from "./what-is-reconciliation-clause-mca";
 
 export const PILLAR_POSTS = [
   cheapestMerchantCashAdvanceRates,
