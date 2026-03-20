@@ -47,6 +47,11 @@ import { post as infinityMcaContractReview } from "./infinity-mca-contract-revie
 
 
 
+import { post as howToGetAMerchantCashAdvance } from "./how-to-get-a-merchant-cash-advance";
+import { post as merchantCashAdvanceBadCredit } from "./merchant-cash-advance-bad-credit";
+import { post as howMuchCanYouGetMerchantCashAdvance } from "./how-much-can-you-get-merchant-cash-advance";
+import { post as merchantCashAdvanceForTrucking } from "./merchant-cash-advance-for-trucking";
+
 export const PILLAR_POSTS = [
   cheapestMerchantCashAdvanceRates,
   ucc1FilingWhatItMeans,
@@ -99,4 +104,8 @@ export const PILLAR_POSTS = [
   bestMerchantCashAdvanceCompaniesOf2026RankedByCostAndComplaints,
   factorRateVsInterestRateWhatsTheDifference,
   mcaLawsNewYorkConfessionOfJudgmentBanForOutOfSt,
+  howToGetAMerchantCashAdvance,
+  merchantCashAdvanceBadCredit,
+  howMuchCanYouGetMerchantCashAdvance,
+  merchantCashAdvanceForTrucking,
 ];
