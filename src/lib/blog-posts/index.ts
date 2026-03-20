@@ -46,6 +46,11 @@ import { post as voxFundingMcaContractReview } from "./vox-funding-mca-contract-
 import { post as infinityMcaContractReview } from "./infinity-mca-contract-review";
 
 
+import { post as whatHappensIfYouStopPayingYourMca } from "./what-happens-if-you-stop-paying-your-mca";
+import { post as bestMerchantCashAdvanceCompaniesOf2026RankedByCostAndComplaints } from "./best-merchant-cash-advance-companies-of-2026-ranked-by-cost-and-complaints";
+import { post as factorRateVsInterestRateWhatsTheDifference } from "./factor-rate-vs-interest-rate-whats-the-difference";
+import { post as mcaLawsNewYorkConfessionOfJudgmentBanForOutOfSt } from "./mca-laws-new-york-confession-of-judgment-ban-for-out-of-st";
+
 export const PILLAR_POSTS = [
   cheapestMerchantCashAdvanceRates,
   ucc1FilingWhatItMeans,
@@ -94,4 +99,8 @@ export const PILLAR_POSTS = [
   itriaWhatTheLawsuitsActuallyShow,
   tvtWhatTheLawsuitsActuallyShow,
   whatIsReconciliationClauseMca,
+  whatHappensIfYouStopPayingYourMca,
+  bestMerchantCashAdvanceCompaniesOf2026RankedByCostAndComplaints,
+  factorRateVsInterestRateWhatsTheDifference,
+  mcaLawsNewYorkConfessionOfJudgmentBanForOutOfSt,
 ];
